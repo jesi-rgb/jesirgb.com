@@ -1,18 +1,20 @@
 @font-face {
-	font-family: 'Recursive';
-	src: local('Recursive'), url('/fonts/Recursive.ttf');
-	font-weight: 300 1000;
-}
-@font-face {
 	font-family: 'Supreme';
 	src: local('Supreme'), url('/fonts/Supreme.ttf');
 	font-weight: 100 800;
 }
+
 @font-face {
 	font-family: 'Supreme';
 	src: local('Supreme'), url('/fonts/Supreme-Italic.ttf');
 	font-weight: 100 800;
-	font-style: 'italic';
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Recursive';
+	src: local('Recursive'), url('/fonts/Recursive.ttf');
+	font-weight: 300 1000;
 }
 
 /* Write your global styles here, in PostCSS syntax */

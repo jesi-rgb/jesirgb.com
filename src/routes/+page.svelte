@@ -10,13 +10,13 @@
 	</div>
 </section>
 
-<section class="min-h-screen max-w-[50%] mx-auto flex text-2xl prose">
+<section class="min-h-screen max-w-[50%] mx-auto flex text-2xl">
 	<div class="my-auto h-fit">
 		<div>
 			i am currently a mathematical animator at <a
 				class="underline hover:text-primary transition-all"
 				href="https://www.prismsvr.com/">Prisms of Reality</a
-			>, reshaping how the K-12 system should look and <i>aaa</i> like
+			>, reshaping how the K-12 system should look and like
 		</div>
 	</div>
 </section>

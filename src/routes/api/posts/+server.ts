@@ -22,6 +22,7 @@ async function getPosts() {
       return new Date(p1.date).getTime() - new Date(p2.date).getTime();
     });
   }
+  console.log(posts);
   return posts;
 }
 export async function GET() {

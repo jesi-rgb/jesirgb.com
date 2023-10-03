@@ -1,14 +1,26 @@
-import { defineMDSveXConfig as defineConfig } from "mdsvex";
+import { defineMDSveXConfig as defineConfig, escapeSvelte } from 'mdsvex';
+import rehypeKatexSvelte from 'rehype-katex-svelte';
+import remarkMath from 'remark-math';
+import shiki from 'shiki';
 
 const config = defineConfig({
-  "extensions": [".svelte.md", ".md", ".svx"],
+  extensions: ['.svelte.md', '.md', '.svx'],
 
-  "smartypants": {
-    "dashes": "oldschool"
+  highlight: {
+    highlighter: async (code, lang = 'text') => {
+      const highlighter = await shiki.getHighlighter({ theme: 'dark-plus' });
+      const html = escapeSvelte(highlighter.codeToHtml(code, { lang }));
+
+      return `{@html \`${html}\`}`;
+    }
   },
 
-  "remarkPlugins": [],
-  "rehypePlugins": []
+  smartypants: {
+    dashes: 'oldschool'
+  },
+
+  remarkPlugins: [remarkMath],
+  rehypePlugins: [rehypeKatexSvelte]
 });
 
 export default config;
