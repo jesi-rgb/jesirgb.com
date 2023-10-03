@@ -12,6 +12,7 @@ const config = {
   },
 
   daisyui: {
+    logs: false,
     themes: [
       {
         jesi: {
