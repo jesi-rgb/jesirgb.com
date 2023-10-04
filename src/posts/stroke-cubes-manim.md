@@ -1,6 +1,6 @@
 ---
 title: Adding stroke to 3D prisms in Manim
-description: What seemed easy turned out quite a challenge
+description: Nearly had a stroke for this one
 date: 2021-11-03
 categories:
   - math
