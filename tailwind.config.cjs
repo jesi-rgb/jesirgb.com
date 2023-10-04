@@ -17,10 +17,14 @@ const config = {
       {
         jesi: {
           primary: '#a7f3d0',
+          'primary-focus': '#73E0B4',
+          'primary-content': '#021714',
           secondary: '#a78bfa',
           accent: '#fef9c3',
           neutral: '#a7f3d0',
           'base-100': '#021713',
+          'base-200': '#001410',
+          'base-300': '#010D0B',
           'base-content': '#fff',
           info: '#3abff8',
           success: '#4ade80',

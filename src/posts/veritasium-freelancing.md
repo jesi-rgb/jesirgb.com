@@ -38,9 +38,9 @@ As stated in the video, some mathematicians suggest that "_math is not yet prepa
 
 Here are some frames I made for the video, using [Manim](https://github.com/3b1b/manim)
 
-![Frame of the animation](/blog/veritasium/WhyFall_1.png)
+![Frame of the animation](/assets/veritasium-freelancing/WhyFall_1.png)
 
-![Frame of the animation](/blog/veritasium/loop.png)
+![Frame of the animation](/assets/veritasium-freelancing/loop.png)
 
 Finally, here's the final video. We put a lot of effort and passion into it, so hopefully you'll love it.
 

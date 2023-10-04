@@ -6,7 +6,7 @@
 		>
 			Jesús Rascón
 		</h1>
-		<div class="md:text-right">a design engineer and technical content creator</div>
+		<div class="md:text-right">design engineer and technical content creator</div>
 	</div>
 
 	<a href="/blog" class="btn btn-primary btn-outline">Blog</a>
@@ -16,9 +16,9 @@
 	<div class="my-auto h-fit">
 		<div>
 			i am currently a mathematical animator at <a
-				class="underline hover:text-primary transition-all"
+				class="underline text-accent hover:text-accent-focus transition-all"
 				href="https://www.prismsvr.com/">Prisms of Reality</a
-			>, reshaping how the K-12 system should look and like
+			>, reshaping how the K-12 system should look and <i>feel</i> like
 		</div>
 	</div>
 </section>
