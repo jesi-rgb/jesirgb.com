@@ -8,6 +8,8 @@
 		</h1>
 		<div class="md:text-right">a design engineer and technical content creator</div>
 	</div>
+
+	<a href="/blog" class="btn btn-primary btn-outline">Blog</a>
 </section>
 
 <section class="min-h-screen max-w-[50%] mx-auto flex text-2xl">

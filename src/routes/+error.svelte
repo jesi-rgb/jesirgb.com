@@ -1,10 +1,43 @@
 <script>
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
+
+	let drawNumber = false;
+
+	onMount(() => {
+		drawNumber = true;
+	});
 </script>
 
-<div class="min-h-screen flex flex-col text-5xl">
-	<div class="w-fit my-auto mx-auto text-center">
-		<h1 class="font-mono">{$page.error.message}</h1>
-		<a class="btn btn-outline btn-primary" href="/">Maybe go back?</a>
+<div class="min-h-screen flex">
+	<div class="w-full my-auto mx-auto text-center relative">
+		<svg class="w-full absolute -top-[500px] md:-top-96 -z-10" height="900" viewBox="0 0 400 600">
+			<defs>
+				<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+					<stop offset="0%" stop-color="#fff" />
+					<stop offset="70%" stop-color="#fff" stop-opacity="0" />
+				</linearGradient>
+			</defs>
+			{#if drawNumber}
+				<text
+					in:fly={{ y: -50, duration: 1000, delay: 300 }}
+					class="font-extrabold fill-base-100 text-[300px] md:text-[500px]"
+					stroke-linecap="round"
+					stroke-width=".5"
+					stroke="url(#gradient)"
+					text-anchor="middle"
+					dominant-baseline="middle"
+					x="50%"
+					dy="20"
+					y="50%">404</text
+				>
+			{/if}
+		</svg>
+
+		<div class="text-4xl md:text-6xl mt-10">
+			<div class="opacity-40 mb-20">Woopsies... <br /> something went wrong.</div>
+			<a class="text-3xl w-fit mx-auto" href="/">Maybe go back?</a>
+		</div>
 	</div>
 </div>
