@@ -2,7 +2,6 @@
 	import { formatDate } from '$lib/utils/utils.js';
 
 	export let data;
-	console.log(data.content);
 </script>
 
 <svelte:head>
@@ -11,14 +10,14 @@
 	<meta property="og:title" content={data.metadata.title} />
 </svelte:head>
 
-<article class="w-[90%] md:max-w-xl xl:max-w-[45%] mx-auto mt-32 mb-20">
+<article class="w-[90%] md:max-w-xl xl:max-w-2xl mx-auto mt-32 mb-20">
 	<hrgoup class="flex flex-col space-y-3">
 		<h1 class="text-5xl md:text-7xl font-extrabold text-center tracking-tighter">
 			{data.metadata.title}
 		</h1>
 		<div class="divider" />
 		<div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-			<p class="font-mono text-center text-lg xl:text-2xl text-neutral-400">
+			<p class="font-mono font-extralight text-center text-lg xl:text-2xl text-neutral-400">
 				{formatDate(data.metadata.date)}
 			</p>
 			<div class="flex flex-row space-x-1">
@@ -30,7 +29,7 @@
 	</hrgoup>
 
 	<div
-		class="prose prose-stone text-justify prose-xl prose-headings:text-left hover:prose-a:text-primary prose-a:transition-colors prose-strong:font-bold my-32"
+		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-primary prose-a:transition-colors prose-strong:font-bold my-32"
 	>
 		<svelte:component this={data.content} />
 	</div>

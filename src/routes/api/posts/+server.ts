@@ -13,16 +13,13 @@ async function getPosts() {
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       const metadata = file.metadata as Omit<Post, 'slug'>;
       const post = { ...metadata, slug } satisfies Post;
-      if (post.published) {
-        posts.push(post as Post);
-      }
+      posts.push(post as Post);
     }
 
     posts.sort((p2: Post, p1: Post) => {
       return new Date(p1.date).getTime() - new Date(p2.date).getTime();
     });
   }
-  console.log(posts);
   return posts;
 }
 export async function GET() {

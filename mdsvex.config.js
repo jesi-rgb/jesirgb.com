@@ -3,6 +3,10 @@ import rehypeKatexSvelte from 'rehype-katex-svelte';
 import remarkMath from 'remark-math';
 import shiki from 'shiki';
 
+import remarkUnwrapImages from 'remark-unwrap-images';
+import remarkToc from 'remark-toc';
+import rehypeSlug from 'rehype-slug';
+
 const config = defineConfig({
   extensions: ['.svelte.md', '.md', '.svx'],
 
@@ -19,8 +23,8 @@ const config = defineConfig({
     dashes: 'oldschool'
   },
 
-  remarkPlugins: [remarkMath],
-  rehypePlugins: [rehypeKatexSvelte]
+  remarkPlugins: [remarkMath, [remarkToc, { tight: true, ordered: true }], remarkUnwrapImages],
+  rehypePlugins: [rehypeKatexSvelte, rehypeSlug]
 });
 
 export default config;

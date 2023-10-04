@@ -1,20 +1,16 @@
 ---
 title: typographical expression
 description: a celebration of small things
-date: 2022-09-01
+date: 2023-02-08
 categories:
   - thinking
   - essay
-published: true
+  - internet
 ---
 
-<script>
-  import Yeah from '$lib/components/posts/Yeah.svelte'
-</script>
+## Table of contents
 
 yesterday was a very good internet day for me. this means i found incredibly cool stuff surfing the web.
-
-<Yeah/>
 
 i really love the _internet corner_ of little blogposts from developers or creatives in general, writing about things they are passionate about. the way in which every blog is the same concept: a bunch of text, but every bunch of text looks and _feels_ so different is really inspiring to me.
 
