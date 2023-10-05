@@ -23,8 +23,16 @@
 @tailwind utilities;
 
 pre {
-	font-variation-settings: 'MONO' 1, 'CASL' 0.4;
+	font-variation-settings:
+		'MONO' 1,
+		'CASL' 0.4;
 	@apply font-semibold shadow-black/20 shadow-xl !important;
-	@apply bg-base-300 !important;
+	@apply bg-base-300 bg-opacity-50 !important;
 	border: 2px dashed gray;
+}
+
+html {
+	background-image: radial-gradient(#ffffff10 1px, transparent 0);
+	background-size: 40px 40px;
+	background-position: 0px 0px;
 }
