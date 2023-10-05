@@ -1,26 +1,25 @@
-<section class="min-h-screen flex text-2xl w-[80%] md:w-fit mx-auto">
-	<div class="my-auto h-fit mx-auto">
-		<div>it's</div>
-		<h1
-			class="font-extrabold text-8xl lg:text-9xl md:text-center h-fit tracking-tighter font-mono recursive"
-		>
-			Jesús Rascón
-		</h1>
-		<div class="md:text-right">design engineer and technical content creator</div>
-	</div>
+<section class="min-h-[50%] text-2xl w-[80%] md:max-w-4xl mx-auto my-32">
+	<main class="prose prose-2xl max-w-xl">
+		<h2>
+			<strong>Jesús Rascón</strong>
+		</h2>
+		<h3>A design engineer and technical content creator</h3>
 
-	<a href="/blog" class="btn btn-primary btn-outline">Blog</a>
+		<p>I bring typography obsession, attention to detail and masterful animation to the table</p>
+		<p>
+			I've worked as a freelance <i>technical content creator</i> with channels like
+			<strong>Veritasium</strong>
+			or
+			<strong>Reducible</strong>, crafting animations earning <strong>+60 million</strong> impressions.
+		</p>
+	</main>
 </section>
 
-<section class="min-h-screen max-w-[50%] mx-auto flex text-2xl">
-	<div class="my-auto h-fit">
-		<div>
-			i am currently a mathematical animator at <a
-				class="underline text-accent hover:text-accent-focus transition-all"
-				href="https://www.prismsvr.com/">Prisms of Reality</a
-			>, reshaping how the K-12 system should look and <i>feel</i> like
-		</div>
-	</div>
+<!-- Works -->
+<section class="min-h-[50%] text-2xl w-[80%] md:max-w-4xl mx-auto my-32">
+	<main class="prose-2xl">
+		<h2>Work</h2>
+	</main>
 </section>
 
 <style>

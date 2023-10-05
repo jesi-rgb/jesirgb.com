@@ -37,7 +37,10 @@
 
 		<div class="text-4xl md:text-6xl mt-10">
 			<div class="opacity-40 mb-20">Woopsies... <br /> something went wrong.</div>
-			<a class="text-3xl w-fit mx-auto" href="/">Maybe go back?</a>
+			<a
+				class="text-3xl w-fit mx-auto hover:text-primary-focus hover:font-extrabold font-mono transition-all duration-500"
+				href="/">Maybe go back?</a
+			>
 		</div>
 	</div>
 </div>

@@ -2,4 +2,6 @@
 	import '../app.css';
 </script>
 
-<slot />
+<div class="selection:bg-accent selection:text-accent-content">
+	<slot />
+</div>
