@@ -1,16 +1,16 @@
-<section class="min-h-[50%] text-2xl w-[80%] md:max-w-4xl mx-auto">
+<section class="min-h-[50%]">
 	<main
-		class="prose prose-2xl max-w-xl hover:prose-a:text-accent prose-a:transition-colors after:prose-a:content['_↗']"
+		class="prose prose-2xl hover:prose-a:text-accent prose-a:transition-colors after:prose-a:content['_↗']"
 	>
-		<div class="flex flex-row items-baseline space-x-3">
+		<div class="flex flex-col space-y-3 md:flex-row md:items-baseline md:space-x-6">
 			<img
 				src="/jesi.svg"
-				class="mix-blend-color-dodge"
+				class="mix-blend-color-dodge mt-10 mb-0"
 				width="32"
 				height="32"
 				alt="Jesús Rascón Logo"
 			/>
-			<h2>Jesús Rascón</h2>
+			<h2 class="tracking-tighter">Jesús Rascón</h2>
 		</div>
 
 		<h3>Design engineer and technical content creator</h3>
@@ -27,16 +27,16 @@
 	</main>
 </section>
 
+<div class="divider my-24" />
 <!-- Works -->
-<section class="min-h-[50%] text-2xl w-[80%] md:max-w-4xl mx-auto my-32">
-	<main class="prose-2xl">
-		<h2>Work</h2>
-		<ul class="list-ouside list-disc">in progress...</ul>
+<section class="min-h-[50%]">
+	<main class="prose prose-2xl">
+		<h3>Work</h3>
+		<p>Some of my bangers</p>
+		<ul>
+			<li>in progress...</li>
+		</ul>
 	</main>
 </section>
 
-<style>
-	.recursive {
-		font-variation-settings: 'MONO' 0, 'CASL' 0.5;
-	}
-</style>
+<div class="h-32" />

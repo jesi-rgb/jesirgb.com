@@ -4,7 +4,7 @@
 	import '../app.css';
 </script>
 
-<div id="index" class="selection:bg-accent selection:text-accent-content">
+<div class="selection:bg-accent selection:text-accent-content">
 	<Container>
 		<Header />
 		<slot />

@@ -1,9 +1,9 @@
 <script>
-	import { Book, House, Newspaper, PencilCircle, PersonSimpleThrow } from 'phosphor-svelte';
+	import { House, Newspaper, PencilCircle, UserCircle } from 'phosphor-svelte';
 </script>
 
 <header class="mt-10">
-	<nav class="flex flex-row justify-around w-1/2 mx-auto">
+	<nav class="flex flex-row justify-between w-1/2">
 		<a href="/" class="btn btn-circle btn-ghost">
 			<House weight="duotone" size="32" />
 		</a>
@@ -14,7 +14,7 @@
 			<PencilCircle weight="duotone" size="32" />
 		</a>
 		<a href="/about" class="btn btn-circle btn-ghost">
-			<PersonSimpleThrow weight="duotone" size="32" />
+			<UserCircle weight="duotone" size="32" />
 		</a>
 	</nav>
 </header>
