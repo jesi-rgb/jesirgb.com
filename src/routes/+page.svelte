@@ -3,7 +3,7 @@
 		<h2>
 			<strong>Jesús Rascón</strong>
 		</h2>
-		<h3>A design engineer and technical content creator</h3>
+		<h3>Design engineer and technical content creator</h3>
 
 		<p>I bring typography obsession, attention to detail and masterful animation to the table</p>
 		<p>
@@ -19,6 +19,13 @@
 <section class="min-h-[50%] text-2xl w-[80%] md:max-w-4xl mx-auto my-32">
 	<main class="prose-2xl">
 		<h2>Work</h2>
+		<ul class="list-ouside list-disc">
+			<li>a</li>
+			<li>a</li>
+			<li>a</li>
+			<li>a</li>
+			<li>a</li>
+		</ul>
 	</main>
 </section>
 
