@@ -25,8 +25,10 @@
 pre {
 	font-variation-settings:
 		'MONO' 1,
-		'CASL' 0.4;
-	@apply font-semibold shadow-black/20 shadow-xl !important;
+		'wght' 550,
+		'CASL' 0.4,
+		'CRSV' 1;
+	@apply shadow-black/20 shadow-xl !important;
 	@apply bg-base-300 bg-opacity-50 !important;
 	border: 2px dashed gray;
 }

@@ -3,7 +3,7 @@
 </script>
 
 <header class="mt-10">
-	<nav class="flex flex-row justify-between w-1/2">
+	<nav class="flex flex-row justify-between w-full sm:w-1/2 sm:mx-auto">
 		<a href="/" class="btn btn-circle btn-ghost">
 			<House weight="duotone" size="32" />
 		</a>
