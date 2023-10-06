@@ -41,7 +41,6 @@
 <section class="min-h-[50%]">
 	<main class="prose prose-2xl">
 		<h3>Works</h3>
-		<p>Some of my bangers</p>
 		<ul>
 			<li>🚧 in progress...</li>
 		</ul>
