@@ -116,7 +116,7 @@
 				<div slot="date">Sep, 2021</div>
 				<div slot="subtitle">I guess every role?</div>
 				<div slot="content">
-					In September, 2020 I started my career as a freelancer. I had just come out of my masters
+					In September, 2021 I started my career as a freelancer. I had just come out of my masters
 					and had absolutely no idea nor properly developed skill. The only thing I had clear was to
 					avoid joining some generic big corporation to do lame stuff as hard as I possibly could.
 
@@ -139,7 +139,7 @@
 				<div slot="date">Sep, 2020</div>
 				<div slot="subtitle">Masters in Data Science @ University of Granada</div>
 				<div slot="content">
-					Got my masters in Data Science through the year of 2019. Learned that you won't need much
+					Got my masters in Data Science through the year of 2020. Learned that you won't need much
 					more than a simple linear regression in 90% of the cases you have to estimate some data. I
 					also got a lot into <strong>data visualization and design</strong>.
 				</div>
