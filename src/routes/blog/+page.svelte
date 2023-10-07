@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { formatDate } from '$lib/utils/utils.js';
 
 	export let data;
@@ -10,12 +11,7 @@
 	<title>Blog - Jesús Rascón</title>
 </svelte:head>
 
-<div
-	class="text-8xl md:text-9xl font-thin text-center tracking-tighter mt-24 md:mt-32 bg-gradient-to-t"
->
-	Blog
-</div>
-<div class="divider" />
+<MegaTitle>Blog</MegaTitle>
 <section class="mx-auto my-20">
 	<ul class="[&_li:last-child]:border-0">
 		{#each data.posts as post}

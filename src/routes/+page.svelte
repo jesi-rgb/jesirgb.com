@@ -23,8 +23,26 @@
 		<h4>Typography obsessed, attention to detail and tasteful animation</h4>
 
 		<p>
-			I'm currently working at <a href="https://prismsvr.com">Prisms</a> as a Square and Rectangle Director,
-			making mathematical content for our VR game.
+			I'm currently working at
+			<a href="https://prismsvr.com">
+				<span class="inline-block align-middle pb-1"
+					><img width="20" class="my-0 mx-1" src="/assets/prisms.svg" alt="Prisms Logo" /></span
+				>Prisms</a
+			> as a Squares & Rectangles Director, making mathematical content for our VR game.
+		</p>
+		<p>
+			Founder and creator of the <a href="https://youtube.com/@design-bits"
+				><span class="inline-block align-middle pb-2"
+					><img
+						width="28"
+						class="my-0 mr-1"
+						src="/assets/design-bits-transparent.svg"
+						alt="Design Bits Logo"
+					/></span
+				><strong>Design Bits</strong>
+			</a>
+			channel, where we talk about computational design.
+			<i>All things art, but make it digital</i>.
 		</p>
 		<p>
 			I've worked as a freelance <i>technical content creator</i> with channels like
@@ -60,8 +78,9 @@
 				<div slot="date">Jun, 2023</div>
 				<div slot="subtitle">Technical Content Creator</div>
 				<div slot="content">
-					I June, I joined the Prisms team as a <i>technical content creator</i>, helping create
-					explainer video assets in the fields of mathematics, physics, chemsitry and sciences.
+					In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
+					helping create explainer video assets in the fields of mathematics, physics, chemsitry and
+					sciences.
 					<br /><br />
 					These videos help kids get around the game and understand complex concepts in an accessible,
 					fun way.
@@ -101,13 +120,11 @@
 					the channel from the ground up. <br /><br /> This project really holds a special place in
 					my heart, since I was so early in my career but still, he trusted me and allowed me to
 					explore and exploit all the possibilities. No judgement, no bullshit, just vibes and code.
-					<br /><br />
 					<br /><br /> Helped develop a clearer brand identity to the channel, helping it stand out
 					among a rapidly growing community of educational math channels.
 
 					<br /><br />
-					<span class="inline-block"><Info weight="duotone" /></span>
-					<i>Animation engineering</i> comes from the fact that all animations are made through code.
+					<i>Animation engineering</i> comes from the fact that all animations were made through code.
 				</div>
 			</TimelineItem>
 

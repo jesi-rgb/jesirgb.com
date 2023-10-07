@@ -1,12 +1,7 @@
 <script>
 	import Container from '$lib/components/Container.svelte';
+	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import Prose from '$lib/components/Prose.svelte';
 </script>
 
-<Container>
-	<Prose>
-		<div>
-			<h2>Portfolio</h2>
-		</div>
-	</Prose>
-</Container>
+<MegaTitle>Portfolio</MegaTitle>

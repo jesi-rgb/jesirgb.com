@@ -13,7 +13,7 @@
 		<a href="/portfolio" class="btn btn-circle btn-ghost">
 			<PencilCircle weight="duotone" size="32" />
 		</a>
-		<a href="/about" class="btn btn-circle btn-ghost">
+		<a href="/contact" class="btn btn-circle btn-ghost">
 			<UserCircle weight="duotone" size="32" />
 		</a>
 	</nav>
