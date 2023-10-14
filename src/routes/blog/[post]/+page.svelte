@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils/utils.js';
 	import { fly } from 'svelte/transition';
+	import { fit, parent_style } from '@leveluptuts/svelte-fit';
 
 	export let data;
 	let visible = false;
@@ -12,12 +13,12 @@
 	<meta property="og:title" content={data.metadata.title} />
 </svelte:head>
 
-<article class="w-[90%] md:max-w-xl xl:max-w-2xl mx-auto mt-24 mb-20">
-	<hrgoup class="flex flex-col space-y-3 @container">
+<article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24 mb-20">
+	<hrgoup class="flex flex-col space-y-3">
 		<div
 			on:mouseleave={() => (visible = false)}
 			on:mouseenter={() => (visible = true)}
-			class="group h-full w-full relative"
+			class="group h-full w-full relative @container"
 		>
 			{#if visible}
 				<a
@@ -61,9 +62,9 @@
 <style>
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-weight: 75;
-		font-variation-settings: 'wdth' 75;
+		font-weight: 100;
+		font-variation-settings: 'wdth' 125;
 		text-wrap: balance;
-		font-size: 13cqw;
+		font-size: 10cqw;
 	}
 </style>

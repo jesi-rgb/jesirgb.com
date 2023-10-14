@@ -7,15 +7,8 @@
 	<main
 		class="prose prose-2xl hover:prose-a:text-accent prose-a:transition-colors after:prose-a:content['_↗']"
 	>
-		<div class="flex flex-col space-y-3 md:flex-row md:items-baseline md:space-x-6">
-			<img
-				src="/jesi.svg"
-				class="mix-blend-color-dodge mt-10 mb-0"
-				width="32"
-				height="32"
-				alt="Jesús Rascón Logo"
-			/>
-			<h2 class="font-title whirly">Jesús Rascón</h2>
+		<div class="my-5">
+			<h2 class="whirly">Jesús Rascón</h2>
 		</div>
 
 		<h3>Design engineer and technical content creator</h3>
@@ -68,7 +61,7 @@
 <div class="divider my-24" />
 
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl">
+	<main class="prose prose-2xl prose-h4:font-[60]">
 		<h3>Experience & Background</h3>
 		<p>A little sum up of the path I've followed so far</p>
 		<div class="">
@@ -201,6 +194,6 @@
 	.whirly {
 		font-family: 'Whirly Birdie';
 		font-weight: 75;
-		font-variation-settings: 'wdth' 75;
+		font-variation-settings: 'wdth' 120;
 	}
 </style>

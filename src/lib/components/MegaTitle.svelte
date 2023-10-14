@@ -1,4 +1,4 @@
-<div class="text-8xl whirly md:text-9xl font-thin text-center tracking-tight mt-24 md:mt-32">
+<div class="whirly font-thin text-center tracking-tight mt-24 md:mt-32 @container">
 	<slot />
 </div>
 <div class="divider" />
@@ -7,6 +7,7 @@
 	.whirly {
 		font-family: 'Whirly Birdie';
 		font-weight: 75;
-		font-variation-settings: 'wdth' 75;
+		font-variation-settings: 'wdth' 120;
+		font-size: 14cqw;
 	}
 </style>

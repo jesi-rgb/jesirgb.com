@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Container from '$lib/components/Container.svelte';
-	import Header from '$lib/components/Header.svelte';
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { formatDate } from '$lib/utils/utils.js';
 

@@ -1,5 +1,5 @@
 ---
-title: typographical expression
+title: typographic expression
 description: a celebration of small things
 date: 2023-02-08
 categories:
