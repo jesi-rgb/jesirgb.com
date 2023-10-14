@@ -13,7 +13,7 @@
 </svelte:head>
 
 <article class="w-[90%] md:max-w-xl xl:max-w-2xl mx-auto mt-24 mb-20">
-	<hrgoup class="flex flex-col space-y-3">
+	<hrgoup class="flex flex-col space-y-3 @container">
 		<div
 			on:mouseleave={() => (visible = false)}
 			on:mouseenter={() => (visible = true)}
@@ -34,7 +34,7 @@
 				</a>
 			{/if}
 			<div class="h-8" />
-			<h1 class="text-5xl whirly md:text-7xl font-extrabold text-center tracking-tighter">
+			<h1 class="whirly leading-[.9em] text-center tracking-tighter">
 				{data.metadata.title}
 			</h1>
 		</div>
@@ -64,5 +64,6 @@
 		font-weight: 75;
 		font-variation-settings: 'wdth' 75;
 		text-wrap: balance;
+		font-size: 13cqw;
 	}
 </style>

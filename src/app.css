@@ -27,10 +27,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.whirly  {
-	@apply text-red-200;
-}
-
 pre {
 	font-variation-settings:
 		'MONO' 1,
