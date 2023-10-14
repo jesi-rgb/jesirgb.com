@@ -15,7 +15,7 @@
 				height="32"
 				alt="Jesús Rascón Logo"
 			/>
-			<h2 class="tracking-tighter">Jesús Rascón</h2>
+			<h2 class="font-title whirly">Jesús Rascón</h2>
 		</div>
 
 		<h3>Design engineer and technical content creator</h3>
@@ -196,3 +196,11 @@
 </section>
 
 <div class="h-32" />
+
+<style>
+	.whirly {
+		font-family: 'Whirly Birdie';
+		font-weight: 75;
+		font-variation-settings: 'wdth' 75;
+	}
+</style>

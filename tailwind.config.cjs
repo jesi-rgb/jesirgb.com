@@ -6,7 +6,8 @@ const config = {
     extend: {
       fontFamily: {
         sans: ['Supreme'],
-        mono: ['Recursive']
+        mono: ['Recursive'],
+        title: ['Whirly Birdie']
       }
     }
   },

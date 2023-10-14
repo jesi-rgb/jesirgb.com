@@ -17,10 +17,19 @@
 	font-weight: 300 1000;
 }
 
+@font-face {
+	font-family: 'Whirly Birdie';
+	src: local('Whirly Birdie'), url('/fonts/WhirlyBirdie.ttf');
+	font-weight: 50 100;
+}
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.whirly  {
+	@apply text-red-200;
+}
 
 pre {
 	font-variation-settings:
