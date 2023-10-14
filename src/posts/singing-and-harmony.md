@@ -13,6 +13,6 @@ My take on it was much more influenced by the second option as you may see. I we
 
 When finished, I thought I would add some more voices to spicy it up. I might have gone a bit too far, but honestly I regret nothing. There is nothing I love more than singing and even more so if it means reharmonizing a beautiful song such as this one.
 
-Anyaways, here you have my version. Hope you enjoy it!
+Anyways, here you have my version. Hope you enjoy it!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VpQCJBG70V4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
