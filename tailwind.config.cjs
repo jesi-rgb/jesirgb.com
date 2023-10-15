@@ -8,6 +8,21 @@ const config = {
         sans: ['Supreme'],
         mono: ['Recursive'],
         title: ['Whirly Birdie']
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            h1: {
+              'letter-spacing': '-3px'
+            },
+            h2: {
+              'letter-spacing': '-2px'
+            },
+            h3: {
+              'letter-spacing': '-2px'
+            }
+          }
+        }
       }
     }
   },

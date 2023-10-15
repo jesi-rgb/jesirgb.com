@@ -16,19 +16,18 @@
 <article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24 mb-20">
 	<hrgoup class="flex flex-col space-y-3">
 		<div
+			role="link"
+			tabindex="0"
 			on:mouseleave={() => (visible = false)}
 			on:mouseenter={() => (visible = true)}
 			class="group h-full w-full relative @container"
 		>
 			{#if visible}
-				<a
-					class="opacity-25 hover:opacity-50 hover:font-bold transition-all duration-300"
-					href="/blog"
-				>
+				<a class="opacity-10 hover:opacity-30 transition-all duration-300" href="/blog">
 					<div
 						in:fly={{ y: -5, duration: 200 }}
 						out:fly={{ y: 5, duration: 200 }}
-						class="absolute right-1/2 font-mono translate-x-1/2 top-0 text-2xl"
+						class="absolute right-1/2 font-title font-[60] translate-x-1/2 -top-10 whirly text-lg"
 					>
 						blog/
 					</div>
@@ -41,7 +40,7 @@
 		</div>
 		<div class="divider" />
 		<div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-			<p class="font-mono font-extralight text-center text-lg xl:text-2xl text-neutral-400">
+			<p class="font-mono font-light recursive text-center text-lg xl:text-2xl text-neutral-400">
 				{formatDate(data.metadata.date)}
 			</p>
 			<div class="flex flex-row space-x-1">
@@ -60,9 +59,12 @@
 </article>
 
 <style>
+	.recursive {
+		font-variation-settings: 'CASL' 0.5, 'MONO' 1;
+	}
+
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-weight: 100;
 		font-variation-settings: 'wdth' 125;
 		text-wrap: balance;
 		font-size: 10cqw;

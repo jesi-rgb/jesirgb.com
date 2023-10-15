@@ -1,6 +1,5 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
-	import { Info } from 'phosphor-svelte';
 </script>
 
 <section class="min-h-[50%]">
@@ -193,7 +192,7 @@
 <style>
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-weight: 75;
 		font-variation-settings: 'wdth' 120;
+		font-weight: 60;
 	}
 </style>
