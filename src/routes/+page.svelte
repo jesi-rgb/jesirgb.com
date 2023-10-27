@@ -1,6 +1,12 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
+	import WorkItem from '$lib/components/WorkItem.svelte';
+	import { Cylinder } from 'phosphor-svelte';
 </script>
+
+<head>
+	<title>Jesús Rascón</title>
+</head>
 
 <section class="min-h-[50%]">
 	<main
@@ -20,7 +26,7 @@
 				<span class="inline-block align-middle pb-1"
 					><img width="20" class="my-0 mx-1" src="/assets/prisms.svg" alt="Prisms Logo" /></span
 				>Prisms</a
-			> as a Squares & Rectangles Director, making mathematical content for our VR game.
+			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
 		</p>
 		<p>
 			Founder and creator of the <a href="https://youtube.com/@design-bits"
@@ -37,7 +43,7 @@
 			<i>All things art, but make it digital</i>.
 		</p>
 		<p>
-			I've worked as a freelance <i>technical content creator</i> with channels like
+			I also work as a freelance <i>technical content creator</i> with channels like
 			<strong><a href="https://www.youtube.com/@veritasium">Veritasium</a></strong>
 			and
 			<strong><a href="https://www.youtube.com/@reducible">Reducible</a></strong>, crafting
@@ -49,10 +55,16 @@
 <div class="divider my-24" />
 <!-- Works -->
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl">
+	<main class="prose prose-2xl prose-a:no-underline prose-a:text-neutral-300">
 		<h3>Works</h3>
 		<ul>
-			<li>🚧 in progress...</li>
+			<WorkItem>
+				<div slot="title">Cycles</div>
+				<div slot="description">Tiny Little Habit Tracker</div>
+				<div slot="icon">
+					<img class="fill-primary" src="/assets/cycles.svg" width="100%" alt="Cycles logo" />
+				</div>
+			</WorkItem>
 		</ul>
 	</main>
 </section>
@@ -192,7 +204,7 @@
 <style>
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-variation-settings: 'wdth' 120;
-		font-weight: 60;
+		font-variation-settings: 'wdth' 70;
+		font-weight: 100;
 	}
 </style>

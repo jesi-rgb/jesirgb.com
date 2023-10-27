@@ -9,7 +9,7 @@
 <div class="text-3xl md:text-4xl text-center">Find me all over <br /> the internet</div>
 
 <div
-	class="flex flex-col space-y-3 md:space-y-0 md:space-x-3 md:w-fit md:mx-auto md:flex-row items-center mt-10"
+	class="flex flex-col justify-center space-y-3 md:space-y-0 md:space-x-3 md:w-fit sm:mx-auto sm:flex-row items-center mt-10"
 >
 	<a href="https://twitter.com/jesi_rgb">
 		<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
