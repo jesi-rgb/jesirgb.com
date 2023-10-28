@@ -1,23 +1,33 @@
-<script>
+<script lang="ts">
 	/* export let title; */
+	export let link: string;
 </script>
 
-<a href="https://cycles-sup.vercel.app">
-	<div class="flex items-center space-x-3 group">
+<a href={link}>
+	<div class="flex items-start space-x-3 group">
 		<div
 			class="h-16 w-16 rounded-full flex items-center border-neutral-700 border-2 bg-base-200 group-hover:border-primary transition-all"
 		>
-			<div class="mx-auto no-prose">
+			<div class="mx-auto">
 				<slot name="icon" />
 			</div>
 		</div>
-		<div class="flex flex-col group-hover:text-base-content transition-colors">
-			<div class="font-bold font-title no-prose">
+		<div class="w-3/4 flex flex-col group-hover:text-base-content transition-colors">
+			<div class="whirly no-prose">
 				<slot name="title" />
 			</div>
-			<div class="not-prose">
+			<p class="not-prose text-xl text-neutral-400">
 				<slot name="description" />
-			</div>
+			</p>
 		</div>
 	</div>
 </a>
+
+<style>
+	.whirly {
+		font-family: 'Whirly Birdie';
+		font-weight: 70;
+		font-variation-settings: 'wdth' 75;
+		text-wrap: balance;
+	}
+</style>

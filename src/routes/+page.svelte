@@ -1,7 +1,7 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
 	import WorkItem from '$lib/components/WorkItem.svelte';
-	import { Cylinder } from 'phosphor-svelte';
+	import { Cylinder, Envelope, EnvelopeOpen } from 'phosphor-svelte';
 </script>
 
 <head>
@@ -56,16 +56,30 @@
 <!-- Works -->
 <section class="min-h-[50%]">
 	<main class="prose prose-2xl prose-a:no-underline prose-a:text-neutral-300">
-		<h3>Works</h3>
-		<ul>
-			<WorkItem>
+		<h3>Fun Side Projects</h3>
+		<div class="flex flex-col space-y-9">
+			<WorkItem link="https://cycles-sup.vercel.app">
 				<div slot="title">Cycles</div>
 				<div slot="description">Tiny Little Habit Tracker</div>
 				<div slot="icon">
 					<img class="fill-primary" src="/assets/cycles.svg" width="100%" alt="Cycles logo" />
 				</div>
 			</WorkItem>
-		</ul>
+			<WorkItem link="https://mapa-elecciones-two.vercel.app/">
+				<div slot="title">Spanish General Elections 2023 Map</div>
+				<div slot="description">Visualization of the results, per district</div>
+				<div slot="icon">
+					<Envelope size={40} weight="bold" class="fill-primary -rotate-12" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://elmetro.vercel.app/">
+				<div slot="title">El Metro</div>
+				<div slot="description">Tram tracking extremely simple</div>
+				<div slot="icon">
+					<img class="fill-primary" src="/assets/elmetro.svg" width="100%" alt="Cycles logo" />
+				</div>
+			</WorkItem>
+		</div>
 	</main>
 </section>
 
