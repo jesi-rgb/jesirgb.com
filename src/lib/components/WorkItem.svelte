@@ -16,7 +16,7 @@
 			<div class="whirly no-prose">
 				<slot name="title" />
 			</div>
-			<p class="not-prose text-xl text-neutral-400">
+			<p class="not-prose text-xl text-neutral-400 balanced">
 				<slot name="description" />
 			</p>
 		</div>
@@ -24,6 +24,9 @@
 </a>
 
 <style>
+	.balanced {
+		text-wrap: balance;
+	}
 	.whirly {
 		font-family: 'Whirly Birdie';
 		font-weight: 70;

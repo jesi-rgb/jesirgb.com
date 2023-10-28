@@ -1,7 +1,19 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
 	import WorkItem from '$lib/components/WorkItem.svelte';
-	import { Cylinder, Envelope, EnvelopeOpen } from 'phosphor-svelte';
+	import {
+		ChatCircleText,
+		Cylinder,
+		Envelope,
+		EnvelopeOpen,
+		FileText,
+		MusicNotesPlus,
+		Pi,
+		ProjectorScreenChart,
+		Sigma,
+		Stack,
+		TextB
+	} from 'phosphor-svelte';
 </script>
 
 <head>
@@ -57,12 +69,20 @@
 <section class="min-h-[50%]">
 	<main class="prose prose-2xl prose-a:no-underline prose-a:text-neutral-300">
 		<h3>Fun Side Projects</h3>
-		<div class="flex flex-col space-y-9">
+		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
+		<div class="flex flex-col space-y-9 mt-10">
 			<WorkItem link="https://cycles-sup.vercel.app">
 				<div slot="title">Cycles</div>
 				<div slot="description">Tiny Little Habit Tracker</div>
 				<div slot="icon">
 					<img class="fill-primary" src="/assets/cycles.svg" width="100%" alt="Cycles logo" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://fellowship-proposal.vercel.app/en">
+				<div slot="title">Processing Fellowship Proposal</div>
+				<div slot="description">A presentation of Mathemagical.js, with Greg Stanton</div>
+				<div slot="icon">
+					<Sigma size={40} weight="bold" class="fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://mapa-elecciones-two.vercel.app/">
@@ -77,6 +97,41 @@
 				<div slot="description">Tram tracking extremely simple</div>
 				<div slot="icon">
 					<img class="fill-primary" src="/assets/elmetro.svg" width="100%" alt="Cycles logo" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://font-guesser.vercel.app/">
+				<div slot="title">Font Guesser</div>
+				<div slot="description">An unfinished font guessing game</div>
+				<div slot="icon">
+					<TextB size={45} weight="bold" class="fill-primary" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://focal-es.vercel.app/">
+				<div slot="title">FOCAL-ES</div>
+				<div slot="description">A database with exhaustive information on focal particles</div>
+				<div slot="icon">
+					<ChatCircleText size={40} weight="bold" class="fill-primary" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://chord-chart-maker.vercel.app/">
+				<div slot="title">Chord Chart Maker</div>
+				<div slot="description">An unfinished jazz-style chord chart for quick idea sharing</div>
+				<div slot="icon">
+					<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://custom-blending-modes.vercel.app/">
+				<div slot="title">Custom Blending Modes</div>
+				<div slot="description">Quick prototype about a hypothetical blend mode editor</div>
+				<div slot="icon">
+					<Stack size={40} weight="bold" class="fill-primary" />
+				</div>
+			</WorkItem>
+			<WorkItem link="https://ccfest-md-slides.vercel.app/">
+				<div slot="title">CC Fest Slides</div>
+				<div slot="description">Slides I gave for my presentation on the '22 CC Fest!</div>
+				<div slot="icon">
+					<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
 				</div>
 			</WorkItem>
 		</div>
