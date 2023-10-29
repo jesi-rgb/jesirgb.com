@@ -13,7 +13,7 @@
 	<meta property="og:title" content={data.metadata.title} />
 </svelte:head>
 
-<article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24 mb-20">
+<article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24">
 	<hrgoup class="flex flex-col space-y-3">
 		<div
 			role="link"
@@ -52,7 +52,7 @@
 	</hrgoup>
 
 	<div
-		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-primary prose-a:transition-colors prose-strong:font-bold my-32"
+		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-primary prose-a:transition-colors prose-strong:font-bold my-12"
 	>
 		<svelte:component this={data.content} />
 	</div>

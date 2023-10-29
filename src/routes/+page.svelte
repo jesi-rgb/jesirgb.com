@@ -181,6 +181,29 @@
 				</div>
 			</TimelineItem>
 			<TimelineItem>
+				<h4 slot="title">'22 Google Summer of Code</h4>
+				<div slot="date">Jun, 2022</div>
+				<div slot="subtitle">Google Summer of Code Contributor</div>
+				<div slot="content">
+					In June, 2022 I proposed the Processing Foundation –through the GSOC program– a very
+					important change to the p5.js library that had been asked for ages: <strong
+						>native GIF export</strong
+					>. <br /><br /> The p5.js community is largely stablished in Twitter, where GIF sharing
+					was the main way for artists to show their works in progress, as well as the finished
+					pieces.
+
+					<br /><br />
+					But GIF exporting was very cumbersome, usually requiring the user to download every single
+					frame as a png for later composition, or using tools that either did not work properly or needed
+					an unreasonable amount of setup.
+
+					<br /><br />
+					I am very proud to say that we managed to create this feature and make it as easy as it's ever
+					been to download a GIF from your sketch.
+				</div>
+			</TimelineItem>
+
+			<TimelineItem>
 				<h4 slot="title">Reducible</h4>
 				<div slot="date">Nov, 2021</div>
 				<div slot="subtitle">Art Direction & Animation Engineering</div>

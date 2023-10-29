@@ -4,8 +4,16 @@ description: What does it take to be successful?
 categories:
   - thinking
   - essay
+
 date: 2023-04-28
 ---
+
+<script>
+import Talent from '$lib/components/posts/Talent.svelte'
+import Clock from '$lib/components/posts/Clock.svelte'
+</script>
+
+<Talent/>
 
 > **Talent**: _natural_ aptitude or skill
 
@@ -30,3 +38,5 @@ the other side of the spectrum is also common: people that put time into somethi
 this can lead to premature failure on the craft, if the conditions line up. some people are more resilient than others. it may take only a bit of insecurity to completely throw everthing off the window.
 
 this would be less prominent if either of these were true: **we didn't expect greatness out of nothing** or **we didn't compare ourselves against our environment so harsly**.
+
+<Clock/>
