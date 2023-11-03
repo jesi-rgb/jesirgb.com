@@ -19,8 +19,7 @@
 
 @font-face {
 	font-family: 'Whirly Birdie';
-	src: local('Whirly Birdie'),
-		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf');
+	src: url('/fonts/WhirlyBirdie.ttf');
 	font-weight: 50 100;
 }
 
