@@ -5,7 +5,7 @@
 
 <MegaTitle>Contact</MegaTitle>
 
-<section class="h-56">
+<section class="h-fit min-h-full">
 	<div class="text-3xl md:text-4xl text-center">Find me all over <br /> the internet</div>
 
 	<div

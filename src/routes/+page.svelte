@@ -8,6 +8,7 @@
 		EnvelopeOpen,
 		FileText,
 		MusicNotesPlus,
+		Percent,
 		Pi,
 		ProjectorScreenChart,
 		Sigma,
@@ -71,11 +72,23 @@
 		<h3>Fun Side Projects</h3>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="flex flex-col space-y-9 mt-10">
+			<WorkItem link="https://tramos-irpf.vercel.app/">
+				<div slot="title">Tramos IRPF</div>
+				<div slot="description">Tax calculator for freelancers in Spain</div>
+				<div slot="icon">
+					<Percent size={40} weight="bold" class="fill-primary" />
+				</div>
+			</WorkItem>
 			<WorkItem link="https://cycles-sup.vercel.app">
 				<div slot="title">Cycles</div>
 				<div slot="description">Tiny Little Habit Tracker</div>
 				<div slot="icon">
-					<img class="fill-primary" src="/assets/cycles.svg" width="100%" alt="Cycles logo" />
+					<img
+						class="fill-primary scale-125 ml-[1px]"
+						src="/assets/cycles.svg"
+						width="100%"
+						alt="Cycles logo"
+					/>
 				</div>
 			</WorkItem>
 			<WorkItem link="https://fellowship-proposal.vercel.app/en">
@@ -96,7 +109,12 @@
 				<div slot="title">El Metro</div>
 				<div slot="description">Tram tracking extremely simple</div>
 				<div slot="icon">
-					<img class="fill-primary" src="/assets/elmetro.svg" width="100%" alt="Cycles logo" />
+					<img
+						class="fill-primary scale-125"
+						src="/assets/elmetro.svg"
+						width="100%"
+						alt="Cycles logo"
+					/>
 				</div>
 			</WorkItem>
 			<WorkItem link="https://font-guesser.vercel.app/">
