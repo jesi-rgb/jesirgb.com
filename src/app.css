@@ -19,7 +19,8 @@
 
 @font-face {
 	font-family: 'Whirly Birdie';
-	src: local('Whirly Birdie'), url('/fonts/WhirlyBirdie.ttf');
+	src: local('Whirly Birdie'),
+		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf');
 	font-weight: 50 100;
 }
 
@@ -34,11 +35,7 @@
 @tailwind utilities;
 
 pre {
-	font-variation-settings:
-		'MONO' 1,
-		'wght' 550,
-		'CASL' 0.4,
-		'CRSV' 1;
+	font-variation-settings: 'MONO' 1, 'wght' 550, 'CASL' 0.4, 'CRSV' 1;
 	@apply shadow-black/20 shadow-xl !important;
 	@apply bg-base-300 bg-opacity-50 !important;
 	border: 2px dashed gray;
