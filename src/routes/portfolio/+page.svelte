@@ -48,7 +48,12 @@
 	<p>Stickers I made for my friends</p>
 	<div class="flex flex-col md:flex-row justify-between mx-auto w-fit md:w-full">
 		{#each stickers as sticker}
-			<img width="180px" src="/assets/posters/{sticker}" alt={sticker.split('.')[0]} />
+			<img
+				class="hover:-rotate-2 transition-all"
+				width="180px"
+				src="/assets/posters/{sticker}"
+				alt={sticker.split('.')[0]}
+			/>
 		{/each}
 	</div>
 </section>

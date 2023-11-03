@@ -1,6 +1,13 @@
 <script>
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
-	import { At, GithubLogo, LinkedinLogo, TelegramLogo, TwitterLogo } from 'phosphor-svelte';
+	import {
+		At,
+		GithubLogo,
+		InstagramLogo,
+		LinkedinLogo,
+		TelegramLogo,
+		TwitterLogo
+	} from 'phosphor-svelte';
 </script>
 
 <MegaTitle>Contact</MegaTitle>
@@ -34,10 +41,41 @@
 			</div>
 		</a>
 
+		<a href="https://instagram.com/jesi_rgb">
+			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+				<InstagramLogo size="48" weight="duotone" />
+			</div>
+		</a>
+
 		<a href="https://t.me/jrascon">
 			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
 				<TelegramLogo class="mr-2" size="48" weight="duotone" />
 			</div>
 		</a>
+	</div>
+
+	<div class="mt-56 opacity-50">
+		Webapge typeset in <a
+			class="underline hover:text-primary transition-colors font-title"
+			href="https://whirlybirdie.com/">Whirly Birdie</a
+		>,
+		<a
+			class="underline hover:text-primary transition-colors"
+			href="https://www.fontshare.com/fonts/supreme">Supreme</a
+		>
+		and
+		<a
+			class="underline hover:text-primary transition-colors font-mono"
+			href="https://www.recursive.design/">Recursive</a
+		>.
+		<br />
+		<a class="underline hover:text-primary transition-colors" href="https://svelte.dev">Svelte</a>
+		+
+		<a class="underline hover:text-primary transition-colors" href="https://tailwindcss.com"
+			>Tailwind</a
+		>
+		through
+		<a class="underline hover:text-primary transition-colors" href="https://daisyui.com">DaisyUI</a
+		>.
 	</div>
 </section>
