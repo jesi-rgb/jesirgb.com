@@ -1,5 +1,8 @@
 <script>
-	import { House, Newspaper, PencilCircle, UserCircle } from 'phosphor-svelte';
+	import House from 'phosphor-svelte/lib/House';
+	import Newspaper from 'phosphor-svelte/lib/Newspaper';
+	import PencilCircle from 'phosphor-svelte/lib/PencilCircle';
+	import UserCircle from 'phosphor-svelte/lib/UserCircle';
 </script>
 
 <header class="mt-10">

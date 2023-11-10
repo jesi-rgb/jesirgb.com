@@ -1,13 +1,11 @@
 <script>
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
-	import {
-		At,
-		GithubLogo,
-		InstagramLogo,
-		LinkedinLogo,
-		TelegramLogo,
-		TwitterLogo
-	} from 'phosphor-svelte';
+	import At from 'phosphor-svelte/lib/At';
+	import GithubLogo from 'phosphor-svelte/lib/GithubLogo';
+	import InstagramLogo from 'phosphor-svelte/lib/InstagramLogo';
+	import LinkedinLogo from 'phosphor-svelte/lib/LinkedinLogo';
+	import TelegramLogo from 'phosphor-svelte/lib/TelegramLogo';
+	import TwitterLogo from 'phosphor-svelte/lib/TwitterLogo';
 </script>
 
 <MegaTitle>Contact</MegaTitle>

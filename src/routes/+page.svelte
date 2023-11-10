@@ -1,20 +1,14 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
 	import WorkItem from '$lib/components/WorkItem.svelte';
-	import {
-		ChatCircleText,
-		Cylinder,
-		Envelope,
-		EnvelopeOpen,
-		FileText,
-		MusicNotesPlus,
-		Percent,
-		Pi,
-		ProjectorScreenChart,
-		Sigma,
-		Stack,
-		TextB
-	} from 'phosphor-svelte';
+	import ChatCircleText from 'phosphor-svelte/lib/ChatCircleText';
+	import Envelope from 'phosphor-svelte/lib/Envelope';
+	import MusicNotesPlus from 'phosphor-svelte/lib/MusicNotesPlus';
+	import Percent from 'phosphor-svelte/lib/Percent';
+	import ProjectorScreenChart from 'phosphor-svelte/lib/ProjectorScreenChart';
+	import Sigma from 'phosphor-svelte/lib/Sigma';
+	import Stack from 'phosphor-svelte/lib/Stack';
+	import TextB from 'phosphor-svelte/lib/TextB';
 </script>
 
 <head>
