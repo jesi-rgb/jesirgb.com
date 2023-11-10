@@ -42,7 +42,7 @@
 			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
 		</p>
 		<p>
-			Founder and creator of the <a href="https://youtube.com/@design-bits"
+			Founder and creator of the <a href="https://www.youtube.com/@Design_Bits"
 				><span class="inline-block align-middle pb-2"
 					><img
 						width="28"
