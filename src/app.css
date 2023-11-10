@@ -1,12 +1,12 @@
 @font-face {
 	font-family: 'Supreme';
-	src: local('Supreme'), url('/fonts/Supreme.ttf');
+	src: local('Supreme'), url('/fonts/Supreme.ttf') format('truetype');
 	font-weight: 100 800;
 }
 
 @font-face {
 	font-family: 'Supreme';
-	src: local('Supreme'), url('/fonts/Supreme-Italic.ttf');
+	src: local('Supreme'), url('/fonts/Supreme-Italic.ttf') format('truetype');
 	font-weight: 100 800;
 	font-style: italic;
 }
@@ -18,8 +18,13 @@
 }
 
 @font-face {
+	font-family: 'Whirlybats';
+	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlybatsVariable.ttf');
+}
+
+@font-face {
 	font-family: 'Whirly Birdie';
-	src: url('/fonts/WhirlyBirdie.ttf');
+	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf');
 	font-weight: 50 100;
 }
 
