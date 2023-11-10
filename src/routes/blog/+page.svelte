@@ -1,13 +1,12 @@
 <script lang="ts">
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { formatDate } from '$lib/utils/utils.js';
+	import { MetaTags } from 'svelte-meta-tags';
 
 	export let data;
 </script>
 
-<svelte:head>
-	<title>Blog - Jesús Rascón</title>
-</svelte:head>
+<MetaTags title="Blog - Jesús Rascón" description="Developing ideas and exploring my inner self." />
 
 <MegaTitle>Blog</MegaTitle>
 <section class="mx-auto my-20">

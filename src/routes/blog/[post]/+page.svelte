@@ -1,17 +1,29 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils/utils.js';
 	import { fly } from 'svelte/transition';
-	import { fit, parent_style } from '@leveluptuts/svelte-fit';
+	import { MetaTags } from 'svelte-meta-tags';
+	import type { Post } from '$lib/types';
 
 	export let data;
+	let metadata: Post = data.metadata;
 	let visible = false;
 </script>
 
-<svelte:head>
-	<title>{data.metadata.title}</title>
-	<meta property="og:type" content="article" />
-	<meta property="og:title" content={data.metadata.title} />
-</svelte:head>
+<MetaTags
+	keywords={metadata.categories}
+	title={metadata.title}
+	description={metadata.description}
+	openGraph={{
+		type: 'article',
+		url: metadata.slug,
+		title: metadata.title,
+		description: metadata.description,
+		article: {
+			tags: metadata.categories,
+			publishedTime: metadata.date
+		}
+	}}
+/>
 
 <article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24">
 	<hrgoup class="flex flex-col space-y-3">

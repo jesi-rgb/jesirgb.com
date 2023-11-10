@@ -1,10 +1,12 @@
 <script>
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { videos, posters, stickers } from '$lib/utils/portfolio.js';
+	import { MetaTags } from 'svelte-meta-tags';
 </script>
 
 <MegaTitle>Portfolio</MegaTitle>
 
+<MetaTags title="Portfolio" description="All the selected works from Jesús Rascón" openGraph={{}} />
 <section class="prose prose-2xl prose-img:m-0 prose-a:no-underline w-full">
 	<h2>Videos</h2>
 	<p>All the frames I've participated in</p>
