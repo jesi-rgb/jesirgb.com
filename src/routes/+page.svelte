@@ -1,6 +1,8 @@
 <script>
 	import TimelineItem from '$lib/components/TimelineItem.svelte';
 	import WorkItem from '$lib/components/WorkItem.svelte';
+
+	import GlobeStand from 'phosphor-svelte/lib/GlobeStand';
 	import ChatCircleText from 'phosphor-svelte/lib/ChatCircleText';
 	import Envelope from 'phosphor-svelte/lib/Envelope';
 	import MusicNotesPlus from 'phosphor-svelte/lib/MusicNotesPlus';
@@ -50,7 +52,7 @@
 			<i>All things art, but make it digital</i>.
 		</p>
 		<p>
-			I also work as a freelance <i>technical content creator</i> with channels like
+			I've also worked as a freelance <i>technical content creator</i> with channels like
 			<strong><a href="https://www.youtube.com/@veritasium">Veritasium</a></strong>
 			and
 			<strong><a href="https://www.youtube.com/@reducible">Reducible</a></strong>, crafting
@@ -59,13 +61,20 @@
 	</main>
 </section>
 
-<div class="divider my-24" />
+<div class="divider divider-neutral my-24" />
 <!-- Works -->
 <section class="min-h-[50%]">
 	<main class="prose prose-2xl prose-a:no-underline prose-a:text-neutral-300">
 		<h3>Fun Side Projects</h3>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="flex flex-col space-y-9 mt-10">
+			<WorkItem link="https://pangea-game.vercel.app">
+				<div slot="title">Pangea</div>
+				<div slot="description">The country guessing game</div>
+				<div slot="icon">
+					<GlobeStand size={40} weight="duotone" class="fill-primary ml-[3px] mt-[4px]" />
+				</div>
+			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
 				<div slot="title">Tramos IRPF</div>
 				<div slot="description">Tax calculator for freelancers in Spain</div>
@@ -150,7 +159,7 @@
 	</main>
 </section>
 
-<div class="divider my-24" />
+<div class="divider divider-neutral my-24" />
 
 <section class="min-h-[50%]">
 	<main class="prose prose-2xl prose-h4:font-[60]">

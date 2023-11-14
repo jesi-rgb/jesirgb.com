@@ -13,7 +13,7 @@
 	loadWord();
 </script>
 
-<div class="divider mt-10" />
+<div class="divider divider-neutral mt-10" />
 <footer class="h-full mb-20 flex flex-col md:flex-row items-baseline justify-between">
 	{#if loading}
 		<div class="whirly text-5xl font-[50] hover:font-[100] transition-all duration-500" />
