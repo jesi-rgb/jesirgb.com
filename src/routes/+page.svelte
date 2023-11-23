@@ -22,7 +22,7 @@
 		class="prose prose-2xl hover:prose-a:text-accent prose-a:transition-colors after:prose-a:content['_↗']"
 	>
 		<div class="my-5">
-			<h2 class="whirly">Jesús Rascón</h2>
+			<h2 class="whirly text-6xl">Jesús Rascón</h2>
 		</div>
 
 		<h3>Design engineer and technical content creator</h3>
@@ -318,6 +318,6 @@
 	.whirly {
 		font-family: 'Whirly Birdie';
 		font-variation-settings: 'wdth' 70;
-		font-weight: 100;
+		font-weight: 50;
 	}
 </style>

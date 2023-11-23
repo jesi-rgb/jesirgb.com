@@ -8,7 +8,7 @@ categories:
   - internet
 ---
 
-## Table of contents
+## table of contents
 
 yesterday was a very good internet day for me. this means i found incredibly cool stuff surfing the web.
 
