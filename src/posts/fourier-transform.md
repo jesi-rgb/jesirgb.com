@@ -9,6 +9,8 @@ date: 2022-09-01
 
 ## Table of Contents
 
+## Intro
+
 Mathematical transformation that decomposes functions depending on **space** or **time** into functions depending on **spatial frequency** or **temporal frequency**.
 
 $$\hat{f}(ξ) = \int_{- \infty}^{\infty} f(x) e^{-i2 \pi ξ x} dx, \forall ξ \in \mathcal{R}$$

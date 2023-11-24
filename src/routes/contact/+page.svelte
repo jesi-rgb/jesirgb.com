@@ -33,7 +33,7 @@
 			</div>
 		</a>
 
-		<a href="mailto:blograso@gmail.com">
+		<a href="mailto:jesirgb@gmail.com">
 			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
 				<At size="48" weight="duotone" />
 			</div>
