@@ -1,23 +1,31 @@
 <script>
-	let liga = 'common-ligatures';
+	let liga = 0;
 </script>
 
 <div class="border border-dashed border-primary p-5 rounded-xl bg-base-200">
 	<main>
 		<div class="flex justify-around flex-col md:flex-row text-center md:text-left">
-			<div class="no-liga">affair</div>
-			<div class="liga">affair</div>
+			<div class="no-liga">
+				<span class="badge badge-outline">off</span>
+				a<span class="opacity-50">ff</span>air
+			</div>
+			<div class="liga">
+				<span class="badge badge-outline items-end">on</span>
+				a<span class="text-white">ff</span>air
+			</div>
 		</div>
 
 		<div class="text-center mt-5">
-			<div class="font-bold" style="font-variant-ligatures: {liga};">Effiel</div>
+			<div class="font-bold" style="font-feature-settings: 'liga' {liga}, 'dlig' {liga};">
+				Effiel stood
+			</div>
 			<button
 				class="btn btn-outline btn-xs btn-primary"
 				on:click={() => {
-					if (liga == 'common-ligatures') {
-						liga = 'none';
+					if (liga == 0) {
+						liga = 1;
 					} else {
-						liga = 'common-ligatures';
+						liga = 0;
 					}
 				}}>swap</button
 			>
@@ -25,8 +33,8 @@
 	</main>
 
 	<section class="flex flex-row items-center mt-5 space-x-2">
-		<div class="badge badge-primary font-bold">CSS</div>
-		<div class="text-sm">font-variant-ligatures: '{liga}';</div>
+		<div class="badge badge-primary font-bold self-start">CSS</div>
+		<div class="text-sm">font-feature-settings: 'liga'&nbsp;{liga},&nbsp;'dlig'&nbsp;{liga};</div>
 	</section>
 </div>
 
@@ -39,6 +47,7 @@
 
 	section {
 		font-family: 'Recursive';
+		font-variation-settings: 'MONO' 1;
 	}
 
 	.liga {
