@@ -13,6 +13,8 @@ date: 2023-11-23
 import Calt from '$lib/components/posts/Calt.svelte'
 import Liga from '$lib/components/posts/Liga.svelte'
 import Tnum from '$lib/components/posts/Tnum.svelte'
+import Frac from '$lib/components/posts/Frac.svelte'
+import SSAlt from '$lib/components/posts/SSAlt.svelte'
 </script>
 
 ## table of contents
@@ -51,8 +53,20 @@ discretionary ligatures are, in general, are fancier versions of some characters
 
 tabular numbers are essential in, well... tables. this feature simply enables a monospaced set of numbers. _mono (one, single) space (space)_ indicates that every character occupies the same exact space, which means that numbers align perfectly.
 
+it is _extremely encouraged_ to turn this feature on for stacked up numbers, like those found in **tables**.
+
 <Tnum/>
 
 ## fractions
 
-## arbitrary settings
+fractions are a severely underrated feature in OpenType. these allow us to quickly and easily build good looking fractions without pretty much any hassle, and almost completely through CSS.
+
+<Frac/>
+
+Note: this feature can also be switched on/off through the `font-variant-numeric: diagonal-fractions` rule, and some of the previously mentioned features have their own named rules. i am nevertheless going to keep it simple by using `font-feature-settings` since it's got the same notation across the board AND it really shows what OpenType features we are using. this allows for further research on those that interest us the most.
+
+## stylistic sets
+
+because there we can only define so many styles in general terms, stylistic sets offer a very expressive way for typographers to define specific alternates for extreme control and fun.
+
+<SSAlt/>

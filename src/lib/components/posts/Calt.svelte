@@ -2,7 +2,7 @@
 	let calt = 0;
 </script>
 
-<div class="border border-dashed border-primary p-5 rounded-xl bg-base-200">
+<div class="border border-dashed border-primary py-3 px-4 rounded-xl bg-base-200">
 	<main>
 		<div class="flex justify-around flex-col md:flex-row text-center md:text-left">
 			<div class="no-calt">

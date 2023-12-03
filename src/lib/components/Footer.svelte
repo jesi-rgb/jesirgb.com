@@ -1,6 +1,6 @@
 <script>
 	import { fly } from 'svelte/transition';
-	let randomWord = '';
+	let randomWord = 'EMBRACE';
 	let loading = false;
 
 	const loadWord = async () => {
@@ -10,7 +10,7 @@
 		loading = false;
 	};
 
-	loadWord();
+	// loadWord();
 </script>
 
 <div class="divider divider-neutral mt-10" />
