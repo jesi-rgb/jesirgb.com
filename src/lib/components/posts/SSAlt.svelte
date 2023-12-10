@@ -5,14 +5,13 @@
 <div class="border border-dashed border-primary py-3 px-4 rounded-xl bg-base-200">
 	<main>
 		<div class="flex justify-around flex-col md:flex-row text-center md:text-left">
-			<div class="no-ss">Joan Regular</div>
-			<div class="ss">Joan Regular</div>
+			<div class="no-ss">Satoshi is great</div>
+			<div class="ss">Satoshi is great</div>
 		</div>
 
-		<div class="text-center mt-5">
-			<div style="font-feature-settings: 'calt' {ssalt};">
-				3<span class="text-white">x</span>9 12<span class="text-white">:</span>34
-				<span> -> </span>
+		<div class="text-center mt-5 text-3xl">
+			<div style="font-feature-settings:'ss01' {ssalt}, 'ss02' {ssalt}, 'ss03' {ssalt};">
+				Satoshi is great
 			</div>
 			<button
 				class="btn btn-outline btn-xs btn-primary"
@@ -26,26 +25,31 @@
 			>
 		</div>
 	</main>
-	<section class="flex flex-row items-center mt-5 space-x-2 code">
-		<div class="badge badge-primary font-bold self-start">CSS</div>
-		<div class="text-sm">font-feature-settings: 'calt'&nbsp;{ssalt};</div>
+	<section class="flex flex-col justify-between md:flex-row md:items-center mt-5 space-x-2 code">
+		<div class="flex space-x-3">
+			<div class="badge badge-primary font-bold self-start">CSS</div>
+			<div class="text-sm">
+				font-feature-settings: 'ss01'&nbsp;{ssalt}, 'ss02'&nbsp;{ssalt}, 'ss03'&nbsp;{ssalt};
+			</div>
+		</div>
+		<main style="font-family: Satoshi;" class="self-end text-2xl">Satoshi</main>
 	</section>
 </div>
 
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Joan&display=swap');
+	@import url('https://api.fontshare.com/v2/css?f[]=satoshi@1&display=swap" rel="stylesheet');
 	main {
-		font-family: 'Joan';
+		font-family: 'Satoshi';
 	}
 	section {
 		font-family: 'Recursive';
 		font-variation-settings: 'MONO' 1;
 	}
 	.ss {
-		font-feature-settings: 'ss10';
+		font-feature-settings: 'ss01', 'ss02', 'ss03';
 	}
 
 	.no-ss {
-		font-feature-settings: 'ss10' 0;
+		font-feature-settings: 'ss01' 0, 'ss02' 0, 'ss03' 0;
 	}
 </style>

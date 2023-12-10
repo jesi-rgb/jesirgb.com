@@ -36,9 +36,12 @@
 			>
 		</div>
 	</main>
-	<section class="flex flex-row items-center mt-5 space-x-2 code">
-		<div class="badge badge-primary font-bold self-start">CSS</div>
-		<div class="text-sm">font-feature-settings: 'calt'&nbsp;{calt};</div>
+	<section class="flex flex-col justify-between md:flex-row md:items-center mt-5 space-x-2 code">
+		<div class="flex space-x-3">
+			<div class="badge badge-primary font-bold self-start">CSS</div>
+			<div class="text-sm">font-feature-settings: 'calt'&nbsp;{calt};</div>
+		</div>
+		<main class="self-end">Inter</main>
 	</section>
 </div>
 

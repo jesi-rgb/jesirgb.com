@@ -30,7 +30,7 @@
 	</main>
 	<section class="flex flex-col md:flex-row justify-between md:items-center mt-5 space-x-2 code">
 		<div class="flex space-x-3">
-			<div class="badge badge-primary font-bold">CSS</div>
+			<div class="badge badge-primary font-bold self-start">CSS</div>
 			<div class="text-sm">font-feature-setting: 'tnum' {tnum};</div>
 		</div>
 		<main class="self-end">AT Name Sans</main>

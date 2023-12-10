@@ -69,4 +69,14 @@ Note: this feature can also be switched on/off through the `font-variant-numeric
 
 because there we can only define so many styles in general terms, stylistic sets offer a very expressive way for typographers to define specific alternates for extreme control and fun.
 
+these features depend greatly on the font at hand. in this example, Satoshi can swap the a, g and t characters through the `ss01`, `ss02` and `ss03` settings, respectively.
+
+but any other font will have their own features, dictated solely by the type designer. check your font's feature sheet and inspect what's possible! you'll be surprised of how many things you could be missing out on.
+
 <SSAlt/>
+
+## final thoughts
+
+these are some of the modern features that designers and developers have at hand when using type. there are a ton more that i may have skipped, and surely there are features being created and developed as you read this. make sure to dive deep into your typography of choice to get as much as you can out of it.
+
+### happy typesetting!

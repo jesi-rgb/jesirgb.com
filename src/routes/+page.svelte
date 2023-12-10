@@ -11,6 +11,7 @@
 	import Sigma from 'phosphor-svelte/lib/Sigma';
 	import Stack from 'phosphor-svelte/lib/Stack';
 	import TextB from 'phosphor-svelte/lib/TextB';
+	import CursorClick from 'phosphor-svelte/lib/CursorClick';
 </script>
 
 <head>
@@ -68,6 +69,13 @@
 		<h3>Fun Side Projects</h3>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="flex flex-col space-y-9 mt-10">
+			<WorkItem link="https://svelte-advent-code.vercel.app/">
+				<div slot="title">Svelte's Advent of Code 2023</div>
+				<div slot="description">A set of 24 prompts to sharpen your Svelte skills</div>
+				<div slot="icon">
+					<CursorClick size={40} weight="duotone" class="fill-primary ml-[3px] mt-[4px]" />
+				</div>
+			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
 				<div slot="title">Pangea</div>
 				<div slot="description">The country guessing game</div>
