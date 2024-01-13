@@ -17,6 +17,8 @@ import Frac from '$lib/components/posts/Frac.svelte'
 import SSAlt from '$lib/components/posts/SSAlt.svelte'
 </script>
 
+the current state of web technologies offers an excellent toolkit to develop and play with font technology to a great extent. let's review some of the different features we can use to make our type more versatile, legible and fun.
+
 ## table of contents
 
 let's discuss some of the very nice features available through CSS to make a type system really work for us.
