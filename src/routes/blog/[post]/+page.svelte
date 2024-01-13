@@ -25,7 +25,7 @@
 	}}
 />
 
-<article class="w-[90%] @container md:max-w-xl xl:max-w-2xl mx-auto mt-24">
+<article class="@container md:max-w-xl xl:max-w-2xl mx-auto mt-24">
 	<hrgoup class="flex flex-col space-y-3">
 		<div
 			role="link"

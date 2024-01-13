@@ -1,25 +1,19 @@
 @font-face {
 	font-family: 'AT Name Sans';
-	src:
-		local('AT Name Sans'),
-		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf')
-			format('truetype');
+	src: local('AT Name Sans'),
+		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf') format('truetype');
 	font-weight: 1 1000;
 }
 
 @font-face {
 	font-family: 'Supreme';
-	src:
-		local('Supreme'),
-		url('/fonts/Supreme.ttf') format('truetype');
+	src: local('Supreme'), url('/fonts/Supreme.ttf') format('truetype');
 	font-weight: 100 800;
 }
 
 @font-face {
 	font-family: 'Supreme';
-	src:
-		local('Supreme'),
-		url('/fonts/Supreme-Italic.ttf') format('truetype');
+	src: local('Supreme'), url('/fonts/Supreme-Italic.ttf') format('truetype');
 	font-weight: 100 800;
 	font-style: italic;
 }
@@ -46,20 +40,18 @@
 	src: local('DSEG7ClassicMini'), url('/fonts/DSEG7ClassicMini-Bold.woff2');
 	font-weight: bold;
 }
+
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 pre {
-	font-variation-settings:
-		'MONO' 1,
-		'wght' 550,
-		'CASL' 0.4,
-		'CRSV' 1;
 	@apply shadow-black/20 shadow-xl !important;
 	@apply bg-base-300 bg-opacity-50 !important;
+
 	border: 2px dashed gray;
+	font-variation-settings: 'MONO' 1, 'wght' 550, 'CASL' 0.4, 'CRSV' 1;
 }
 
 :root {
