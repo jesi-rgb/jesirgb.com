@@ -18,8 +18,7 @@ export let videos = [
   {
     title: 'The Science Behind Blurring Tools',
     subtitle: 'How can a computer really make things blurry?',
-    thumbnail:
-      'https://i.ytimg.com/vi/xEyUcp4tbTI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAgesnO_00WyzpT7Fx-lWyUc3yI2Q',
+    thumbnail: 'https://i3.ytimg.com/vi/xEyUcp4tbTI/maxresdefault.jpg',
     link: 'https://youtu.be/xEyUcp4tbTI',
     channel: 'Design Bits',
     channelAvatar:
@@ -28,8 +27,7 @@ export let videos = [
   {
     title: 'but what are Blend Modes?',
     subtitle: 'A deeper look into this seemingly random tool.',
-    thumbnail:
-      'https://i.ytimg.com/vi/D7Yg4H8e7uw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCb8ST-7GAFU3eZRLNyM8hKmR0wvA',
+    thumbnail: 'https://i3.ytimg.com/vi/D7Yg4H8e7uw/maxresdefault.jpg',
     link: 'https://youtu.be/D7Yg4H8e7uw',
     channel: 'Design Bits',
     channelAvatar:
@@ -39,8 +37,7 @@ export let videos = [
     title: 'Implementing GIF saving in p5.js',
     subtitle:
       'A talk for CCFest 2023 about adding GIF export functionality to the p5.js ecosystem!',
-    thumbnail:
-      'https://i.ytimg.com/vi/WG3ZAydSN4Q/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBxU9eQw0O3I2ljg2M32BPYpDd1fA',
+    thumbnail: 'https://i3.ytimg.com/vi/WG3ZAydSN4Q/maxresdefault.jpg',
     link: 'https://youtu.be/WG3ZAydSN4Q',
     channel: 'Design Bits',
     channelAvatar:
@@ -49,8 +46,7 @@ export let videos = [
   {
     title: 'Create a minimal, clean design with Cavalry, Affinity Photo & Designer',
     subtitle: 'More tutorials!',
-    thumbnail:
-      'https://i.ytimg.com/vi/rvqAad4iswA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgEMoCwKqKMDvzE8lEi18bHsg1Og',
+    thumbnail: 'https://i3.ytimg.com/vi/rvqAad4iswA/maxresdefault.jpg',
     link: 'https://youtu.be/rvqAad4iswA',
     channel: 'Design Bits',
     channelAvatar:
@@ -59,8 +55,7 @@ export let videos = [
   {
     title: 'Abstract Poster Design using Cavalry and Affinity Designer',
     subtitle: 'First video on my channel! Niche tutorials.',
-    thumbnail:
-      'https://i.ytimg.com/vi/lG88LGGxMvE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDBDtHFjQd0l8ho0HpRWlyCPd6rCg',
+    thumbnail: 'https://i3.ytimg.com/vi/lG88LGGxMvE/maxresdefault.jpg',
     link: 'https://youtu.be/lG88LGGxMvE',
     channel: 'Design Bits',
     channelAvatar:
@@ -69,8 +64,7 @@ export let videos = [
   {
     title: 'The Discrete Fourier Transform: Most Important Algorithm Ever?',
     subtitle: 'The most ubiquitous and praised algorithm. Ever.',
-    thumbnail:
-      'https://i.ytimg.com/vi/yYEMxqreA10/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA7jlJpLlHyQc8YxniAmeH3vIZnbA',
+    thumbnail: 'https://i3.ytimg.com/vi/yYEMxqreA10/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=yYEMxqreA10',
     channel: 'Reducible',
     channelAvatar:
@@ -79,8 +73,7 @@ export let videos = [
   {
     title: 'The Traveling Salesman Problem: when good enough beats perfect',
     subtitle: 'Going places has never been this hard',
-    thumbnail:
-      'https://i.ytimg.com/vi/GiDsjIBOVoA/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCl3wLO7Ak-DcE436vfRkK7sG6rTw',
+    thumbnail: 'https://i3.ytimg.com/vi/GiDsjIBOVoA/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=GiDsjIBOVoA',
 
     channel: 'Reducible',
@@ -90,8 +83,7 @@ export let videos = [
   {
     title: 'PageRank: A trillion dollar algorithm',
     subtitle: 'Search engines explained',
-    thumbnail:
-      'https://i.ytimg.com/vi/JGQe4kiPnrU/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAY0MpvUKnmi9whJq4FSIrFEH451A',
+    thumbnail: 'https://i3.ytimg.com/vi/JGQe4kiPnrU/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=JGQe4kiPnrU',
 
     channel: 'Reducible',
@@ -101,8 +93,7 @@ export let videos = [
   {
     title: 'How PNG Works: Compromising speed for quality',
     subtitle: 'PNG is not perfect tho!',
-    thumbnail:
-      'https://i.ytimg.com/vi/EFUYNoFRHQI/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLB44R9WPwmlmmKVuRUa90vV_ZDusQ',
+    thumbnail: 'https://i3.ytimg.com/vi/EFUYNoFRHQI/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=EFUYNoFRHQI',
 
     channel: 'Reducible',
@@ -112,8 +103,7 @@ export let videos = [
   {
     title: 'The unreasonable effectiveness of JPEG: A signal processing approach',
     subtitle: 'JPEG is not as bad as we put it (under the right conditions)',
-    thumbnail:
-      'https://i.ytimg.com/vi/0me3guauqOU/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLCi74IrUYyAW5OUwhXrhT3WuGgnxA',
+    thumbnail: 'https://i3.ytimg.com/vi/0me3guauqOU/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=0me3guauqOU',
 
     channel: 'Reducible',
@@ -123,8 +113,7 @@ export let videos = [
   {
     title: 'The riddle that seems impossible even if you know the answer',
     subtitle: 'Probability theory is probably lying to us',
-    thumbnail:
-      'https://i.ytimg.com/vi/iSNsgj1OCLA/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLAzkXkkiqvdHdysp3towdtNV84Zcg',
+    thumbnail: 'https://i3.ytimg.com/vi/iSNsgj1OCLA/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=iSNsgj1OCLA&t=945s',
     channel: 'Veritasium',
     channelAvatar:
@@ -133,8 +122,7 @@ export let videos = [
   {
     title: 'How imaginary numbers were invented',
     subtitle: 'Math got so hard we just had to think outside the line',
-    thumbnail:
-      'https://i.ytimg.com/vi/cUzklzVXJwo/hqdefault.jpg?sqp=-oaymwEjCNACELwBSFryq4qpAxUIARUAAAAAGAElAADIQj0AgKJDeAE=&rs=AOn4CLDPETABjsedr14aDuHULweNRzK0AQ',
+    thumbnail: 'https://i3.ytimg.com/vi/cUzklzVXJwo/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=cUzklzVXJwo',
     channel: 'Veritasium',
     channelAvatar:
@@ -143,8 +131,7 @@ export let videos = [
   {
     title: 'The Simplest Math Problem No One Can Solve',
     subtitle: 'Tiny little impossible problem',
-    thumbnail:
-      'https://i.ytimg.com/vi/094y1Z2wpJg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAO53Ianb2RhP7cAX9B83XXCGejCw',
+    thumbnail: 'https://i3.ytimg.com/vi/094y1Z2wpJg/maxresdefault.jpg',
     link: 'https://www.youtube.com/watch?v=094y1Z2wpJg',
     channel: 'Veritasium',
     channelAvatar:

@@ -4,9 +4,10 @@
 	import { MetaTags } from 'svelte-meta-tags';
 </script>
 
+<MetaTags title="Portfolio" description="Selected works from Jesús Rascón" openGraph={{}} />
+
 <MegaTitle>Portfolio</MegaTitle>
 
-<MetaTags title="Portfolio" description="All the selected works from Jesús Rascón" openGraph={{}} />
 <section class="prose prose-2xl prose-img:m-0 prose-a:no-underline w-full">
 	<h2>Videos</h2>
 	<p>All the frames I've participated in</p>
@@ -14,18 +15,20 @@
 		{#each videos as video}
 			<a href={video.link}>
 				<div
-					class="p-2 hover:bg-base-300 rounded-2xl h-full flex flex-col justify-between w-fit md:w-fit group hover:ring hover:ring-primary hover:ring-opacity-30 transition-all"
+					class="p-2 hover:bg-base-300 rounded-2xl h-full flex flex-col justify-between w-fit group hover:ring hover:ring-primary hover:ring-opacity-30 transition-all mx-auto"
 				>
 					<div>
-						<img src={video.thumbnail} class="rounded-xl" alt="" />
+						<img src={video.thumbnail} class="rounded-xl w-full" alt="" />
 
-						<div class="text-lg group-hover:text-white transition-all font-semibold balanced">
+						<div
+							class="text-lg group-hover:text-white transition-all font-semibold balanced w-1/2 md:w-full"
+						>
 							{video.title}
 						</div>
 					</div>
 
 					<div class="flex items-center justify-start md:justify-end space-x-2 mt-3">
-						<div class="font-mono text-sm text-left">{video.channel}</div>
+						<div class="font-mono text-sm text-left opacity-60">{video.channel}</div>
 						<img class="rounded-full w-5 h-5" src={video.channelAvatar} alt={video.channel} />
 					</div>
 				</div>
