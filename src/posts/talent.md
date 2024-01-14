@@ -1,5 +1,5 @@
 ---
-title: Talent
+title: A word on talent
 description: What does it take to be successful?
 categories:
   - thinking

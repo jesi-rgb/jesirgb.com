@@ -13,9 +13,7 @@
 <section class="h-fit min-h-full">
 	<div class="text-3xl md:text-4xl text-center">Find me all over <br /> the internet</div>
 
-	<div
-		class="flex flex-col justify-center space-y-3 md:space-y-0 md:space-x-3 md:w-fit sm:mx-auto sm:flex-row items-center mt-10"
-	>
+	<div class="grid grid-cols-2 md:grid-cols-3 w-fit mx-auto gap-4 mt-10">
 		<a href="https://twitter.com/jesi_rgb">
 			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
 				<TwitterLogo size="48" weight="duotone" />

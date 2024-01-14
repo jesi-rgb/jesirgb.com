@@ -52,7 +52,7 @@
 		</div>
 		<div class="divider" />
 		<div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-			<p class="font-mono font-light recursive text-center text-lg xl:text-2xl text-neutral-400">
+			<p class="text-xl xl:text-2xl text-neutral-400">
 				{formatDate(data.metadata.date)}
 			</p>
 			<div class="flex flex-row space-x-1">
@@ -71,10 +71,6 @@
 </article>
 
 <style>
-	.recursive {
-		font-variation-settings: 'CASL' 0.5, 'MONO' 1;
-	}
-
 	.whirly {
 		font-family: 'Whirly Birdie';
 		font-variation-settings: 'wdth' 125;
