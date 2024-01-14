@@ -5,7 +5,7 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				sans: ['Supreme'],
+				sans: ['Supreme', 'apple-system', '--system-ui'],
 				mono: ['Recursive'],
 				title: ['Whirly Birdie']
 			},
