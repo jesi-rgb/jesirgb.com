@@ -2,7 +2,6 @@ import { mdsvex, escapeSvelte } from 'mdsvex';
 import mdsvexConfig from './mdsvex.config.js';
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import skiki from 'shiki';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
