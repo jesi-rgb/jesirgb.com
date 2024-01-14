@@ -6,8 +6,7 @@
 	font-family: 'AT Name Sans';
 	src:
 		local('AT Name Sans'),
-		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf')
-			format('truetype');
+		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf') format('truetype');
 	font-weight: 1 1000;
 }
 
@@ -56,24 +55,26 @@
 @tailwind components;
 @tailwind utilities;
 
+
 pre {
-	@apply shadow-black/20 shadow-xl !important;
-	@apply bg-base-300 bg-opacity-50 !important;
+	@apply shadow-black/20 shadow-xl bg-base-300 bg-opacity-50 !important;
 
 	border: 2px dashed gray;
-	font-variation-settings:
-		'MONO' 1,
-		'wght' 550,
-		'CASL' 0.4,
-		'CRSV' 1;
+
+	/* font-variation-settings: */
+	/* 	'MONO' 1, */
+	/* 	'wght' 550, */
+	/* 	'CASL' 0.4, */
+	/* 	'CRSV' 1; */
 }
+
+code {
+	font-variation-settings: 'MONO' 1, 'wght' 550, 'CRSV' 1, 'CASL' 0.5;
+}
+
 
 :root {
 	background-image: radial-gradient(#ffffff10 1px, transparent 0);
 	background-size: 40px 40px;
 	background-position: 0px 0px;
 }
-
-@tailwind components;
-
-@tailwind utilities;

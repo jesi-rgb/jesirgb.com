@@ -21,7 +21,7 @@
 						<img src={video.thumbnail} class="rounded-xl w-full" alt="" />
 
 						<div
-							class="text-lg group-hover:text-white transition-all font-semibold balanced w-1/2 md:w-full"
+							class="pt-2 text-lg group-hover:text-white transition-all font-semibold balanced w-full"
 						>
 							{video.title}
 						</div>

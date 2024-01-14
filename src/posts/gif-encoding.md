@@ -89,7 +89,7 @@ Now, the key part is we are going to group all this points in chunks, little $n\
 
 Now, we are going to associate each chunk with the average of all the colors it holds. That is, in our particular example, for each of the 32K colors that each chunk has, take the average of the red, green and blue channels independently. We can associate this new "average color" with our chunk in a dictionary, for example:
 
-```python
+```javascript
 color_chunks[chunk] = [avg(red), avg(green), avg(blue)]
 ```
 
@@ -115,7 +115,7 @@ Let us consider the same example as before, in which we sliced the space into 8,
 
 So the `key` that we mentioned before is going to be our index! The dictionary would look like this, for example:
 
-```python
+```javascript
 color_chunks[53] = [avg(red), avg(green), avg(blue)]
 ```
 

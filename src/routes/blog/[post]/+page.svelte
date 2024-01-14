@@ -64,7 +64,7 @@
 	</hrgoup>
 
 	<div
-		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-primary prose-a:transition-colors prose-strong:font-bold my-12"
+		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-accent prose-a:transition-colors prose-strong:font-bold my-12"
 	>
 		<svelte:component this={data.content} />
 	</div>
