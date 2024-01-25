@@ -20,7 +20,7 @@
 		/>
 		<p>
 			In December, 2023, I joined forces with Stephen from{' '}<a
-				class=""
+				class="after:content-['_↗'] hover:text-accent"
 				href="https://arrowtype.com">ArrowType</a
 			> to make a promotional video for Name Sans.
 		</p>
