@@ -23,25 +23,17 @@
 </div>
 <section class="min-h-[50%]">
 	<main
-		class="prose prose-2xl prose-headings:tracking-normal prose-a:no-underline prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent"
+		class="prose prose-lg prose-headings:tracking-normal prose-a:no-underline prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent"
 	>
 		<h3>Design engineer and technical content creator</h3>
 
-		<h4>Typography obsessed, attention to detail and tasteful animation</h4>
+		<p>Typography obsessed, attention to detail and tasteful animation.</p>
 
-		<p>
-			I'm currently working at
-			<a href="https://prismsvr.com">
-				<span class="inline-block pb-1 align-middle"
-					><img width="20" class="mx-1 my-0" src="/assets/prisms.svg" alt="Prisms Logo" /></span
-				>Prisms</a
-			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
-		</p>
 		<p>
 			Founder and creator of the <a href="https://www.youtube.com/@Design_Bits"
 				><span class="inline-block pb-2 align-middle"
 					><img
-						width="28"
+						width="20"
 						class="my-0 mr-1"
 						src="/assets/design-bits-transparent.svg"
 						alt="Design Bits Logo"
@@ -50,6 +42,15 @@
 			</a>
 			channel, where we talk about computational design.
 			<i>All things art, but make it digital</i>.
+		</p>
+
+		<p>
+			I've worked at
+			<a href="https://prismsvr.com">
+				<span class="inline-block pb-1 align-middle"
+					><img width="14" class="mx-1 my-0" src="/assets/prisms.svg" alt="Prisms Logo" /></span
+				>Prisms</a
+			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
 		</p>
 		<p>
 			I've also worked as a freelance <i>technical content creator</i> with channels like
@@ -65,9 +66,9 @@
 <!-- Works -->
 <section class="min-h-[50%]">
 	<main
-		class="prose prose-2xl prose-headings:tracking-normal prose-a:text-neutral-300 prose-a:no-underline"
+		class="prose prose-lg prose-headings:tracking-normal prose-a:text-neutral-300 prose-a:no-underline"
 	>
-		<h3>Fun Side Projects</h3>
+		<h2>Fun Side Projects</h2>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
@@ -171,8 +172,8 @@
 <div class="divider divider-neutral my-24" />
 
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl prose-headings:tracking-normal prose-h4:font-[60]">
-		<h3>Experience & Background</h3>
+	<main class="prose prose-lg prose-headings:tracking-normal prose-h4:font-[60]">
+		<h2>Experience & Background</h2>
 		<p>A little sum up of the path I've followed so far</p>
 		<div class="">
 			<!-- Timeline Item -->

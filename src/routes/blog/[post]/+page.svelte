@@ -64,7 +64,7 @@
 	</hrgoup>
 
 	<div
-		class="prose prose-xl my-12 text-justify prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
+		class="prose my-12 md:prose-xl prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
 	>
 		<svelte:component this={data.content} />
 	</div>

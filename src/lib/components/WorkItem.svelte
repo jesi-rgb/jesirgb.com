@@ -13,10 +13,10 @@
 			</div>
 		</div>
 		<div class="flex w-3/4 flex-col transition-colors group-hover:text-base-content">
-			<div class="whirly no-prose">
+			<div class="whirly">
 				<slot name="title" />
 			</div>
-			<p class="not-prose balanced text-xl text-neutral-400">
+			<p class="balanced my-0 text-neutral-400">
 				<slot name="description" />
 			</p>
 		</div>
@@ -29,12 +29,12 @@
 	}
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-weight: 70;
+		font-weight: 75;
 		font-variation-settings: 'wdth' 75;
 		text-wrap: balance;
 	}
 
 	p {
-		font-variation-settings: 'opsz' 12;
+		font-variation-settings: 'opsz' 16;
 	}
 </style>

@@ -12,7 +12,7 @@
 		<div class="subtitle text-xl font-semibold"><slot name="subtitle" /></div>
 	</div>
 	<!-- Content -->
-	<p class="text-lg">
+	<p>
 		<slot name="content" />
 	</p>
 </div>
