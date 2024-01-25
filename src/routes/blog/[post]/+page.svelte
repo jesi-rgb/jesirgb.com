@@ -25,46 +25,46 @@
 	}}
 />
 
-<article class="@container md:max-w-xl xl:max-w-2xl mx-auto mt-24">
+<article class="mx-auto mt-24 @container md:max-w-xl xl:max-w-2xl">
 	<hrgoup class="flex flex-col space-y-3">
 		<div
 			role="link"
 			tabindex="0"
 			on:mouseleave={() => (visible = false)}
 			on:mouseenter={() => (visible = true)}
-			class="group h-full w-full relative @container"
+			class="group relative h-full w-full @container"
 		>
 			{#if visible}
-				<a class="opacity-10 hover:opacity-30 transition-all duration-300" href="/blog">
+				<a class="opacity-10 transition-all duration-300 hover:opacity-30" href="/blog">
 					<div
 						in:fly={{ y: -5, duration: 200 }}
 						out:fly={{ y: 5, duration: 200 }}
-						class="absolute right-1/2 font-title font-[60] translate-x-1/2 -top-10 whirly text-lg"
+						class="whirly absolute -top-10 right-1/2 translate-x-1/2 font-title text-lg font-[60]"
 					>
 						blog/
 					</div>
 				</a>
 			{/if}
 			<div class="h-8" />
-			<h1 class="whirly leading-[.9em] text-center tracking-tighter">
+			<h1 class="whirly text-center leading-[.9em] tracking-tighter">
 				{data.metadata.title}
 			</h1>
 		</div>
 		<div class="divider" />
-		<div class="flex flex-col md:flex-row gap-4 justify-between items-center">
-			<p class="text-xl xl:text-2xl text-neutral-400">
+		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+			<p class="text-xl text-neutral-400 xl:text-2xl">
 				{formatDate(data.metadata.date)}
 			</p>
 			<div class="flex flex-row space-x-1">
 				{#each data.metadata.categories as category}
-					<span class="badge badge-outline badge-lg badge-primary">{category}</span>
+					<span class="badge badge-primary badge-outline badge-lg">{category}</span>
 				{/each}
 			</div>
 		</div>
 	</hrgoup>
 
 	<div
-		class="prose prose-zinc text-justify prose-xl prose-headings:text-left hover:prose-a:text-accent prose-a:transition-colors prose-strong:font-bold my-12"
+		class="prose prose-xl my-12 text-justify prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
 	>
 		<svelte:component this={data.content} />
 	</div>

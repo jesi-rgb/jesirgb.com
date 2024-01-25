@@ -8,28 +8,38 @@
 
 <MegaTitle>Portfolio</MegaTitle>
 
-<section class="prose prose-2xl prose-img:m-0 prose-a:no-underline w-full">
+<section
+	class="prose prose-2xl w-full prose-a:no-underline prose-a:transition-colors hover:prose-a:text-accent prose-img:m-0"
+>
+	<section>
+		<h2>Name Sans Promo</h2>
+		In December, 2023, I joined forces with Stephen from{' '}<a
+			class=""
+			href="https://arrowtype.com">ArrowType</a
+		> to make a promotional video for Name Sans.
+	</section>
+
 	<h2>Videos</h2>
 	<p>All the frames I've participated in</p>
-	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-dense gap-3">
+	<div class="grid grid-flow-dense grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
 		{#each videos as video}
 			<a href={video.link}>
 				<div
-					class="p-2 hover:bg-base-300 rounded-2xl h-full flex flex-col justify-between w-fit group hover:ring hover:ring-primary hover:ring-opacity-30 transition-all mx-auto"
+					class="group mx-auto flex h-full w-fit flex-col justify-between rounded-2xl p-2 transition-all hover:bg-base-300 hover:ring hover:ring-primary hover:ring-opacity-30"
 				>
 					<div>
-						<img src={video.thumbnail} class="rounded-xl w-full" alt="" />
+						<img src={video.thumbnail} class="w-full rounded-xl" alt="" />
 
 						<div
-							class="pt-2 text-lg group-hover:text-white transition-all font-semibold balanced w-full"
+							class="balanced w-full pt-2 text-lg font-semibold transition-all group-hover:text-white"
 						>
 							{video.title}
 						</div>
 					</div>
 
-					<div class="flex items-center justify-start md:justify-end space-x-2 mt-3">
-						<div class="font-mono text-sm text-left opacity-60">{video.channel}</div>
-						<img class="rounded-full w-5 h-5" src={video.channelAvatar} alt={video.channel} />
+					<div class="mt-3 flex items-center justify-start space-x-2 md:justify-end">
+						<div class="text-left font-mono text-sm opacity-60">{video.channel}</div>
+						<img class="h-5 w-5 rounded-full" src={video.channelAvatar} alt={video.channel} />
 					</div>
 				</div>
 			</a>
@@ -37,12 +47,12 @@
 	</div>
 
 	<h2>Posters</h2>
-	<p>Colors, shapes and inspiration</p>
+	<p>A selection of colors, shapes and inspiration</p>
 
-	<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 grid-flow-dense gap-1">
+	<div class="grid grid-flow-dense grid-cols-1 gap-1 md:grid-cols-2 xl:grid-cols-3">
 		{#each posters as filename}
 			<img
-				class="rounded-xl hover:-rotate-2 transition-all duration-300"
+				class="rounded-xl transition-all duration-300 hover:-rotate-2"
 				src="/assets/posters/{filename}"
 				alt={filename.split('.')[0]}
 			/>
@@ -51,10 +61,10 @@
 
 	<h2>Stickers</h2>
 	<p>Stickers I made for my friends</p>
-	<div class="flex flex-col md:flex-row justify-between mx-auto w-fit md:w-full">
+	<div class="mx-auto flex w-fit flex-col justify-between md:w-full md:flex-row">
 		{#each stickers as sticker}
 			<img
-				class="hover:-rotate-2 transition-all"
+				class="transition-all hover:-rotate-2"
 				width="180px"
 				src="/assets/posters/{sticker}"
 				alt={sticker.split('.')[0]}
@@ -66,5 +76,8 @@
 <style>
 	.balanced {
 		text-wrap: balance;
+	}
+	.font-mono {
+		font-variation-settings: 'MONO' 1;
 	}
 </style>

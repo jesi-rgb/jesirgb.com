@@ -20,7 +20,7 @@ Here I showcase the two pieces that hold my setup together: the terminal and the
 
 My current setup is composed of [Kitty](https://sw.kovidgoyal.net/kitty/), a very simple terminal emulator, paired with Recursive.
 
-[![Kitty terminal Screenshot](/assets/better-technical-typography/jesirgb-screenshot.png)](/assets/better-technical-typography/jesirgb-screenshot.png)
+![Kitty terminal Screenshot](/assets/better-technical-typography/jesirgb-screenshot.png)
 
 I know there are lots of options out there, like the macOS native terminal emulator or the very ubiquitous iTerm, as well as Warp.
 
@@ -53,11 +53,11 @@ bold_italic_font   Recursive Monospace Casual ExtraBold
 
 We are telling kitty to use the linear "normal" one in normal text, but when text is bold, use the casual one. Same goes with the italics. This adds an incredibly tasty flavour to the code if your terminal allows for it.
 
-[![Kitty Screenshot](/assets/better-technical-typography/mdx-screenshot.png)](/assets/better-technical-typography/mdx-screenshot.png)
+![Kitty Screenshot](/assets/better-technical-typography/mdx-screenshot.png)
 
 Particularly within Neovim, I am using the [Catppuccin](https://github.com/catppuccin/catppuccin) theme which also enables italics in particular places, like function arguments. Notice how the selected text also becomes bold and `fancy`.
 
-[![Kitty terminal Screenshot](/assets/better-technical-typography/timeline-screenshot.png)](/assets/better-technical-typography/timeline-screenshot.png)
+![Kitty terminal Screenshot](/assets/better-technical-typography/timeline-screenshot.png)
 
 We can also enable ligatures directly accessing OpenType features independently on each font we declared before:
 

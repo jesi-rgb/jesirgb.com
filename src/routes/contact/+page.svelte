@@ -11,40 +11,40 @@
 <MegaTitle>Contact</MegaTitle>
 
 <section class="h-fit min-h-full">
-	<div class="text-3xl md:text-4xl text-center">Find me all over <br /> the internet</div>
+	<div class="prose text-center text-xl md:text-2xl">Find me all over the internet</div>
 
-	<div class="grid grid-cols-2 md:grid-cols-3 w-fit mx-auto gap-4 mt-10">
+	<div class="mx-auto mt-10 grid w-fit grid-cols-2 gap-4 md:grid-cols-3">
 		<a href="https://twitter.com/jesi_rgb">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<TwitterLogo size="48" weight="duotone" />
 			</div>
 		</a>
 
 		<a href="https://github.com/jesi-rgb">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<GithubLogo size="48" weight="duotone" />
 			</div>
 		</a>
 		<a href="https://www.linkedin.com/in/jesi-rgb/">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<LinkedinLogo size="48" weight="duotone" />
 			</div>
 		</a>
 
 		<a href="mailto:jesirgb@gmail.com">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<At size="48" weight="duotone" />
 			</div>
 		</a>
 
 		<a href="https://instagram.com/jesi_rgb">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<InstagramLogo size="48" weight="duotone" />
 			</div>
 		</a>
 
 		<a href="https://t.me/jrascon">
-			<div class="btn btn-lg btn-circle btn-ghost btn-primary hover:rotate-12 transition-all">
+			<div class="btn btn-circle btn-ghost btn-primary btn-lg transition-all hover:rotate-12">
 				<TelegramLogo class="mr-2" size="48" weight="duotone" />
 			</div>
 		</a>
@@ -52,26 +52,26 @@
 
 	<div class="mt-56 opacity-50">
 		Webapge typeset in <a
-			class="underline hover:text-primary transition-colors font-title"
+			class="font-title underline transition-colors hover:text-primary"
 			href="https://whirlybirdie.com/">Whirly Birdie</a
 		>,
 		<a
-			class="underline hover:text-primary transition-colors"
-			href="https://www.fontshare.com/fonts/supreme">Supreme</a
+			class="underline transition-colors hover:text-primary"
+			href="https://www.arrowtype.com/name-sans">AT Name Sans</a
 		>
 		and
 		<a
-			class="underline hover:text-primary transition-colors font-mono"
+			class="font-mono underline transition-colors hover:text-primary"
 			href="https://www.recursive.design/">Recursive</a
 		>.
 		<br />
-		<a class="underline hover:text-primary transition-colors" href="https://svelte.dev">Svelte</a>
+		<a class="underline transition-colors hover:text-primary" href="https://svelte.dev">Svelte</a>
 		+
-		<a class="underline hover:text-primary transition-colors" href="https://tailwindcss.com"
+		<a class="underline transition-colors hover:text-primary" href="https://tailwindcss.com"
 			>Tailwind</a
 		>
 		through
-		<a class="underline hover:text-primary transition-colors" href="https://daisyui.com">DaisyUI</a
+		<a class="underline transition-colors hover:text-primary" href="https://daisyui.com">DaisyUI</a
 		>.
 	</div>
 </section>

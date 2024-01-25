@@ -7,9 +7,7 @@ categories:
   - open source
 ---
 
-# GIF encoding in p5.js 🌸
-
-Okay! It's now time to understand how GIF actually works, at least in the contest of a library like and javascript.
+Okay! It's now time to understand how GIF actually works, at least in the contest of a library like javascript.
 
 This article will particularly be focused on the decisions I made while adding this functionality to the tool, which may not be the best, but it's mostly a journey through what I discovered and learned.
 
@@ -17,7 +15,7 @@ I will try to explain the whole process from beginning to end of what it takes t
 
 ## Table of contents
 
-[![Gif encoding](/assets/gif-encoding/thumbnail.png)](/assets/gif-encoding/thumbnail.png)
+![Gif encoding](/assets/gif-encoding/thumbnail.png)]
 
 ## GIF files: a bit of story and terms
 
@@ -39,7 +37,7 @@ On the other hand, palette based means that the encoder will **not save** every 
 
 We can have a particular palette for each frame, or we can have what's called a **global palette**, used generally for all frames. We'll dive deep into this topic next.
 
-[![Delay, palettes](/assets/gif-encoding/delay_palette.png)](/assets/gif-encoding/delay_palette.png)
+![Delay, palettes](/assets/gif-encoding/delay_palette.png)
 
 ## Main functionality
 
@@ -49,7 +47,7 @@ Let's dive a bit more into each aspect.
 
 Usually, there's a javascript library (or framework) for absolutely anything. But in this context, what we usually get is GIF encoders: libraries that make all the work of writing headers and bytes at low level... but what frames you put in, how you process and deal with them and what palette you use is up to you.
 
-[![GIF encoder](/assets/gif-encoding/encoder.png)](/assets/gif-encoding/encoder.png)
+![GIF encoder](/assets/gif-encoding/encoder.png)
 
 ### Global palettes
 
@@ -67,7 +65,7 @@ Given an animation, we can take absolutely every pixel and _quantize_ this color
 
 More specifically, this technique tries to shrink the space of 16M+ colors (8 bit) down to a palette with less colors, in our case, 256 or less, while trying to preserve the quality of it.
 
-[![Reduce palette](/assets/gif-encoding/reduce_palette.png)](/assets/gif-encoding/reduce_palette.png)
+![Reduce palette](/assets/gif-encoding/reduce_palette.png)
 
 This technique is pretty involved and there are lots of simple and sophisticated ways to implement it. To get a sense of what we are talking about, let us see one of the simplest that I could find. It lies under the family of **Popularity Algorithms**.
 
@@ -90,12 +88,12 @@ Now, the key part is we are going to group all this points in chunks, little $n\
 Now, we are going to associate each chunk with the average of all the colors it holds. That is, in our particular example, for each of the 32K colors that each chunk has, take the average of the red, green and blue channels independently. We can associate this new "average color" with our chunk in a dictionary, for example:
 
 ```javascript
-color_chunks[chunk] = [avg(red), avg(green), avg(blue)]
+color_chunks[chunk] = [avg(red), avg(green), avg(blue)];
 ```
 
 We are now going to define that key `chunk`!
 
-[![RGB colorspace representation](/assets/gif-encoding/rgb_representation.png)](/assets/gif-encoding/rgb_representation.png)
+![RGB colorspace representation](/assets/gif-encoding/rgb_representation.png)
 
 #### Step 3: Mapping the colors to the chunks
 
@@ -116,7 +114,7 @@ Let us consider the same example as before, in which we sliced the space into 8,
 So the `key` that we mentioned before is going to be our index! The dictionary would look like this, for example:
 
 ```javascript
-color_chunks[53] = [avg(red), avg(green), avg(blue)]
+color_chunks[53] = [avg(red), avg(green), avg(blue)];
 ```
 
 Now, to get the coordinate of the chunk that the pixel in our image belongs to, we just have to divide its coordinates by our chunk size, in this case, 32.
@@ -141,7 +139,7 @@ Summing up every step very quickly:
 3. Treat this triplet of numbers as a number in base $B_{ratio}$. Consequently, convert that number to base 10 by adding the products with the corresponding powers of your base, as you'd usually do.
 4. Now you got the index! Access your dictionary and that is our color!
 
-[![Mapping colors](/assets/gif-encoding/mapping_colors.png)](/assets/gif-encoding/mapping_colors.png)
+![Mapping colors](/assets/gif-encoding/mapping_colors.png)
 
 #### Step 4: Rank the chunks in terms of popularity
 
@@ -149,7 +147,7 @@ Now that we know how to covert an RGB color from our image to the corresponding 
 
 This will effectively tell us what are the most relevant chunks that better sum up our image. From there, since every chunk is actually represented by a color (the average), we retrieve the 256 most referenced, or better yet: **their associated colors**! This will effectively return a set of colors that we can use for our GIF.
 
-[![Rank the chunks](/assets/gif-encoding/ranking_colors.png)](/assets/gif-encoding/ranking_colors.png)
+![Rank the chunks](/assets/gif-encoding/ranking_colors.png)
 
 _Side note_
 
@@ -166,7 +164,7 @@ The way we do this is by taking every pixel in one frame and checking what's the
 Once we have decided what color from the palette we'll use, what we actually insert is not the color BUT the index of that color in the palette. This will result in an image of the same width and height, but with integers referencing every color in our palette.
 
 And this very **indexed frame** is what we'll put into the encoder. Neat!
-[![Indexed frame](/assets/gif-encoding/index_palette.png)](/assets/gif-encoding/index_palette.png)
+![Indexed frame](/assets/gif-encoding/index_palette.png)
 
 ### Important optionals: Transparency optimization
 
@@ -182,7 +180,7 @@ Finally, we'll tell the encoder that whenever it finds this particular index in 
 
 This way, if we have a static background in our animation, this background will only be encoded once in the first frame. All the subsequent frames will have huge holes that let you see through the animation. This decreases the file size by a ton. Sick af in my opinion.
 
-[![Transparency optimization](/assets/gif-encoding/transparency.png)](/assets/gif-encoding/transparency.png)
+![Transparency optimization](/assets/gif-encoding/transparency.png)
 
 ## Conclusion
 

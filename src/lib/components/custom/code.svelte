@@ -4,6 +4,8 @@
 
 <style>
 	code {
-		font-variation-settings: 'MONO' 0.8, 'CASL' 0.4;
+		font-variation-settings:
+			'MONO' 1,
+			'CASL' 0.4;
 	}
 </style>

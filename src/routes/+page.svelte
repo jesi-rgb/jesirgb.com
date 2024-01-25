@@ -18,14 +18,13 @@
 	<title>Jesús Rascón</title>
 </head>
 
+<div class="my-10 mt-32">
+	<h2 class="whirly text-6xl tracking-tight">Jesús Rascón</h2>
+</div>
 <section class="min-h-[50%]">
 	<main
-		class="prose prose-2xl hover:prose-a:text-accent prose-a:transition-colors after:prose-a:content['_↗']"
+		class="prose prose-2xl prose-headings:tracking-normal prose-a:no-underline prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent"
 	>
-		<div class="my-5">
-			<h2 class="whirly text-6xl">Jesús Rascón</h2>
-		</div>
-
 		<h3>Design engineer and technical content creator</h3>
 
 		<h4>Typography obsessed, attention to detail and tasteful animation</h4>
@@ -33,14 +32,14 @@
 		<p>
 			I'm currently working at
 			<a href="https://prismsvr.com">
-				<span class="inline-block align-middle pb-1"
-					><img width="20" class="my-0 mx-1" src="/assets/prisms.svg" alt="Prisms Logo" /></span
+				<span class="inline-block pb-1 align-middle"
+					><img width="20" class="mx-1 my-0" src="/assets/prisms.svg" alt="Prisms Logo" /></span
 				>Prisms</a
 			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
 		</p>
 		<p>
 			Founder and creator of the <a href="https://www.youtube.com/@Design_Bits"
-				><span class="inline-block align-middle pb-2"
+				><span class="inline-block pb-2 align-middle"
 					><img
 						width="28"
 						class="my-0 mr-1"
@@ -65,22 +64,22 @@
 <div class="divider divider-neutral my-24" />
 <!-- Works -->
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl prose-a:no-underline prose-a:text-neutral-300">
+	<main class="prose prose-2xl prose-a:text-neutral-300 prose-a:no-underline">
 		<h3>Fun Side Projects</h3>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
-		<div class="flex flex-col space-y-9 mt-10">
+		<div class="mt-10 flex flex-col space-y-9">
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
 				<div slot="title">Svelte's Advent of Code 2023</div>
 				<div slot="description">A set of 24 prompts to sharpen your Svelte skills</div>
 				<div slot="icon">
-					<CursorClick size={40} weight="duotone" class="fill-primary ml-[3px] mt-[4px]" />
+					<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[4px] fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
 				<div slot="title">Pangea</div>
 				<div slot="description">The country guessing game</div>
 				<div slot="icon">
-					<GlobeStand size={40} weight="duotone" class="fill-primary ml-[3px] mt-[4px]" />
+					<GlobeStand size={40} weight="duotone" class="ml-[3px] mt-[4px] fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
@@ -95,7 +94,7 @@
 				<div slot="description">Tiny Little Habit Tracker</div>
 				<div slot="icon">
 					<img
-						class="fill-primary scale-125 ml-[1px]"
+						class="ml-[1px] scale-125 fill-primary"
 						src="/assets/cycles.svg"
 						width="100%"
 						alt="Cycles logo"
@@ -113,7 +112,7 @@
 				<div slot="title">Spanish General Elections 2023 Map</div>
 				<div slot="description">Visualization of the results, per district</div>
 				<div slot="icon">
-					<Envelope size={40} weight="bold" class="fill-primary -rotate-12" />
+					<Envelope size={40} weight="bold" class="-rotate-12 fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://elmetro.vercel.app/">
@@ -121,7 +120,7 @@
 				<div slot="description">Tram tracking extremely simple</div>
 				<div slot="icon">
 					<img
-						class="fill-primary scale-125"
+						class="scale-125 fill-primary"
 						src="/assets/elmetro.svg"
 						width="100%"
 						alt="Cycles logo"
@@ -216,7 +215,7 @@
 				<div slot="content">
 					In June, 2022 I proposed the Processing Foundation –through the GSOC program– a very
 					important change to the p5.js library that had been asked for ages: <strong
-						>native GIF export</strong
+						><a href="/blog/gif-encoding">native GIF export</a></strong
 					>. <br /><br /> The p5.js community is largely stablished in Twitter, where GIF sharing
 					was the main way for artists to show their works in progress, as well as the finished
 					pieces.
@@ -327,5 +326,9 @@
 		font-family: 'Whirly Birdie';
 		font-variation-settings: 'wdth' 70;
 		font-weight: 50;
+	}
+
+	.prose > p {
+		font-variation-settings: 'opsz' 12;
 	}
 </style>
