@@ -61,6 +61,12 @@ h2 {
 	font-variation-settings: 'opsz' 72;
 }
 
+i,
+em {
+	font-style: normal;
+	font-variation-settings: 'ital' 1;
+}
+
 :root {
 	font-feature-settings: 'ss03', 'ss07', 'ss20';
 

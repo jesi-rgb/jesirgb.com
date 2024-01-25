@@ -3,7 +3,7 @@
 	import Video from '$lib/components/Video.svelte';
 </script>
 
-<main class="my-20 text-xl">
+<main class="prose my-20 text-xl">
 	<div class="mb-20">
 		<h2 class="whirly text-center">Name Sans Promo</h2>
 		<div class="divider"></div>
