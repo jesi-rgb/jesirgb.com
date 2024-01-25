@@ -13,10 +13,22 @@
 >
 	<section>
 		<h2>Name Sans Promo</h2>
-		In December, 2023, I joined forces with Stephen from{' '}<a
-			class=""
-			href="https://arrowtype.com">ArrowType</a
-		> to make a promotional video for Name Sans.
+		<img
+			class="rounded-xl border-2 border-dashed border-base-content p-1"
+			src="/assets/name-sans/wave_bold.png"
+			alt="Name Sans Variable"
+		/>
+		<p>
+			In December, 2023, I joined forces with Stephen from{' '}<a
+				class=""
+				href="https://arrowtype.com">ArrowType</a
+			> to make a promotional video for Name Sans.
+		</p>
+
+		<a
+			class="transition-colors after:content-['_↗'] hover:text-accent"
+			href="/portfolio/name-sans-promo">Read more</a
+		>
 	</section>
 
 	<h2>Videos</h2>
