@@ -1,5 +1,6 @@
 <script>
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
+	import Video from '$lib/components/Video.svelte';
 </script>
 
 <main class="my-20 text-xl">
@@ -14,16 +15,7 @@
 	</p>
 
 	<div class="my-10">
-		<video
-			class="rounded-xl border-2 border-dashed drop-shadow-lg"
-			muted
-			controls
-			loop
-			autoplay
-			src="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans_v3.mp4"
-		>
-			<track kind="captions" />
-		</video>
+		<Video url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans_v3.mp4"></Video>
 	</div>
 </main>
 
