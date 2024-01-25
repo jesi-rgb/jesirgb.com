@@ -9,7 +9,7 @@
 <MegaTitle>Portfolio</MegaTitle>
 
 <section
-	class="prose prose-2xl w-full prose-a:no-underline prose-a:transition-colors hover:prose-a:text-accent prose-img:m-0"
+	class="prose prose-2xl w-full prose-headings:tracking-normal prose-a:no-underline prose-img:m-0"
 >
 	<section>
 		<h2>Name Sans Promo</h2>

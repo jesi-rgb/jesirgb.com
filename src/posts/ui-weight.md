@@ -1,14 +1,12 @@
 ---
-title: How much does an UI weigh?
+title: how much does an UI weigh?
 description: vsauce type beat question
 categories:
-  - thoughts
+  - notes
   - ui
 
 date: 2022-02-22
 ---
-
-# lightweight UI
 
 one of the things that help me most in sticking with a tool is its weight. how much does an user interface weigh? that's a weird question.
 

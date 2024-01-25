@@ -1,9 +1,9 @@
 ---
-title: Mind recap 1
-description: The beginning of a small series
+title: Tired from my dreams
+description: passion is still demanding
 date: 2021-10-03
 categories:
-  - thinking
+  - notes
 ---
 
 These days I've had a lot of work. I've made lots of progress but also felt very tired, and inspired by some other projects that distracted me from doing what I am supposed (or I guess, required) to do.

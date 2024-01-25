@@ -64,7 +64,9 @@
 <div class="divider divider-neutral my-24" />
 <!-- Works -->
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl prose-a:text-neutral-300 prose-a:no-underline">
+	<main
+		class="prose prose-2xl prose-headings:tracking-normal prose-a:text-neutral-300 prose-a:no-underline"
+	>
 		<h3>Fun Side Projects</h3>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
@@ -169,7 +171,7 @@
 <div class="divider divider-neutral my-24" />
 
 <section class="min-h-[50%]">
-	<main class="prose prose-2xl prose-h4:font-[60]">
+	<main class="prose prose-2xl prose-headings:tracking-normal prose-h4:font-[60]">
 		<h3>Experience & Background</h3>
 		<p>A little sum up of the path I've followed so far</p>
 		<div class="">

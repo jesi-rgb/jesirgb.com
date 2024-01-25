@@ -1,26 +1,8 @@
 @font-face {
 	font-family: 'AT Name Sans';
-	src:
-		local('AT Name Sans'),
-		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf') format('truetype');
+	src: local('AT Name Sans'),
+		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf');
 	font-weight: 1 1000;
-}
-
-@font-face {
-	font-family: 'Supreme';
-	src:
-		local('Supreme'),
-		url('/fonts/Supreme.ttf') format('truetype');
-	font-weight: 100 800;
-}
-
-@font-face {
-	font-family: 'Supreme';
-	src:
-		local('Supreme'),
-		url('/fonts/Supreme-Italic.ttf') format('truetype');
-	font-weight: 100 800;
-	font-style: italic;
 }
 
 @font-face {
@@ -75,7 +57,13 @@ p {
 	font-variation-settings: 'opsz' 15;
 }
 
+h2 {
+	font-variation-settings: 'opsz' 72;
+}
+
 :root {
+	font-feature-settings: 'ss03', 'ss07', 'ss20';
+
 	background-image: radial-gradient(#ffffff10 1px, transparent 0);
 	background-size: 40px 40px;
 	background-position: 0px 0px;
