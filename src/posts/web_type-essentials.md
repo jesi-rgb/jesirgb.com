@@ -61,7 +61,7 @@ it is _extremely encouraged_ to turn this feature on for stacked up numbers, lik
 
 ## fractions
 
-fractions are a severely underrated feature in OpenType. these allow us to quickly and easily build good looking fractions without pretty much any hassle, and almost completely through CSS.
+fractions are a severely underrated feature in OpenType. these allow us to quickly and easily build good looking fractions without pretty much any hassle, in a single CSS line.
 
 <Frac/>
 
@@ -79,6 +79,6 @@ but any other font will have their own features, dictated solely by the type des
 
 ## final thoughts
 
-these are some of the modern features that designers and developers have at hand when using type. there are a ton more that i may have skipped, and surely there are features being created and developed as you read this. make sure to dive deep into your typography of choice to get as much as you can out of it.
+these are some of the modern features that designers and developers have at hand when using type. there are a ton more available, and surely there are features being created and developed as you read this. make sure to dive deep into your typeface of choice to get as much as you can out of it.
 
 ### happy typesetting!

@@ -1,5 +1,5 @@
 ---
-title: Better technical typography
+title: Nice Terminal Typography
 description: Kitty + Recursive goated combo
 categories:
   - tutorial
@@ -14,9 +14,11 @@ import RecursiveDesignSpace from '$lib/components/posts/RecursiveDesignSpace.sve
 
 I put a lot of emphasis on how my workspace looks. <em>I believe in beauty as a form of function.</em> That's why i usually spend a lot of time customizing the tools i use.
 
+Here I showcase the two pieces that hold my setup together: the terminal and the typeface.
+
 ## The terminal: Kitty
 
-My current setup is composed of Kitty, a very simple terminal emulator, paired with Recursive.
+My current setup is composed of [Kitty](https://sw.kovidgoyal.net/kitty/), a very simple terminal emulator, paired with Recursive.
 
 [![Kitty terminal Screenshot](/assets/better-technical-typography/jesirgb-screenshot.png)](/assets/better-technical-typography/jesirgb-screenshot.png)
 
@@ -26,7 +28,7 @@ While all those tools are great, only Kitty is able to address all the main feat
 
 1. Fast response for use with Neovim
 1. Support for font ligatures
-1. Great font tools and extensible documentation on those
+1. Great font tools and vast, clear documentation
 
 iTerm is very slow to use with Neovim. It just does not keep up with the tool and drains a lot of battery when doing so. Warp is very fast and snappy, but to this date, [it still does not support font ligatures](https://github.com/warpdotdev/warp/issues/239).
 
