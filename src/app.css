@@ -61,6 +61,11 @@ h2 {
 	font-variation-settings: 'opsz' 72;
 }
 
+blockquote>p {
+	font-style: normal;
+	font-variation-settings: 'ital' 1;
+}
+
 i,
 em {
 	font-style: normal;

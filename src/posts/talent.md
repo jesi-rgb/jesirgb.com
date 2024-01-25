@@ -15,7 +15,7 @@ import Clock from '$lib/components/posts/Clock.svelte'
 
 <Talent/>
 
-> **Talent**: _natural_ aptitude or skill
+> **Talent**: natural aptitude or skill
 
 **Talent** is usually defined, as we can see here from a quick search on google, as a natural skill or inclination some people may present when being exposed to a new discipline.
 
