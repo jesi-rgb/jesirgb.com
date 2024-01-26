@@ -8,7 +8,9 @@
 	let charPics = ['0054', '0151', '0265', '0297', '0375', '0397'];
 </script>
 
-<main class="prose my-20 md:prose-lg">
+<head> <title>Name Sans Promo</title> </head>
+
+<main class="prose prose-lg my-20 md:prose-xl prose-a:transition-colors hover:prose-a:text-accent">
 	<div class="mb-10">
 		<h2 class="whirly text-center">Name Sans Promo</h2>
 		<div class="divider"></div>
@@ -29,8 +31,8 @@
 	<section>
 		<h2>Name Sans' fundamentals</h2>
 		<p>
-			<strong>Name Sans</strong> is a modern interpretation of the tile mosaic name tablets of the New
-			York City subway.
+			<strong><a href="https://arrowtype.com/name-sans">Name Sans</a></strong> is a modern interpretation
+			of the tile mosaic name tablets of the New York City subway.
 		</p>
 
 		<p>
@@ -91,8 +93,8 @@
 		<h2>The idea</h2>
 
 		<p>
-			The idea behind the video was to showcase all of these aspects of the font while retaining
-			keeping an eye on the things that inspired its creation: <strong
+			The idea behind the video was to showcase all of these aspects of the font while keeping an
+			eye on the things that inspired its creation: <strong
 				>mosaic tiles in the New York subway</strong
 			>.
 		</p>
@@ -135,6 +137,20 @@
 				Resulting animation from previous frames
 			</figcaption>
 		</figure>
+	</section>
+
+	<section>
+		<h2>The tools</h2>
+
+		<p>In order to achieve the final result, a set of increasingly esoteric tools was used:</p>
+		<ul>
+			<li>
+				<a href="https://www.blackmagicdesign.com/products/davinciresolve">Davinci Resolve</a> for final
+				put-together tasks
+			</li>
+			<li><a href="https://cavalry.scenegroup.co/">Cavalry</a> for very cool animation</li>
+			<li><a href="https://coldtype.xyz/">Coldtype</a> for even <em>cooler</em> animation</li>
+		</ul>
 	</section>
 </main>
 
