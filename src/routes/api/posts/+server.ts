@@ -22,6 +22,7 @@ async function getPosts() {
   }
   return posts;
 }
+
 export async function GET() {
   const posts = await getPosts();
   return json(posts);

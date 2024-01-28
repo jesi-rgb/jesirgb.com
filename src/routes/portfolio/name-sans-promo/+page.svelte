@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Video from '$lib/components/Video.svelte';
 
 	let weight = 100;
@@ -10,15 +10,17 @@
 
 <head> <title>Name Sans Promo</title> </head>
 
-<main class="prose prose-lg my-20 md:prose-xl prose-a:transition-colors hover:prose-a:text-accent">
+<main
+	class="prose prose-lg my-20 md:prose-xl prose-h3:font-normal prose-a:transition-colors hover:prose-a:text-accent"
+>
 	<div class="mb-10">
 		<h2 class="whirly text-center">Name Sans Promo</h2>
 		<div class="divider"></div>
 	</div>
 
 	<p>
-		This project is a collaboration between Stephen and me in order to create a set of visual assets
-		to accompany the release of Name Sans.
+		This project is a collaboration with Stephen from <a href="https://arrowtype.com">ArrowType</a> in
+		order to create a set of visual assets to accompany the release of Name Sans.
 	</p>
 
 	<section>
@@ -151,6 +153,46 @@
 			<li><a href="https://cavalry.scenegroup.co/">Cavalry</a> for very cool animation</li>
 			<li><a href="https://coldtype.xyz/">Coldtype</a> for even <em>cooler</em> animation</li>
 		</ul>
+
+		<p>
+			Davinci Resolve is just a great, classic non-linear editor. I've been using it for quite a
+			long time and I am very confortable with it.
+		</p>
+		<p>
+			Cavalry is a 2D motion graphics engine that focuses on the composition of procedural
+			animations. It almost feels like a programming language.
+		</p>
+		<p>
+			Coldtype, on the other hand, is a Python library that allows for extremely versatile
+			typography animation. It can animate any vector asset, but it was designed to sculpt and mold
+			letterforms into almost anything you can think of.
+		</p>
+
+		<h3>Developing animations in Coldtype</h3>
+
+		<p>
+			In this section, I want to take a look at some of the inner workings of what one can do with
+			Coldtype. There are not a lot of tutorials available working with it was a lot of trial and
+			error, albeit extremely fun.
+		</p>
+
+		<figure>
+			<img
+				src="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/numbers.png"
+				width="100%"
+				class="rounded-xl border-2 border-dashed border-base-content/30"
+				alt="Numbers in Name Sans"
+			/>
+			<figcaption>Still showcasing tabular numbers in Name Sans</figcaption>
+		</figure>
+
+		<p>
+			In here we can see an arrangement of numbers in different colors and weights. This animation
+			aimed at showcasing how versatile and flexible numbers are in this typeface, since the whole
+			weight range is put in use and everything aligns perfectly.
+		</p>
+
+		<p>This was made with Coldtype. Here's a snippet of the code:</p>
 	</section>
 </main>
 

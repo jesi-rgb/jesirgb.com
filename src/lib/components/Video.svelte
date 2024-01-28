@@ -55,7 +55,7 @@
 <div class="overflow-clip rounded-xl">
 	<video
 		src={url}
-		class="w-full rounded-xl border-4 border-dashed drop-shadow-lg"
+		class="h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
 		on:mousemove={handleMove}
 		on:touchmove|preventDefault={handleMove}
 		on:mousedown={handleMousedown}
