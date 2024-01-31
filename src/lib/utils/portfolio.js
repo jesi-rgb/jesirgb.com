@@ -12,7 +12,7 @@ export let posters = [
   'bubble_tea.jpg',
   'amplitude.jpg'
 ];
-export let stickers = ['super_tired.png', 'chronically_online.png', 'damn.png'];
+export let stickers = ['super_tired.webp', 'chronically_online.webp', 'damn.webp'];
 
 export let videos = [
   {

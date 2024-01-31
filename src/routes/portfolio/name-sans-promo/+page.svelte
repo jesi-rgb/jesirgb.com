@@ -158,7 +158,7 @@ def numbers(f):
 					<img
 						width={140}
 						class="rounded-xl border-2 border-dashed border-base-content/30 transition-transform duration-200 hover:scale-150"
-						src="/assets/name-sans/chars_{index}.png"
+						src="/assets/name-sans/chars_{index}.webp"
 						alt="Character {index} in Name Sans"
 					/>
 				{/each}
