@@ -1,6 +1,57 @@
 <script lang="ts">
 	import Video from '$lib/components/Video.svelte';
 
+	import { codeToHtml } from 'shiki';
+	import { escapeSvelte } from 'mdsvex';
+
+	let code = `
+@animation(render_bg=1, bg=BG_COLOR, timeline=Timeline(length_numbers, fps=60))
+def numbers(f):
+    def map_color(i):
+        if i == math.isqrt(i) ** 2:
+            return ACCENT_COLOR
+        elif i % 2 == 0:
+            return PRIMARY_COLOR
+        else:
+            return SECONDARY_COLOR
+    n = 9**2
+    numbers = (
+        PS(
+            [
+                StSt(
+                    f"{i+1:02d}",
+                    name,
+                    94,
+                    opsz=0.9,
+                    # wght=np.cos(i % n * (f.i / 100)),
+                    wght=0.5
+                    + 0.5 * np.cos(i % n * f.i / length_numbers),  # happy with this one
+                    fill=map_color(i + 1),
+                    features={"tnum": True, "zero": True, "rvrn": False},
+                )
+                for i in range(n)
+            ]
+        )
+        .grid(every=np.sqrt(n))
+        .lead(30)
+        .translate(x=30, y=30)
+    )
+    return ( numbers )
+	`;
+
+	async function hightlightCode(code: string, lang = 'python') {
+		const htmlFromCode = await codeToHtml(code, {
+			lang: lang,
+			theme: 'slack-dark'
+		});
+		const html = escapeSvelte(htmlFromCode);
+
+		return html;
+	}
+
+	let htmlCode: string;
+	hightlightCode(code).then((code) => (htmlCode = code));
+
 	let weight = 100;
 	let ital = 0.4;
 	let opsz = 24;
@@ -154,10 +205,7 @@
 			<li><a href="https://coldtype.xyz/">Coldtype</a> for even <em>cooler</em> animation</li>
 		</ul>
 
-		<p>
-			Davinci Resolve is just a great, classic non-linear editor. I've been using it for quite a
-			long time and I am very confortable with it.
-		</p>
+		<p>Davinci Resolve is just a great, classic non-linear editor.</p>
 		<p>
 			Cavalry is a 2D motion graphics engine that focuses on the composition of procedural
 			animations. It almost feels like a programming language.
@@ -172,8 +220,8 @@
 
 		<p>
 			In this section, I want to take a look at some of the inner workings of what one can do with
-			Coldtype. There are not a lot of tutorials available working with it was a lot of trial and
-			error, albeit extremely fun.
+			Coldtype. There are not a lot of tutorials available for the tool. Working with it was a lot
+			of trial and error, albeit extremely fun.
 		</p>
 
 		<figure>
@@ -193,6 +241,8 @@
 		</p>
 
 		<p>This was made with Coldtype. Here's a snippet of the code:</p>
+
+		{@html htmlCode}
 	</section>
 </main>
 

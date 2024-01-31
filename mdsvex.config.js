@@ -1,7 +1,7 @@
 import { defineMDSveXConfig as defineConfig, escapeSvelte } from 'mdsvex';
 import rehypeKatexSvelte from 'rehype-katex-svelte';
 import remarkMath from 'remark-math';
-import shiki from 'shiki';
+import { codeToHtml } from 'shiki';
 
 import remarkUnwrapImages from 'remark-unwrap-images';
 import remarkToc from 'remark-toc';
@@ -16,8 +16,7 @@ const config = defineConfig({
 
   highlight: {
     highlighter: async (code, lang = 'text') => {
-      const highlighter = await shiki.getHighlighter({ theme: 'slack-dark' });
-      const html = escapeSvelte(highlighter.codeToHtml(code, { lang }));
+      const html = escapeSvelte(await codeToHtml(code, { lang: lang, theme: 'slack-dark' }));
 
       return `{@html \`${html}\`}`;
     }
