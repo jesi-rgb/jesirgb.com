@@ -2,10 +2,8 @@
 	import Video from '$lib/components/Video.svelte';
 
 	import { codeToHtml } from 'shiki';
-	import { escapeSvelte } from 'mdsvex';
 
-	let code = `
-@animation(render_bg=1, bg=BG_COLOR, timeline=Timeline(length_numbers, fps=60))
+	let coldtypeCode = `
 def numbers(f):
     def map_color(i):
         if i == math.isqrt(i) ** 2:
@@ -23,7 +21,6 @@ def numbers(f):
                     name,
                     94,
                     opsz=0.9,
-                    # wght=np.cos(i % n * (f.i / 100)),
                     wght=0.5
                     + 0.5 * np.cos(i % n * f.i / length_numbers),  # happy with this one
                     fill=map_color(i + 1),
@@ -36,21 +33,29 @@ def numbers(f):
         .lead(30)
         .translate(x=30, y=30)
     )
+
     return ( numbers )
-	`;
+`.trim();
 
 	async function hightlightCode(code: string, lang = 'python') {
 		const htmlFromCode = await codeToHtml(code, {
 			lang: lang,
-			theme: 'slack-dark'
+			theme: 'slack-dark',
+			decorations: [
+				{
+					// line and character are 0-indexed
+					start: { line: 0, character: 0 },
+					end: { line: 0, character: 3 },
+					properties: { class: 'highlighted-word' }
+				}
+			]
 		});
-		const html = escapeSvelte(htmlFromCode);
 
-		return html;
+		return htmlFromCode;
 	}
 
-	let htmlCode: string;
-	hightlightCode(code).then((code) => (htmlCode = code));
+	let coldtypeHtmlCode: string;
+	hightlightCode(coldtypeCode).then((code) => (coldtypeHtmlCode = code));
 
 	let weight = 100;
 	let ital = 0.4;
@@ -242,7 +247,7 @@ def numbers(f):
 
 		<p>This was made with Coldtype. Here's a snippet of the code:</p>
 
-		{@html htmlCode}
+		{@html coldtypeHtmlCode}
 	</section>
 </main>
 
