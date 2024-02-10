@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { SpeakerHigh, SpeakerX } from 'phosphor-svelte';
+
 	// These values are bound to properties of the video
 	let time = 0;
 	let duration: number;
@@ -7,6 +9,7 @@
 
 	let showControls = true;
 	let showControlsTimeout: number;
+	let muted = false;
 
 	// Used to track time of last mouse down event
 	let lastMouseDown: Date;
@@ -41,6 +44,10 @@
 		}
 	}
 
+	function handleMuted() {
+		muted = !muted;
+	}
+
 	function format(seconds) {
 		if (isNaN(seconds)) return '...';
 
@@ -56,26 +63,44 @@
 	<video
 		src={url}
 		class="h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
-		on:mousemove={handleMove}
-		on:touchmove|preventDefault={handleMove}
-		on:mousedown={handleMousedown}
 		playsinline
-		on:mouseup={handleMouseup}
 		bind:currentTime={time}
 		bind:duration
 		bind:paused
+		bind:muted
 	>
 		<track kind="captions" />
 	</video>
 
-	<div class="controls" style="opacity: {duration && showControls ? 1 : 0}">
+	<div
+		aria-controls="player"
+		on:mousemove={handleMove}
+		on:touchmove|preventDefault={handleMove}
+		on:mousedown={handleMousedown}
+		on:mouseup={handleMouseup}
+		class="controls h-full"
+		style="opacity: {duration && showControls ? 1 : 0}"
+	>
 		<progress class="progress" value={time / duration || 0} />
 
-		<div class="info tabular-nums">
+		<div class="info relative tabular-nums">
 			<span class="time">{format(time)}</span>
 			<span class="text-sm">click to {paused ? 'play' : 'pause'}, drag to seek</span>
 			<span class="time">{format(duration)}</span>
 		</div>
+		<button
+			class="btn btn-circle btn-ghost btn-lg absolute bottom-10 left-10"
+			on:click={handleMuted}
+		>
+			<!-- this hidden checkbox controls the state -->
+			{#if muted}
+				<!-- volume off icon -->
+				<SpeakerX weight="bold" />
+			{:else}
+				<!-- volume on icon -->
+				<SpeakerHigh weight="bold" />
+			{/if}
+		</button>
 	</div>
 </div>
 
@@ -94,6 +119,7 @@
 	.info {
 		display: flex;
 		width: 100%;
+		height: 100%;
 		justify-content: space-between;
 	}
 
