@@ -14,7 +14,7 @@
 	<section>
 		<h2>Name Sans Promo</h2>
 		<img
-			class="rounded-xl border-2 border-dashed border-base-content p-1"
+			class="rounded-xl border-2 border-dashed border-base-content p-1 lg:mx-auto lg:w-2/3"
 			src="/assets/name-sans/wave_bold.webp"
 			alt="Name Sans Variable"
 		/>
