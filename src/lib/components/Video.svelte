@@ -5,18 +5,20 @@
 	let time = 0;
 	let duration: number;
 	let paused = true;
+	let video: HTMLVideoElement;
+
 	export let url: string;
 
 	let showControls = true;
-	let showControlsTimeout: number;
-	let muted = false;
+	let showControlsTimeout: Timeout;
+	let muted = true;
 
 	// Used to track time of last mouse down event
 	let lastMouseDown: Date;
 
 	function handleMove(e) {
 		// Make the controls visible, but fade out after
-		// 2.5 seconds of inactivity
+		// .5 seconds of inactivity
 		clearTimeout(showControlsTimeout);
 		showControlsTimeout = setTimeout(() => (showControls = false), 500);
 		showControls = true;
@@ -38,9 +40,10 @@
 	}
 
 	function handleMouseup(e: MouseEvent) {
+		console.log('mouseup');
 		if (new Date() - lastMouseDown < 300) {
-			if (paused) e.target.play();
-			else e.target.pause();
+			if (paused) video.play();
+			else video.pause();
 		}
 	}
 
@@ -62,8 +65,9 @@
 <div class="overflow-clip rounded-xl">
 	<video
 		src={url}
-		class="h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
+		class="pointer-events-none h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
 		playsinline
+		bind:this={video}
 		bind:currentTime={time}
 		bind:duration
 		bind:paused
@@ -72,12 +76,12 @@
 		<track kind="captions" />
 	</video>
 
-	<div
-		aria-controls="player"
+	<button
 		on:mousemove={handleMove}
 		on:touchmove|preventDefault={handleMove}
 		on:mousedown={handleMousedown}
 		on:mouseup={handleMouseup}
+		tabindex="0"
 		class="controls h-full"
 		style="opacity: {duration && showControls ? 1 : 0}"
 	>
@@ -88,20 +92,21 @@
 			<span class="text-sm">click to {paused ? 'play' : 'pause'}, drag to seek</span>
 			<span class="time">{format(duration)}</span>
 		</div>
-		<button
-			class="btn btn-circle btn-ghost btn-lg absolute bottom-10 left-10"
-			on:click={handleMuted}
-		>
-			<!-- this hidden checkbox controls the state -->
-			{#if muted}
-				<!-- volume off icon -->
-				<SpeakerX weight="bold" />
-			{:else}
-				<!-- volume on icon -->
-				<SpeakerHigh weight="bold" />
-			{/if}
-		</button>
-	</div>
+	</button>
+	<button
+		style="opacity: {duration && showControls ? 1 : 0}"
+		class="btn btn-circle btn-ghost btn-sm absolute bottom-3 left-3 transition-[opacity] duration-1000 lg:btn-lg"
+		on:click={handleMuted}
+	>
+		<!-- this hidden checkbox controls the state -->
+		{#if muted}
+			<!-- volume off icon -->
+			<SpeakerX weight="bold" />
+		{:else}
+			<!-- volume on icon -->
+			<SpeakerHigh weight="bold" />
+		{/if}
+	</button>
 </div>
 
 <style>
