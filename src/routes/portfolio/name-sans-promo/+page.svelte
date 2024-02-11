@@ -1,61 +1,7 @@
 <script lang="ts">
 	import Video from '$lib/components/Video.svelte';
 
-	import { codeToHtml } from 'shiki';
-
-	let coldtypeCode = `
-def numbers(f):
-    def map_color(i):
-        if i == math.isqrt(i) ** 2:
-            return ACCENT_COLOR
-        elif i % 2 == 0:
-            return PRIMARY_COLOR
-        else:
-            return SECONDARY_COLOR
-    n = 9**2
-    numbers = (
-        PS(
-            [
-                StSt(
-                    f"{i+1:02d}",
-                    name,
-                    94,
-                    opsz=0.9,
-                    wght=0.5
-                    + 0.5 * np.cos(i % n * f.i / length_numbers),  # happy with this one
-                    fill=map_color(i + 1),
-                    features={"tnum": True, "zero": True, "rvrn": False},
-                )
-                for i in range(n)
-            ]
-        )
-        .grid(every=np.sqrt(n))
-        .lead(30)
-        .translate(x=30, y=30)
-    )
-
-    return ( numbers )
-`.trim();
-
-	async function hightlightCode(code: string, lang = 'python') {
-		const htmlFromCode = await codeToHtml(code, {
-			lang: lang,
-			theme: 'slack-dark',
-			decorations: [
-				{
-					// line and character are 0-indexed
-					start: { line: 0, character: 0 },
-					end: { line: 0, character: 3 },
-					properties: { class: 'highlighted-word' }
-				}
-			]
-		});
-
-		return htmlFromCode;
-	}
-
-	let coldtypeHtmlCode: string;
-	hightlightCode(coldtypeCode).then((code) => (coldtypeHtmlCode = code));
+	import { coldtypeHtmlCode, mapColorHtml, ststHtml } from './utils';
 
 	let weight = 100;
 	let ital = 0.4;
@@ -247,7 +193,82 @@ def numbers(f):
 
 		<p>This was made with Coldtype. Here's a snippet of the code:</p>
 
-		{@html coldtypeHtmlCode}
+		<figure>
+			{@html coldtypeHtmlCode}
+			<figcaption>Piece of Coldtype code</figcaption>
+		</figure>
+
+		<p>Let's go chunk by chunk.</p>
+
+		<figure>
+			{@html mapColorHtml}
+			<figcaption>The Map Color function</figcaption>
+		</figure>
+
+		<p>
+			First, we defined a{' '}<code>map_color</code> function. Its only purpose is to assign a color
+			to a number based on their index.
+		</p>
+		<p>
+			If the number is a perfect square, we color it with the
+			<code>ACCENT_COLOR</code>, a reddish tone. Otherwise, we color the numbers based on their
+			parity. Even numbers are <i>white</i>, odd numbers are <i>blue</i>. Nothing too crazy, and
+			this is not Coldtype-like stuff. Let's now get into the StSt definition and climb our way
+			upwards.
+		</p>
+
+		<figure>
+			{@html ststHtml}
+			<figcaption>The Style definition</figcaption>
+		</figure>
+
+		<p>This one is full packed of stuff.</p>
+
+		<p>
+			<a href="https://arc.net/l/quote/xttjlkes">StSt</a> is a Coldtype class that sets a line of
+			text with a single Style object. This is the way we set type in Coldtype. The first argument
+			is just a string that depends on <code>i</code>, which is the iterator that we defined in the
+			list comprehension. This number is then shifted by +1 and padded with 0s on the left, so
+			numbers align.
+		</p>
+		<p>It essentially guarantees that the number will always be two digit.</p>
+
+		<p>
+			<code>name</code> is just a variable in which we tell Coldtype where the desired font we want
+			lives within our computer. We declare these with the function <code>Font.Cacheable</code>.
+		</p>
+
+		<p><code>94</code> is the text size in pt that we are setting our text at.</p>
+
+		<p>The variable stuff:</p>
+		<ul>
+			<li>
+				<code>opsz</code> is the Optical Size axis codename through which we can change this parameter
+				in our animation.
+			</li>
+			<li>
+				<code>wght</code> is the Weight axis codename through which we can change this parameter in our
+				animation.
+			</li>
+		</ul>
+
+		<p>
+			In Coldtype, these extend between 0 and 1, no matter how the actual values are defined in the
+			font file. This makes it a bit easier to simply animate stuff, since everything is normalized.
+		</p>
+
+		<figure>
+			<pre>
+<code>wght=0.5 + 0.5 * np.cos(i % n * f.i / length_numbers)</code></pre>
+			<figcaption>
+				The Weight axis values depend on the frame and the number we are dealing with throughout the
+				animation.
+			</figcaption>
+		</figure>
+		<p>
+			We can also see that the <code>wght</code> axis has a lot going on. Apart from the constant
+			numbers, we are using the cosine function with <code>i</code> and <code>f.i</code>
+		</p>
 	</section>
 </main>
 
