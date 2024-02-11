@@ -1,7 +1,9 @@
 <script lang="ts">
 	import Video from '$lib/components/Video.svelte';
 
-	import { coldtypeHtmlCode, mapColorHtml, ststHtml } from './utils';
+	export let data;
+
+	const { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml } = data;
 
 	let weight = 100;
 	let ital = 0.4;
@@ -258,8 +260,7 @@
 		</p>
 
 		<figure>
-			<pre>
-<code>wght=0.5 + 0.5 * np.cos(i % n * f.i / length_numbers)</code></pre>
+			{@html wghtLineHtml}
 			<figcaption>
 				The Weight axis values depend on the frame and the number we are dealing with throughout the
 				animation.

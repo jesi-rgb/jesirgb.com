@@ -16,7 +16,7 @@ const config = defineConfig({
 
   highlight: {
     highlighter: async (code, lang = 'text') => {
-      const html = escapeSvelte(await codeToHtml(code, { lang: lang, theme: 'slack-dark' }));
+      const html = escapeSvelte(await codeToHtml(code, { lang: lang, theme: 'vitesse-black' }));
 
       return `{@html \`${html}\`}`;
     }

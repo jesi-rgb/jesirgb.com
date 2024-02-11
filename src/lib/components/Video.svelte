@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { SpeakerHigh, SpeakerX } from 'phosphor-svelte';
+	import SpeakerHigh from 'phosphor-svelte/lib/SpeakerHigh';
+	import SpeakerX from 'phosphor-svelte/lib/SpeakerX';
 
 	// These values are bound to properties of the video
 	let time = 0;
