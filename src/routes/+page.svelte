@@ -25,9 +25,7 @@
 	<main
 		class="prose prose-lg prose-headings:tracking-normal prose-a:no-underline prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent"
 	>
-		<h3>Design engineer and technical content creator</h3>
-
-		<p>Typography obsessed, attention to detail and tasteful animation.</p>
+		<h3>design, animation and data</h3>
 
 		<p>
 			Founder and creator of the <a href="https://www.youtube.com/@Design_Bits"
@@ -311,8 +309,9 @@
 				<div slot="subtitle">I basically started playing guitar</div>
 				<div slot="content">
 					At some point during the summer of 2013 I managed to convice mom to buy me a guitar.
-					Sometime later I started attending guitar lessons from one of the most incredible teachers
-					I will ever know, <strong>Yeye</strong>.
+					Sometime later I started attending guitar lessons from one of h4eachers I will ever know, <strong
+						>Yeye</strong
+					>.
 
 					<br /><br /> Like many other things, this would completely fill up my mind and change my entire
 					life, but I didn't know that yet.
