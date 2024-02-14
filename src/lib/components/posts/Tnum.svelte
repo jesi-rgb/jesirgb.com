@@ -2,22 +2,22 @@
 	let tnum = 0;
 </script>
 
-<div class="border border-dashed border-primary py-3 px-6 rounded-xl bg-base-200">
+<div class="rounded-xl border border-dashed border-primary bg-base-200 px-6 py-3">
 	<main>
-		<div class="flex justify-between flex-col items-end w-min mx-auto text-right">
+		<div class="mx-auto flex w-min flex-col items-end justify-between text-right">
 			<span class="badge badge-outline">off</span>
 			<div class="">1,456.99€</div>
-			<div class="">12,930.12€</div>
+			<div class="">12,459.13€</div>
 			<div class="divider" />
 			<span class="badge badge-outline">on</span>
 			<div class="tabular-nums">1,456.99€</div>
 			<div class="tabular-nums">12,459.13€</div>
 		</div>
 
-		<div class="text-center mt-5">
+		<div class="mt-5 text-center">
 			<div style="font-feature-settings: 'tnum' {tnum};">1,340,567.67£</div>
 			<button
-				class="btn btn-outline btn-xs btn-primary"
+				class="btn btn-outline btn-primary btn-xs"
 				on:click={() => {
 					if (tnum == 0) {
 						tnum = 1;
@@ -28,20 +28,16 @@
 			>
 		</div>
 	</main>
-	<section class="flex flex-col md:flex-row justify-between md:items-center mt-5 space-x-2 code">
+	<section class="code mt-5 flex flex-col justify-between space-x-2 md:flex-row md:items-center">
 		<div class="flex space-x-3">
-			<div class="badge badge-primary font-bold self-start">CSS</div>
+			<div class="badge badge-primary self-start font-bold">CSS</div>
 			<div class="text-sm">font-feature-setting: 'tnum' {tnum};</div>
 		</div>
-		<main class="self-end">AT Name Sans</main>
+		<main class="self-end font-sans">AT Name Sans</main>
 	</section>
 </div>
 
 <style>
-	main {
-		font-family: 'AT Name Sans';
-	}
-
 	section {
 		font-family: 'Recursive';
 		font-variation-settings: 'MONO' 1;
