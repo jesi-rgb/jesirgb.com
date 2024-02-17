@@ -17,6 +17,14 @@
 	keywords={metadata.categories}
 	title={metadata.title}
 	description={metadata.description}
+	twitter={{
+		handle: '@jesi_rgb',
+		cardType: 'summary_large_image',
+		title: metadata.title,
+		description: metadata.description,
+		image: url,
+		imageAlt: metadata.title
+	}}
 	openGraph={{
 		type: 'article',
 		url: metadata.slug,
@@ -28,6 +36,7 @@
 				height: 600
 			}
 		],
+
 		description: metadata.description,
 		article: {
 			tags: metadata.categories,
