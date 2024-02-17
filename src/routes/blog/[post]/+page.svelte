@@ -7,6 +7,10 @@
 	export let data;
 	let metadata: Post = data.metadata;
 	let visible = false;
+
+	let url = new URL('https://jesirgb/blog/thumbnails');
+	url.searchParams.append('title', metadata.title);
+	url.searchParams.append('desc', metadata.description);
 </script>
 
 <MetaTags
@@ -19,7 +23,7 @@
 		title: metadata.title,
 		images: [
 			{
-				url: `https://jesirgb/blog/thumbnails?title=${metadata.title}&desc=${metadata.description}`,
+				url: url,
 				width: 800,
 				height: 600
 			}
