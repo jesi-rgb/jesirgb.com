@@ -169,6 +169,8 @@ And, sometimes, you don't enjoy the work. That is something you only know when a
 
 But it's very important that we remember that we cannot expect to be the best if we are not willing to put our part. It is our responsibility to get better.
 
-That's where honesty helps, at least to me. It reminds me that I am in control. I can get as far as I want. But any progress will only come from its corresponding effort.
+And it's also crucial to remember that we don't really need to be the absolute best. We can just be good enough! This measurement is personal, just like the definition of success. You are in control.
+
+That's where honesty helps, at least to me. It reminds me that I can get as far as I want. But any progress will only come from its corresponding effort.
 
 We cannot expect greatness out of nothing.
