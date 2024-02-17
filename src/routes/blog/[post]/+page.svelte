@@ -17,6 +17,13 @@
 		type: 'article',
 		url: metadata.slug,
 		title: metadata.title,
+		images: [
+			{
+				url: `https://jesirgb/blog/thumbnails?title=${metadata.title}&desc=${metadata.description}`,
+				width: 800,
+				height: 600
+			}
+		],
 		description: metadata.description,
 		article: {
 			tags: metadata.categories,
@@ -64,7 +71,7 @@
 	</hrgoup>
 
 	<div
-		class="prose my-12 md:prose-xl prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
+		class="prose my-12 md:prose-lg prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
 	>
 		<svelte:component this={data.content} />
 	</div>

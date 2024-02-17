@@ -12,11 +12,11 @@
 	import Stack from 'phosphor-svelte/lib/Stack';
 	import TextB from 'phosphor-svelte/lib/TextB';
 	import CursorClick from 'phosphor-svelte/lib/CursorClick';
+
+	import { MetaTags } from 'svelte-meta-tags';
 </script>
 
-<head>
-	<title>Jesús Rascón</title>
-</head>
+<MetaTags title="Jesús Rascón" description="Developer, artist, producer." />
 
 <div class="my-10 mt-32">
 	<h2 class="whirly text-6xl tracking-tight">Jesús Rascón</h2>

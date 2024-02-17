@@ -13,8 +13,6 @@ import Talent from '$lib/components/posts/Talent.svelte'
 import Clock from '$lib/components/posts/Clock.svelte'
 </script>
 
-<Talent/>
-
 > **Talent**: natural aptitude or skill
 
 ## What is talent?
@@ -174,3 +172,4 @@ And it's also crucial to remember that we don't really need to be the absolute b
 That's where honesty helps, at least to me. It reminds me that I can get as far as I want. But any progress will only come from its corresponding effort.
 
 We cannot expect greatness out of nothing.
+<Talent/>
