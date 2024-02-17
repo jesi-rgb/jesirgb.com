@@ -139,10 +139,36 @@ This, I believe, is what some people search for. The feeling of feeling good. Wh
 
 > I **must** get better at this. And I **must** do it now.
 
-This pressure or judgement can very easily come from within us, in the hopes to become relentlessly better at our craft.
+This pressure or judgement usually comes from within us, in the hopes to become relentlessly better at our craft. Other times, from teachers, mentors or peers.
 
 This ambition yields great results in healthy doses, and catastrophic outcomes in unhealthy ones.
 
 We have to be careful on how much pressure we put on ourselves. We have to strive to get better. But we have to celebrate the path we've already gone through.
 
 For me, personally, the real reward I get is that the knowledge acquired allows for a deeper understanding of the work you are inspired with. You can clearly see the directions and decisions made within the works of art you admire. This brings a very deep appreciation and a closer feeling to the work itself.
+
+## Honest Goals
+
+It does not really matter what goals we are striving for so long as they are crystal clear in our roadmap.
+
+If you just want to be good, pursue it. Allocate large blocks of time of repeated, disciplined work and get to know every corner of your craft.
+
+If you want to impress people, focus on learning the minimum vocabulary that can take you the furthest, and work on your _salesperson skills_. It is impressive how far one can get with very little.
+
+But, usually, and speaking personally, these goals won't take you very far. They feel shallow.
+
+These activities come from a sense of joy, whimsy and excitement. Both of those approaches feel extremely capitalistic and productized. Get the most out of the least.
+
+I am not trying to make less work. I **enjoy** the work. I want to do **more**. I want to invest time into it.
+
+These activities bring out aspects of ourselves that could not come out in any other way possible. They come from our heart and soul. It is a means of self expression.
+
+It's important to be very honest to ourselves. Sometimes we just don't want to put the work to learn something. That's great. Sometimes, we don't want to put enough work to be the absolute best. And that's great.
+
+And, sometimes, you don't enjoy the work. That is something you only know when actually trying.
+
+But it's very important that we remember that we cannot expect to be the best if we are not willing to put our part. It is our responsibility to get better.
+
+That's where honesty helps, at least to me. It reminds me that I am in control. I can get as far as I want. But any progress will only come from its corresponding effort.
+
+We cannot expect greatness out of nothing.
