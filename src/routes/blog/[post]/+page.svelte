@@ -8,7 +8,7 @@
 	let metadata: Post = data.metadata;
 	let visible = false;
 
-	let url = new URL('https://jesirgb/blog/thumbnails');
+	let url = new URL('https://jesirgb.com/blog/thumbnails');
 	url.searchParams.append('title', metadata.title);
 	url.searchParams.append('desc', metadata.description);
 </script>
