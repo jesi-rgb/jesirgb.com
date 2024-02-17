@@ -77,15 +77,31 @@ Are you in the need to play guitar excellently? If not, why are we not content w
 
 Are we yearning for the idealized feeling that we may see in professional musicians when we see them play?
 
-What do you want to get out of playing an instrument? Learning a new skill and getting to know a potentially life-changing discipline or impress those around you in the same way you're impressed by a professional musician?
+What do you want to get out of playing an instrument? Learning a new skill and getting to know a potentially life-changing discipline? Or impress those around you in the same way you're impressed by a professional musician?
 
-These are just some questions that I've thought about in my learning time, questions that is worth keeping in mind as _"dangerous"_ but still should be kept close so as to not fall into that trap over and over. These dangerous questions are surely different from person to person, but can be grouped in the same space.
+These are just some questions that I've thought about in my learning time, questions that is worth keeping in mind as _"dangerous"_ but still should be kept close to avoid falling into that trap over and over. These dangerous questions are surely different from person to person, but can be grouped in the same space.
+
+## The tip of the iceberg
+
+Another potential reason as to why these questions can come up is due to the _tip of the iceberg_ effect.
+
+When watching a master at work, you are experiencing a very thin slice of their whole trajectory.
+
+You see the artist in question pick up their instrument of choice and see them kill it immediately, with almost no effort.
+
+The trick is that professionals make it look like it's **so easy** to do what they do. To an outsider, they are putting very little effort while outputting an insane amount of quality. They are extremely efficient.
+
+This creates a mismatch between perception and reality. If it's so easy, why can't I do it?
+
+We are missing the unfathomable amount of hours these artists have put into their craft. They've solved the same exact problems thousands of times. They've mastered their tools and they've built up extremely valuable muscle memory.
+
+And that, again, takes **time**.
 
 ## Natural speed
 
 We are all running at our best speed. We are all clocking at the best frequency. You cannot go any faster or slower, you just go at your speed.
 
-This is independent from the fact that you can improve and become better and faster as something as you do so. It has to do with the fact that you are doing such thing on the first place.
+This is independent from the fact that you can improve and become better and faster at something as you practice. It has to do with the fact that you are doing such thing on the first place.
 
 Your speed is the ability to break through and simply start practicing. This is something you can control. It is very hard to keep oneself disciplined. But the hard part is only the beginning. Upon only a few **units of learning time** one can get sufficiently good at something so as to be motivated and keep doing more. You get in the _zone_.
 
@@ -121,10 +137,12 @@ By putting enough time, you will become better. You will develop your skill. Bei
 
 This, I believe, is what some people search for. The feeling of feeling good. While it's definitely a good thing to search for, I think it can lead to a painful mismatch between what it actually means to be good at something versus the feeling of improvement.
 
-People under pressure or judgement will probably never see the good side of it. I **must** get better at this. And I **must** do it now. This pressure or judgement can very easily come from within us, in the hopes to become relentlessly better at our craft.
+> I **must** get better at this. And I **must** do it now.
+
+This pressure or judgement can very easily come from within us, in the hopes to become relentlessly better at our craft.
 
 This ambition yields great results in healthy doses, and catastrophic outcomes in unhealthy ones.
 
 We have to be careful on how much pressure we put on ourselves. We have to strive to get better. But we have to celebrate the path we've already gone through.
 
-For me, personally, the real reward I get is that the knowledge acquired allows for a deeper understanding of the work you are inspired with. You can clearly see the directions and decisions made within the works of art you admire. This brings a very deep appreciation and a closer feeling to the
+For me, personally, the real reward I get is that the knowledge acquired allows for a deeper understanding of the work you are inspired with. You can clearly see the directions and decisions made within the works of art you admire. This brings a very deep appreciation and a closer feeling to the work itself.
