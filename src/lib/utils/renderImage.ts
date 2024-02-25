@@ -19,11 +19,6 @@ export async function componentToPng(component, props, height: number, width: nu
     fonts: [
       {
         name: 'Name Sans Bold',
-        data: boldFont,
-        style: 'normal'
-      },
-      {
-        name: 'Name Sans Text',
         data: normalFont,
         style: 'normal'
       }
