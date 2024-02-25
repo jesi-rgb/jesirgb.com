@@ -6,6 +6,8 @@
 
 	export let data;
 	let metadata: Post = data.metadata;
+
+	console.log(metadata);
 	let visible = false;
 
 	let url = new URL('https://jesirgb.com/blog/thumbnails');
@@ -72,9 +74,14 @@
 		</div>
 		<div class="divider" />
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-			<p class="text-xl text-neutral-400 xl:text-2xl">
-				{formatDate(data.metadata.date)}
-			</p>
+			<div class="flex flex-col text-center md:text-left">
+				<p class="text-xl text-neutral-400 xl:text-2xl">
+					{formatDate(data.metadata.date)}
+				</p>
+				<p class="text-left text-xs text-neutral-400 xl:text-base">
+					Last updated: {formatDate(data.metadata.lastUpdated)}
+				</p>
+			</div>
 			<div class="flex flex-row space-x-1">
 				{#each data.metadata.categories as category}
 					<span class="badge badge-primary badge-outline badge-lg">{category}</span>

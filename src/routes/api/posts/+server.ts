@@ -11,7 +11,9 @@ async function getPosts() {
     const slug = path.split('/').at(-1)?.replace('.md', '');
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
-      const metadata = file.metadata as Omit<Post, 'slug'>;
+      const metadata = file.metadata as Post;
+      metadata.slug = slug;
+
       const post = { ...metadata, slug } satisfies Post;
       posts.push(post as Post);
     }
@@ -20,6 +22,7 @@ async function getPosts() {
       return new Date(p1.date).getTime() - new Date(p2.date).getTime();
     });
   }
+
   return posts;
 }
 
