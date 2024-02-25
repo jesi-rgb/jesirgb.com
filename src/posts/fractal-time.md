@@ -6,11 +6,7 @@ categories:
 date: 2021-06-06
 ---
 
-# Fractal time
-
-_06/06/2021_
-
-### Fractals
+## Fractals
 
 [Fractals](https://www.youtube.com/watch?v=FFftmWSzgmk) are mathematic objects that have finite area but infinite perimeter. That means that you can _see_ the whole thing, but you cannot measure exactly how long a rope had to be in order to outline it.
 
@@ -18,7 +14,7 @@ Fractals are mostly known on the internet because their calculations can be appr
 
 This idea sounds crazy, but I feel like **time** behaves in much the same way.
 
-### Time
+## Time
 
 Picture a day: we begin in the early **morning**, continue to the **afternoon**, the **evening** and eventually, **night** time. That is repeated again, so the day as a concept can be define as a _cylinder_, since no matter where you start, you always roll in the same direction.
 
@@ -30,4 +26,4 @@ Can you see the pattern? morning - spring - childhood, afternoon - summer - teen
 
 No matter how much you zoom in or out, the same pattern repeats. It is a looping pattern. That may tell us that there is actually life after death. Life is a looping pattern. Or maybe not.
 
-What it is clear is that whenever we finish another day, month, year, another loop... we start over again, but nothing remains the same as before. Time continues to loop, but we always keep moving forward.
+What it is clear is that whenever we finish another day, month, year, another loop... we start over again, but nothing remains the same as before. Time continues to loop forever, but we always keep moving forward.
