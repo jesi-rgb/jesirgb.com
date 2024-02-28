@@ -3,7 +3,8 @@
 
 	export let data;
 
-	const { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml } = data;
+	const { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml, fillLineHtml, featureLineHtml } =
+		data;
 
 	let weight = 100;
 	let ital = 0.4;
@@ -145,7 +146,7 @@
 		</figure>
 	</section>
 
-	<section>
+	<section id="the tools">
 		<h2>The tools</h2>
 
 		<p>In order to achieve the final result, a set of increasingly esoteric tools was used:</p>
@@ -256,7 +257,7 @@
 
 		<p>
 			In Coldtype, these extend between 0 and 1, no matter how the actual values are defined in the
-			font file. This makes it a bit easier to simply animate stuff, since everything is normalized.
+			font file. This makes it a bit easier to animate stuff, since everything is normalized.
 		</p>
 
 		<figure>
@@ -270,13 +271,85 @@
 			We can also see that the <code>wght</code> axis has a lot going on. Apart from the constant
 			numbers, we are using the cosine function with <code>i</code> and <code>f.i</code>
 		</p>
+
+		<p>
+			<code>f.i</code> is the index <code>i</code> for the current frame <code>f</code>. For the
+			first frame this value will be 0. The second frame, 1. And so on.
+		</p>
+
+		<p>
+			The standalone <code>i</code> is the iterator we mentioned earlier, and <code>n</code> is the total
+			number of numbers that we are displaying.
+		</p>
+		<p>
+			The actual operations like dividing and multiplying just came out of trial and error. I <i
+				>knew</i
+			>
+			I needed to use <code>f.i</code> to drive a per-frame change on a property (wght in this
+			case), and I knew I wanted to apply a different styling to each consecutive shape but with a
+			staggered effect. This led me to use both <code>f.i</code> and <code>i</code>.
+		</p>
+		<p>
+			I also knew I wanted the overall behaviour to <i>swing</i> back and forth. And the cosine function
+			helps achieving that, since it will always output values from -1 to 1. The frame index + cosine
+			function is a goated combo that shader magicians will also recognize as familiar and, indeed, goated.
+		</p>
+
+		<p>
+			But the actual operations that relate them are not important. It was just a matter of
+			adjusting and tweaking until the animation felt good.
+		</p>
+
+		<figure>
+			{@html fillLineHtml}
+
+			<figcaption>Fill color defined by the <code>map_color</code> function.</figcaption>
+		</figure>
+		<p>
+			Next up, we got the fill color, which comes defined by the <code>map_color</code> function we discussed
+			earlier. Outputs a color depending on the index. Beautiful. Simple.
+		</p>
+
+		<figure>
+			{@html featureLineHtml}
+			<figcaption>OpenType features can be accessed very conveniently in Coldtype</figcaption>
+		</figure>
+		<p>
+			Lastly, one of my favourites, OpenType features. This is something usually overlooked in
+			clicky software, like Adobe After Effects, Cavalry or similar. Design tools do implement it,
+			though, which is why I miss it so much in motion software.
+		</p>
+		<p>
+			This argument expects a dictionary of OpenType features and their expected value. These act
+			like switches, thus the "True" and "False" we see here. You can turn features on an off to
+			access specific alternative characters within the font file.
+		</p>
+
+		<p>Let's review them:</p>
+		<ul>
+			<li>
+				<code>tnum</code> enables <b>T</b>abular <b>Num</b>bers. Numbers that occupy the same exact
+				space. Essential for the layout we have going on.
+			</li>
+
+			<li><code>zero</code> substitutes the normal 0 for a slashed <code>0</code>.</li>
+			<li>
+				<code>rvrn</code> is a slightly more obscure, advanced one. It stands for
+				<i>Required Variation Alternates</i>. It <i>forces</i> the characters to not switch to specific
+				variants made for legibility, in order to maintain their continuous nature.
+			</li>
+
+			<p>This last one is not super intuitive, but this example will hopefully clear things up.</p>
+		</ul>
 	</section>
 </main>
 
 <style>
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-variation-settings: 'wdth' 125;
+		font-variation-settings:
+			'wdth' 125,
+			'wght' 70;
 		text-wrap: balance;
 		font-size: 7.5cqw;
 	}

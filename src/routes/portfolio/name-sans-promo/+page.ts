@@ -57,6 +57,9 @@ StSt(
 
 let wghtLine = 'wght=0.5 + 0.5 * np.cos(i % n * f.i / length_numbers)'.trim();
 
+let fillLine = 'fill=map_color(i + 1)'.trim();
+let featureLine = 'features={"tnum": True, "zero": True, "rvrn": False}'.trim();
+
 async function hightlightCode(code: string, lang = 'python') {
     const htmlFromCode = await codeToHtml(code, {
         lang: lang,
@@ -70,6 +73,8 @@ export async function load() {
     let mapColorHtml = await hightlightCode(map_color);
     let ststHtml = await hightlightCode(stst);
     let wghtLineHtml = await hightlightCode(wghtLine);
+    let fillLineHtml = await hightlightCode(fillLine);
+    let featureLineHtml = await hightlightCode(featureLine);
 
-    return { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml };
+    return { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml, fillLineHtml, featureLineHtml };
 }
