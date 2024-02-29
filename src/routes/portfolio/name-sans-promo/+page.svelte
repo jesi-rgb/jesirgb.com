@@ -3,8 +3,15 @@
 
 	export let data;
 
-	const { coldtypeHtmlCode, mapColorHtml, ststHtml, wghtLineHtml, fillLineHtml, featureLineHtml } =
-		data;
+	const {
+		coldtypeHtmlCode,
+		mapColorHtml,
+		ststHtml,
+		wghtLineHtml,
+		fillLineHtml,
+		featureLineHtml,
+		restCodeHtml
+	} = data;
 
 	let weight = 100;
 	let ital = 0.4;
@@ -373,7 +380,46 @@
 			for the typeface. The fact that we get this level of granularity and customizability is truly
 			remarkable.
 		</p>
+
+		<figure>
+			{@html restCodeHtml}
+
+			<figcaption>The rest of the code</figcaption>
+		</figure>
+
+		<p>
+			Now, to refresh, all these numbers were individual text objects we created through the <code
+				>StSt</code
+			> class.
+		</p>
+
+		<p>
+			All these objects are then fed into the <code>PS</code> class, which helps with very precise layout
+			of these objects, and groups them to make operations on all in relation to eachother.
+		</p>
+
+		<p>We can see this class brings three nice funcitons:</p>
+
+		<ul>
+			<li>
+				<code>grid</code>: sets the elements on a grid 🤯. The argument <code>every</code> literally
+				means make a new row (or column) every <code>n</code> elements. Since we created n to be a perfect
+				square, we just use the square root to layout the numbers. Nice!
+			</li>
+
+			<li>
+				<code>lead</code>: comes from the leading of the typefaces, i.e line height. Just adjusts
+				the vertical spacing between each row.
+			</li>
+
+			<li>
+				<code>translate</code>: moves elements around 🤯. Your usual translation. We move the whole
+				thing up and right a bit. By default, all objects are aligned down and left in Coldtype.
+			</li>
+		</ul>
 	</section>
+
+	<p>🚧 probably to be continued... 🚧</p>
 </main>
 
 <style>
