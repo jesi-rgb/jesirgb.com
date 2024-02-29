@@ -31,7 +31,7 @@
 	<section>
 		<h2>The final product</h2>
 		<div class="my-10">
-			<Video url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans_v3.mp4"></Video>
+			<Video url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans.webm"></Video>
 		</div>
 	</section>
 
@@ -169,8 +169,10 @@
 			typography animation. It can animate any vector asset, but it was designed to sculpt and mold
 			letterforms into almost anything you can think of.
 		</p>
+	</section>
 
-		<h3>Developing animations in Coldtype</h3>
+	<section id="developing animations in coldtype">
+		<h2>Developing animations in Coldtype</h2>
 
 		<p>
 			In this section, I want to take a look at some of the inner workings of what one can do with
@@ -178,14 +180,14 @@
 			of trial and error, albeit extremely fun.
 		</p>
 
+		<p>Here's an animation that didn't make the cut.</p>
 		<figure>
-			<img
-				src="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/numbers.png"
-				width="100%"
-				class="rounded-xl border-2 border-dashed border-base-content/30"
-				alt="Numbers in Name Sans"
-			/>
-			<figcaption>Still showcasing tabular numbers in Name Sans</figcaption>
+			<Video
+				autoplay
+				controls={false}
+				url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/rvrn_false_vp9.webm"
+			></Video>
+			<figcaption>Unused Coldtype animation</figcaption>
 		</figure>
 
 		<p>
@@ -194,7 +196,7 @@
 			weight range is put in use and everything aligns perfectly.
 		</p>
 
-		<p>This was made with Coldtype. Here's a snippet of the code:</p>
+		<p>This was made using Coldtype. Here's a snippet of the code:</p>
 
 		<figure>
 			{@html coldtypeHtmlCode}
@@ -338,9 +340,39 @@
 				<i>Required Variation Alternates</i>. It <i>forces</i> the characters to not switch to specific
 				variants made for legibility, in order to maintain their continuous nature.
 			</li>
-
-			<p>This last one is not super intuitive, but this example will hopefully clear things up.</p>
 		</ul>
+		<p>This last one is not super intuitive, but this example will hopefully clear things up.</p>
+
+		<div class="mx-auto grid grid-cols-1 gap-1 md:grid-cols-2 md:gap-3">
+			<figure class="">
+				<Video
+					controls={false}
+					autoplay
+					url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/rvrn_true_vp9.webm"
+				></Video>
+				<figcaption>Required Variation Alterates turned on (default)</figcaption>
+			</figure>
+
+			<figure class="">
+				<Video
+					controls={false}
+					autoplay
+					url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/rvrn_false_vp9.webm"
+				></Video>
+				<figcaption>Required Variation Alterates turned off (explicitly)</figcaption>
+			</figure>
+		</div>
+
+		<p>
+			Focus on the 1. When turned on, the caracter switches to a different version in bolder
+			weights. By turning this off, we tell the font that we want the original 1, which interpolates
+			smoothly across the whole weight range.
+		</p>
+		<p>
+			Mind you, this feature is a decision the type designer has to make when laying out the roadmap
+			for the typeface. The fact that we get this level of granularity and customizability is truly
+			remarkable.
+		</p>
 	</section>
 </main>
 

@@ -10,8 +10,12 @@
 
 	export let url: string;
 
+	export let controls: boolean = true;
+	export let loop: boolean = true;
+	export let autoplay: boolean = false;
+
 	let showControls = true;
-	let showControlsTimeout: Timeout;
+	let showControlsTimeout: number;
 	let muted = true;
 
 	// Used to track time of last mouse down event
@@ -68,6 +72,9 @@
 		src={url}
 		class="pointer-events-none h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
 		playsinline
+		preload="metadata"
+		{autoplay}
+		{loop}
 		bind:this={video}
 		bind:currentTime={time}
 		bind:duration
@@ -84,7 +91,7 @@
 		on:mouseup={handleMouseup}
 		tabindex="0"
 		class="controls h-full"
-		style="opacity: {duration && showControls ? 1 : 0}"
+		style="opacity: {duration && showControls && controls ? 1 : 0}"
 	>
 		<progress class="progress" value={time / duration || 0} />
 
@@ -95,7 +102,7 @@
 		</div>
 	</button>
 	<button
-		style="opacity: {duration && showControls ? 1 : 0}"
+		style="opacity: {duration && showControls && controls ? 1 : 0}"
 		class="btn btn-circle btn-ghost btn-sm absolute bottom-3 left-3 transition-[opacity] duration-1000 lg:btn-lg"
 		on:click={handleMuted}
 	>
