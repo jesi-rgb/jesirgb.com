@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Video from '$lib/components/Video.svelte';
 
+	import { MetaTags } from 'svelte-meta-tags';
+
 	export let data;
 
 	const {
@@ -18,9 +20,47 @@
 	let opsz = 24;
 
 	let charPics = ['0054', '0151', '0265', '0297', '0375', '0397'];
+
+	let thumbUrl = new URL('https://jesirgb.com/blog/thumbnails');
+	thumbUrl.searchParams.append('title', 'Name Sans Promo');
+	thumbUrl.searchParams.append(
+		'desc',
+		'A collaboration with Stephen from ArrowType to create visual assets for the release of Name Sans'
+	);
 </script>
 
-<head> <title>Name Sans Promo</title> </head>
+<MetaTags
+	keywords={['animation', 'typography', 'code']}
+	title="Name Sans Promo"
+	description="This project is a collaboration with Stephen from ArrowType in order to create a set of visual assets to accompany the release of Name Sans."
+	twitter={{
+		handle: '@jesi_rgb',
+		cardType: 'summary_large_image',
+		title: 'Name Sans Promo',
+		description:
+			'This project is a collaboration with Stephen from ArrowType in order to create a set of visual assets to accompany the release of Name Sans.',
+		image: thumbUrl.toString(),
+		imageAlt: 'Name Sans Promo'
+	}}
+	openGraph={{
+		type: 'article',
+		url: thumbUrl.toString(),
+		title: 'Name Sans Promo',
+		images: [
+			{
+				url: thumbUrl.toString(),
+				width: 800,
+				height: 600
+			}
+		],
+		description:
+			'This project is a collaboration with Stephen from ArrowType in order to create a set of visual assets to accompany the release of Name Sans.',
+		article: {
+			tags: ['animation', 'typography', 'code'],
+			publishedTime: ''
+		}
+	}}
+/>
 
 <main
 	class="prose prose-lg my-20 md:prose-xl prose-h3:font-normal prose-a:transition-colors hover:prose-a:text-accent"
@@ -38,7 +78,8 @@
 	<section>
 		<h2>The final product</h2>
 		<div class="my-10">
-			<Video url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans.webm"></Video>
+			<Video autoplay url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans.webm"
+			></Video>
 		</div>
 	</section>
 
@@ -91,9 +132,10 @@
 			<div class="opacity-60">Optical Size Axis</div>
 			<div
 				class="not-prose rounded-xl border-2 border-dashed border-base-content/30 p-4 text-center text-2xl md:text-5xl"
-				style="font-variation-settings: 'opsz' {opsz}"
 			>
-				Big and Small
+				<div style="font-variation-settings: 'opsz' {opsz}, 'wght' 10">Thinn</div>
+
+				<div style="font-variation-settings: 'opsz' {opsz}, 'wght' 950">Thicc</div>
 			</div>
 			<input type="range" min="12" max="72" step=".1" class="range range-xs" bind:value={opsz} />
 			<div class="text-center tabular-nums">
