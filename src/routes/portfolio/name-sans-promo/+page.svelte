@@ -63,7 +63,7 @@
 />
 
 <main
-	class="prose prose-lg my-20 md:prose-xl prose-h3:font-normal prose-a:transition-colors hover:prose-a:text-accent"
+	class="prose prose-lg my-20 prose-h3:font-normal prose-a:transition-colors hover:prose-a:text-accent"
 >
 	<div class="mb-10">
 		<h2 class="whirly text-center">Name Sans Promo</h2>

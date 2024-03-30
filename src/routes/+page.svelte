@@ -43,12 +43,14 @@
 		</p>
 
 		<p>
-			I've worked at
-			<a href="https://prismsvr.com">
-				<span class="inline-block pb-1 align-middle"
-					><img width="14" class="mx-1 my-0" src="/assets/prisms.svg" alt="Prisms Logo" /></span
-				>Prisms</a
-			> as a Squares & Rectangles Director, producing mathematical content for our VR game.
+			I am currently a Design Engineer and Content Creator of sorts at <a
+				href="https://graphext.com"
+			>
+				<span class="inline-block align-middle"
+					><img src="/assets/graphext.svg" class="my-0" width="25" alt="Graphext Logo" /></span
+				>
+				Graphext</a
+			>, arguably the fastest and most powerful analytics tool there is around in the market.
 		</p>
 		<p>
 			I've also worked as a freelance <i>technical content creator</i> with channels like
@@ -56,6 +58,12 @@
 			and
 			<strong><a href="https://www.youtube.com/@reducible">Reducible</a></strong>, crafting
 			animations earning <strong>+60 million</strong> impressions.
+		</p>
+
+		<p>
+			I am also avid bass player, and overall chord enjoyer. Check it out at <a
+				href="https://www.youtube.com/watch?v=Dka1qR5ecd0">HSX.</a
+			>
 		</p>
 	</main>
 </section>
@@ -66,7 +74,7 @@
 	<main
 		class="prose prose-lg prose-headings:tracking-normal prose-a:text-neutral-300 prose-a:no-underline"
 	>
-		<h2>Fun Side Projects</h2>
+		<h2>The Stuff™</h2>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
@@ -175,6 +183,22 @@
 		<p>A little sum up of the path I've followed so far</p>
 		<div class="">
 			<!-- Timeline Item -->
+			<TimelineItem>
+				<h4 slot="title">Graphext</h4>
+				<div slot="date">Jan, 2024</div>
+				<div slot="subtitle">Design Engineer, Content Creation</div>
+				<div slot="content">
+					This one is funny because Alex, one of my best friends, got to meet Victoriano, CEO @ <a
+						href="https://graphext.com">Graphext</a
+					>. Alex put us in contact and it turns out we get on very well. Eventually, I got to meet
+					the team at their beautiful office in Madrid.
+
+					<br />
+					<br />
+					Long story short, I am now captivated by the product and leading the Small Details Team™ as
+					well as producing some content for them.
+				</div>
+			</TimelineItem>
 			<TimelineItem>
 				<h4 slot="title">Prisms of Reality</h4>
 				<div slot="date">Jun, 2023</div>
