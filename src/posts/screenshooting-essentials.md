@@ -107,8 +107,8 @@ As to _how_ to compress your shots, it's up to you. You can use any of the infin
 As a bonus, I'll leave here a shell snippet I created to help me on this task. You need to have [ffmpeg](https://ffmpeg.org/) installed.
 
 ```shell
-# This is UNIX shell, will probably not work on windows
-# unless you use the WSL
+# This is UNIX shell, will probably not
+# work on windows unless you use the WSL
 png2webp() {
   filename=$(basename "$1" | cut -d. -f1)
 

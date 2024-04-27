@@ -1,5 +1,5 @@
 ---
-title: Web type essentials
+title: Web Type Essentials
 description: Interwebs typography at its finest
 categories:
   - tutorial
