@@ -84,7 +84,7 @@
 			</div>
 			<div class="flex flex-row space-x-1">
 				{#each data.metadata.categories as category}
-					<span class="badge badge-primary badge-outline badge-lg">{category}</span>
+					<span class="badge badge-primary badge-outline badge-lg bg-primary/10">{category}</span>
 				{/each}
 			</div>
 		</div>

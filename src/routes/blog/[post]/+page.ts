@@ -16,13 +16,22 @@ export async function load({ params, fetch }) {
     );
 
     const lu = (await luPromise.json())[0].commit.author.date;
-    post.metadata.lastUpdated = lu;
+    if (lu === undefined) {
+      post.metadata.lastUpdated = new Date();
+    } else {
+      post.metadata.lastUpdated = lu;
+    }
 
     return {
       content: post.default,
       metadata: post.metadata
     };
   } catch (e) {
-    throw error(404, 'Whoops, could not find ' + params.post);
+    throw error(
+      404,
+      'Whoops, could not find ' +
+      params.post +
+      '. You probably have to upload the file to github first'
+    );
   }
 }
