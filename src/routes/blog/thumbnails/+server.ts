@@ -6,6 +6,5 @@ import { componentToPng } from '$lib/utils/renderImage';
 export const GET = async ({ url }) => {
   const query = url.searchParams;
   const { title, desc, width, height } = parseQuery(query);
-  console.log(title);
   return componentToPng(Image, { title, desc, width, height, satori: true }, height, width);
 };
