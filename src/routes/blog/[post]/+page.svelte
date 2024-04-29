@@ -73,7 +73,7 @@
 			</h1>
 		</div>
 		<div class="divider" />
-		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
+		<div class="flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
 			<div class="flex flex-col text-center md:text-left">
 				<p class="text-xl text-neutral-400 xl:text-2xl">
 					{formatDate(data.metadata.date)}
