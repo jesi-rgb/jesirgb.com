@@ -8,6 +8,10 @@ categories:
 date: 2024-04-27
 ---
 
+<script>
+import Tools from '$lib/components/posts/Tools.svelte'
+</script>
+
 Recently, I've been building a great deal of docs, and found myself making a
 huge ton of screenshots. These are essential to not only showcase your product,
 but to make it easier for everyone to find buttons, menus and alike.
@@ -25,6 +29,8 @@ I use macOS. The default screenshot tool, while very convenient, ends up falling
 My tool of choice is undoubtedly [Shottr](https://shottr.cc/). It is basically free (winRAR model, just asks for money sometimes) but it's absolutely worth it at $8. It is extremely fast, has great design and great annotation tools.
 
 For macOS, [Cleanshot](https://cleanshot.com/) is also quite up in the list. I also bought a copy of it, but for video purposes. Shottr fits my workflow much better than Cleanshot.
+
+<Tools/>
 
 ### The workflow
 
