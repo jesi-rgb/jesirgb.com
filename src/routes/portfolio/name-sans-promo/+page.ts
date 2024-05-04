@@ -1,6 +1,6 @@
 import { codeToHtml } from 'shiki';
 
-let coldtypeCode = `
+const coldtypeCode = `
 def numbers(f):
     def map_color(i):
         if i == math.isqrt(i) ** 2:
@@ -33,7 +33,7 @@ def numbers(f):
     return ( numbers )
 `.trim();
 
-let map_color = `
+const map_color = `
 def map_color(i):
     if i == math.isqrt(i) ** 2:
         return ACCENT_COLOR
@@ -43,7 +43,7 @@ def map_color(i):
         return SECONDARY_COLOR
 `.trim();
 
-let stst = `
+const stst = `
 StSt(
     f"{i+1:02d}",
     name,
@@ -55,12 +55,12 @@ StSt(
 )
 `.trim();
 
-let wghtLine = 'wght=0.5 + 0.5 * np.cos(i % n * f.i / length_numbers)'.trim();
+const wghtLine = 'wght=0.5 + 0.5 * np.cos(i % n * f.i / length_numbers)'.trim();
 
-let fillLine = 'fill=map_color(i + 1)'.trim();
-let featureLine = 'features={"tnum": True, "zero": True, "rvrn": False}'.trim();
+const fillLine = 'fill=map_color(i + 1)'.trim();
+const featureLine = 'features={"tnum": True, "zero": True, "rvrn": False}'.trim();
 
-let restCode = `
+const restCode = `
     PS(
         # ...what we just saw
     )
@@ -73,19 +73,19 @@ let restCode = `
 async function hightlightCode(code: string, lang = 'python') {
     const htmlFromCode = await codeToHtml(code, {
         lang: lang,
-        theme: 'vitesse-black'
+        themes: { light: 'min-light', dark: 'vitesse-dark' }
     });
 
     return htmlFromCode;
 }
 export async function load() {
-    let coldtypeHtmlCode = await hightlightCode(coldtypeCode);
-    let mapColorHtml = await hightlightCode(map_color);
-    let ststHtml = await hightlightCode(stst);
-    let wghtLineHtml = await hightlightCode(wghtLine);
-    let fillLineHtml = await hightlightCode(fillLine);
-    let featureLineHtml = await hightlightCode(featureLine);
-    let restCodeHtml = await hightlightCode(restCode);
+    const coldtypeHtmlCode = await hightlightCode(coldtypeCode);
+    const mapColorHtml = await hightlightCode(map_color);
+    const ststHtml = await hightlightCode(stst);
+    const wghtLineHtml = await hightlightCode(wghtLine);
+    const fillLineHtml = await hightlightCode(fillLine);
+    const featureLineHtml = await hightlightCode(featureLine);
+    const restCodeHtml = await hightlightCode(restCode);
 
     return {
         coldtypeHtmlCode,

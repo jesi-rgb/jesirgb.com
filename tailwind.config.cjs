@@ -16,7 +16,25 @@ const config = {
 		logs: false,
 		themes: [
 			{
-				jesi: {
+				light: {
+					primary: '#042B24',
+					'primary-focus': '#042B24',
+					'primary-content': '#F6FFFB',
+					secondary: '#a78bfa',
+					accent: '#021713',
+					neutral: '#677471',
+					'base-100': '#F6FFFB',
+					'base-200': '#FAFFFD',
+					'base-300': '#FFF',
+					'base-content': '#042B24',
+					info: '#3abff8',
+					success: '#4ade80',
+					warning: '#fbbd23',
+					error: '#f87272'
+				}
+			},
+			{
+				dark: {
 					primary: '#a7f3d0',
 					'primary-focus': '#73E0B4',
 					'primary-content': '#021714',
@@ -32,7 +50,8 @@ const config = {
 					warning: '#fbbd23',
 					error: '#f87272'
 				}
-			}
+			},
+			'cupcake'
 		]
 	},
 	plugins: [

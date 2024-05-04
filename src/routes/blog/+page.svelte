@@ -13,7 +13,7 @@
 	<ul class="[&_li:last-child]:border-0">
 		{#each data.posts as post}
 			<li
-				class="group border-b-[0.1px] border-primary border-opacity-25 py-9 pl-5 transition-all hover:bg-primary hover:text-primary-content hover:shadow-xl hover:shadow-black md:pl-0 hover:md:pl-5"
+				class="group border-b-[0.1px] border-primary border-opacity-25 py-9 pl-5 transition-all hover:bg-primary hover:text-primary-content hover:shadow-xl hover:shadow-primary/10 md:pl-0 hover:md:pl-5"
 			>
 				<a class="h-full w-full" href={'/blog/' + post.slug}>
 					<p class="mb-4 text-sm font-semibold opacity-40">{formatDate(post.date)}</p>
