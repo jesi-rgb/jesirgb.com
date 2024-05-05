@@ -17,15 +17,15 @@ const config = {
 		themes: [
 			{
 				light: {
-					primary: '#042B24',
+					primary: '#226E48',
 					'primary-focus': '#042B24',
 					'primary-content': '#F6FFFB',
 					secondary: '#a78bfa',
-					accent: '#021713',
+					accent: '#D1BC03',
 					neutral: '#677471',
 					'base-100': '#F6FFFB',
 					'base-200': '#FAFFFD',
-					'base-300': '#FFF',
+					'base-300': '#E5FDF2',
 					'base-content': '#042B24',
 					info: '#3abff8',
 					success: '#4ade80',

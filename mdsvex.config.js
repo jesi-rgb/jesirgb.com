@@ -20,8 +20,8 @@ const config = defineConfig({
         await codeToHtml(code, {
           lang: lang,
           themes: {
-            light: 'vitesse-light',
-            dark: 'vitesse-dark'
+            light: 'snazzy-light',
+            dark: 'vesper'
           }
         })
       );

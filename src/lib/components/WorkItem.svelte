@@ -6,7 +6,7 @@
 <a href={link}>
 	<div class="group flex items-start space-x-3">
 		<div
-			class="flex h-16 w-16 items-center rounded-full border-2 border-neutral-700 bg-base-200 transition-all group-hover:border-primary"
+			class="flex h-16 w-16 items-center rounded-full border-2 border-base-content/30 transition-all group-hover:border-base-content/80"
 		>
 			<div class="mx-auto">
 				<slot name="icon" />
@@ -16,7 +16,7 @@
 			<div class="whirly">
 				<slot name="title" />
 			</div>
-			<p class="balanced my-0 text-neutral-400">
+			<p class="balanced my-0 opacity-60">
 				<slot name="description" />
 			</p>
 		</div>

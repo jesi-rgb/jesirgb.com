@@ -42,9 +42,7 @@
 					<div>
 						<img src={video.thumbnail} class="w-full rounded-xl" alt="" />
 
-						<div
-							class="balanced w-full pt-2 text-lg font-semibold transition-all group-hover:text-white"
-						>
+						<div class="balanced w-full pt-2 text-lg font-semibold transition-all">
 							{video.title}
 						</div>
 					</div>

@@ -5,7 +5,7 @@
 	import '../app.css';
 </script>
 
-<div class="subpixel-antialiased selection:bg-accent selection:text-accent-content">
+<div class="subpixel-antialiased selection:bg-primary selection:text-base-100">
 	<Container>
 		<Header />
 		<slot />

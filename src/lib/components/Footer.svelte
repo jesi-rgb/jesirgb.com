@@ -13,21 +13,21 @@
 	// loadWord();
 </script>
 
-<div class="divider divider-neutral mt-10" />
-<footer class="h-full mb-20 flex flex-col md:flex-row items-baseline justify-between">
+<div class="divider-base-content/50 divider mt-10" />
+<footer class="mb-20 flex h-full flex-col items-baseline justify-between md:flex-row">
 	{#if loading}
-		<div class="whirly text-5xl font-[50] hover:font-[100] transition-all duration-500" />
+		<div class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]" />
 	{:else}
 		<button
 			in:fly={{ y: -20 }}
 			out:fly={{ y: 20 }}
 			on:click={loadWord}
-			class="whirly text-5xl font-[50] hover:font-[100] transition-all duration-500"
+			class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]"
 		>
 			{randomWord}
 		</button>
 	{/if}
-	<div class="whirly text-5xl whirly font-[50] hover:font-[100] transition-all duration-500">
+	<div class="whirly whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]">
 		{new Date().getFullYear()}
 	</div>
 </footer>

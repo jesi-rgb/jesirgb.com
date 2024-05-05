@@ -73,7 +73,7 @@ const restCode = `
 async function hightlightCode(code: string, lang = 'python') {
     const htmlFromCode = await codeToHtml(code, {
         lang: lang,
-        themes: { light: 'min-light', dark: 'vitesse-dark' }
+        themes: { light: 'snazzy-light', dark: 'vesper' }
     });
 
     return htmlFromCode;

@@ -1,7 +1,7 @@
 <div class="whirly mt-24 text-center font-thin tracking-tight @container md:mt-32">
 	<slot />
 </div>
-<div class="divider divider-neutral mb-12" />
+<div class="divider-base-content/50 divider mb-12" />
 
 <style>
 	.whirly {

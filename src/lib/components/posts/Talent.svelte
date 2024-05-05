@@ -34,7 +34,7 @@
 	bind:this={outerDiv}
 	role="figure"
 	on:mousemove={handleMousemove}
-	class="h-20 text-center bg-base-200 font-title border-2 border-dashed rounded-md text-4xl flex items-center align-middle"
+	class="flex h-20 items-center rounded-md border-2 border-dashed bg-base-300 text-center align-middle font-title text-4xl"
 >
 	<div
 		class="mx-auto"

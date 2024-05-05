@@ -7,7 +7,7 @@
 
 @font-face {
 	font-family: 'Recursive';
-	src: local('Recursive'), url('/fonts/Recursive.ttf');
+	src: local('Recursive'), url('/fonts/Recursive.woff2');
 	font-weight: 300 1000;
 }
 
@@ -24,7 +24,7 @@
 
 @font-face {
 	font-family: 'DSEG7ClassicMini';
-	src: local('DSEG7ClassicMini'), url('/fonts/DSEG7ClassicMini-Bold.woff2');
+	src: local('DSEG7ClassicMini'), url('/fonts/DSEG7ClassicMini-Bold.woff');
 	font-weight: bold;
 }
 

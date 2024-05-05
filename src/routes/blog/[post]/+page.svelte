@@ -75,10 +75,10 @@
 		<div class="divider" />
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
 			<div class="flex flex-col text-center md:text-left">
-				<p class="text-xl text-neutral-400 xl:text-2xl">
+				<p class="text-xl text-base-content/50 xl:text-2xl">
 					{formatDate(data.metadata.date)}
 				</p>
-				<p class="text-left text-xs text-neutral-400 xl:text-base">
+				<p class="text-left text-xs text-base-content/50 xl:text-base">
 					Last updated: {formatDate(data.metadata.lastUpdated)}
 				</p>
 			</div>
