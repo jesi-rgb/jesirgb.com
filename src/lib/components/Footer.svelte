@@ -1,4 +1,7 @@
 <script>
+	import Sun from 'phosphor-svelte/lib/Sun';
+	import Moon from 'phosphor-svelte/lib/Moon';
+
 	import { fly } from 'svelte/transition';
 	let randomWord = 'EMBRACE';
 	let loading = false;
@@ -9,8 +12,6 @@
 		randomWord = await object.json();
 		loading = false;
 	};
-
-	// loadWord();
 </script>
 
 <div class="divider-base-content/50 divider mt-10" />
@@ -27,6 +28,16 @@
 			{randomWord}
 		</button>
 	{/if}
+	<label class="swap swap-rotate self-center">
+		<!-- this hidden checkbox controls the state -->
+		<input type="checkbox" class="theme-controller" value="dark" />
+
+		<!-- sun icon -->
+		<Sun class="swap-off" size={32} weight={'duotone'} />
+
+		<!-- moon icon -->
+		<Moon class="swap-on" size={32} weight={'duotone'} />
+	</label>
 	<div class="whirly whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]">
 		{new Date().getFullYear()}
 	</div>
