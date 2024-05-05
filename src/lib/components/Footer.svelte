@@ -28,7 +28,7 @@
 			{randomWord}
 		</button>
 	{/if}
-	<label class="swap swap-rotate self-center">
+	<label class="swap swap-rotate self-start md:self-center">
 		<!-- this hidden checkbox controls the state -->
 		<input type="checkbox" class="theme-controller" value="dark" />
 
