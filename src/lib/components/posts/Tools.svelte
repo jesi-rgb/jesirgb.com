@@ -8,7 +8,7 @@
 
 <figure class="mt-32">
 	<div class="relative h-[400px]">
-		<IntersectionObserver {element} bind:intersecting>
+		<IntersectionObserver once {element} bind:intersecting>
 			<div bind:this={element}>
 				{#if intersecting}
 					<img
