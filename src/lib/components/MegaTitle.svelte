@@ -1,4 +1,4 @@
-<div class="whirly mt-24 text-center font-thin tracking-tight @container md:mt-32">
+<div class="whirly mt-24 text-center font-thin leading-[1] tracking-tight @container md:mt-32">
 	<slot />
 </div>
 <div class="divider-base-content/50 divider mb-12" />
