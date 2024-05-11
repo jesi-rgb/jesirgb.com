@@ -4,6 +4,17 @@ export function formatDate(date: string, dateStyle: DateStyle = 'medium', locale
   return new Intl.DateTimeFormat(locales, { dateStyle }).format(new Date(date));
 }
 
+/**
+ * format of date is DD/MM/YYYY
+ **/
+export function stringToDate(date: string) {
+  const split = date.split('/');
+  const day = parseInt(split[0]);
+  const month = parseInt(split[1]) - 1;
+  const year = parseInt(split[2]);
+  return new Date(year, month, day);
+}
+
 export function mapRange(
   number: number,
   inMin: number,

@@ -7,7 +7,7 @@ const config = {
 			fontFamily: {
 				sans: ['AT Name Sans Variable', 'Supreme', 'apple-system', '--system-ui'],
 				mono: ['Recursive'],
-				title: ['Whirly Birdie']
+				title: ['Whirly Birdie', 'New Title']
 			}
 		}
 	},

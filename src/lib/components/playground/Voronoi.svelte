@@ -2,11 +2,7 @@
 	import { createVoronoiDiagram } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 
-	import { fly, draw, fade } from 'svelte/transition';
-	import IntersectionObserver from 'svelte-intersection-observer';
-
-	let intersecting: boolean;
-	let loaded: boolean;
+	import { fade } from 'svelte/transition';
 
 	let element: HTMLElement;
 
@@ -23,7 +19,6 @@
 
 	let points: Array<Point> = [];
 	let tessellation;
-	let time;
 
 	onMount(() => {
 		points = [...Array(300)].map(() => {

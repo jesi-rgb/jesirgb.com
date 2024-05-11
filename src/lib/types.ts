@@ -16,3 +16,9 @@ export type Work = {
   link: string;
   icon: SvelteComponent<IconProps>;
 };
+
+export type LifeEvent = {
+  name: string;
+  start: Date;
+  end: Date;
+};
