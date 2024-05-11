@@ -4,15 +4,40 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import type { Post } from '$lib/types';
 
+	import { PUBLIC_GH_TOKEN } from '$env/static/public';
+	import { page } from '$app/stores';
+
 	export let data;
 	let metadata: Post = data.metadata;
 
-	console.log(metadata);
 	let visible = false;
 
 	let url = new URL('https://jesirgb.com/blog/thumbnails');
 	url.searchParams.append('title', metadata.title);
 	url.searchParams.append('desc', metadata.description);
+
+	const headers = {
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${PUBLIC_GH_TOKEN}`
+	};
+
+	let lastUpdated;
+
+	async function getLastUpdated() {
+		const luPromise = await fetch(
+			`https://api.github.com/repos/jesi-rgb/jesirgb.com/commits?path=src/posts/${$page.params.post}.md`,
+			{ method: 'GET', headers: headers }
+		);
+
+		lastUpdated = (await luPromise.json())[0].commit.author.date;
+
+		console.log(lastUpdated);
+		if (lastUpdated === undefined) {
+			return undefined;
+		} else {
+			return lastUpdated;
+		}
+	}
 </script>
 
 <MetaTags
@@ -24,7 +49,7 @@
 		cardType: 'summary_large_image',
 		title: metadata.title,
 		description: metadata.description,
-		image: url,
+		image: url.toString(),
 		imageAlt: metadata.title
 	}}
 	openGraph={{
@@ -33,7 +58,7 @@
 		title: metadata.title,
 		images: [
 			{
-				url: url,
+				url: url.toString(),
 				width: 800,
 				height: 600
 			}
@@ -78,9 +103,18 @@
 				<p class="text-xl text-base-content/50 xl:text-2xl">
 					{formatDate(data.metadata.date)}
 				</p>
-				<p class="text-left text-xs text-base-content/50 xl:text-base">
-					Last updated: {formatDate(data.metadata.lastUpdated)}
-				</p>
+				{#await getLastUpdated()}
+					<p class="text-left text-xs text-base-content/50 opacity-0 xl:text-base">Last updated</p>
+				{:then lastUpdated}
+					{#key lastUpdated}
+						<p
+							in:fly={{ x: 10, duration: 100 }}
+							class="text-left text-xs text-base-content/50 xl:text-base"
+						>
+							Last updated: {formatDate(lastUpdated)}
+						</p>
+					{/key}
+				{/await}
 			</div>
 			<div class="flex flex-row space-x-1">
 				{#each data.metadata.categories as category}
