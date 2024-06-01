@@ -9,7 +9,8 @@ date: 2024-04-27
 ---
 
 <script>
-import Tools from '$lib/components/posts/Tools.svelte'
+import Tools from '$lib/components/posts/screenshots/Tools.svelte'
+import FileSize from '$lib/components/posts/screenshots/FileSize.svelte'
 </script>
 
 Recently, I've been building a great deal of docs, and found myself making a
@@ -26,9 +27,13 @@ workflow to be as seamless and convenient as possible.
 
 I use macOS. The default screenshot tool, while very convenient, ends up falling short quite quickly.
 
-My tool of choice is undoubtedly [Shottr](https://shottr.cc/). It is basically free (winRAR model, just asks for money sometimes) but it's absolutely worth it at $8. It is extremely fast, has great design and great annotation tools.
+My tool of choice is undoubtedly [Shottr](https://shottr.cc/).
+It is basically free (winRAR model, just asks for money sometimes) but it's absolutely
+worth it at $8. It is extremely fast, has great design and great annotation tools.
 
-For macOS, [Cleanshot](https://cleanshot.com/) is also quite up in the list. I also bought a copy of it, but for video purposes. Shottr fits my workflow much better than Cleanshot.
+For macOS, [Cleanshot](https://cleanshot.com/) is also quite up in the list.
+I also bought a copy of it, but for video purposes.
+Shottr fits my workflow much better than Cleanshot.
 
 <Tools/>
 
@@ -38,36 +43,46 @@ Shottr has the option to simply copy the image to the clipboard on Esc ⎋. So t
 is extremely fast: hit the shortcut and immediately escape out of it. This allows for
 seamless sharing with the team.
 
-Cleanshot can also do this, just not as fast. It takes several hundreds of miliseconds more. Not a lot, but quite annoying when you know better.
+Cleanshot can also do this, just not as fast. It takes several hundreds
+of miliseconds more. Not a lot, but quite annoying when you know better.
 
-Both tools have the option to save the shot to a custom folder when hitting save, which is also very convenient. I have a "Screenshots" folder within the ~/Pictures directory.
+Both tools have the option to save the shot to a custom folder when hitting
+save, which is also very convenient. I have a "Screenshots" folder within the ~/Pictures directory.
 
 ## Composition over annotation
 
 Regardless of the tool, composition is, and will always be, key. Position your elements
-in an interesting way. Take inspiration from photography or graphic design. These considerations are not only for aesthetics, they also help communicate information more efficiently.
+in an interesting way. Take inspiration from photography or graphic design.
+These considerations are not only for aesthetics, they also help communicate information more efficiently.
 
-When composing correctly, the need for annotations almost vanishes, which leaves the space for your product to really shine.
+When composing correctly, the need for annotations almost vanishes, which
+leaves the space for your product to really shine.
 
-This is not to say one should not annotate at all, but serves as a reminder to do it more purposefully.
+This is not to say one should not annotate at all, but serves as a
+reminder to do it more purposefully.
 
 ## Context matters
 
-When making shots of your UI, sometimes you are focusing on a dropdown, sometimes on a modal, etc. You may be tempted to focus only on what's being shown.
+When making shots of your UI, sometimes you are focusing on a dropdown,
+sometimes on a modal, etc. You may be tempted to focus only on what's being shown.
 
-This is sometimes disorienting for an outsider that does not have the level of familiarity
-with your tool.
+This is sometimes disorienting for an outsider that does not
+have the level of familiarity with your tool.
 
 Don't be afraid to show more of your UI. Extend the limits of your shot to include where
 the feature lives, and how it relates to its surroundings. This gives meaning and context,
 key aspects to understand why these elements exist.
 
-These shots can also aid in considering if the element in question is actually needed, or could be improved. When trying to justify why something exists, you gain clarity of their purpose in the whole picture. Like an automated feedback process.
+These shots can also aid in considering if the element in question is
+actually needed, or could be improved. When trying to justify why
+something exists, you gain clarity of their purpose in the whole picture.
+Like an automated feedback process.
 
 ## Zoom in!
 
 In the context of composition, zooming in comes in as one of the best techniques to focus
-on something. But, apart from that, this allows your screenshot to look extremely sharp. The more pixels your letters occupy, the better it will read. Dead simple.
+on something. But, apart from that, this allows your screenshot to look extremely sharp.
+The more pixels your letters occupy, the better it will read. Dead simple.
 
 There are two ways of zooming in:
 
@@ -103,6 +118,8 @@ Following this principle, I love to use hover states as a way to highlight a par
 Lastly, when you've achieved maximum shotting greatness, it's time to upload your pixels to a server. The less information you upload, the less time it'll take to load.
 
 I highly recommend you compress your screenshots in a sensible way, that works for your purpose.
+
+<FileSize/>
 
 My purpose was to upload these images to a service to be fetched upon loading. For that reason, I compress them to `.webp` files. This format is usually ~80-90% smaller than their PNG counterpart, which is massive gains in bandwidth, while being imperceptibly worse.
 
