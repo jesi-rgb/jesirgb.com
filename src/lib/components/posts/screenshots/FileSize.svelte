@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
