@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
+	import { fade } from 'svelte/transition';
+	import ImageModal from '$lib/components/ImageModal.svelte';
 	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { videos, posters, stickers } from '$lib/utils/portfolio.js';
 	import { MetaTags } from 'svelte-meta-tags';
+
+	let selectedImage: string | null;
+	$: console.log(selectedImage);
 </script>
 
 <MetaTags title="Portfolio" description="Selected works from Jesús Rascón" openGraph={{}} />
@@ -56,18 +61,28 @@
 		{/each}
 	</div>
 
-	<h2>Posters</h2>
-	<p>A selection of colors, shapes and inspiration</p>
+	<section>
+		<h2>Posters</h2>
+		<p>A selection of colors, shapes and inspiration</p>
 
-	<div class="grid grid-flow-dense grid-cols-1 gap-1 md:grid-cols-2 xl:grid-cols-3">
-		{#each posters as filename}
-			<img
-				class="rounded-xl transition-all duration-300 hover:-rotate-2"
-				src="/assets/posters/{filename}"
-				alt={filename.split('.')[0]}
-			/>
-		{/each}
-	</div>
+		<div class="relative grid grid-flow-dense grid-cols-1 gap-1 md:grid-cols-2 xl:grid-cols-3">
+			{#if selectedImage != null}
+				<img
+					transition:fade={{ duration: 150 }}
+					on:click={() => {
+						selectedImage = null;
+					}}
+					class="absolute bottom-1/2 left-1/2 z-10 mx-auto w-[40%] -translate-x-1/2 -translate-y-1/2"
+					loading="lazy"
+					src={selectedImage}
+					alt="random img"
+				/>
+			{/if}
+			{#each posters as filename}
+				<ImageModal bind:selectedImage img="/assets/posters/{filename}" />
+			{/each}
+		</div>
+	</section>
 
 	<h2>Stickers</h2>
 	<p>Stickers I made for my friends</p>
