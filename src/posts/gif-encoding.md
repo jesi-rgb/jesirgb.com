@@ -15,7 +15,7 @@ I will try to explain the whole process from beginning to end of what it takes t
 
 ## Table of contents
 
-![Gif encoding](/assets/gif-encoding/thumbnail.webp)]
+![Gif encoding](/assets/gif-encoding/thumbnail.webp)
 
 ## GIF files: a bit of story and terms
 
