@@ -9,23 +9,23 @@
 	});
 </script>
 
-<div class="min-h-screen flex">
-	<div class="w-full my-auto mx-auto text-center relative">
+<div class="flex min-h-screen">
+	<div class="relative mx-auto my-auto w-full text-center">
 		<svg
-			class="w-full absolute -top-[500px] md:-top-[500px] -z-10"
+			class="absolute -top-[500px] -z-10 w-full md:-top-[500px]"
 			height="900"
 			viewBox="0 0 200 200"
 		>
 			<defs>
 				<linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-					<stop offset="0%" stop-color="#fff" />
+					<stop offset="0%" stop-color="text-primary-focus" />
 					<stop offset="70%" stop-color="#fff" stop-opacity="0" />
 				</linearGradient>
 			</defs>
 			{#if drawNumber}
 				<text
 					in:fly={{ y: -10, duration: 1000, delay: 300 }}
-					class="font-extrabold fill-base-100 text-[100px] md:text-[100px]"
+					class="fill-base-300 text-[100px] font-extrabold md:text-[100px]"
 					stroke-linecap="round"
 					stroke-width=".2"
 					stroke="url(#gradient)"
@@ -38,10 +38,10 @@
 			{/if}
 		</svg>
 
-		<div class="text-4xl md:text-6xl mt-10">
-			<div class="opacity-40 mb-20">Woopsies... <br /> something went wrong.</div>
+		<div class="mt-10 text-4xl md:text-5xl">
+			<div class="mb-20 opacity-40">Woopsies... <br /> something went wrong.</div>
 			<a
-				class="text-3xl w-fit mx-auto hover:text-primary-focus hover:font-extrabold font-mono transition-all duration-500"
+				class="hover:text-primary-focus mx-auto w-fit text-3xl underline transition-all duration-500 hover:font-extrabold"
 				href="/">Maybe go back?</a
 			>
 		</div>
