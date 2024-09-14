@@ -39,7 +39,7 @@
 	let thumbUrl = new URL('https://www.jesirgb.com/blog/thumbnails');
 	thumbUrl.searchParams.append('title', 'Pictures');
 	thumbUrl.searchParams.append(
-		'subtitle',
+		'desc',
 		'Selected pictures from Jesús Rascón, captured and edited on the go.'
 	);
 </script>
