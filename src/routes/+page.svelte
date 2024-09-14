@@ -79,7 +79,7 @@
 		</p>
 
 		<p>
-			I am also avid bass player, and overall chord enjoyer. Check it out at <a
+			I am also an avid bass player, and overall chord enjoyer. Check it out at <a
 				href="https://www.youtube.com/watch?v=Dka1qR5ecd0">HSX.</a
 			>
 		</p>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import Video from '$lib/components/Video.svelte';
 
 	import { MetaTags } from 'svelte-meta-tags';
@@ -62,14 +63,12 @@
 	}}
 />
 
+<div class="mb-10">
+	<MegaTitle>Name Sans</MegaTitle>
+</div>
 <main
 	class="prose prose-lg my-20 prose-h3:font-normal prose-a:transition-colors hover:prose-a:text-accent"
 >
-	<div class="mb-10">
-		<h2 class="whirly text-center">Name Sans Promo</h2>
-		<div class="divider"></div>
-	</div>
-
 	<p>
 		This project is a collaboration with Stephen from <a href="https://arrowtype.com">ArrowType</a> in
 		order to create a set of visual assets to accompany the release of Name Sans.
@@ -469,7 +468,7 @@
 		font-family: 'Whirly Birdie';
 		font-variation-settings:
 			'wdth' 125,
-			'wght' 70;
+			'wght' 80;
 		text-wrap: balance;
 		font-size: 7.5cqw;
 	}
