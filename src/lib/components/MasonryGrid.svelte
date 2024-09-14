@@ -66,8 +66,8 @@
 			<img
 				loading="lazy"
 				src={selectedImage?.url + '&tr=w-0.8,q-80,pr-true'}
-				width={selectedImage.width * 0.8}
-				height={selectedImage.height * 0.8}
+				width={selectedImage?.width * 0.8}
+				height={selectedImage?.height * 0.8}
 				class="h-full w-full rounded-lg border border-base-content/30 object-contain shadow-md"
 				on:click={() => {
 					modal.close();
