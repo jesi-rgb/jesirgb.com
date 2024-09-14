@@ -1,5 +1,6 @@
 <script lang="ts">
 	import MasonryGrid from '$lib/components/MasonryGrid.svelte';
+	import MegaTitle from '$lib/components/MegaTitle.svelte';
 	import { onMount } from 'svelte';
 
 	let images;
@@ -17,8 +18,8 @@
 	});
 </script>
 
+<MegaTitle>Pictures</MegaTitle>
+
 {#if images}
-	<div class="my-20">
-		<MasonryGrid {images} />
-	</div>
+	<MasonryGrid {images} />
 {/if}

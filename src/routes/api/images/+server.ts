@@ -10,7 +10,7 @@ export async function GET() {
 
   // Fetch the list of images from the ImageKit API
   const response = await fetch(
-    `${imagekitUrl}?path=${encodeURIComponent(folderPath)}`,
+    `${imagekitUrl}?path=${encodeURIComponent(folderPath)}&q=30`,
     {
       headers: {
         Authorization: "Basic " + btoa(`${privateKey}:`),

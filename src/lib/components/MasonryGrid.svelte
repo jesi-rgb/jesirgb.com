@@ -10,19 +10,13 @@
 	images.sort((a, b) => {
 		const aDate = new Date(a.embeddedMetadata.DateCreated);
 		const bDate = new Date(b.embeddedMetadata.DateCreated);
-		console.log(bDate);
 
 		return bDate - aDate;
 	});
 
 	let selectedImage: any | null = null;
-	$: console.log(images);
 
-	let modalVisible = false; // reactive boolean to toggle modal
 	let modal; // bind this to the modal element
-
-	// Reactive statement: toggles modal visibility when selectedImage changes
-	$: modalVisible = selectedImage !== null;
 
 	// Close modal on Escape key press using Svelte's reactivity
 	const handleKeyDown = (event: KeyboardEvent) => {
@@ -40,13 +34,14 @@
 <svelte:window on:keydown={handleKeyDown} />
 
 <!-- Masonry Grid -->
-<div class="column-2 gap-4 sm:columns-2 md:columns-3 lg:columns-4">
+<div class="masonry-grid">
 	{#each images as image}
-		<div class="mb-4">
+		<div class="masonry-item mb-4">
 			<img
-				src={image.url}
+				src={image.url + '&q=10&pr-true'}
+				loading="lazy"
 				alt={image.alt}
-				class="h-auto w-full transform cursor-pointer rounded-lg shadow-lg transition-transform hover:scale-105"
+				class="h-auto w-full transform cursor-pointer rounded-lg border border-base-content/30 shadow-md transition-transform hover:scale-105"
 				on:click={() => {
 					selectedImage = image;
 					modal.showModal();
@@ -61,30 +56,37 @@
 	<div class="modal-box">
 		<div class="">
 			<img
-				src={selectedImage?.url}
-				alt={selectedImage?.alt}
-				class="h-full w-full rounded-lg object-contain shadow-xl"
-				on:click={modal.close()}
+				loading="lazy"
+				src={selectedImage?.url + '&q=40&pr=true'}
+				class="h-full w-full rounded-lg border border-base-content/30 object-contain shadow-md"
+				on:click={() => {
+					modal.close();
+					selectedImage = null;
+				}}
 			/>
 
-			<div class="my-3 flex flex-row justify-between text-xs">
+			<div class="divider"></div>
+
+			<div
+				class="grid grid-cols-2 text-xs md:flex md:grid-cols-none md:flex-row md:justify-between"
+			>
 				<div class="flex items-center gap-1">
-					<CalendarDot size={15} />
+					<CalendarDot class="opacity-70" size={15} />
 					{new Date(selectedImage?.embeddedMetadata.DateTimeOriginal).toLocaleString('es-ES')}
 				</div>
 
 				<div class="flex items-center gap-1">
-					<Camera size={15} />
+					<Camera class="opacity-70" size={15} />
 					{selectedImage?.embeddedMetadata.Model}
 				</div>
 
 				<div class="flex items-center gap-1">
-					<FilmStrip size={15} />
+					<FilmStrip class="opacity-70" size={15} />
 					ISO: {selectedImage?.embeddedMetadata.ISO}
 				</div>
 
 				<div class="flex items-center gap-1">
-					<Aperture size={15} />
+					<Aperture class="opacity-70" size={15} />
 					ƒ: {selectedImage?.embeddedMetadata.FNumber}
 				</div>
 			</div>
@@ -102,5 +104,14 @@
 	.columns-3 > div,
 	.columns-4 > div {
 		break-inside: avoid-column;
+	}
+	.masonry-grid {
+		column-count: 4; /* Number of columns (adjust for your layout) */
+		column-gap: 16px; /* Space between columns */
+	}
+
+	.masonry-item {
+		break-inside: avoid; /* Prevent images from breaking inside columns */
+		margin-bottom: 16px; /* Spacing between items */
 	}
 </style>
