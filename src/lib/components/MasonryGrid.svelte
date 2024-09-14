@@ -16,7 +16,7 @@
 
 	let selectedImage: any | null = null;
 
-	let modal; // bind this to the modal element
+	let modal: HTMLDialogElement; // bind this to the modal element
 
 	// Close modal on Escape key press using Svelte's reactivity
 	const handleKeyDown = (event: KeyboardEvent) => {
@@ -29,6 +29,11 @@
 	const closeModal = () => {
 		selectedImage = null;
 	};
+
+	const prefetchImage = (imageSrc: string) => {
+		const img = new Image();
+		img.src = imageSrc; // Browser starts downloading the image
+	};
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
@@ -38,7 +43,10 @@
 	{#each images as image}
 		<div class="masonry-item mb-4">
 			<img
-				src={image.url + '&q=10&pr-true'}
+				src={image.url + '&tr=w-0.3,q-30,pr-true'}
+				width={image.width * 0.2}
+				height={image.height * 0.2}
+				on:mouseenter={() => prefetchImage(image.url)}
 				loading="lazy"
 				alt={image.alt}
 				class="h-auto w-full transform cursor-pointer rounded-lg border border-base-content/30 shadow-md transition-transform hover:scale-105"
@@ -57,7 +65,7 @@
 		<div class="">
 			<img
 				loading="lazy"
-				src={selectedImage?.url + '&q=40&pr=true'}
+				src={selectedImage?.url + '&tr=w-0.8,q-80,pr-true'}
 				class="h-full w-full rounded-lg border border-base-content/30 object-contain shadow-md"
 				on:click={() => {
 					modal.close();
@@ -93,25 +101,39 @@
 		</div>
 	</div>
 	<form method="dialog" class="modal-backdrop">
-		<button>close</button>
+		<button
+			on:click={() => {
+				selectedImage = null;
+			}}>close</button
+		>
 	</form>
 </dialog>
 
 <style>
-	/* Prevent images from breaking between columns for the masonry layout */
-	.columns-1 > div,
-	.columns-2 > div,
-	.columns-3 > div,
-	.columns-4 > div {
-		break-inside: avoid-column;
-	}
 	.masonry-grid {
 		column-count: 4; /* Number of columns (adjust for your layout) */
-		column-gap: 16px; /* Space between columns */
+		column-gap: 10px; /* Space between columns */
+	}
+
+	@media (max-width: 1024px) {
+		.masonry-grid {
+			column-count: 3;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.masonry-grid {
+			column-count: 2;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.masonry-grid {
+			column-count: 1;
+		}
 	}
 
 	.masonry-item {
 		break-inside: avoid; /* Prevent images from breaking inside columns */
-		margin-bottom: 16px; /* Spacing between items */
 	}
 </style>
