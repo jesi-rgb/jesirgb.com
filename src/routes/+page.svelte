@@ -93,18 +93,57 @@
 		<h2>The Stuff™</h2>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
+			<WorkItem link="https://tractor.graphext.com/">
+				<div slot="title">Tractor</div>
+				<div slot="description">An automated scraping tool</div>
+				<div slot="icon">
+					<svg
+						width="31px"
+						height="29px"
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+						xml:space="preserve"
+						class="fill-primary"
+						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+					>
+						<g transform="matrix(1,0,0,1,-3.712,-202.607)">
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M198.656,155.704C219.523,155.704 236.465,172.645 236.465,193.512C236.465,214.379 219.523,231.321 198.656,231.321C177.79,231.321 160.848,214.379 160.848,193.512C160.848,172.645 177.79,155.704 198.656,155.704ZM198.656,179.273C190.798,179.273 184.417,185.653 184.417,193.512C184.417,201.371 190.798,207.751 198.656,207.751C206.515,207.751 212.896,201.371 212.896,193.512C212.896,185.653 206.515,179.273 198.656,179.273Z"
+								/>
+							</g>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M79.957,103.657C115.187,103.657 143.789,132.259 143.789,167.489C143.789,202.718 115.187,231.321 79.957,231.321C44.727,231.321 16.125,202.718 16.125,167.489C16.125,132.259 44.727,103.657 79.957,103.657ZM79.957,127.226C57.735,127.226 39.694,145.267 39.694,167.489C39.694,189.71 57.735,207.751 79.957,207.751C102.178,207.751 120.22,189.71 120.22,167.489C120.22,145.267 102.178,127.226 79.957,127.226Z"
+								/>
+							</g>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M131.707,49.41L108.67,54.388L106.181,42.869L103.897,32.301L42.511,32.301L33.216,75.322C71.126,56.106 118.449,61.763 150.815,92.293L234.798,117.293L234.798,149.79L211.229,149.79L211.229,134.868L138.46,113.206L136.35,111.096C105.226,79.971 54.688,79.971 23.564,111.096L3.712,100.274L23.491,8.732L122.918,8.732L131.707,49.41Z"
+								/>
+							</g>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M194.164,119.61L170.595,119.61L170.595,78.954L193.092,54.86L210.319,70.945L202.276,79.559L194.164,88.247L194.164,119.61Z"
+								/>
+							</g>
+						</g>
+					</svg>
+				</div>
+			</WorkItem>
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
 				<div slot="title">Svelte's Advent of Code 2023</div>
 				<div slot="description">A set of 24 prompts to sharpen your Svelte skills</div>
 				<div slot="icon">
-					<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[4px] fill-primary" />
+					<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[3px] fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
 				<div slot="title">Pangea</div>
 				<div slot="description">The country guessing game</div>
 				<div slot="icon">
-					<GlobeStand size={40} weight="duotone" class="ml-[3px] mt-[4px] fill-primary" />
+					<GlobeStand size={40} weight="duotone" class="fill-primary" />
 				</div>
 			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
@@ -217,15 +256,19 @@
 				<div slot="date">Jan, 2024</div>
 				<div slot="subtitle">Design Engineer, Content Creation</div>
 				<div slot="content">
-					This one is funny because Alex, one of my best friends, got to meet Victoriano, CEO @ <a
-						href="https://graphext.com">Graphext</a
-					>. Alex put us in contact and it turns out we get on very well. Eventually, I got to meet
-					the team at their beautiful office in Madrid.
+					Graphext being quite a small startup, everyone wears lots of hats. I mainly managed the
+					youtube channel, creating tutorials, and wrote a huge portion of its documentation.
+
+					<br />
+					I also lead the <a href="https://tractor.graphext.com">Tractor 2.0</a> proyect, a revival
+					of a scraping tool on top of Apify, quite useful for very quickly bringing social media
+					data to be analyzed within Graphext.
 
 					<br />
 					<br />
-					Long story short, I am now captivated by the product and leading the Small Details Team™ as
-					well as producing some content for them.
+					This one is funny because Alex, one of my best friends, got to meet Victoriano, the CEO. Alex
+					put us in contact and it turns out we get on very well. Eventually, I got to meet the team
+					at their beautiful office in Madrid.
 				</div>
 			</TimelineItem>
 			<TimelineItem>
@@ -234,8 +277,8 @@
 				<div slot="subtitle">Technical Content Creator</div>
 				<div slot="content">
 					In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
-					helping create explainer video assets in the fields of mathematics, physics, chemsitry and
-					sciences.
+					creating and animating hundreds of explainer video assets in the fields of mathematics,
+					physics, chemsitry and sciences through animation engineering.
 					<br /><br />
 					These videos help kids get around the game and understand complex concepts in an accessible,
 					fun way.
@@ -290,18 +333,27 @@
 				<div slot="date">Nov, 2021</div>
 				<div slot="subtitle">Art Direction & Animation Engineering</div>
 				<div slot="content">
-					My journey as a freelancer was blessed when I joined the <a
-						href="https://youtube.com/@reducible">Reducible</a
+					Helped develop a clearer brand identity for the channel, helping it stand out among a
+					rapidly growing community of educational math channels. I also contributed directly to the
+					creation of the animations needed, made through code. Kind of like <i
+						>animation engineering.</i
 					>
+
+					<br />
+					<br />
+					My journey as a freelancer was blessed when I joined the
+					<a href="https://youtube.com/@reducible">Reducible</a>
 					youtube channel as an Art Director and Animator. <strong>Nipun</strong>, the creator and
 					founder of the channel, gave me the most welcoming time and we formed a team to improve
-					the channel from the ground up. <br /><br /> This project really holds a special place in
-					my heart, since I was so early in my career but still, he trusted me and allowed me to
-					explore and exploit all the possibilities. No judgement, no bullshit, just vibes and code.
-					<br /><br /> Helped develop a clearer brand identity to the channel, helping it stand out
-					among a rapidly growing community of educational math channels.
+					the channel from the ground up.
+					<br />
+					<br />
+					This project really holds a special place in my heart, since I was so early in my career but
+					still, he trusted me and allowed me to explore and exploit all the possibilities. No judgement,
+					no bullshit, just vibes and code.
+					<br />
+					<br />
 
-					<br /><br />
 					<i>Animation engineering</i> comes from the fact that all animations were made through code.
 				</div>
 			</TimelineItem>
@@ -313,7 +365,8 @@
 				<div slot="content">
 					In September, 2021 I started my career as a freelancer. I had just come out of my masters
 					and had absolutely no idea nor properly developed skill. The only thing I had clear was to
-					avoid joining some generic big corporation to do lame stuff as hard as I possibly could.
+					avoid as hard as I possibly could joining some generic big consultancy corporation to do
+					lame stuff. Top 1 best decisions I've ever made.
 
 					<br /><br />
 					During this time, I worked with the
