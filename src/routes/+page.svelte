@@ -256,13 +256,26 @@
 				<div slot="date">Jan, 2024</div>
 				<div slot="subtitle">Design Engineer, Content Creation</div>
 				<div slot="content">
-					Graphext being quite a small startup, everyone wears lots of hats. I mainly managed the
-					youtube channel, creating tutorials, and wrote a huge portion of its documentation.
+					Graphext being quite a small startup, everyone wears lots of hats.
 
 					<br />
-					I also lead the <a href="https://tractor.graphext.com">Tractor 2.0</a> proyect, a revival
-					of a scraping tool on top of Apify, quite useful for very quickly bringing social media
-					data to be analyzed within Graphext.
+					<br />
+					I worked on <a href="https://tractor.graphext.com">Tractor 2.0</a>, a revival of a
+					beautiful scraping tool on top of Apify, quite useful for very quickly bringing social
+					media data to be analyzed within Graphext. The main focus was being able to get a useful
+					social-media dataset quickly, easily and efficiently. The interface was designed with a
+					great deal of care, and tons of invisible details make your experience as smooth as
+					possible to download a piece of data. This makes for a great compainon to Graphext, where
+					you can readily analyze what you just downloaded.
+
+					<br />
+					<br />
+					Additionally, I was in charge of writing and maintaining the ever growing
+					<a href="https://docs.graphext.com">documentation</a>
+					for the tool, almost from scratch. Special emphasis was considered to make it as easy as possible
+					to understand what Graphext can offer you, while still providing with great, dense documents
+					that answer any of your questions. You will also find me in the youtube channel, creating tutorials
+					and producing videos that showcase the tool or explain some complex topic.
 
 					<br />
 					<br />
@@ -277,11 +290,19 @@
 				<div slot="subtitle">Technical Content Creator</div>
 				<div slot="content">
 					In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
-					creating and animating hundreds of explainer video assets in the fields of mathematics,
-					physics, chemsitry and sciences through animation engineering.
+					creating and animating 500+ explainer video assets in the fields of mathematics, physics,
+					chemsitry and sciences through animation engineering.
+
+					<br />
+					<br />
+					All this was executed within quite intense workloads and very tight deadlines, where managing
+					and organizing your own work was key in order to get things done. Special care was put into
+					communication, coordinating with my teammates to avoid confusion and remove blocking paths
+					among the quite complex task that is is working in a startup.
+
 					<br /><br />
-					These videos help kids get around the game and understand complex concepts in an accessible,
-					fun way.
+					Fortunately, these videos helped kids get around the game and understand complex concepts in
+					an accessible, fun way.
 				</div>
 			</TimelineItem>
 

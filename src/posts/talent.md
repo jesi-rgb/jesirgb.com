@@ -53,13 +53,13 @@ Time is the main concern that no one talks about. Time is the only thing that co
 
 People only worry about how much time they'll have to invest into something, and that's because time is the most important thing we have in our lives. And investing our time appropriately is key for us. Or, at least, having the feeling we are doing so.
 
-Peter Norvig talks about this in his book <a href="https://norvig.com/21-days.html">Teach Yourself Programming in Ten Years</a>, where he questions why there is such a need to learn programming in such accelerated rhythms.
+Peter Norvig talks about this in his book <a href="https://norvig.com/21-days.html">Teach Yourself Programming in Ten Years</a>, where he questions why there is such a need to learn programming in these accelerated rhythms.
 
 A classic answer may arise: programming jobs are well paid and "learning the skill for a well paid job in 24 hours" seems like such a worth investment.
 
-It's very clear, though, upon further and a more thorough inspection, that such thing makes very little sense.
+It's very clear, though, that such thing makes very little sense.
 
-Learning an instrument is also usually treated as such. Playing music is regarded as a very disciplined activity, and you don't deserve to even try if you are not extremely proficient and are trying to be the absolute best.
+Learning an instrument also suffers from this. Playing music is regarded as a very disciplined activity, and you don't deserve to even try if you are not extremely proficient and are trying to be the absolute best.
 
 > I'm very bad at playing guitar
 
@@ -143,7 +143,7 @@ This ambition yields great results in healthy doses, and catastrophic outcomes i
 
 We have to be careful on how much pressure we put on ourselves. We have to strive to get better. But we have to celebrate the path we've already gone through.
 
-For me, personally, the real reward I get is that the knowledge acquired allows for a deeper understanding of the work you are inspired with. You can clearly see the directions and decisions made within the works of art you admire. This brings a very deep appreciation and a closer feeling to the work itself.
+For me, personally, the real reward I get is that the knowledge acquired allows for a deeper understanding of the work you are inspired by. You can clearly see the directions and decisions made within the works of art you admire. This brings a very deep appreciation and a closer feeling to the work itself.
 
 ## Honest Goals
 
