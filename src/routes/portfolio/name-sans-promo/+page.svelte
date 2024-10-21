@@ -76,7 +76,7 @@
 
 	<section>
 		<h2>The final product</h2>
-		<div class="my-10">
+		<div class="not-prose mx-auto w-fit">
 			<Video autoplay url="https://assets-jesi-rgb.s3.eu-north-1.amazonaws.com/name_sans.webm"
 			></Video>
 		</div>

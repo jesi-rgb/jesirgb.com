@@ -11,7 +11,7 @@
 <MegaTitle>Contact</MegaTitle>
 
 <section class="h-fit min-h-full">
-	<div class="prose text-center text-xl md:text-2xl">Find me all over the internet</div>
+	<div class="prose mx-auto text-center text-xl md:text-2xl">Find me all over the internet</div>
 
 	<div class="mx-auto mt-10 grid w-fit grid-cols-2 gap-4 md:grid-cols-3">
 		<a href="https://twitter.com/jesi_rgb">

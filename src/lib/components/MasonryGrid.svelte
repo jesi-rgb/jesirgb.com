@@ -6,7 +6,7 @@
 	import { MetaTags } from 'svelte-meta-tags';
 
 	// Props: array of image objects
-	export let images;
+	export let images = [];
 
 	images.sort((a, b) => {
 		const aDate = new Date(a.embeddedMetadata.DateCreated);
@@ -44,7 +44,7 @@
 	{#each images as image}
 		<div class="masonry-item mb-4">
 			<img
-				src={image.url + '&tr=w-0.3,q-30,pr-true'}
+				src={image.url + '&tr=w-0.2,q-30,pr-true'}
 				width={image.width * 0.2}
 				height={image.height * 0.2}
 				on:mouseenter={() => prefetchImage(image.url)}
@@ -62,48 +62,51 @@
 
 <!-- Modal for Expanded Image -->
 <dialog id="display_image" bind:this={modal} class="modal">
-	<div class="modal-box">
-		<div class="">
-			<img
-				loading="lazy"
-				src={selectedImage?.url + '&tr=w-0.8,q-80,pr-true'}
-				width={selectedImage?.width * 0.8}
-				height={selectedImage?.height * 0.8}
-				class="h-full w-full rounded-lg border border-base-content/30 object-contain shadow-md"
-				on:click={() => {
-					modal.close();
+	<div class="max-w-screen modal-box m-0 p-3 pb-4">
+		<img
+			loading="lazy"
+			src={selectedImage?.url + '&tr=pr-true'}
+			width={selectedImage?.width}
+			height={selectedImage?.height}
+			class="w-screen rounded-lg border border-base-content/30
+			object-contain shadow-md"
+			on:click={() => {
+				modal.close();
+				setTimeout(() => {
 					selectedImage = null;
-				}}
-			/>
+				}, 400);
+			}}
+		/>
 
-			<div class="divider"></div>
+		<div class="divider"></div>
 
-			<div
-				class="grid grid-cols-2 text-xs md:flex md:grid-cols-none md:flex-row md:justify-between"
-			>
-				<div class="flex items-center gap-1">
-					<CalendarDot class="opacity-70" size={15} />
-					{new Date(selectedImage?.embeddedMetadata.DateTimeOriginal).toLocaleString('es-ES')}
-				</div>
+		<div class="grid grid-cols-2 text-xs md:flex md:grid-cols-none md:flex-row md:justify-between">
+			<div class="flex items-center gap-1 slashed-zero tabular-nums">
+				<CalendarDot class="opacity-70" size={15} />
+				{new Date(selectedImage?.embeddedMetadata.DateTimeOriginal).toLocaleString('es-ES')}
+			</div>
 
-				<div class="flex items-center gap-1">
-					<Camera class="opacity-70" size={15} />
-					{selectedImage?.embeddedMetadata.Model}
-				</div>
+			<div class="flex items-center gap-1">
+				<Camera class="opacity-70" size={15} />
+				{selectedImage?.embeddedMetadata.Model}
+			</div>
 
-				<div class="flex items-center gap-1">
-					<FilmStrip class="opacity-70" size={15} />
-					ISO: {selectedImage?.embeddedMetadata.ISO}
-				</div>
+			<div class="flex items-center gap-1">
+				<FilmStrip class="opacity-70" size={15} />
+				ISO: {selectedImage?.embeddedMetadata.ISO}
+			</div>
 
-				<div class="flex items-center gap-1">
-					<Aperture class="opacity-70" size={15} />
-					ƒ: {selectedImage?.embeddedMetadata.FNumber}
-				</div>
+			<div class="flex items-center gap-1">
+				<Aperture class="opacity-70" size={15} />
+				ƒ: {selectedImage?.embeddedMetadata.FNumber}
 			</div>
 		</div>
 	</div>
-	<form method="dialog" class="modal-backdrop">
+	<form
+		method="dialog"
+		class="modal-backdrop bg-primary-content/80 backdrop-blur-sm
+		transition-all"
+	>
 		<button
 			on:click={() => {
 				selectedImage = null;

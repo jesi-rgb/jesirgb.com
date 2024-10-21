@@ -9,26 +9,34 @@
 <MegaTitle>Portfolio</MegaTitle>
 
 <section
-	class="prose prose-lg w-full prose-headings:tracking-normal prose-a:no-underline prose-img:m-0"
+	class="prose prose-lg mx-auto min-w-full prose-headings:tracking-normal prose-a:no-underline prose-img:m-0"
 >
-	<section>
+	<section class="">
 		<h2>Name Sans Promo</h2>
-		<img
-			class="rounded-xl border-2 border-dashed border-base-content p-1 lg:mx-auto lg:w-2/3"
-			src="/assets/name-sans/wave_bold.webp"
-			alt="Name Sans Variable"
-		/>
-		<p>
-			In December, 2023, I joined forces with Stephen from{' '}<a
-				class="after:content-['_↗'] hover:text-accent"
-				href="https://arrowtype.com">ArrowType</a
-			> to make a promotional video for Name Sans.
-		</p>
+		<div class="flex flex-col justify-between md:flex-row">
+			<p class="md:w-1/3">
+				In December, 2023, I joined forces with Stephen from{' '}<a
+					class="after:content-['_↗'] hover:text-accent"
+					href="https://arrowtype.com">ArrowType</a
+				>
+				to make a promotional video for Name Sans.
+				<br />
+				<br />
 
-		<a
-			class="transition-colors after:content-['_↗'] hover:text-accent"
-			href="/portfolio/name-sans-promo">Read more</a
-		>
+				<a
+					class="transition-colors after:content-['_↗'] hover:text-accent"
+					href="/portfolio/name-sans-promo">Read more</a
+				>
+			</p>
+
+			<img
+				class="rounded-xl border-2 border-dashed border-base-content
+				p-1"
+				width={400}
+				src="/assets/name-sans/wave_bold.webp"
+				alt="Name Sans Variable"
+			/>
+		</div>
 	</section>
 
 	<h2>Videos</h2>

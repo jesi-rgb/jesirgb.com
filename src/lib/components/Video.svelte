@@ -67,7 +67,7 @@
 	}
 </script>
 
-<div class="overflow-clip rounded-xl">
+<div class="w-full overflow-clip rounded-xl">
 	<video
 		src={url}
 		class="pointer-events-none h-auto w-full rounded-xl border-4 border-dashed drop-shadow-lg"
