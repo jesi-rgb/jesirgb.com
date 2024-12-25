@@ -8,7 +8,7 @@
 <style>
 	.whirly {
 		font-family: 'Whirly Birdie';
-		font-weight: 75;
+		font-weight: 85;
 		font-variation-settings: 'wdth' 110;
 		font-size: 14cqw;
 	}

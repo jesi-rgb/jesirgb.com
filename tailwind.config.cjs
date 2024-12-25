@@ -6,7 +6,7 @@ const config = {
 		extend: {
 			fontFamily: {
 				sans: ['AT Name Sans Variable', 'Supreme', 'apple-system', '--system-ui'],
-				mono: ['Recursive'],
+				mono: ['Iosevka'],
 				title: ['Whirly Birdie', 'New Title']
 			}
 		}

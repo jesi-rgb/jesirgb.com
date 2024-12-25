@@ -12,6 +12,19 @@
 }
 
 @font-face {
+	font-family: 'Iosevka';
+	src: local('Iosevka'), url('/fonts/Iosevka.woff2');
+	font-weight: 450;
+}
+
+@font-face {
+	font-family: 'Iosevka Italic';
+	src: local('Iosevka'), url('/fonts/IosevkaItalic.woff2');
+	font-weight: 450;
+	font-style: italic;
+}
+
+@font-face {
 	font-family: 'Whirlybats';
 	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlybatsVariable.ttf');
 }
