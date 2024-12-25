@@ -6,12 +6,6 @@
 }
 
 @font-face {
-	font-family: 'Recursive';
-	src: local('Recursive'), url('/fonts/Recursive.woff2');
-	font-weight: 300 1000;
-}
-
-@font-face {
 	font-family: 'Iosevka';
 	src: local('Iosevka'), url('/fonts/Iosevka.woff2');
 	font-weight: 450;
@@ -50,20 +44,6 @@ pre {
 	@apply bg-base-200 shadow-xl shadow-black/20 dark:bg-base-300 dark:bg-opacity-50 !important;
 
 	border: 2px dashed gray;
-
-	font-variation-settings:
-		'MONO' 1,
-		'wght' 550,
-		'CRSV' 1,
-		'CASL' 0.5;
-}
-
-code {
-	font-variation-settings:
-		'MONO' 1,
-		'wght' 550,
-		'CRSV' 1,
-		'CASL' 0.5;
 }
 
 p {
@@ -91,6 +71,10 @@ em {
 	background-image: radial-gradient(#ffffff10 1px, transparent 0);
 	background-size: 40px 40px;
 	background-position: 0px 0px;
+}
+
+.font-mono {
+	font-feature-settings: normal;
 }
 
 @media (prefers-color-scheme: dark) {

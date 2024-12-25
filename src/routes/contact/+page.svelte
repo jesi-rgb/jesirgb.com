@@ -62,7 +62,7 @@
 		and
 		<a
 			class="font-mono underline transition-colors hover:text-primary"
-			href="https://www.recursive.design/">Recursive</a
+			href="https://typeof.net/Iosevka/">Iosevka</a
 		>.
 		<br />
 		<a class="underline transition-colors hover:text-primary" href="https://svelte.dev">Svelte</a>
