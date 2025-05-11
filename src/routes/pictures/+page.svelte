@@ -1,66 +1,61 @@
 <script lang="ts">
-	import MasonryGrid from '$lib/components/MasonryGrid.svelte';
-	import MegaTitle from '$lib/components/MegaTitle.svelte';
-	import { onMount } from 'svelte';
-	import { MetaTags } from 'svelte-meta-tags';
-	import { scaleTime } from 'd3-scale';
-	import { extent } from 'd3-array';
-	import { timeDay, utcDay, unixDay } from 'd3-time';
-	import { fly } from 'svelte/transition';
+import MasonryGrid from "$lib/components/MasonryGrid.svelte";
+import MegaTitle from "$lib/components/MegaTitle.svelte";
+import { onMount } from "svelte";
+import { MetaTags } from "svelte-meta-tags";
+import { extent } from "d3-array";
+import { fly } from "svelte/transition";
 
-	let images;
-	let imageDates;
-	let timeline;
-	let hoveredDate;
+let images;
+let imageDates;
+let timeline;
+let hoveredImage;
 
-	function createTimelineDates(dates) {
-		const [minDate, maxDate] = extent(dates);
-		const dateArray = [];
-		let currentDate = new Date(minDate);
-		while (currentDate <= maxDate) {
-			dateArray.push(new Date(currentDate).toDateString());
-			currentDate.setDate(currentDate.getDate() + 1);
-		}
-		return dateArray;
+function createTimelineDates(dates) {
+	const [minDate, maxDate] = extent(dates);
+	const dateArray = [];
+	let currentDate = new Date(minDate);
+	while (currentDate <= maxDate) {
+		const dateStr = currentDate.toDateString();
+		dateArray.push(dateStr);
+		currentDate.setDate(currentDate.getDate() + 1);
 	}
+	return dateArray;
+}
 
-	const fetchImages = async () => {
-		const res = await fetch('/api/images');
+const fetchImages = async () => {
+	const res = await fetch("/api/images");
 
-		const data = await res.json();
-		images = data;
+	const data = await res.json();
+	images = data;
 
-		images.sort((a, b) => {
-			return (
-				new Date(a.embeddedMetadata.DateTimeOriginal) -
-				new Date(b.embeddedMetadata.DateTimeOriginal)
-			);
-		});
+	images.sort((a, b) => {
+		const aDate = new Date(a.embeddedMetadata.DateCreated);
+		const bDate = new Date(b.embeddedMetadata.DateCreated);
 
-		console.log('image', new Date(images[0].embeddedMetadata.DateTimeOriginal).toDateString());
-
-		imageDates = images.map((image) => {
-			return new Date(image.embeddedMetadata.DateTimeOriginal);
-		});
-		timeline = createTimelineDates(imageDates);
-
-		imageDates = imageDates.map((date) => {
-			return date.toDateString();
-		});
-
-		console.log(timeline);
-	};
-
-	onMount(() => {
-		fetchImages();
+		return bDate - aDate;
 	});
 
-	let thumbUrl = new URL('https://www.jesirgb.com/blog/thumbnails');
-	thumbUrl.searchParams.append('title', 'Pictures');
-	thumbUrl.searchParams.append(
-		'desc',
-		'Selected pictures from Jesús Rascón, captured and edited on the go.'
-	);
+	imageDates = images.map((image, i) => {
+		return new Date(image.embeddedMetadata.DateTimeOriginal);
+	});
+	timeline = createTimelineDates(imageDates);
+
+	imageDates = imageDates.map((date, i) => {
+		return { index: i, date: date.toDateString() };
+	});
+};
+
+onMount(() => {
+	fetchImages();
+});
+
+let thumbUrl = new URL("https://www.jesirgb.com/blog/thumbnails");
+thumbUrl.searchParams.append("title", "Pictures");
+thumbUrl.searchParams.append(
+	"desc",
+	"Selected pictures from Jesús Rascón, captured and edited on the go.",
+);
 </script>
 
 <MetaTags
@@ -97,35 +92,32 @@
 
 {#if images}
 	<div
-		class="sticky top-10 z-10 mb-2 flex items-center justify-between bg-base-100/80 p-1 backdrop-blur-lg"
-		on:mouseleave={() => {
-			hoveredDate = null;
-		}}
+		class="sticky top-10 z-10 mb-2 flex h-14 items-center justify-between bg-base-100/80 p-1 backdrop-blur-lg"
 	>
 		{#each timeline as day}
-			{#if imageDates.includes(day)}
+			{#if imageDates.map((e) => e.date).includes(day)}
 				<div
-					on:mouseover={() => {
-						hoveredDate = day;
-						console.log(hoveredDate);
-					}}
-					class="relative h-3 w-[1px] bg-primary"
+					class="relative h-3 w-[1px] duration-200 {hoveredImage && hoveredImage.date === day
+						? 'h-4 w-[3px] bg-accent'
+						: 'bg-primary'}"
+					title={day}
 				>
-					{#if hoveredDate === day}
+					{#if hoveredImage && hoveredImage.date === day}
 						<span
-							transition:fly={{ y: 5, duration: 100 }}
-							class="absolute -bottom-5 w-32 translate-x-[1px]
-								translate-y-[1px] text-xs text-white">{hoveredDate}</span
+							transition:fly={{ y: -5, duration: 100 }}
+							class="hovered-date absolute -bottom-5 left-1/2
+							w-max -translate-x-1/2
+						text-xs"
 						>
-						<span transition:fly={{ y: 5, duration: 100 }} class="absolute -bottom-5 w-32 text-xs"
-							>{hoveredDate}</span
-						>
+							{day.split(' ').slice(1).join(' ')}
+						</span>
 					{/if}
 				</div>
 			{:else if day.includes('Jan 01')}
 				<div class="relative h-5 w-[2px] bg-accent">
-					<span class="year absolute -top-5 left-1/2 -translate-x-1/2 text-xs"
-						>{day.split(' ')[3]}</span
+					<span
+						class="absolute -top-4 left-1/2 -translate-x-1/2
+						text-xs">{day.split(' ')[3]}</span
 					>
 				</div>
 			{:else}
@@ -133,12 +125,5 @@
 			{/if}
 		{/each}
 	</div>
-	<MasonryGrid {hoveredDate} {images} />
+	<MasonryGrid bind:hoveredImage {images} />
 {/if}
-
-<style>
-	.year {
-		filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.9));
-		mix-blend-mode: difference;
-	}
-</style>

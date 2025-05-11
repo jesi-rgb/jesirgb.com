@@ -1,56 +1,37 @@
 <script lang="ts">
-	import CalendarDot from 'phosphor-svelte/lib/CalendarDot';
-	import Camera from 'phosphor-svelte/lib/Camera';
-	import FilmStrip from 'phosphor-svelte/lib/FilmStrip';
-	import Aperture from 'phosphor-svelte/lib/Aperture';
-	import { MetaTags } from 'svelte-meta-tags';
+import CalendarDot from "phosphor-svelte/lib/CalendarDot";
+import Camera from "phosphor-svelte/lib/Camera";
+import FilmStrip from "phosphor-svelte/lib/FilmStrip";
+import Aperture from "phosphor-svelte/lib/Aperture";
 
-	// Props: array of image objects
-	export let images = [];
-	export let hoveredDate: string | null;
+export let images = [];
+export let hoveredImage: string | null;
 
-	images.sort((a, b) => {
-		const aDate = new Date(a.embeddedMetadata.DateCreated);
-		const bDate = new Date(b.embeddedMetadata.DateCreated);
+let selectedImage: any | null = null;
 
-		return bDate - aDate;
-	});
+let modal: HTMLDialogElement; // bind this to the modal element
 
-	let selectedImage: any | null = null;
-
-	let modal: HTMLDialogElement; // bind this to the modal element
-
-	// Close modal on Escape key press using Svelte's reactivity
-	const handleKeyDown = (event: KeyboardEvent) => {
-		if (event.key === 'Escape' && selectedImage) {
-			closeModal();
-		}
-	};
-
-	// Close the modal
-	const closeModal = () => {
-		selectedImage = null;
-	};
-
-	const prefetchImage = (imageSrc: string) => {
-		const img = new Image();
-		img.src = imageSrc; // Browser starts downloading the image
-	};
+const prefetchImage = (imageSrc: string) => {
+	const img = new Image();
+	img.src = imageSrc; // Browser starts downloading the image
+};
 </script>
 
-<svelte:window on:keydown={handleKeyDown} />
-
 <!-- Masonry Grid -->
-<div class="masonry-grid">
-	{#each images as image}
+<div on:mouseleave={() => (hoveredImage = null)} class="masonry-grid">
+	{#each images as image, i}
 		<div class="masonry-item mb-4">
 			<img
-				class:hovered={hoveredDate ===
-					new Date(image.embeddedMetadata.DateTimeOriginal).toDateString()}
 				src={image.url + '&tr=w-0.2,q-30,pr-true'}
 				width={image.width * 0.2}
 				height={image.height * 0.2}
-				on:mouseenter={() => prefetchImage(image.url)}
+				on:mouseenter={() => {
+					hoveredImage = {
+						index: i,
+						date: new Date(image.embeddedMetadata.DateCreated).toDateString()
+					};
+					prefetchImage(image.url);
+				}}
 				loading="lazy"
 				alt={image.alt}
 				class="h-auto w-full transform cursor-pointer rounded-lg border border-base-content/30 shadow-md transition-transform hover:scale-105"
