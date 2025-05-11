@@ -7,6 +7,7 @@
 
 	// Props: array of image objects
 	export let images = [];
+	export let hoveredDate: string | null;
 
 	images.sort((a, b) => {
 		const aDate = new Date(a.embeddedMetadata.DateCreated);
@@ -44,6 +45,8 @@
 	{#each images as image}
 		<div class="masonry-item mb-4">
 			<img
+				class:hovered={hoveredDate ===
+					new Date(image.embeddedMetadata.DateTimeOriginal).toDateString()}
 				src={image.url + '&tr=w-0.2,q-30,pr-true'}
 				width={image.width * 0.2}
 				height={image.height * 0.2}
@@ -141,5 +144,10 @@
 
 	.masonry-item {
 		break-inside: avoid; /* Prevent images from breaking inside columns */
+	}
+
+	.hovered {
+		border-color: #fbbf24;
+		box-shadow: 0 0 20px #fbbf24;
 	}
 </style>

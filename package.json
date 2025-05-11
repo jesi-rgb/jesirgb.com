@@ -53,5 +53,8 @@
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
     "format": "prettier --plugin-search-dir . --write ."
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@types/d3": "^7.4.3"
+  }
 }
