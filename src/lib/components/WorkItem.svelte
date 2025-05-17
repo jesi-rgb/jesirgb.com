@@ -1,5 +1,4 @@
 <script lang="ts">
-	
 	interface Props {
 		/* export let title; */
 		link: string;
@@ -8,28 +7,23 @@
 		description?: import('svelte').Snippet;
 	}
 
-	let {
-		link,
-		icon,
-		title,
-		description
-	}: Props = $props();
+	let { link, icon, title, description }: Props = $props();
 </script>
 
 <a href={link}>
 	<div class="group flex items-start space-x-3">
 		<div
-			class="flex h-16 w-16 items-center rounded-full border-2 border-base-content/30 transition-all group-hover:border-base-content/80"
+			class="border-base-content/30 group-hover:border-base-content/80 flex h-16 w-16 items-center rounded-full border-2 transition-all"
 		>
 			<div class="mx-auto">
 				{@render icon?.()}
 			</div>
 		</div>
-		<div class="flex w-3/4 flex-col transition-colors group-hover:text-base-content">
+		<div class="group-hover:text-base-content flex w-3/4 flex-col transition-colors">
 			<div class="whirly">
 				{@render title?.()}
 			</div>
-			<p class="balanced my-0 opacity-60">
+			<p style="margin-top: 0;" class="balanced my-0 opacity-60">
 				{@render description?.()}
 			</p>
 		</div>

@@ -30,7 +30,7 @@
 	{/if}
 	<label class="swap swap-rotate self-start md:self-center">
 		<!-- this hidden checkbox controls the state -->
-		<input type="checkbox" class="theme-controller" value="dark" />
+		<input type="checkbox" class="theme-controller" value="jesi-dark" />
 
 		<!-- sun icon -->
 		<Sun class="swap-off" size={32} weight={'duotone'} />

@@ -55,7 +55,7 @@
 		</p>
 
 		<p>
-			I am currently a <i>Technical Producer</i> of sorts at
+			I've previously worked at
 			<a href="https://graphext.com">
 				<span class="inline-block align-middle">
 					<svg
@@ -68,7 +68,8 @@
 						/></svg
 					>
 				</span>Graphext</a
-			>, arguably the fastest and most powerful analytics tool there is available in the market.
+			> as a Design Engineer, crafting landing pages, documentation and tooling for what's arguably the
+			fastest and most powerful analytics tool there is available in the market.
 		</p>
 		<p>
 			I've also worked as a freelance <i>technical content creator</i> with channels like
@@ -147,7 +148,7 @@
 				{/snippet}
 				{#snippet icon()}
 					<div>
-						<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[3px] fill-primary" />
+						<CursorClick size={40} weight="duotone" class="fill-primary mt-[3px] ml-[3px]" />
 					</div>
 				{/snippet}
 			</WorkItem>
@@ -223,7 +224,7 @@
 				{/snippet}
 				{#snippet icon()}
 					<div>
-						<Envelope size={40} weight="bold" class="-rotate-12 fill-primary" />
+						<Envelope size={40} weight="bold" class="fill-primary -rotate-12" />
 					</div>
 				{/snippet}
 			</WorkItem>

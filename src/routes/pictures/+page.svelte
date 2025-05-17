@@ -87,7 +87,7 @@
 
 {#if images}
 	<div
-		class="sticky top-10 z-10 mb-2 flex h-14 items-center justify-between bg-base-100/80 p-1 backdrop-blur-lg"
+		class="bg-base-100/80 sticky top-10 z-10 mb-2 flex h-14 items-center justify-between p-1 backdrop-blur-lg"
 	>
 		{#if timeline}
 			{#each timeline as day}
@@ -96,7 +96,7 @@
 						hoveredImage && new Date(hoveredImage.createdAt).toDateString() === day}
 					<div
 						class="relative h-3 w-px duration-200 {hoveredDate
-							? 'h-4 w-[3px] bg-accent'
+							? 'bg-accent h-4 w-[3px]'
 							: 'bg-primary'}"
 						title={day}
 					>
@@ -112,14 +112,14 @@
 						{/if}
 					</div>
 				{:else if day.includes('Jan 01')}
-					<div class="relative h-5 w-[2px] bg-accent">
+					<div class="bg-accent relative h-5 w-[2px]">
 						<span
 							class="absolute -top-4 left-1/2 -translate-x-1/2
 						text-xs">{day.split(' ')[3]}</span
 						>
 					</div>
 				{:else}
-					<div class="h-2 w-px bg-primary/5"></div>
+					<div class="bg-primary/5 h-2 w-px"></div>
 				{/if}
 			{/each}
 		{/if}

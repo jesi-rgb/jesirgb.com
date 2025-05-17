@@ -1,85 +1,115 @@
 @import 'tailwindcss';
-@plugin '@tailwindcss/typography';
 
-@plugin "daisyui" {
-	themes: light --default, dark --prefersdark;
-}
+@plugin "daisyui";
+@plugin '@tailwindcss/typography';
 
 @font-face {
 	font-family: 'AT Name Sans Variable';
-	src:
-		local('AT Name Sans Variable'),
-		url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf');
-	font-weight: 1 1000;
+	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/AT-NameSansVariable.ttf') format('woff2');
+	/* Adjust path */
+	font-weight: 100 900;
+	/* Adjust based on variable font's axes */
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Iosevka';
-	src: local('Iosevka'), url('/fonts/Iosevka.woff2');
-	font-weight: 450;
-}
-
-@font-face {
-	font-family: 'Iosevka Italic';
-	src: local('Iosevka'), url('/fonts/IosevkaItalic.woff2');
-	font-weight: 450;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'Whirlybats';
-	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlybatsVariable.ttf');
+	src: url('/fonts/Iosevka.woff2') format('woff2');
+	/* Adjust path */
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: 'Whirly Birdie';
-	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf');
+	src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf') format('woff2');
+	/* Adjust path */
 	font-weight: 50 100;
-}
-
-@font-face {
-	font-family: 'DSEG7ClassicMini';
-	src: local('DSEG7ClassicMini'), url('/fonts/DSEG7ClassicMini-Bold.woff');
-	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
 }
 
 
+/* Define custom font families as CSS variables */
+:root {
+	--font-sans: 'AT Name Sans Variable', apple-system, '--system-ui';
+	--font-mono: Iosevka;
+	--font-title: 'Whirly Birdie';
+}
 
-/* Write your global styles here, in PostCSS syntax */
+@plugin "daisyui/theme" {
+	name: "jesi-light";
+	default: true;
+	prefersdark: false;
+	color-scheme: light;
+	--color-primary: #226E48;
+	--color-primary-focus: #042B24;
+	--color-primary-content: #F6FFFB;
+	--color-secondary: #a78bfa;
+	--color-accent: #D1BC03;
+	--color-neutral: #677471;
+	--color-base-100: #F6FFFB;
+	--color-base-200: #FAFFFD;
+	--color-base-300: #E5FDF2;
+	--color-base-content: #042B24;
+	--color-info: #3abff8;
+	--color-success: #4ade80;
+	--color-warning: #fbbd23;
+	--color-error: #f87272;
+
+	--radius-selector: 0.25rem;
+	--radius-field: 1rem;
+	--radius-box: 1rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1.5px;
+	--depth: 1;
+	--noise: 0;
+}
+
+@plugin "daisyui/theme" {
+	name: "jesi-dark";
+	default: false;
+	prefersdark: true;
+	color-scheme: dark;
+	--color-primary: #a7f3d0;
+	--color-primary-focus: #73E0B4;
+	--color-primary-content: #021714;
+	--color-secondary: #a78bfa;
+	--color-accent: #fef9c3;
+	--color-neutral: #677471;
+	--color-base-100: #021713;
+	--color-base-200: #001410;
+	--color-base-300: #010D0B;
+	--color-base-content: #fff;
+	--color-info: #3abff8;
+	--color-success: #4ade80;
+	--color-warning: #fbbd23;
+	--color-error: #f87272;
+
+	--radius-selector: 0.25rem;
+	--radius-field: 1rem;
+	--radius-box: 1rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1.5px;
+	--depth: 1;
+	--noise: 0;
+}
+
+
+@plugin "daisyui" {
+	logs: false;
+	/* Equivalent to logs: false in tailwind.config.js */
+	root: ":root";
+	themes: jesi-light --default, jesi-dark;
+}
+
+
 
 pre {
 	border: 2px dashed gray;
-}
-
-p {
-	font-variation-settings: 'opsz' 16;
-}
-
-h2 {
-	font-variation-settings: 'opsz' 72;
-}
-
-blockquote>p {
-	font-style: normal;
-	font-variation-settings: 'ital' 1;
-}
-
-i,
-em {
-	font-style: normal;
-	font-variation-settings: 'ital' 1;
-}
-
-:root {
-	font-feature-settings: 'ss03', 'ss07', 'ss20';
-
-	background-image: radial-gradient(#ffffff10 1px, transparent 0);
-	background-size: 40px 40px;
-	background-position: 0px 0px;
-}
-
-.font-mono {
-	font-feature-settings: normal;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -94,3 +124,6 @@ em {
 		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
 }
+
+
+@variant dark (&:where([data-theme=gr-dark], [data-theme=gr-dark] *));
