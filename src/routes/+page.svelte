@@ -95,13 +95,13 @@
 		<div class="mt-10 flex flex-col space-y-9">
 			<WorkItem link="https://tractor.graphext.com/">
 				{#snippet title()}
-								<div >Tractor</div>
-							{/snippet}
+					<div>Tractor</div>
+				{/snippet}
 				{#snippet description()}
-								<div >An automated scraping tool</div>
-							{/snippet}
+					<div>An automated scraping tool</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<svg
 							width="31px"
 							height="29px"
@@ -136,56 +136,56 @@
 							</g>
 						</svg>
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
 				{#snippet title()}
-								<div >Svelte's Advent of Code 2023</div>
-							{/snippet}
+					<div>Svelte's Advent of Code 2023</div>
+				{/snippet}
 				{#snippet description()}
-								<div >A set of 24 prompts to sharpen your Svelte skills</div>
-							{/snippet}
+					<div>A set of 24 prompts to sharpen your Svelte skills</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[3px] fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
 				{#snippet title()}
-								<div >Pangea</div>
-							{/snippet}
+					<div>Pangea</div>
+				{/snippet}
 				{#snippet description()}
-								<div >The country guessing game</div>
-							{/snippet}
+					<div>The country guessing game</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<GlobeStand size={40} weight="duotone" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
 				{#snippet title()}
-								<div >Tramos IRPF</div>
-							{/snippet}
+					<div>Tramos IRPF</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Tax calculator for freelancers in Spain</div>
-							{/snippet}
+					<div>Tax calculator for freelancers in Spain</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<Percent size={40} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://cycles-sup.vercel.app">
 				{#snippet title()}
-								<div >Cycles</div>
-							{/snippet}
+					<div>Cycles</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Tiny Little Habit Tracker</div>
-							{/snippet}
+					<div>Tiny Little Habit Tracker</div>
+				{/snippet}
 				{#snippet icon()}
-								<div class="text-primary" >
+					<div class="text-primary">
 						<svg
 							class="ml-0.5 scale-110"
 							width="33px"
@@ -199,43 +199,43 @@
 							/>
 						</svg>
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://fellowship-proposal.vercel.app/en">
 				{#snippet title()}
-								<div >Processing Fellowship Proposal</div>
-							{/snippet}
+					<div>Processing Fellowship Proposal</div>
+				{/snippet}
 				{#snippet description()}
-								<div >A presentation of Mathemagical.js, with Greg Stanton</div>
-							{/snippet}
+					<div>A presentation of Mathemagical.js, with Greg Stanton</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<Sigma size={40} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://mapa-elecciones-two.vercel.app/">
 				{#snippet title()}
-								<div >Spanish General Elections 2023 Map</div>
-							{/snippet}
+					<div>Spanish General Elections 2023 Map</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Visualization of the results, per district</div>
-							{/snippet}
+					<div>Visualization of the results, per district</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<Envelope size={40} weight="bold" class="-rotate-12 fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://elmetro.vercel.app/">
 				{#snippet title()}
-								<div >El Metro</div>
-							{/snippet}
+					<div>El Metro</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Tram tracking extremely simple</div>
-							{/snippet}
+					<div>Tram tracking extremely simple</div>
+				{/snippet}
 				{#snippet icon()}
-								<div class="text-primary" >
+					<div class="text-primary">
 						<svg
 							class="scale-110"
 							width="32px"
@@ -250,72 +250,72 @@
 							/>
 						</svg>
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://font-guesser.vercel.app/">
 				{#snippet title()}
-								<div >Font Guesser</div>
-							{/snippet}
+					<div>Font Guesser</div>
+				{/snippet}
 				{#snippet description()}
-								<div >An unfinished font guessing game</div>
-							{/snippet}
+					<div>An unfinished font guessing game</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<TextB size={45} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://focal-es.vercel.app/">
 				{#snippet title()}
-								<div >FOCAL-ES</div>
-							{/snippet}
+					<div>FOCAL-ES</div>
+				{/snippet}
 				{#snippet description()}
-								<div >A database with exhaustive information on focal particles</div>
-							{/snippet}
+					<div>A database with exhaustive information on focal particles</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<ChatCircleText size={40} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://chord-chart-maker.vercel.app/">
 				{#snippet title()}
-								<div >Chord Chart Maker</div>
-							{/snippet}
+					<div>Chord Chart Maker</div>
+				{/snippet}
 				{#snippet description()}
-								<div >An unfinished jazz-style chord chart for quick idea sharing</div>
-							{/snippet}
+					<div>An unfinished jazz-style chord chart for quick idea sharing</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://custom-blending-modes.vercel.app/">
 				{#snippet title()}
-								<div >Custom Blending Modes</div>
-							{/snippet}
+					<div>Custom Blending Modes</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Quick prototype about a hypothetical blend mode editor</div>
-							{/snippet}
+					<div>Quick prototype about a hypothetical blend mode editor</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<Stack size={40} weight="bold" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://ccfest-md-slides.vercel.app/">
 				{#snippet title()}
-								<div >CC Fest Slides</div>
-							{/snippet}
+					<div>CC Fest Slides</div>
+				{/snippet}
 				{#snippet description()}
-								<div >Slides I gave for my presentation on the '22 CC Fest!</div>
-							{/snippet}
+					<div>Slides I gave for my presentation on the '22 CC Fest!</div>
+				{/snippet}
 				{#snippet icon()}
-								<div >
+					<div>
 						<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
 					</div>
-							{/snippet}
+				{/snippet}
 			</WorkItem>
 		</div>
 	</main>
@@ -331,16 +331,16 @@
 			<!-- Timeline Item -->
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Graphext</h4>
-							{/snippet}
+					<h4>Graphext</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Jan, 2024</div>
-							{/snippet}
+					<div>Jan, 2024</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Design Engineer, Content Creation</div>
-							{/snippet}
+					<div>Design Engineer, Content Creation</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
+					<div>
 						Graphext being quite a small startup, everyone wears lots of hats.
 
 						<br />
@@ -350,41 +350,41 @@
 						media data to be analyzed within Graphext. The main focus was being able to get a useful
 						social-media dataset quickly, easily and efficiently. The interface was designed with a
 						great deal of care, and tons of invisible details make your experience as smooth as
-						possible to download a piece of data. This makes for a great compainon to Graphext, where
-						you can readily analyze what you just downloaded.
+						possible to download a piece of data. This makes for a great compainon to Graphext,
+						where you can readily analyze what you just downloaded.
 
 						<br />
 						<br />
 						Additionally, I was in charge of writing and maintaining the ever growing
 						<a href="https://docs.graphext.com">documentation</a>
-						for the tool, almost from scratch. Special emphasis was considered to make it as easy as possible
-						to understand what Graphext can offer you, while still providing with great, dense documents
-						that answer any of your questions. You will also find me in the youtube channel, creating tutorials
-						and producing videos that showcase the tool or explain some complex topic.
+						for the tool, almost from scratch. Special emphasis was considered to make it as easy as
+						possible to understand what Graphext can offer you, while still providing with great, dense
+						documents that answer any of your questions. You will also find me in the youtube channel,
+						creating tutorials and producing videos that showcase the tool or explain some complex topic.
 
 						<br />
 						<br />
-						This one is funny because Alex, one of my best friends, got to meet Victoriano, the CEO. Alex
-						put us in contact and it turns out we get on very well. Eventually, I got to meet the team
-						at their beautiful office in Madrid.
+						This one is funny because Alex, one of my best friends, got to meet Victoriano, the CEO.
+						Alex put us in contact and it turns out we get on very well. Eventually, I got to meet the
+						team at their beautiful office in Madrid.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Prisms of Reality</h4>
-							{/snippet}
+					<h4>Prisms of Reality</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Jun, 2023</div>
-							{/snippet}
+					<div>Jun, 2023</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Technical Content Creator</div>
-							{/snippet}
+					<div>Technical Content Creator</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
-						In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
-						creating and animating 500+ explainer video assets in the fields of mathematics, physics,
-						chemsitry and sciences through animation engineering.
+					<div>
+						In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i
+						>, creating and animating 500+ explainer video assets in the fields of mathematics,
+						physics, chemsitry and sciences through animation engineering.
 
 						<br />
 						<br />
@@ -394,31 +394,32 @@
 						among the quite complex task that is is working in a startup.
 
 						<br /><br />
-						Fortunately, these videos helped kids get around the game and understand complex concepts in
-						an accessible, fun way.
+						Fortunately, these videos helped kids get around the game and understand complex concepts
+						in an accessible, fun way.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Design Bits</h4>
-							{/snippet}
+					<h4>Design Bits</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Mar, 2023</div>
-							{/snippet}
+					<div>Mar, 2023</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Founder</div>
-							{/snippet}
+					<div>Founder</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
-						Around March, 2023 I created the <a href="https://youtube.com/@design_bits">Design Bits</a
+					<div>
+						Around March, 2023 I created the <a href="https://youtube.com/@design_bits"
+							>Design Bits</a
 						>
 						channel, to talk about computational design. Much of the influence I've gathered from past
 						experiences can be easily picked up in this project.
 
-						<br /><br /> We discuss the inner workings of the tools designers use daily in a hopefully
-						accessible and attractive manner.
+						<br /><br /> We discuss the inner workings of the tools designers use daily in a
+						hopefully accessible and attractive manner.
 
 						<br /><br /> Graphic Design, Video Production, Music Production and Programming are
 						disciplines that I want to keep as close to my heart as possible. This channel is a
@@ -426,20 +427,20 @@
 						from scratch, in my room. Being able to control the interplay between all the elements makes
 						me incredibly happy.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >'22 Google Summer of Code</h4>
-							{/snippet}
+					<h4>'22 Google Summer of Code</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Jun, 2022</div>
-							{/snippet}
+					<div>Jun, 2022</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Google Summer of Code Contributor</div>
-							{/snippet}
+					<div>Google Summer of Code Contributor</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
+					<div>
 						In June, 2022 I proposed the Processing Foundation –through the GSOC program– a very
 						important change to the p5.js library that had been asked for ages: <strong
 							><a href="/blog/gif-encoding">native GIF export</a></strong
@@ -449,31 +450,31 @@
 
 						<br /><br />
 						But GIF exporting was very cumbersome, usually requiring the user to download every single
-						frame as a png for later composition, or using tools that either did not work properly or needed
-						an unreasonable amount of setup.
+						frame as a png for later composition, or using tools that either did not work properly or
+						needed an unreasonable amount of setup.
 
 						<br /><br />
-						I am very proud to say that we managed to create this feature and make it as easy as it's ever
-						been to download a GIF from your sketch.
+						I am very proud to say that we managed to create this feature and make it as easy as it's
+						ever been to download a GIF from your sketch.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Reducible</h4>
-							{/snippet}
+					<h4>Reducible</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Nov, 2021</div>
-							{/snippet}
+					<div>Nov, 2021</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Art Direction & Animation Engineering</div>
-							{/snippet}
+					<div>Art Direction & Animation Engineering</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
+					<div>
 						Helped develop a clearer brand identity for the channel, helping it stand out among a
-						rapidly growing community of educational math channels. I also contributed directly to the
-						creation of the animations needed, made through code. Kind of like <i
+						rapidly growing community of educational math channels. I also contributed directly to
+						the creation of the animations needed, made through code. Kind of like <i
 							>animation engineering.</i
 						>
 
@@ -486,33 +487,33 @@
 						the channel from the ground up.
 						<br />
 						<br />
-						This project really holds a special place in my heart, since I was so early in my career but
-						still, he trusted me and allowed me to explore and exploit all the possibilities. No judgement,
-						no bullshit, just vibes and code.
+						This project really holds a special place in my heart, since I was so early in my career
+						but still, he trusted me and allowed me to explore and exploit all the possibilities. No
+						judgement, no bullshit, just vibes and code.
 						<br />
 						<br />
 
 						<i>Animation engineering</i> comes from the fact that all animations were made through code.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Freelancer</h4>
-							{/snippet}
+					<h4>Freelancer</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Sep, 2021</div>
-							{/snippet}
+					<div>Sep, 2021</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >I guess every role?</div>
-							{/snippet}
+					<div>I guess every role?</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
-						In September, 2021 I started my career as a freelancer. I had just come out of my masters
-						and had absolutely no idea nor properly developed skill. The only thing I had clear was to
-						avoid as hard as I possibly could joining some generic big consultancy corporation to do
-						lame stuff. Top 1 best decisions I've ever made.
+					<div>
+						In September, 2021 I started my career as a freelancer. I had just come out of my
+						masters and had absolutely no idea nor properly developed skill. The only thing I had
+						clear was to avoid as hard as I possibly could joining some generic big consultancy
+						corporation to do lame stuff. Top 1 best decisions I've ever made.
 
 						<br /><br />
 						During this time, I worked with the
@@ -522,76 +523,76 @@
 						this branch of content creation.
 
 						<br /><br />
-						I also started my career as a <strong>design engineer</strong>, something I didn't know at
-						the time. I started tinkering with Next.js and Svelte and made some websites for fun and
-						for my local university.
+						I also started my career as a <strong>design engineer</strong>, something I didn't know
+						at the time. I started tinkering with Next.js and Svelte and made some websites for fun
+						and for my local university.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >MSc Data Science</h4>
-							{/snippet}
+					<h4>MSc Data Science</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Sep, 2020</div>
-							{/snippet}
+					<div>Sep, 2020</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Masters in Data Science @ University of Granada</div>
-							{/snippet}
+					<div>Masters in Data Science @ University of Granada</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
-						Got my masters in Data Science through the year of 2020. Learned that you won't need much
-						more than a simple linear regression in 90% of the cases you have to estimate some data. I
-						also got a lot into <strong>data visualization and design</strong>.
+					<div>
+						Got my masters in Data Science through the year of 2020. Learned that you won't need
+						much more than a simple linear regression in 90% of the cases you have to estimate some
+						data. I also got a lot into <strong>data visualization and design</strong>.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >BSc Computer Science</h4>
-							{/snippet}
+					<h4>BSc Computer Science</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Sep, 2016</div>
-							{/snippet}
+					<div>Sep, 2016</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >Bachelors in Computer Science @ University of Jaén</div>
-							{/snippet}
+					<div>Bachelors in Computer Science @ University of Jaén</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
+					<div>
 						From 2016 through 2020 I completed my degree in Computer Science. I didn't have a great
 						time during the first years, I was <i>really</i> bad at algorithms, math and hardcore
-						programming in general. It wouldn't be until 3rd year that I started to take off and enjoy
-						the process.
+						programming in general. It wouldn't be until 3rd year that I started to take off and
+						enjoy the process.
 
 						<br /><br />
 						Today I can very confidently say that programming, algorithms and math make me very happy.
 						Not an obvious choice, but probably the right one.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
 				{#snippet title()}
-								<h4 >Music studies</h4>
-							{/snippet}
+					<h4>Music studies</h4>
+				{/snippet}
 				{#snippet date()}
-								<div >Sep?, 2013</div>
-							{/snippet}
+					<div>Sep?, 2013</div>
+				{/snippet}
 				{#snippet subtitle()}
-								<div >I basically started playing guitar</div>
-							{/snippet}
+					<div>I basically started playing guitar</div>
+				{/snippet}
 				{#snippet content()}
-								<div >
+					<div>
 						At some point during the summer of 2013 I managed to convice mom to buy me a guitar.
 						Sometime later I started attending guitar lessons from one of the best teachers I will
 						ever know, <strong>Yeye</strong>.
 
-						<br /><br /> Like many other things, this would completely fill up my mind and change my entire
-						life, but I didn't know that yet.
+						<br /><br /> Like many other things, this would completely fill up my mind and change my
+						entire life, but I didn't know that yet.
 					</div>
-							{/snippet}
+				{/snippet}
 			</TimelineItem>
 		</div>
 	</main>

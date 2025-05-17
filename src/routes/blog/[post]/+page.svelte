@@ -5,7 +5,7 @@
 	import type { Post } from '$lib/types';
 
 	import { PUBLIC_GH_TOKEN } from '$env/static/public';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	let { data } = $props();
 	let metadata: Post = data.metadata;
@@ -25,7 +25,7 @@
 
 	async function getLastUpdated() {
 		const luPromise = await fetch(
-			`https://api.github.com/repos/jesi-rgb/jesirgb.com/commits?path=src/posts/${$page.params.post}.md`,
+			`https://api.github.com/repos/jesi-rgb/jesirgb.com/commits?path=src/posts/${page.params.post}.md`,
 			{ method: 'GET', headers: headers }
 		);
 
