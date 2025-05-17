@@ -41,7 +41,7 @@
 @tailwind utilities;
 
 pre {
-	@apply bg-base-200 shadow-xl shadow-black/20 dark:bg-base-300 dark:bg-opacity-50 !important;
+	@apply bg-base-200 shadow-xl shadow-black/20 dark:bg-base-300 dark:bg-opacity-50;
 
 	border: 2px dashed gray;
 }
