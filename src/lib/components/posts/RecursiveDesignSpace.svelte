@@ -1,21 +1,25 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { mapRange } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 
-	let outerDiv: HTMLElement;
-	let bounds: DOMRect;
+	let outerDiv: HTMLElement = $state();
+	let bounds: DOMRect = $state();
 
-	let m = { x: 0, y: 0 };
+	let m = $state({ x: 0, y: 0 });
 
 	function handleMousemove(event: MouseEvent) {
 		m.x = event.clientX;
 		m.y = event.clientY;
 	}
 
-	let weight: number, ital: number, width: number;
-	$: if (bounds) {
-		weight = mapRange(m.x, bounds.x, bounds.x + bounds.width, 0, 1);
-	}
+	let weight: number = $state(), ital: number, width: number;
+	run(() => {
+		if (bounds) {
+			weight = mapRange(m.x, bounds.x, bounds.x + bounds.width, 0, 1);
+		}
+	});
 
 	onMount(() => {
 		bounds = outerDiv.getBoundingClientRect();
@@ -32,7 +36,7 @@
 <div
 	bind:this={outerDiv}
 	role="figure"
-	on:mousemove={handleMousemove}
+	onmousemove={handleMousemove}
 	class="relative h-20 text-center bg-base-200 border-2 border-dashed rounded-md flex items-center align-middle"
 >
 	<svg class="absolute -bottom-7" width="100%" height="100%">

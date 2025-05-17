@@ -1,5 +1,5 @@
 <script>
-	let ssalt = 0;
+	let ssalt = $state(0);
 </script>
 
 <div class="border border-dashed border-primary py-3 px-4 rounded-xl bg-base-200">
@@ -15,7 +15,7 @@
 			</div>
 			<button
 				class="btn btn-outline btn-xs btn-primary"
-				on:click={() => {
+				onclick={() => {
 					if (ssalt == 0) {
 						ssalt = 1;
 					} else {

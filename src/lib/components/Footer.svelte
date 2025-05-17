@@ -3,8 +3,8 @@
 	import Moon from 'phosphor-svelte/lib/Moon';
 
 	import { fly } from 'svelte/transition';
-	let randomWord = 'EMBRACE';
-	let loading = false;
+	let randomWord = $state('EMBRACE');
+	let loading = $state(false);
 
 	const loadWord = async () => {
 		loading = true;
@@ -14,15 +14,15 @@
 	};
 </script>
 
-<div class="divider-base-content/50 divider mt-10" />
+<div class="divider-base-content/50 divider mt-10"></div>
 <footer class="mb-20 flex h-full flex-col items-baseline justify-between md:flex-row">
 	{#if loading}
-		<div class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]" />
+		<div class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]"></div>
 	{:else}
 		<button
 			in:fly={{ y: -20 }}
 			out:fly={{ y: 20 }}
-			on:click={loadWord}
+			onclick={loadWord}
 			class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]"
 		>
 			{randomWord}

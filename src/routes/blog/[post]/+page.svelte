@@ -7,10 +7,10 @@
 	import { PUBLIC_GH_TOKEN } from '$env/static/public';
 	import { page } from '$app/stores';
 
-	export let data;
+	let { data } = $props();
 	let metadata: Post = data.metadata;
 
-	let visible = false;
+	let visible = $state(false);
 
 	let url = new URL('https://jesirgb.com/blog/thumbnails');
 	url.searchParams.append('title', metadata.title);
@@ -77,8 +77,8 @@
 		<div
 			role="link"
 			tabindex="0"
-			on:mouseleave={() => (visible = false)}
-			on:mouseenter={() => (visible = true)}
+			onmouseleave={() => (visible = false)}
+			onmouseenter={() => (visible = true)}
 			class="group relative h-full w-full @container"
 		>
 			{#if visible}
@@ -92,12 +92,12 @@
 					</div>
 				</a>
 			{/if}
-			<div class="h-8" />
+			<div class="h-8"></div>
 			<h1 class="whirly text-center leading-[.9em] tracking-tighter">
 				{data.metadata.title}
 			</h1>
 		</div>
-		<div class="divider" />
+		<div class="divider"></div>
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
 			<div class="flex flex-col text-center md:text-left">
 				<p class="text-xl text-base-content/50 xl:text-2xl">
@@ -127,7 +127,7 @@
 	<div
 		class="prose my-12 md:prose-lg prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
 	>
-		<svelte:component this={data.content} />
+		<data.content />
 	</div>
 </article>
 

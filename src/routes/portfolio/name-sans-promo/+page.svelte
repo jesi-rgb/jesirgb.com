@@ -4,7 +4,7 @@
 
 	import { MetaTags } from 'svelte-meta-tags';
 
-	export let data;
+	let { data } = $props();
 
 	const {
 		coldtypeHtmlCode,
@@ -16,9 +16,9 @@
 		restCodeHtml
 	} = data;
 
-	let weight = 100;
-	let ital = 0.4;
-	let opsz = 24;
+	let weight = $state(100);
+	let ital = $state(0.4);
+	let opsz = $state(24);
 
 	let charPics = ['0054', '0151', '0265', '0297', '0375', '0397'];
 

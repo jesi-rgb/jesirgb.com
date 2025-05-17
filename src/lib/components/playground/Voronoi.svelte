@@ -4,7 +4,7 @@
 
 	import { fade } from 'svelte/transition';
 
-	let element: HTMLElement;
+	let element: HTMLElement = $state();
 
 	const duration = 10,
 		delay = 10;
@@ -14,11 +14,11 @@
 		y: number;
 	};
 
-	let width = 400;
+	let width = $state(400);
 	let height = 500;
 
 	let points: Array<Point> = [];
-	let tessellation;
+	let tessellation = $state();
 
 	onMount(() => {
 		points = [...Array(300)].map(() => {
@@ -47,9 +47,9 @@
 		}, time);
 	});
 
-	let pointsG: SVGElement;
+	let pointsG: SVGElement = $state();
 
-	let vanish = false;
+	let vanish = $state(false);
 </script>
 
 <div bind:this={element} bind:clientWidth={width}>

@@ -1,5 +1,5 @@
 <script>
-	let frac = 0;
+	let frac = $state(0);
 </script>
 
 <div class="border border-dashed border-primary py-3 px-4 rounded-xl bg-base-200">
@@ -13,7 +13,7 @@
 			<div style="font-feature-settings: 'frac' {frac};" class="text-4xl">2/8</div>
 			<button
 				class="btn btn-outline btn-xs btn-primary"
-				on:click={() => {
+				onclick={() => {
 					if (frac == 0) {
 						frac = 1;
 					} else {

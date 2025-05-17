@@ -1,6 +1,19 @@
 <script lang="ts">
-	/* export let title; */
-	export let link: string;
+	
+	interface Props {
+		/* export let title; */
+		link: string;
+		icon?: import('svelte').Snippet;
+		title?: import('svelte').Snippet;
+		description?: import('svelte').Snippet;
+	}
+
+	let {
+		link,
+		icon,
+		title,
+		description
+	}: Props = $props();
 </script>
 
 <a href={link}>
@@ -9,15 +22,15 @@
 			class="flex h-16 w-16 items-center rounded-full border-2 border-base-content/30 transition-all group-hover:border-base-content/80"
 		>
 			<div class="mx-auto">
-				<slot name="icon" />
+				{@render icon?.()}
 			</div>
 		</div>
 		<div class="flex w-3/4 flex-col transition-colors group-hover:text-base-content">
 			<div class="whirly">
-				<slot name="title" />
+				{@render title?.()}
 			</div>
 			<p class="balanced my-0 opacity-60">
-				<slot name="description" />
+				{@render description?.()}
 			</p>
 		</div>
 	</div>

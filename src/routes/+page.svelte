@@ -86,7 +86,7 @@
 	</main>
 </section>
 
-<div class="divider-base-content/50 divider my-24" />
+<div class="divider-base-content/50 divider my-24"></div>
 <!-- Works -->
 <section class="min-h-[50%]">
 	<main class="prose prose-lg prose-headings:tracking-normal prose-a:no-underline">
@@ -94,156 +94,234 @@
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
 			<WorkItem link="https://tractor.graphext.com/">
-				<div slot="title">Tractor</div>
-				<div slot="description">An automated scraping tool</div>
-				<div slot="icon">
-					<svg
-						width="31px"
-						height="29px"
-						version="1.1"
-						xmlns="http://www.w3.org/2000/svg"
-						xmlns:xlink="http://www.w3.org/1999/xlink"
-						xml:space="preserve"
-						class="fill-primary"
-						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-					>
-						<g transform="matrix(1,0,0,1,-3.712,-202.607)">
-							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-								<path
-									d="M198.656,155.704C219.523,155.704 236.465,172.645 236.465,193.512C236.465,214.379 219.523,231.321 198.656,231.321C177.79,231.321 160.848,214.379 160.848,193.512C160.848,172.645 177.79,155.704 198.656,155.704ZM198.656,179.273C190.798,179.273 184.417,185.653 184.417,193.512C184.417,201.371 190.798,207.751 198.656,207.751C206.515,207.751 212.896,201.371 212.896,193.512C212.896,185.653 206.515,179.273 198.656,179.273Z"
-								/>
+				{#snippet title()}
+								<div >Tractor</div>
+							{/snippet}
+				{#snippet description()}
+								<div >An automated scraping tool</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<svg
+							width="31px"
+							height="29px"
+							version="1.1"
+							xmlns="http://www.w3.org/2000/svg"
+							xmlns:xlink="http://www.w3.org/1999/xlink"
+							xml:space="preserve"
+							class="fill-primary"
+							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+						>
+							<g transform="matrix(1,0,0,1,-3.712,-202.607)">
+								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+									<path
+										d="M198.656,155.704C219.523,155.704 236.465,172.645 236.465,193.512C236.465,214.379 219.523,231.321 198.656,231.321C177.79,231.321 160.848,214.379 160.848,193.512C160.848,172.645 177.79,155.704 198.656,155.704ZM198.656,179.273C190.798,179.273 184.417,185.653 184.417,193.512C184.417,201.371 190.798,207.751 198.656,207.751C206.515,207.751 212.896,201.371 212.896,193.512C212.896,185.653 206.515,179.273 198.656,179.273Z"
+									/>
+								</g>
+								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+									<path
+										d="M79.957,103.657C115.187,103.657 143.789,132.259 143.789,167.489C143.789,202.718 115.187,231.321 79.957,231.321C44.727,231.321 16.125,202.718 16.125,167.489C16.125,132.259 44.727,103.657 79.957,103.657ZM79.957,127.226C57.735,127.226 39.694,145.267 39.694,167.489C39.694,189.71 57.735,207.751 79.957,207.751C102.178,207.751 120.22,189.71 120.22,167.489C120.22,145.267 102.178,127.226 79.957,127.226Z"
+									/>
+								</g>
+								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+									<path
+										d="M131.707,49.41L108.67,54.388L106.181,42.869L103.897,32.301L42.511,32.301L33.216,75.322C71.126,56.106 118.449,61.763 150.815,92.293L234.798,117.293L234.798,149.79L211.229,149.79L211.229,134.868L138.46,113.206L136.35,111.096C105.226,79.971 54.688,79.971 23.564,111.096L3.712,100.274L23.491,8.732L122.918,8.732L131.707,49.41Z"
+									/>
+								</g>
+								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+									<path
+										d="M194.164,119.61L170.595,119.61L170.595,78.954L193.092,54.86L210.319,70.945L202.276,79.559L194.164,88.247L194.164,119.61Z"
+									/>
+								</g>
 							</g>
-							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-								<path
-									d="M79.957,103.657C115.187,103.657 143.789,132.259 143.789,167.489C143.789,202.718 115.187,231.321 79.957,231.321C44.727,231.321 16.125,202.718 16.125,167.489C16.125,132.259 44.727,103.657 79.957,103.657ZM79.957,127.226C57.735,127.226 39.694,145.267 39.694,167.489C39.694,189.71 57.735,207.751 79.957,207.751C102.178,207.751 120.22,189.71 120.22,167.489C120.22,145.267 102.178,127.226 79.957,127.226Z"
-								/>
-							</g>
-							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-								<path
-									d="M131.707,49.41L108.67,54.388L106.181,42.869L103.897,32.301L42.511,32.301L33.216,75.322C71.126,56.106 118.449,61.763 150.815,92.293L234.798,117.293L234.798,149.79L211.229,149.79L211.229,134.868L138.46,113.206L136.35,111.096C105.226,79.971 54.688,79.971 23.564,111.096L3.712,100.274L23.491,8.732L122.918,8.732L131.707,49.41Z"
-								/>
-							</g>
-							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-								<path
-									d="M194.164,119.61L170.595,119.61L170.595,78.954L193.092,54.86L210.319,70.945L202.276,79.559L194.164,88.247L194.164,119.61Z"
-								/>
-							</g>
-						</g>
-					</svg>
-				</div>
+						</svg>
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
-				<div slot="title">Svelte's Advent of Code 2023</div>
-				<div slot="description">A set of 24 prompts to sharpen your Svelte skills</div>
-				<div slot="icon">
-					<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[3px] fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Svelte's Advent of Code 2023</div>
+							{/snippet}
+				{#snippet description()}
+								<div >A set of 24 prompts to sharpen your Svelte skills</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<CursorClick size={40} weight="duotone" class="ml-[3px] mt-[3px] fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
-				<div slot="title">Pangea</div>
-				<div slot="description">The country guessing game</div>
-				<div slot="icon">
-					<GlobeStand size={40} weight="duotone" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Pangea</div>
+							{/snippet}
+				{#snippet description()}
+								<div >The country guessing game</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<GlobeStand size={40} weight="duotone" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
-				<div slot="title">Tramos IRPF</div>
-				<div slot="description">Tax calculator for freelancers in Spain</div>
-				<div slot="icon">
-					<Percent size={40} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Tramos IRPF</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Tax calculator for freelancers in Spain</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<Percent size={40} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://cycles-sup.vercel.app">
-				<div slot="title">Cycles</div>
-				<div slot="description">Tiny Little Habit Tracker</div>
-				<div class="text-primary" slot="icon">
-					<svg
-						class="ml-0.5 scale-110"
-						width="33px"
-						height="33px"
-						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-						fill="currentColor"
-					>
-						<path
-							d="M31.264,19.669c0.18,0.255 0.278,0.56 0.278,0.873c-0,0.83 -0.683,1.512 -1.513,1.512c-0.39,0 -0.765,-0.151 -1.047,-0.421c-0.016,-0.015 -0.031,-0.031 -0.046,-0.048c-0.03,-0.035 -2.068,-2.229 -5.399,-3.855c-0.699,5.35 -4.564,10.442 -11.124,10.442c-2.132,0 -3.946,-0.703 -5.264,-2.008c-0.002,-0.002 -0.003,-0.003 -0.004,-0.004c-1.232,-1.239 -1.917,-2.921 -1.901,-4.666c0.001,-2.196 1.043,-4.352 2.88,-5.894l0,-0c2.019,-1.692 4.894,-2.61 8.336,-2.61l0,-0c1.291,0.001 2.577,0.138 3.837,0.409c-0.314,-1.163 -0.845,-2.209 -1.574,-3.058l-0.001,-0c-1.375,-1.604 -3.415,-2.431 -5.878,-2.431c-5.243,0 -8.856,4.977 -8.891,5.03c-0.004,0.004 -0.007,0.009 -0.011,0.014c-0.283,0.396 -0.742,0.631 -1.229,0.631c-0.83,0 -1.513,-0.683 -1.513,-1.513c-0,-0.316 0.099,-0.624 0.283,-0.881c0.191,-0.267 4.612,-6.306 11.361,-6.306c3.407,0 6.225,1.216 8.179,3.492l0.001,0c1.381,1.613 2.265,3.715 2.538,6.036c4.619,1.875 7.458,4.971 7.627,5.157c0.028,0.031 0.053,0.064 0.075,0.099Zm-12.798,2.656c1.255,-1.537 2.016,-3.596 2.142,-5.724c-1.347,-0.384 -2.741,-0.581 -4.143,-0.586c-5.553,0 -8.187,2.769 -8.187,5.484c-0,2.535 2.16,3.648 4.135,3.648c3.099,0 5.004,-1.532 6.052,-2.821l0.001,-0.001Z"
-							style="fill-rule:nonzero;"
-						/>
-					</svg>
-				</div>
+				{#snippet title()}
+								<div >Cycles</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Tiny Little Habit Tracker</div>
+							{/snippet}
+				{#snippet icon()}
+								<div class="text-primary" >
+						<svg
+							class="ml-0.5 scale-110"
+							width="33px"
+							height="33px"
+							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+							fill="currentColor"
+						>
+							<path
+								d="M31.264,19.669c0.18,0.255 0.278,0.56 0.278,0.873c-0,0.83 -0.683,1.512 -1.513,1.512c-0.39,0 -0.765,-0.151 -1.047,-0.421c-0.016,-0.015 -0.031,-0.031 -0.046,-0.048c-0.03,-0.035 -2.068,-2.229 -5.399,-3.855c-0.699,5.35 -4.564,10.442 -11.124,10.442c-2.132,0 -3.946,-0.703 -5.264,-2.008c-0.002,-0.002 -0.003,-0.003 -0.004,-0.004c-1.232,-1.239 -1.917,-2.921 -1.901,-4.666c0.001,-2.196 1.043,-4.352 2.88,-5.894l0,-0c2.019,-1.692 4.894,-2.61 8.336,-2.61l0,-0c1.291,0.001 2.577,0.138 3.837,0.409c-0.314,-1.163 -0.845,-2.209 -1.574,-3.058l-0.001,-0c-1.375,-1.604 -3.415,-2.431 -5.878,-2.431c-5.243,0 -8.856,4.977 -8.891,5.03c-0.004,0.004 -0.007,0.009 -0.011,0.014c-0.283,0.396 -0.742,0.631 -1.229,0.631c-0.83,0 -1.513,-0.683 -1.513,-1.513c-0,-0.316 0.099,-0.624 0.283,-0.881c0.191,-0.267 4.612,-6.306 11.361,-6.306c3.407,0 6.225,1.216 8.179,3.492l0.001,0c1.381,1.613 2.265,3.715 2.538,6.036c4.619,1.875 7.458,4.971 7.627,5.157c0.028,0.031 0.053,0.064 0.075,0.099Zm-12.798,2.656c1.255,-1.537 2.016,-3.596 2.142,-5.724c-1.347,-0.384 -2.741,-0.581 -4.143,-0.586c-5.553,0 -8.187,2.769 -8.187,5.484c-0,2.535 2.16,3.648 4.135,3.648c3.099,0 5.004,-1.532 6.052,-2.821l0.001,-0.001Z"
+								style="fill-rule:nonzero;"
+							/>
+						</svg>
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://fellowship-proposal.vercel.app/en">
-				<div slot="title">Processing Fellowship Proposal</div>
-				<div slot="description">A presentation of Mathemagical.js, with Greg Stanton</div>
-				<div slot="icon">
-					<Sigma size={40} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Processing Fellowship Proposal</div>
+							{/snippet}
+				{#snippet description()}
+								<div >A presentation of Mathemagical.js, with Greg Stanton</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<Sigma size={40} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://mapa-elecciones-two.vercel.app/">
-				<div slot="title">Spanish General Elections 2023 Map</div>
-				<div slot="description">Visualization of the results, per district</div>
-				<div slot="icon">
-					<Envelope size={40} weight="bold" class="-rotate-12 fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Spanish General Elections 2023 Map</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Visualization of the results, per district</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<Envelope size={40} weight="bold" class="-rotate-12 fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://elmetro.vercel.app/">
-				<div slot="title">El Metro</div>
-				<div slot="description">Tram tracking extremely simple</div>
-				<div class="text-primary" slot="icon">
-					<svg
-						class="scale-110"
-						width="32px"
-						height="32px"
-						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-						fill="currentColor"
-						stroke="currentColor"
-					>
-						<path
-							d="M24.346,26.798l1.194,1.418c0.005,0.006 0.01,0.011 0.014,0.017c0.656,0.82 0.523,2.031 -0.293,2.688c-0.326,0.266 -0.731,0.416 -1.153,0.423c-0.592,0.014 -1.161,-0.247 -1.534,-0.708l-3.049,-3.674l-6.23,0.197l-2.371,3.38c-0.344,0.49 -0.897,0.79 -1.494,0.813c-0.423,0.02 -0.838,-0.105 -1.181,-0.353c-0.852,-0.605 -1.06,-1.804 -0.46,-2.66l0.728,-1.036c-2.603,-0.063 -4.766,-2.175 -4.857,-4.805l-0.515,-16.271c-0.079,-2.727 2.063,-4.902 4.784,-4.995l15.264,-0.606c0.003,0 0.007,-0 0.01,-0c2.724,-0.077 4.848,2.173 4.942,4.889l0.69,16.174c0,0.004 0.001,0.008 0.001,0.012c0.075,2.613 -1.921,4.844 -4.49,5.097Zm-1.089,-24.379l-15.256,0.606l-0.005,-0c-1.73,0.06 -3.107,1.42 -3.057,3.15l0.515,16.262c0.06,1.737 1.534,3.12 3.272,3.071l1.523,-0.048c0.339,-0.011 0.656,0.172 0.818,0.47c0.161,0.299 0.14,0.664 -0.055,0.942l-1.754,2.498c-0.037,0.054 -0.023,0.129 0.03,0.167c0.003,0.002 0.006,0.004 0.009,0.006c0.015,0.011 0.033,0.017 0.051,0.016c0.004,0 0.009,-0 0.013,-0c0.038,-0.001 0.073,-0.021 0.094,-0.051l2.629,-3.747c0.163,-0.231 0.424,-0.372 0.706,-0.381l7.116,-0.226c0.277,-0.009 0.543,0.111 0.719,0.324l3.332,4.015c0.003,0.005 0.008,0.009 0.011,0.013c0.023,0.029 0.059,0.045 0.096,0.044c0.004,-0 0.009,-0 0.013,-0.001c0.019,-0 0.038,-0.008 0.052,-0.02l0.006,-0.004c0.05,-0.041 0.06,-0.114 0.022,-0.166l-2.367,-2.81c-0.221,-0.264 -0.273,-0.63 -0.133,-0.945c0.14,-0.313 0.447,-0.519 0.791,-0.53l1.523,-0.048c1.736,-0.062 3.119,-1.533 3.071,-3.269l-0.69,-16.166l-0,-0.008c-0.061,-1.731 -1.363,-3.211 -3.095,-3.164Zm-10.407,19.915c-0.318,-0.379 -0.268,-0.946 0.112,-1.264c0.38,-0.318 0.946,-0.268 1.264,0.112c0.509,0.608 1.293,0.848 2.047,0.807c0.758,-0.04 1.505,-0.359 1.93,-0.947c0.291,-0.401 0.852,-0.491 1.253,-0.201c0.402,0.291 0.492,0.852 0.202,1.253c-0.732,1.011 -1.987,1.617 -3.289,1.687c-1.304,0.07 -2.638,-0.395 -3.519,-1.447Zm-3.692,-5.081c0.048,0.493 -0.313,0.932 -0.807,0.98c-0.492,0.048 -0.932,-0.313 -0.979,-0.807c-0,0 -0.183,-1.953 0.495,-3.542c0.521,-1.223 1.498,-2.245 3.271,-2.301c1.761,-0.056 2.82,0.885 3.445,2.053c0.82,1.529 0.813,3.472 0.813,3.472c-0.002,0.495 -0.407,0.895 -0.902,0.891c-0.496,-0.003 -0.896,-0.408 -0.892,-0.903c-0,0 0.005,-1.029 -0.354,-2.046c-0.295,-0.836 -0.851,-1.712 -2.053,-1.674c-1.189,0.038 -1.655,0.945 -1.871,1.794c-0.266,1.047 -0.166,2.083 -0.166,2.083Zm9.709,-0.305c0.046,0.496 -0.318,0.937 -0.813,0.983c-0.497,0.047 -0.937,-0.317 -0.983,-0.814c-0,-0 -0.177,-1.945 0.466,-3.527c0.503,-1.237 1.455,-2.262 3.171,-2.316c1.703,-0.054 2.736,0.892 3.343,2.075c0.783,1.524 0.78,3.459 0.78,3.459c-0.002,0.498 -0.409,0.9 -0.907,0.898c-0.497,-0.002 -0.9,-0.409 -0.898,-0.906c0,-0 0.005,-1.035 -0.342,-2.059c-0.279,-0.823 -0.788,-1.699 -1.919,-1.663c-1.119,0.036 -1.539,0.941 -1.741,1.776c-0.254,1.053 -0.157,2.094 -0.157,2.094Z"
-							style="fill-rule:nonzero;"
-						/>
-					</svg>
-				</div>
+				{#snippet title()}
+								<div >El Metro</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Tram tracking extremely simple</div>
+							{/snippet}
+				{#snippet icon()}
+								<div class="text-primary" >
+						<svg
+							class="scale-110"
+							width="32px"
+							height="32px"
+							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+							fill="currentColor"
+							stroke="currentColor"
+						>
+							<path
+								d="M24.346,26.798l1.194,1.418c0.005,0.006 0.01,0.011 0.014,0.017c0.656,0.82 0.523,2.031 -0.293,2.688c-0.326,0.266 -0.731,0.416 -1.153,0.423c-0.592,0.014 -1.161,-0.247 -1.534,-0.708l-3.049,-3.674l-6.23,0.197l-2.371,3.38c-0.344,0.49 -0.897,0.79 -1.494,0.813c-0.423,0.02 -0.838,-0.105 -1.181,-0.353c-0.852,-0.605 -1.06,-1.804 -0.46,-2.66l0.728,-1.036c-2.603,-0.063 -4.766,-2.175 -4.857,-4.805l-0.515,-16.271c-0.079,-2.727 2.063,-4.902 4.784,-4.995l15.264,-0.606c0.003,0 0.007,-0 0.01,-0c2.724,-0.077 4.848,2.173 4.942,4.889l0.69,16.174c0,0.004 0.001,0.008 0.001,0.012c0.075,2.613 -1.921,4.844 -4.49,5.097Zm-1.089,-24.379l-15.256,0.606l-0.005,-0c-1.73,0.06 -3.107,1.42 -3.057,3.15l0.515,16.262c0.06,1.737 1.534,3.12 3.272,3.071l1.523,-0.048c0.339,-0.011 0.656,0.172 0.818,0.47c0.161,0.299 0.14,0.664 -0.055,0.942l-1.754,2.498c-0.037,0.054 -0.023,0.129 0.03,0.167c0.003,0.002 0.006,0.004 0.009,0.006c0.015,0.011 0.033,0.017 0.051,0.016c0.004,0 0.009,-0 0.013,-0c0.038,-0.001 0.073,-0.021 0.094,-0.051l2.629,-3.747c0.163,-0.231 0.424,-0.372 0.706,-0.381l7.116,-0.226c0.277,-0.009 0.543,0.111 0.719,0.324l3.332,4.015c0.003,0.005 0.008,0.009 0.011,0.013c0.023,0.029 0.059,0.045 0.096,0.044c0.004,-0 0.009,-0 0.013,-0.001c0.019,-0 0.038,-0.008 0.052,-0.02l0.006,-0.004c0.05,-0.041 0.06,-0.114 0.022,-0.166l-2.367,-2.81c-0.221,-0.264 -0.273,-0.63 -0.133,-0.945c0.14,-0.313 0.447,-0.519 0.791,-0.53l1.523,-0.048c1.736,-0.062 3.119,-1.533 3.071,-3.269l-0.69,-16.166l-0,-0.008c-0.061,-1.731 -1.363,-3.211 -3.095,-3.164Zm-10.407,19.915c-0.318,-0.379 -0.268,-0.946 0.112,-1.264c0.38,-0.318 0.946,-0.268 1.264,0.112c0.509,0.608 1.293,0.848 2.047,0.807c0.758,-0.04 1.505,-0.359 1.93,-0.947c0.291,-0.401 0.852,-0.491 1.253,-0.201c0.402,0.291 0.492,0.852 0.202,1.253c-0.732,1.011 -1.987,1.617 -3.289,1.687c-1.304,0.07 -2.638,-0.395 -3.519,-1.447Zm-3.692,-5.081c0.048,0.493 -0.313,0.932 -0.807,0.98c-0.492,0.048 -0.932,-0.313 -0.979,-0.807c-0,0 -0.183,-1.953 0.495,-3.542c0.521,-1.223 1.498,-2.245 3.271,-2.301c1.761,-0.056 2.82,0.885 3.445,2.053c0.82,1.529 0.813,3.472 0.813,3.472c-0.002,0.495 -0.407,0.895 -0.902,0.891c-0.496,-0.003 -0.896,-0.408 -0.892,-0.903c-0,0 0.005,-1.029 -0.354,-2.046c-0.295,-0.836 -0.851,-1.712 -2.053,-1.674c-1.189,0.038 -1.655,0.945 -1.871,1.794c-0.266,1.047 -0.166,2.083 -0.166,2.083Zm9.709,-0.305c0.046,0.496 -0.318,0.937 -0.813,0.983c-0.497,0.047 -0.937,-0.317 -0.983,-0.814c-0,-0 -0.177,-1.945 0.466,-3.527c0.503,-1.237 1.455,-2.262 3.171,-2.316c1.703,-0.054 2.736,0.892 3.343,2.075c0.783,1.524 0.78,3.459 0.78,3.459c-0.002,0.498 -0.409,0.9 -0.907,0.898c-0.497,-0.002 -0.9,-0.409 -0.898,-0.906c0,-0 0.005,-1.035 -0.342,-2.059c-0.279,-0.823 -0.788,-1.699 -1.919,-1.663c-1.119,0.036 -1.539,0.941 -1.741,1.776c-0.254,1.053 -0.157,2.094 -0.157,2.094Z"
+								style="fill-rule:nonzero;"
+							/>
+						</svg>
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://font-guesser.vercel.app/">
-				<div slot="title">Font Guesser</div>
-				<div slot="description">An unfinished font guessing game</div>
-				<div slot="icon">
-					<TextB size={45} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Font Guesser</div>
+							{/snippet}
+				{#snippet description()}
+								<div >An unfinished font guessing game</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<TextB size={45} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://focal-es.vercel.app/">
-				<div slot="title">FOCAL-ES</div>
-				<div slot="description">A database with exhaustive information on focal particles</div>
-				<div slot="icon">
-					<ChatCircleText size={40} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >FOCAL-ES</div>
+							{/snippet}
+				{#snippet description()}
+								<div >A database with exhaustive information on focal particles</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<ChatCircleText size={40} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://chord-chart-maker.vercel.app/">
-				<div slot="title">Chord Chart Maker</div>
-				<div slot="description">An unfinished jazz-style chord chart for quick idea sharing</div>
-				<div slot="icon">
-					<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Chord Chart Maker</div>
+							{/snippet}
+				{#snippet description()}
+								<div >An unfinished jazz-style chord chart for quick idea sharing</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://custom-blending-modes.vercel.app/">
-				<div slot="title">Custom Blending Modes</div>
-				<div slot="description">Quick prototype about a hypothetical blend mode editor</div>
-				<div slot="icon">
-					<Stack size={40} weight="bold" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >Custom Blending Modes</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Quick prototype about a hypothetical blend mode editor</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<Stack size={40} weight="bold" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 			<WorkItem link="https://ccfest-md-slides.vercel.app/">
-				<div slot="title">CC Fest Slides</div>
-				<div slot="description">Slides I gave for my presentation on the '22 CC Fest!</div>
-				<div slot="icon">
-					<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
-				</div>
+				{#snippet title()}
+								<div >CC Fest Slides</div>
+							{/snippet}
+				{#snippet description()}
+								<div >Slides I gave for my presentation on the '22 CC Fest!</div>
+							{/snippet}
+				{#snippet icon()}
+								<div >
+						<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
+					</div>
+							{/snippet}
 			</WorkItem>
 		</div>
 	</main>
 </section>
 
-<div class="divider-base-content/50 divider my-24" />
+<div class="divider-base-content/50 divider my-24"></div>
 
 <section class="min-h-[50%]">
 	<main class="prose prose-lg prose-headings:tracking-normal prose-h4:font-[60]">
@@ -252,202 +330,274 @@
 		<div class="">
 			<!-- Timeline Item -->
 			<TimelineItem>
-				<h4 slot="title">Graphext</h4>
-				<div slot="date">Jan, 2024</div>
-				<div slot="subtitle">Design Engineer, Content Creation</div>
-				<div slot="content">
-					Graphext being quite a small startup, everyone wears lots of hats.
+				{#snippet title()}
+								<h4 >Graphext</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Jan, 2024</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Design Engineer, Content Creation</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						Graphext being quite a small startup, everyone wears lots of hats.
 
-					<br />
-					<br />
-					I worked on <a href="https://tractor.graphext.com">Tractor 2.0</a>, a revival of a
-					beautiful scraping tool on top of Apify, quite useful for very quickly bringing social
-					media data to be analyzed within Graphext. The main focus was being able to get a useful
-					social-media dataset quickly, easily and efficiently. The interface was designed with a
-					great deal of care, and tons of invisible details make your experience as smooth as
-					possible to download a piece of data. This makes for a great compainon to Graphext, where
-					you can readily analyze what you just downloaded.
+						<br />
+						<br />
+						I worked on <a href="https://tractor.graphext.com">Tractor 2.0</a>, a revival of a
+						beautiful scraping tool on top of Apify, quite useful for very quickly bringing social
+						media data to be analyzed within Graphext. The main focus was being able to get a useful
+						social-media dataset quickly, easily and efficiently. The interface was designed with a
+						great deal of care, and tons of invisible details make your experience as smooth as
+						possible to download a piece of data. This makes for a great compainon to Graphext, where
+						you can readily analyze what you just downloaded.
 
-					<br />
-					<br />
-					Additionally, I was in charge of writing and maintaining the ever growing
-					<a href="https://docs.graphext.com">documentation</a>
-					for the tool, almost from scratch. Special emphasis was considered to make it as easy as possible
-					to understand what Graphext can offer you, while still providing with great, dense documents
-					that answer any of your questions. You will also find me in the youtube channel, creating tutorials
-					and producing videos that showcase the tool or explain some complex topic.
+						<br />
+						<br />
+						Additionally, I was in charge of writing and maintaining the ever growing
+						<a href="https://docs.graphext.com">documentation</a>
+						for the tool, almost from scratch. Special emphasis was considered to make it as easy as possible
+						to understand what Graphext can offer you, while still providing with great, dense documents
+						that answer any of your questions. You will also find me in the youtube channel, creating tutorials
+						and producing videos that showcase the tool or explain some complex topic.
 
-					<br />
-					<br />
-					This one is funny because Alex, one of my best friends, got to meet Victoriano, the CEO. Alex
-					put us in contact and it turns out we get on very well. Eventually, I got to meet the team
-					at their beautiful office in Madrid.
-				</div>
+						<br />
+						<br />
+						This one is funny because Alex, one of my best friends, got to meet Victoriano, the CEO. Alex
+						put us in contact and it turns out we get on very well. Eventually, I got to meet the team
+						at their beautiful office in Madrid.
+					</div>
+							{/snippet}
 			</TimelineItem>
 			<TimelineItem>
-				<h4 slot="title">Prisms of Reality</h4>
-				<div slot="date">Jun, 2023</div>
-				<div slot="subtitle">Technical Content Creator</div>
-				<div slot="content">
-					In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
-					creating and animating 500+ explainer video assets in the fields of mathematics, physics,
-					chemsitry and sciences through animation engineering.
+				{#snippet title()}
+								<h4 >Prisms of Reality</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Jun, 2023</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Technical Content Creator</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						In June, 2023, I joined the incredible Prisms team as a <i>technical content creator</i>,
+						creating and animating 500+ explainer video assets in the fields of mathematics, physics,
+						chemsitry and sciences through animation engineering.
 
-					<br />
-					<br />
-					All this was executed within quite intense workloads and very tight deadlines, where managing
-					and organizing your own work was key in order to get things done. Special care was put into
-					communication, coordinating with my teammates to avoid confusion and remove blocking paths
-					among the quite complex task that is is working in a startup.
+						<br />
+						<br />
+						All this was executed within quite intense workloads and very tight deadlines, where managing
+						and organizing your own work was key in order to get things done. Special care was put into
+						communication, coordinating with my teammates to avoid confusion and remove blocking paths
+						among the quite complex task that is is working in a startup.
 
-					<br /><br />
-					Fortunately, these videos helped kids get around the game and understand complex concepts in
-					an accessible, fun way.
-				</div>
-			</TimelineItem>
-
-			<TimelineItem>
-				<h4 slot="title">Design Bits</h4>
-				<div slot="date">Mar, 2023</div>
-				<div slot="subtitle">Founder</div>
-				<div slot="content">
-					Around March, 2023 I created the <a href="https://youtube.com/@design_bits">Design Bits</a
-					>
-					channel, to talk about computational design. Much of the influence I've gathered from past
-					experiences can be easily picked up in this project.
-
-					<br /><br /> We discuss the inner workings of the tools designers use daily in a hopefully
-					accessible and attractive manner.
-
-					<br /><br /> Graphic Design, Video Production, Music Production and Programming are
-					disciplines that I want to keep as close to my heart as possible. This channel is a
-					<i>successful</i> attempt at doing so. Every asset, animation, song or sound effect is created
-					from scratch, in my room. Being able to control the interplay between all the elements makes
-					me incredibly happy.
-				</div>
-			</TimelineItem>
-			<TimelineItem>
-				<h4 slot="title">'22 Google Summer of Code</h4>
-				<div slot="date">Jun, 2022</div>
-				<div slot="subtitle">Google Summer of Code Contributor</div>
-				<div slot="content">
-					In June, 2022 I proposed the Processing Foundation –through the GSOC program– a very
-					important change to the p5.js library that had been asked for ages: <strong
-						><a href="/blog/gif-encoding">native GIF export</a></strong
-					>. <br /><br /> The p5.js community is largely stablished in Twitter, where GIF sharing
-					was the main way for artists to show their works in progress, as well as the finished
-					pieces.
-
-					<br /><br />
-					But GIF exporting was very cumbersome, usually requiring the user to download every single
-					frame as a png for later composition, or using tools that either did not work properly or needed
-					an unreasonable amount of setup.
-
-					<br /><br />
-					I am very proud to say that we managed to create this feature and make it as easy as it's ever
-					been to download a GIF from your sketch.
-				</div>
+						<br /><br />
+						Fortunately, these videos helped kids get around the game and understand complex concepts in
+						an accessible, fun way.
+					</div>
+							{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
-				<h4 slot="title">Reducible</h4>
-				<div slot="date">Nov, 2021</div>
-				<div slot="subtitle">Art Direction & Animation Engineering</div>
-				<div slot="content">
-					Helped develop a clearer brand identity for the channel, helping it stand out among a
-					rapidly growing community of educational math channels. I also contributed directly to the
-					creation of the animations needed, made through code. Kind of like <i
-						>animation engineering.</i
-					>
+				{#snippet title()}
+								<h4 >Design Bits</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Mar, 2023</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Founder</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						Around March, 2023 I created the <a href="https://youtube.com/@design_bits">Design Bits</a
+						>
+						channel, to talk about computational design. Much of the influence I've gathered from past
+						experiences can be easily picked up in this project.
 
-					<br />
-					<br />
-					My journey as a freelancer was blessed when I joined the
-					<a href="https://youtube.com/@reducible">Reducible</a>
-					youtube channel as an Art Director and Animator. <strong>Nipun</strong>, the creator and
-					founder of the channel, gave me the most welcoming time and we formed a team to improve
-					the channel from the ground up.
-					<br />
-					<br />
-					This project really holds a special place in my heart, since I was so early in my career but
-					still, he trusted me and allowed me to explore and exploit all the possibilities. No judgement,
-					no bullshit, just vibes and code.
-					<br />
-					<br />
+						<br /><br /> We discuss the inner workings of the tools designers use daily in a hopefully
+						accessible and attractive manner.
 
-					<i>Animation engineering</i> comes from the fact that all animations were made through code.
-				</div>
+						<br /><br /> Graphic Design, Video Production, Music Production and Programming are
+						disciplines that I want to keep as close to my heart as possible. This channel is a
+						<i>successful</i> attempt at doing so. Every asset, animation, song or sound effect is created
+						from scratch, in my room. Being able to control the interplay between all the elements makes
+						me incredibly happy.
+					</div>
+							{/snippet}
+			</TimelineItem>
+			<TimelineItem>
+				{#snippet title()}
+								<h4 >'22 Google Summer of Code</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Jun, 2022</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Google Summer of Code Contributor</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						In June, 2022 I proposed the Processing Foundation –through the GSOC program– a very
+						important change to the p5.js library that had been asked for ages: <strong
+							><a href="/blog/gif-encoding">native GIF export</a></strong
+						>. <br /><br /> The p5.js community is largely stablished in Twitter, where GIF sharing
+						was the main way for artists to show their works in progress, as well as the finished
+						pieces.
+
+						<br /><br />
+						But GIF exporting was very cumbersome, usually requiring the user to download every single
+						frame as a png for later composition, or using tools that either did not work properly or needed
+						an unreasonable amount of setup.
+
+						<br /><br />
+						I am very proud to say that we managed to create this feature and make it as easy as it's ever
+						been to download a GIF from your sketch.
+					</div>
+							{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
-				<h4 slot="title">Freelancer</h4>
-				<div slot="date">Sep, 2021</div>
-				<div slot="subtitle">I guess every role?</div>
-				<div slot="content">
-					In September, 2021 I started my career as a freelancer. I had just come out of my masters
-					and had absolutely no idea nor properly developed skill. The only thing I had clear was to
-					avoid as hard as I possibly could joining some generic big consultancy corporation to do
-					lame stuff. Top 1 best decisions I've ever made.
+				{#snippet title()}
+								<h4 >Reducible</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Nov, 2021</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Art Direction & Animation Engineering</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						Helped develop a clearer brand identity for the channel, helping it stand out among a
+						rapidly growing community of educational math channels. I also contributed directly to the
+						creation of the animations needed, made through code. Kind of like <i
+							>animation engineering.</i
+						>
 
-					<br /><br />
-					During this time, I worked with the
-					<a href="https://youtube.com/@veritasium">Veritasium</a> team as an animation engineer,
-					making mathematical animations in <a href="https://www.manim.community/">Manim</a>. This
-					would shape the rest of my career as I would choose this path onwards and specialize in
-					this branch of content creation.
+						<br />
+						<br />
+						My journey as a freelancer was blessed when I joined the
+						<a href="https://youtube.com/@reducible">Reducible</a>
+						youtube channel as an Art Director and Animator. <strong>Nipun</strong>, the creator and
+						founder of the channel, gave me the most welcoming time and we formed a team to improve
+						the channel from the ground up.
+						<br />
+						<br />
+						This project really holds a special place in my heart, since I was so early in my career but
+						still, he trusted me and allowed me to explore and exploit all the possibilities. No judgement,
+						no bullshit, just vibes and code.
+						<br />
+						<br />
 
-					<br /><br />
-					I also started my career as a <strong>design engineer</strong>, something I didn't know at
-					the time. I started tinkering with Next.js and Svelte and made some websites for fun and
-					for my local university.
-				</div>
+						<i>Animation engineering</i> comes from the fact that all animations were made through code.
+					</div>
+							{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
-				<h4 slot="title">MSc Data Science</h4>
-				<div slot="date">Sep, 2020</div>
-				<div slot="subtitle">Masters in Data Science @ University of Granada</div>
-				<div slot="content">
-					Got my masters in Data Science through the year of 2020. Learned that you won't need much
-					more than a simple linear regression in 90% of the cases you have to estimate some data. I
-					also got a lot into <strong>data visualization and design</strong>.
-				</div>
+				{#snippet title()}
+								<h4 >Freelancer</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Sep, 2021</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >I guess every role?</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						In September, 2021 I started my career as a freelancer. I had just come out of my masters
+						and had absolutely no idea nor properly developed skill. The only thing I had clear was to
+						avoid as hard as I possibly could joining some generic big consultancy corporation to do
+						lame stuff. Top 1 best decisions I've ever made.
+
+						<br /><br />
+						During this time, I worked with the
+						<a href="https://youtube.com/@veritasium">Veritasium</a> team as an animation engineer,
+						making mathematical animations in <a href="https://www.manim.community/">Manim</a>. This
+						would shape the rest of my career as I would choose this path onwards and specialize in
+						this branch of content creation.
+
+						<br /><br />
+						I also started my career as a <strong>design engineer</strong>, something I didn't know at
+						the time. I started tinkering with Next.js and Svelte and made some websites for fun and
+						for my local university.
+					</div>
+							{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
-				<h4 slot="title">BSc Computer Science</h4>
-				<div slot="date">Sep, 2016</div>
-				<div slot="subtitle">Bachelors in Computer Science @ University of Jaén</div>
-				<div slot="content">
-					From 2016 through 2020 I completed my degree in Computer Science. I didn't have a great
-					time during the first years, I was <i>really</i> bad at algorithms, math and hardcore
-					programming in general. It wouldn't be until 3rd year that I started to take off and enjoy
-					the process.
-
-					<br /><br />
-					Today I can very confidently say that programming, algorithms and math make me very happy.
-					Not an obvious choice, but probably the right one.
-				</div>
+				{#snippet title()}
+								<h4 >MSc Data Science</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Sep, 2020</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Masters in Data Science @ University of Granada</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						Got my masters in Data Science through the year of 2020. Learned that you won't need much
+						more than a simple linear regression in 90% of the cases you have to estimate some data. I
+						also got a lot into <strong>data visualization and design</strong>.
+					</div>
+							{/snippet}
 			</TimelineItem>
 
 			<TimelineItem>
-				<h4 slot="title">Music studies</h4>
-				<div slot="date">Sep?, 2013</div>
-				<div slot="subtitle">I basically started playing guitar</div>
-				<div slot="content">
-					At some point during the summer of 2013 I managed to convice mom to buy me a guitar.
-					Sometime later I started attending guitar lessons from one of the best teachers I will
-					ever know, <strong>Yeye</strong>.
+				{#snippet title()}
+								<h4 >BSc Computer Science</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Sep, 2016</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >Bachelors in Computer Science @ University of Jaén</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						From 2016 through 2020 I completed my degree in Computer Science. I didn't have a great
+						time during the first years, I was <i>really</i> bad at algorithms, math and hardcore
+						programming in general. It wouldn't be until 3rd year that I started to take off and enjoy
+						the process.
 
-					<br /><br /> Like many other things, this would completely fill up my mind and change my entire
-					life, but I didn't know that yet.
-				</div>
+						<br /><br />
+						Today I can very confidently say that programming, algorithms and math make me very happy.
+						Not an obvious choice, but probably the right one.
+					</div>
+							{/snippet}
+			</TimelineItem>
+
+			<TimelineItem>
+				{#snippet title()}
+								<h4 >Music studies</h4>
+							{/snippet}
+				{#snippet date()}
+								<div >Sep?, 2013</div>
+							{/snippet}
+				{#snippet subtitle()}
+								<div >I basically started playing guitar</div>
+							{/snippet}
+				{#snippet content()}
+								<div >
+						At some point during the summer of 2013 I managed to convice mom to buy me a guitar.
+						Sometime later I started attending guitar lessons from one of the best teachers I will
+						ever know, <strong>Yeye</strong>.
+
+						<br /><br /> Like many other things, this would completely fill up my mind and change my entire
+						life, but I didn't know that yet.
+					</div>
+							{/snippet}
 			</TimelineItem>
 		</div>
 	</main>
 </section>
 
-<div class="h-32" />
+<div class="h-32"></div>
 
 <style>
 	.whirly {

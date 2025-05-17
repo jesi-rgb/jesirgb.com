@@ -6,9 +6,6 @@ import {
 	PRIVATE_RASTER_TOKEN,
 } from "$env/static/private";
 
-import ExifReader from "exifreader";
-import type { ExifData } from "$lib/types";
-
 export async function GET() {
 	const rasterBaseUrl = "https://api.raster.app/"; // ImageKit's API endpoint for listing files
 	const organization = "cjqf86hyzds4iv";

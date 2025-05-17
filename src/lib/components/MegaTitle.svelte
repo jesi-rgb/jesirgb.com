@@ -1,9 +1,17 @@
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
+</script>
+
 <div
 	class="whirly not-prose mt-24 text-center font-thin leading-[1] tracking-tight @container md:mt-32"
 >
-	<slot />
+	{@render children?.()}
 </div>
-<div class="divider-base-content/50 divider mb-12" />
+<div class="divider-base-content/50 divider mb-12"></div>
 
 <style>
 	.whirly {

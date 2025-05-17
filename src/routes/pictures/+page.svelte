@@ -6,11 +6,6 @@
 	import { extent } from 'd3-array';
 	import { fly } from 'svelte/transition';
 
-	let images;
-	let imageDates;
-	let timeline;
-	let hoveredImage;
-
 	function createTimelineDates(dates) {
 		const [minDate, maxDate] = extent(dates);
 		const dateArray = [];
@@ -27,29 +22,28 @@
 		const res = await fetch('/api/images');
 
 		images = await res.json();
-
-		console.log(images);
-
-		// images.sort((a, b) => {
-		// 	const aDate = new Date(a.embeddedMetadata.DateCreated);
-		// 	const bDate = new Date(b.embeddedMetadata.DateCreated);
-		//
-		// 	return bDate - aDate;
-		// });
-		//
-		// imageDates = images.map((image, i) => {
-		// 	return new Date(image.embeddedMetadata.DateTimeOriginal);
-		// });
-		// timeline = createTimelineDates(imageDates);
-		//
-		// imageDates = imageDates.map((date, i) => {
-		// 	return { index: i, date: date.toDateString() };
-		// });
 	};
 
 	onMount(() => {
 		fetchImages();
 	});
+
+	let images = $state([]);
+	let hoveredImage = $state();
+
+	$inspect(hoveredImage);
+
+	const dates = $derived(
+		images.map((image, i) => {
+			return image.createdAt;
+		})
+	);
+	const timeline = $derived(createTimelineDates(dates));
+	const imageDates = $derived(
+		dates.map((date, i) => {
+			return { index: i, date: date.toDateString() };
+		})
+	);
 
 	let thumbUrl = new URL('https://www.jesirgb.com/blog/thumbnails');
 	thumbUrl.searchParams.append('title', 'Pictures');
@@ -98,13 +92,15 @@
 		{#if timeline}
 			{#each timeline as day}
 				{#if imageDates.map((e) => e.date).includes(day)}
+					{@const hoveredDate =
+						hoveredImage && new Date(hoveredImage.createdAt).toDateString() === day}
 					<div
-						class="relative h-3 w-[1px] duration-200 {hoveredImage && hoveredImage.date === day
+						class="relative h-3 w-[1px] duration-200 {hoveredDate
 							? 'h-4 w-[3px] bg-accent'
 							: 'bg-primary'}"
 						title={day}
 					>
-						{#if hoveredImage && hoveredImage.date === day}
+						{#if hoveredDate}
 							<span
 								transition:fly={{ y: -5, duration: 100 }}
 								class="hovered-date absolute -bottom-5 left-1/2
@@ -128,5 +124,5 @@
 			{/each}
 		{/if}
 	</div>
-	<MasonryGrid bind:hoveredImage {images} />
+	<MasonryGrid bind:hoveredImage bind:images />
 {/if}

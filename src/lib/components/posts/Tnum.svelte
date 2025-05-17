@@ -1,5 +1,5 @@
 <script>
-	let tnum = 0;
+	let tnum = $state(0);
 </script>
 
 <div class="rounded-xl border border-dashed border-primary bg-base-200 px-6 py-3">
@@ -8,7 +8,7 @@
 			<span class="badge badge-outline">off</span>
 			<div class="">1,456.99€</div>
 			<div class="">12,459.13€</div>
-			<div class="divider" />
+			<div class="divider"></div>
 			<span class="badge badge-outline">on</span>
 			<div class="tabular-nums">1,456.99€</div>
 			<div class="tabular-nums">12,459.13€</div>
@@ -18,7 +18,7 @@
 			<div style="font-feature-settings: 'tnum' {tnum};">1,340,567.67£</div>
 			<button
 				class="btn btn-outline btn-primary btn-xs"
-				on:click={() => {
+				onclick={() => {
 					if (tnum == 0) {
 						tnum = 1;
 					} else {

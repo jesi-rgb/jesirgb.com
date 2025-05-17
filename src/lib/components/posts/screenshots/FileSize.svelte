@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import IntersectionObserver from 'svelte-intersection-observer';
 	import { tweened } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 
-	let element: HTMLElement;
-	let intersecting: boolean;
+	let element: HTMLElement = $state();
+	let intersecting: boolean = $state();
 
 	let pngSize = 100;
 	let webpSize = 15;
@@ -21,12 +23,16 @@
 		easing: cubicOut
 	});
 
-	$: console.log(intersecting);
+	run(() => {
+		console.log(intersecting);
+	});
 
-	$: if (intersecting) {
-		pngSizeTween.set(pngSize);
-		webPSizeTween.set(webpSize);
-	}
+	run(() => {
+		if (intersecting) {
+			pngSizeTween.set(pngSize);
+			webPSizeTween.set(webpSize);
+		}
+	});
 </script>
 
 <IntersectionObserver once {element} bind:intersecting>

@@ -1,5 +1,5 @@
 <script>
-	let liga = 0;
+	let liga = $state(0);
 </script>
 
 <div class="rounded-xl border border-dashed border-primary bg-base-200 px-5 py-4">
@@ -21,7 +21,7 @@
 			</div>
 			<button
 				class="btn btn-outline btn-primary btn-xs"
-				on:click={() => {
+				onclick={() => {
 					if (liga == 0) {
 						liga = 1;
 					} else {

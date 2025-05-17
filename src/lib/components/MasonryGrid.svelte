@@ -1,19 +1,22 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import CalendarDot from 'phosphor-svelte/lib/CalendarDot';
 	import Camera from 'phosphor-svelte/lib/Camera';
 	import FilmStrip from 'phosphor-svelte/lib/FilmStrip';
 	import Aperture from 'phosphor-svelte/lib/Aperture';
 	import ExifReader from 'exifreader';
 
-	export let images = [];
-	export let hoveredImage: string | null;
-
-	let selectedImage: any | null = null;
-	$: {
-		console.log(selectedImage);
+	interface Props {
+		images?: any;
+		hoveredImage: string | null;
 	}
 
-	let modal: HTMLDialogElement; // bind this to the modal element
+	let { images = $bindable([]), hoveredImage = $bindable() }: Props = $props();
+
+	let selectedImage: any | null = $state(null);
+
+	let modal: HTMLDialogElement = $state(); // bind this to the modal element
 
 	const prefetchImage = (imageSrc: string) => {
 		const img = new Image();
@@ -56,9 +59,8 @@
 
 <!-- Masonry Grid -->
 <div
-	on:mouseleave={() => {
+	onmouseleave={() => {
 		hoveredImage = null;
-		selectedImage = null;
 	}}
 	class="masonry-grid"
 	role="region"
@@ -69,18 +71,18 @@
 			<!-- Using a button wrapper for better accessibility -->
 			<button
 				class="w-full border-0 bg-transparent p-0"
-				on:click={() => {
+				onclick={() => {
 					selectedImage = image;
 					modal.showModal();
 				}}
-				on:mouseenter={() => (hoveredImage = image)}
+				onmouseenter={() => (hoveredImage = image)}
 				aria-label={`View ${image.alt || 'photography'} in modal`}
 			>
 				<img
 					src={image.url}
 					width={image.width}
 					height={image.height}
-					on:load={handleLoad}
+					onload={handleLoad}
 					loading="lazy"
 					alt={image.alt || 'Photography'}
 					class="h-auto w-full transform rounded-lg border border-base-content/30 shadow-md transition-transform hover:scale-105"
@@ -138,7 +140,7 @@
 	>
 		<button
 			aria-label="Close image modal"
-			on:click={() => {
+			onclick={() => {
 				selectedImage = null;
 			}}>close</button
 		>

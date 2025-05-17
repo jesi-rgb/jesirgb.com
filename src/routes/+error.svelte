@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 
-	let drawNumber = false;
+	let drawNumber = $state(false);
 
 	onMount(() => {
 		drawNumber = true;

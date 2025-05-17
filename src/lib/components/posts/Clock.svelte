@@ -1,13 +1,17 @@
 <script>
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
-	let time = new Date();
-	let seconds = false;
-	$: colon = seconds ? ' ' : ':';
+	let time = $state(new Date());
+	let seconds = $state(false);
+	let colon = $derived(seconds ? ' ' : ':');
 
-	$: hours = time.getHours().toString().padStart(2, '0');
-	$: minutes = time.getMinutes().toString().padStart(2, '0');
+	let hours = $derived(time.getHours().toString().padStart(2, '0'));
+	let minutes = $derived(time.getMinutes().toString().padStart(2, '0'));
 
-	$: console.log(minutes);
+	run(() => {
+		console.log(minutes);
+	});
 
 	onMount(() => {
 		const interval = setInterval(() => {

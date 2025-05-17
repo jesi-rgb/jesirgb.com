@@ -1,22 +1,33 @@
 <script lang="ts">
+	import { preventDefault } from 'svelte/legacy';
+
 	import SpeakerHigh from 'phosphor-svelte/lib/SpeakerHigh';
 	import SpeakerX from 'phosphor-svelte/lib/SpeakerX';
 
 	// These values are bound to properties of the video
-	let time = 0;
-	let duration: number;
-	let paused = true;
-	let video: HTMLVideoElement;
+	let time = $state(0);
+	let duration: number = $state();
+	let paused = $state(true);
+	let video: HTMLVideoElement = $state();
 
-	export let url: string;
 
-	export let controls: boolean = true;
-	export let loop: boolean = true;
-	export let autoplay: boolean = false;
+	interface Props {
+		url: string;
+		controls?: boolean;
+		loop?: boolean;
+		autoplay?: boolean;
+	}
 
-	let showControls = true;
+	let {
+		url,
+		controls = true,
+		loop = true,
+		autoplay = false
+	}: Props = $props();
+
+	let showControls = $state(true);
 	let showControlsTimeout: number;
-	let muted = true;
+	let muted = $state(true);
 
 	// Used to track time of last mouse down event
 	let lastMouseDown: Date;
@@ -85,15 +96,15 @@
 	</video>
 
 	<button
-		on:mousemove={handleMove}
-		on:touchmove|preventDefault={handleMove}
-		on:mousedown={handleMousedown}
-		on:mouseup={handleMouseup}
+		onmousemove={handleMove}
+		ontouchmove={preventDefault(handleMove)}
+		onmousedown={handleMousedown}
+		onmouseup={handleMouseup}
 		tabindex="0"
 		class="controls h-full"
 		style="opacity: {duration && showControls && controls ? 1 : 0}"
 	>
-		<progress class="progress" value={time / duration || 0} />
+		<progress class="progress" value={time / duration || 0}></progress>
 
 		<div class="info relative tabular-nums">
 			<span class="time">{format(time)}</span>
@@ -104,7 +115,7 @@
 	<button
 		style="opacity: {duration && showControls && controls ? 1 : 0}"
 		class="btn btn-circle btn-ghost btn-sm absolute bottom-3 left-3 transition-[opacity] duration-1000 lg:btn-lg"
-		on:click={handleMuted}
+		onclick={handleMuted}
 	>
 		<!-- this hidden checkbox controls the state -->
 		{#if muted}

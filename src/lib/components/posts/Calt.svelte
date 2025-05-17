@@ -1,5 +1,5 @@
 <script>
-	let calt = 0;
+	let calt = $state(0);
 </script>
 
 <div class="rounded-xl border border-dashed border-primary bg-base-200 px-4 py-3">
@@ -26,7 +26,7 @@
 			</div>
 			<button
 				class="btn btn-outline btn-primary btn-xs"
-				on:click={() => {
+				onclick={() => {
 					if (calt == 0) {
 						calt = 1;
 					} else {

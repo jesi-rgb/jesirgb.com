@@ -3,7 +3,7 @@
 	import { formatDate } from '$lib/utils/utils.js';
 	import { MetaTags } from 'svelte-meta-tags';
 
-	export let data;
+	let { data } = $props();
 </script>
 
 <MetaTags title="Blog - Jesús Rascón" description="Developing ideas and exploring my inner self." />
