@@ -55,6 +55,7 @@
 	"type": "module",
 	"dependencies": {
 		"@types/d3": "^7.4.3",
+		"daisyui": "^5.0.35",
 		"exifreader": "^4.30.1"
 	}
 }
