@@ -95,7 +95,7 @@
 					{@const hoveredDate =
 						hoveredImage && new Date(hoveredImage.createdAt).toDateString() === day}
 					<div
-						class="relative h-3 w-[1px] duration-200 {hoveredDate
+						class="relative h-3 w-px duration-200 {hoveredDate
 							? 'h-4 w-[3px] bg-accent'
 							: 'bg-primary'}"
 						title={day}
@@ -119,7 +119,7 @@
 						>
 					</div>
 				{:else}
-					<div class="h-2 w-[1px] bg-primary/5"></div>
+					<div class="h-2 w-px bg-primary/5"></div>
 				{/if}
 			{/each}
 		{/if}

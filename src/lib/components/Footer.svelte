@@ -17,13 +17,13 @@
 <div class="divider-base-content/50 divider mt-10"></div>
 <footer class="mb-20 flex h-full flex-col items-baseline justify-between md:flex-row">
 	{#if loading}
-		<div class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]"></div>
+		<div class="whirly text-5xl font-[50] transition-all duration-500 hover:font-thin"></div>
 	{:else}
 		<button
 			in:fly={{ y: -20 }}
 			out:fly={{ y: 20 }}
 			onclick={loadWord}
-			class="whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]"
+			class="whirly text-5xl font-[50] transition-all duration-500 hover:font-thin"
 		>
 			{randomWord}
 		</button>
@@ -38,7 +38,7 @@
 		<!-- moon icon -->
 		<Moon class="swap-on" size={32} weight={'duotone'} />
 	</label>
-	<div class="whirly whirly text-5xl font-[50] transition-all duration-500 hover:font-[100]">
+	<div class="whirly whirly text-5xl font-[50] transition-all duration-500 hover:font-thin">
 		{new Date().getFullYear()}
 	</div>
 </footer>

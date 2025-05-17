@@ -114,7 +114,7 @@
 	</button>
 	<button
 		style="opacity: {duration && showControls && controls ? 1 : 0}"
-		class="btn btn-circle btn-ghost btn-sm absolute bottom-3 left-3 transition-[opacity] duration-1000 lg:btn-lg"
+		class="btn btn-circle btn-ghost btn-sm absolute bottom-3 left-3 transition-opacity duration-1000 lg:btn-lg"
 		onclick={handleMuted}
 	>
 		<!-- this hidden checkbox controls the state -->

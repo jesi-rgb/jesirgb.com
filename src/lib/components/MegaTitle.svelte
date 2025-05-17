@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="whirly not-prose mt-24 text-center font-thin leading-[1] tracking-tight @container md:mt-32"
+	class="whirly not-prose mt-24 text-center font-thin leading-none tracking-tight @container md:mt-32"
 >
 	{@render children?.()}
 </div>
