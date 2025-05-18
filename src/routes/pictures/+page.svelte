@@ -6,6 +6,11 @@
 	import { extent } from 'd3-array';
 	import { fly } from 'svelte/transition';
 
+	let images;
+	let imageDates;
+	let timeline;
+	let hoveredImage;
+
 	function createTimelineDates(dates) {
 		const [minDate, maxDate] = extent(dates);
 		const dateArray = [];
@@ -21,29 +26,29 @@
 	const fetchImages = async () => {
 		const res = await fetch('/api/images');
 
-		images = await res.json();
+		const data = await res.json();
+		images = data;
+
+		images.sort((a, b) => {
+			const aDate = new Date(a.embeddedMetadata.DateCreated);
+			const bDate = new Date(b.embeddedMetadata.DateCreated);
+
+			return bDate - aDate;
+		});
+
+		imageDates = images.map((image, i) => {
+			return new Date(image.embeddedMetadata.DateTimeOriginal);
+		});
+		timeline = createTimelineDates(imageDates);
+
+		imageDates = imageDates.map((date, i) => {
+			return { index: i, date: date.toDateString() };
+		});
 	};
 
 	onMount(() => {
 		fetchImages();
 	});
-
-	let images = $state([]);
-	let hoveredImage = $state();
-
-	$inspect(hoveredImage);
-
-	const dates = $derived(
-		images.map((image, i) => {
-			return image.createdAt;
-		})
-	);
-	const timeline = $derived(createTimelineDates(dates));
-	const imageDates = $derived(
-		dates.map((date, i) => {
-			return { index: i, date: date.toDateString() };
-		})
-	);
 
 	let thumbUrl = new URL('https://www.jesirgb.com/blog/thumbnails');
 	thumbUrl.searchParams.append('title', 'Pictures');
@@ -89,40 +94,36 @@
 	<div
 		class="bg-base-100/80 sticky top-10 z-10 mb-2 flex h-14 items-center justify-between p-1 backdrop-blur-lg"
 	>
-		{#if timeline}
-			{#each timeline as day}
-				{#if imageDates.map((e) => e.date).includes(day)}
-					{@const hoveredDate =
-						hoveredImage && new Date(hoveredImage.createdAt).toDateString() === day}
-					<div
-						class="relative h-3 w-px duration-200 {hoveredDate
-							? 'bg-accent h-4 w-[3px]'
-							: 'bg-primary'}"
-						title={day}
-					>
-						{#if hoveredDate}
-							<span
-								transition:fly={{ y: -5, duration: 100 }}
-								class="hovered-date absolute -bottom-5 left-1/2
+		{#each timeline as day}
+			{#if imageDates.map((e) => e.date).includes(day)}
+				<div
+					class="relative h-3 w-[1px] duration-200 {hoveredImage && hoveredImage.date === day
+						? 'bg-accent h-4 w-[3px]'
+						: 'bg-primary'}"
+					title={day}
+				>
+					{#if hoveredImage && hoveredImage.date === day}
+						<span
+							transition:fly={{ y: -5, duration: 100 }}
+							class="hovered-date absolute -bottom-5 left-1/2
 							w-max -translate-x-1/2
 						text-xs"
-							>
-								{day.split(' ').slice(1).join(' ')}
-							</span>
-						{/if}
-					</div>
-				{:else if day.includes('Jan 01')}
-					<div class="bg-accent relative h-5 w-[2px]">
-						<span
-							class="absolute -top-4 left-1/2 -translate-x-1/2
-						text-xs">{day.split(' ')[3]}</span
 						>
-					</div>
-				{:else}
-					<div class="bg-primary/5 h-2 w-px"></div>
-				{/if}
-			{/each}
-		{/if}
+							{day.split(' ').slice(1).join(' ')}
+						</span>
+					{/if}
+				</div>
+			{:else if day.includes('Jan 01')}
+				<div class="bg-accent relative h-5 w-[2px]">
+					<span
+						class="absolute -top-4 left-1/2 -translate-x-1/2
+						text-xs">{day.split(' ')[3]}</span
+					>
+				</div>
+			{:else}
+				<div class="bg-primary/5 h-2 w-[1px]"></div>
+			{/if}
+		{/each}
 	</div>
-	<MasonryGrid bind:hoveredImage bind:images />
+	<MasonryGrid bind:hoveredImage {images} />
 {/if}
