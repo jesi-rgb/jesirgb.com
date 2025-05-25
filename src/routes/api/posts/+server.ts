@@ -18,6 +18,7 @@ async function getPosts() {
       posts.push(post as Post);
     }
 
+
     posts.sort((p2: Post, p1: Post) => {
       return new Date(p1.date).getTime() - new Date(p2.date).getTime();
     });

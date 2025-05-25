@@ -72,21 +72,22 @@
 	}}
 />
 
-<article class="mx-auto mt-24 @container md:max-w-xl xl:max-w-2xl">
+<article class="@container mx-auto mt-24 md:max-w-xl xl:max-w-2xl">
 	<hrgoup class="flex flex-col space-y-3">
 		<div
 			role="link"
 			tabindex="0"
 			onmouseleave={() => (visible = false)}
 			onmouseenter={() => (visible = true)}
-			class="group relative h-full w-full @container"
+			class="group @container relative h-full w-full"
 		>
 			{#if visible}
 				<a class="opacity-10 transition-all duration-300 hover:opacity-30" href="/blog">
 					<div
 						in:fly={{ y: -5, duration: 200 }}
 						out:fly={{ y: 5, duration: 200 }}
-						class="whirly absolute -top-10 right-1/2 translate-x-1/2 font-title text-lg font-[60]"
+						class="whirly font-title absolute -top-15 right-1/2
+						translate-x-1/2 font-[60]"
 					>
 						blog/
 					</div>
@@ -100,16 +101,16 @@
 		<div class="divider"></div>
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row md:items-start">
 			<div class="flex flex-col text-center md:text-left">
-				<p class="text-xl text-base-content/50 xl:text-2xl">
+				<p class="text-base-content/50 text-xl xl:text-2xl">
 					{formatDate(data.metadata.date)}
 				</p>
 				{#await getLastUpdated()}
-					<p class="text-left text-xs text-base-content/50 opacity-0 xl:text-base">Last updated</p>
+					<p class="text-base-content/50 text-left text-xs opacity-0 xl:text-base">Last updated</p>
 				{:then lastUpdated}
 					{#key lastUpdated}
 						<p
 							in:fly={{ x: 10, duration: 100 }}
-							class="text-left text-xs text-base-content/50 xl:text-base"
+							class="text-base-content/50 text-left text-xs xl:text-base"
 						>
 							Last updated: {formatDate(lastUpdated)}
 						</p>
@@ -125,7 +126,7 @@
 	</hrgoup>
 
 	<div
-		class="prose my-12 md:prose-lg prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold"
+		class="prose md:prose-lg prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold my-12"
 	>
 		<data.content />
 	</div>
