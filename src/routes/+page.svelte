@@ -51,7 +51,7 @@
 				><strong>Design Bits</strong>
 			</a>
 			channel, where we talk about computational design.
-			<i>All things art, but make it digital</i>.
+			<i class="">All things art, but make it digital</i>.
 		</p>
 
 		<p>

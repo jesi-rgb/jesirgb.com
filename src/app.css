@@ -31,6 +31,12 @@
 }
 
 
+@font-face {
+	font-family: 'DSEG7ClassicMini';
+	src: local('DSEG7ClassicMini'), url('/fonts/DSEG7ClassicMini-Bold.woff');
+	font-weight: bold;
+}
+
 /* Define custom font families as CSS variables */
 :root {
 	--font-sans: 'AT Name Sans Variable', apple-system, '--system-ui';
@@ -107,10 +113,15 @@
 	themes: jesi-light --default, jesi-dark;
 }
 
-
-
 pre {
 	border: 2px dashed gray;
+}
+
+i,
+em,
+blockquote {
+	font-style: normal;
+	font-variation-settings: 'ital' 1;
 }
 
 @media (prefers-color-scheme: dark) {
