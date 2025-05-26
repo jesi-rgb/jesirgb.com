@@ -364,17 +364,24 @@
 				{/snippet}
 				{#snippet content()}
 					<div>
-						Graphext being quite a small startup, everyone wears lots of hats.
+						Graphext being quite a small startup, everyone wears lots of hats. I mainly help build
+						the docs, tractor, and the landing page.
+
+						<br />
+						<br />
+						The <a href="https://graphext.com">landing page</a> was a 1-month speedrun to prove to
+						the team that we should move from Webflow into code. Everything had to look much better,
+						work faster and be easier to work with. I do believe we managed to pull it off. Many
+						interations have come after, to make sure it's polished and sick-looking.
 
 						<br />
 						<br />
 						I worked on <a href="https://tractor.graphext.com">Tractor 2.0</a>, a revival of a
-						beautiful scraping tool on top of Apify, quite useful for very quickly bringing social
-						media data to be analyzed within Graphext. The main focus was being able to get a useful
-						social-media dataset quickly, easily and efficiently. The interface was designed with a
-						great deal of care, and tons of invisible details make your experience as smooth as
-						possible to download a piece of data. This makes for a great compainon to Graphext,
-						where you can readily analyze what you just downloaded.
+						scraping tool on top of Apify, quite useful for very quickly bringing social media data
+						to be analyzed within Graphext. The interface was designed with a great deal of care,
+						and tons of invisible details make your experience as smooth as possible to download a
+						piece of data. This makes for a great compainon to Graphext, where you can readily
+						analyze what you just downloaded.
 
 						<br />
 						<br />
