@@ -27,6 +27,28 @@
 	>
 		<h3>design, animation and data</h3>
 
+		<p>Designer, engineer, and everything in between. I also do video and music.</p>
+
+		<p>
+			I was a <i>Design Engineer</i> of sorts at
+			<a href="https://graphext.com">
+				<span class="inline-block align-middle">
+					<svg
+						width="25"
+						viewBox="0 0 96 96"
+						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+						><path
+							d="M82.378,44.431c0,15.718 -10.107,28.46 -25.025,28.46c-7.55,0 -27.716,-3.76 -33.64,-6.583c-11.017,-4.63 -17.23,-11.367 -17.23,-21.877c-0,-10.511 6.213,-17.248 17.23,-21.878c5.924,-2.823 26.09,-6.583 33.64,-6.583c14.918,-0 25.025,12.742 25.025,28.461Zm-52.511,-0c-0,4.457 -3.49,8.071 -7.795,8.071c-4.305,-0 -7.795,-3.614 -7.795,-8.071c0,-4.458 3.49,-8.071 7.795,-8.071c4.305,-0 7.795,3.613 7.795,8.071Zm43.235,-0c0,8.68 -7.079,15.717 -15.811,15.717c-8.733,-0 -15.812,-7.037 -15.812,-15.717c0,-8.681 7.079,-15.717 15.812,-15.717c8.732,-0 15.811,7.036 15.811,15.717Z"
+							fill="currentColor"
+						/></svg
+					>
+				</span>Graphext</a
+			>, arguably the fastest and most powerful analytics tool there is available in the market. I
+			helped build its <a href="https://docs.graphext.com">docs</a>,
+			<a href="https://tractor.graphext.com">tractor</a>, and its
+			<a href="https://graphext.com">landing page</a>.
+		</p>
+
 		<p>
 			Founder and creator of the <a href="https://www.youtube.com/@Design_Bits"
 				><span class="mr-0.5 inline-block pb-1 align-middle"
