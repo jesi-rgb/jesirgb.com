@@ -23,9 +23,9 @@
 		<div class="subtitle text-xl font-semibold">{@render subtitle?.()}</div>
 	</div>
 	<!-- Content -->
-	<p>
+	<div>
 		{@render content?.()}
-	</p>
+	</div>
 </div>
 
 <style>
