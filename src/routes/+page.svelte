@@ -77,23 +77,6 @@
 		</p>
 
 		<p>
-			I've previously worked at
-			<a href="https://graphext.com">
-				<span class="inline-block align-middle">
-					<svg
-						width="25"
-						viewBox="0 0 96 96"
-						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-						><path
-							d="M82.378,44.431c0,15.718 -10.107,28.46 -25.025,28.46c-7.55,0 -27.716,-3.76 -33.64,-6.583c-11.017,-4.63 -17.23,-11.367 -17.23,-21.877c-0,-10.511 6.213,-17.248 17.23,-21.878c5.924,-2.823 26.09,-6.583 33.64,-6.583c14.918,-0 25.025,12.742 25.025,28.461Zm-52.511,-0c-0,4.457 -3.49,8.071 -7.795,8.071c-4.305,-0 -7.795,-3.614 -7.795,-8.071c0,-4.458 3.49,-8.071 7.795,-8.071c4.305,-0 7.795,3.613 7.795,8.071Zm43.235,-0c0,8.68 -7.079,15.717 -15.811,15.717c-8.733,-0 -15.812,-7.037 -15.812,-15.717c0,-8.681 7.079,-15.717 15.812,-15.717c8.732,-0 15.811,7.036 15.811,15.717Z"
-							fill="currentColor"
-						/></svg
-					>
-				</span>Graphext</a
-			> as a Design Engineer, crafting landing pages, documentation and tooling for what's arguably the
-			fastest and most powerful analytics tool there is available in the market.
-		</p>
-		<p>
 			I've also worked as a freelance <i>technical content creator</i> with channels like
 			<strong><a href="https://www.youtube.com/@veritasium">Veritasium</a></strong>
 			and
@@ -116,6 +99,32 @@
 		<h2>The Stuff™</h2>
 		<h5>Non exhaustive list of silly things I've built. No promises.</h5>
 		<div class="mt-10 flex flex-col space-y-9">
+			<WorkItem link="https://conduitchat.app">
+				{#snippet title()}
+					<div>Conduit</div>
+				{/snippet}
+
+				{#snippet description()}
+					<div>Conduit is an AI chat app that lets you go on tangents</div>
+				{/snippet}
+				{#snippet icon()}
+					<svg class="text-primary" width="32" height="32" viewBox="0 0 24 24"
+						><g fill="none" stroke="currentColor" stroke-width="1.5"
+							><path
+								stroke-linecap="round"
+								d="M21.995 13.52c-.052-.6-.539-1.206-1.351-1.77m1.351 1.77c.027.308-.062.596-.252.861c-.386.536-1.191.976-2.3 1.289c1.657-.468 2.634-1.218 2.552-2.15Zm0 0a1.4 1.4 0 0 0-.09-.38a2.3 2.3 0 0 0-.433-.678c-.356-.4-.882-.788-1.543-1.152m2.066 2.21c.095 1.09-1.258 1.932-3.454 2.364m2.103-4.134c-1.787-1.241-5.153-2.282-8.948-2.63c-5.52-.507-9.86.64-9.691 2.564m18.639.066c-.559-.388-1.271-.757-2.103-1.09c.51.205.976.422 1.388.65m-17.924.374a1.4 1.4 0 0 0 .09.38q.132.342.433.679c.356.399.882.787 1.543 1.152m-2.066-2.211c-.082-.932.895-1.682 2.553-2.15c-1.11.313-1.915.753-2.3 1.29a1.25 1.25 0 0 0-.253.86Zm0 0c.052.601.539 1.207 1.351 1.77m.715.44c.412.228.878.446 1.388.65c-.831-.333-1.544-.702-2.103-1.09m.715.44c.95.524 2.181.997 3.594 1.377m-4.309-1.816c1.157.803 2.976 1.522 5.144 2.024m11.43-4.17c-.951-.523-2.182-.996-3.595-1.375"
+								opacity=".5"
+							/><path
+								stroke-linecap="round"
+								d="M15.274 4.85q.39-.245.753-.423c.881-.43 1.637-.55 2.175-.29c.276.133.478.358.61.661c.122.284.184.635.188 1.044m-3.726-.991c-1.814 1.145-3.998 3.363-5.892 6.141c-3.143 4.61-4.301 9.022-2.594 9.867M15.274 4.85c-.388.245-.794.54-1.21.879m-7.277 15.13l.01.005q.171.083.369.114c.237.04.502.025.791-.037c.516-.11 1.105-.377 1.741-.775q.224-.14.454-.301q.385-.27.784-.595l1.175-.954m-5.324 2.543c-.826-.409-.981-1.652-.566-3.348M18.778 7.49c.15-.615.226-1.17.222-1.647m0 0c.007.856-.241 1.962-.719 3.213"
+							/><path
+								d="M11.765 14.281c-.014-.91-.02-1.365.266-1.531s.678.068 1.46.535l.202.12c.222.134.333.2.455.215c.123.016.242-.021.482-.096l.218-.067c.843-.262 1.264-.393 1.518-.16c.253.235.17.679.005 1.566l-.042.23c-.047.252-.07.379-.043.502s.104.23.256.442l.138.194c.535.749.802 1.123.672 1.433s-.573.351-1.456.433l-.229.021c-.25.023-.376.035-.482.096c-.105.06-.178.163-.323.369l-.133.187c-.512.725-.768 1.087-1.102 1.045s-.525-.461-.906-1.298l-.098-.217c-.109-.238-.163-.357-.256-.443c-.093-.085-.213-.128-.455-.214l-.22-.078c-.852-.3-1.278-.45-1.354-.787s.248-.636.897-1.235l.167-.155c.184-.17.277-.256.324-.37c.048-.113.046-.243.042-.501z"
+							/></g
+						></svg
+					>
+				{/snippet}
+			</WorkItem>
+
 			<WorkItem link="https://tractor.graphext.com/">
 				{#snippet title()}
 					<div>Tractor</div>
@@ -124,220 +133,194 @@
 					<div>An automated scraping tool</div>
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<svg
-							width="31px"
-							height="29px"
-							version="1.1"
-							xmlns="http://www.w3.org/2000/svg"
-							xmlns:xlink="http://www.w3.org/1999/xlink"
-							xml:space="preserve"
-							class="fill-primary"
-							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-						>
-							<g transform="matrix(1,0,0,1,-3.712,-202.607)">
-								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-									<path
-										d="M198.656,155.704C219.523,155.704 236.465,172.645 236.465,193.512C236.465,214.379 219.523,231.321 198.656,231.321C177.79,231.321 160.848,214.379 160.848,193.512C160.848,172.645 177.79,155.704 198.656,155.704ZM198.656,179.273C190.798,179.273 184.417,185.653 184.417,193.512C184.417,201.371 190.798,207.751 198.656,207.751C206.515,207.751 212.896,201.371 212.896,193.512C212.896,185.653 206.515,179.273 198.656,179.273Z"
-									/>
-								</g>
-								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-									<path
-										d="M79.957,103.657C115.187,103.657 143.789,132.259 143.789,167.489C143.789,202.718 115.187,231.321 79.957,231.321C44.727,231.321 16.125,202.718 16.125,167.489C16.125,132.259 44.727,103.657 79.957,103.657ZM79.957,127.226C57.735,127.226 39.694,145.267 39.694,167.489C39.694,189.71 57.735,207.751 79.957,207.751C102.178,207.751 120.22,189.71 120.22,167.489C120.22,145.267 102.178,127.226 79.957,127.226Z"
-									/>
-								</g>
-								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-									<path
-										d="M131.707,49.41L108.67,54.388L106.181,42.869L103.897,32.301L42.511,32.301L33.216,75.322C71.126,56.106 118.449,61.763 150.815,92.293L234.798,117.293L234.798,149.79L211.229,149.79L211.229,134.868L138.46,113.206L136.35,111.096C105.226,79.971 54.688,79.971 23.564,111.096L3.712,100.274L23.491,8.732L122.918,8.732L131.707,49.41Z"
-									/>
-								</g>
-								<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
-									<path
-										d="M194.164,119.61L170.595,119.61L170.595,78.954L193.092,54.86L210.319,70.945L202.276,79.559L194.164,88.247L194.164,119.61Z"
-									/>
-								</g>
+					<svg
+						width="31px"
+						height="29px"
+						version="1.1"
+						xmlns="http://www.w3.org/2000/svg"
+						xmlns:xlink="http://www.w3.org/1999/xlink"
+						xml:space="preserve"
+						class="fill-primary"
+						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+					>
+						<g transform="matrix(1,0,0,1,-3.712,-202.607)">
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M198.656,155.704C219.523,155.704 236.465,172.645 236.465,193.512C236.465,214.379 219.523,231.321 198.656,231.321C177.79,231.321 160.848,214.379 160.848,193.512C160.848,172.645 177.79,155.704 198.656,155.704ZM198.656,179.273C190.798,179.273 184.417,185.653 184.417,193.512C184.417,201.371 190.798,207.751 198.656,207.751C206.515,207.751 212.896,201.371 212.896,193.512C212.896,185.653 206.515,179.273 198.656,179.273Z"
+								/>
 							</g>
-						</svg>
-					</div>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M79.957,103.657C115.187,103.657 143.789,132.259 143.789,167.489C143.789,202.718 115.187,231.321 79.957,231.321C44.727,231.321 16.125,202.718 16.125,167.489C16.125,132.259 44.727,103.657 79.957,103.657ZM79.957,127.226C57.735,127.226 39.694,145.267 39.694,167.489C39.694,189.71 57.735,207.751 79.957,207.751C102.178,207.751 120.22,189.71 120.22,167.489C120.22,145.267 102.178,127.226 79.957,127.226Z"
+								/>
+							</g>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M131.707,49.41L108.67,54.388L106.181,42.869L103.897,32.301L42.511,32.301L33.216,75.322C71.126,56.106 118.449,61.763 150.815,92.293L234.798,117.293L234.798,149.79L211.229,149.79L211.229,134.868L138.46,113.206L136.35,111.096C105.226,79.971 54.688,79.971 23.564,111.096L3.712,100.274L23.491,8.732L122.918,8.732L131.707,49.41Z"
+								/>
+							</g>
+							<g transform="matrix(0.129001,0,0,0.129001,3.23315,201.48)">
+								<path
+									d="M194.164,119.61L170.595,119.61L170.595,78.954L193.092,54.86L210.319,70.945L202.276,79.559L194.164,88.247L194.164,119.61Z"
+								/>
+							</g>
+						</g>
+					</svg>
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://svelte-advent-code.vercel.app/">
 				{#snippet title()}
-					<div>Svelte's Advent of Code 2023</div>
+					Svelte's Advent of Code 2023
 				{/snippet}
 				{#snippet description()}
-					<div>A set of 24 prompts to sharpen your Svelte skills</div>
+					A set of 24 prompts to sharpen your Svelte skills
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<CursorClick size={40} weight="duotone" class="fill-primary mt-[3px] ml-[3px]" />
-					</div>
+					<CursorClick size={40} weight="duotone" class="fill-primary mt-[3px] ml-[3px]" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://pangea-game.vercel.app">
 				{#snippet title()}
-					<div>Pangea</div>
+					Pangea
 				{/snippet}
 				{#snippet description()}
-					<div>The country guessing game</div>
+					The country guessing game
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<GlobeStand size={40} weight="duotone" class="fill-primary" />
-					</div>
+					<GlobeStand size={40} weight="duotone" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://tramos-irpf.vercel.app/">
 				{#snippet title()}
-					<div>Tramos IRPF</div>
+					Tramos IRPF
 				{/snippet}
 				{#snippet description()}
-					<div>Tax calculator for freelancers in Spain</div>
+					Tax calculator for freelancers in Spain
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<Percent size={40} weight="bold" class="fill-primary" />
-					</div>
+					<Percent size={40} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://cycles-sup.vercel.app">
 				{#snippet title()}
-					<div>Cycles</div>
+					Cycles
 				{/snippet}
 				{#snippet description()}
-					<div>Tiny Little Habit Tracker</div>
+					Tiny Little Habit Tracker
 				{/snippet}
 				{#snippet icon()}
-					<div class="text-primary">
-						<svg
-							class="ml-0.5 scale-110"
-							width="33px"
-							height="33px"
-							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-							fill="currentColor"
-						>
-							<path
-								d="M31.264,19.669c0.18,0.255 0.278,0.56 0.278,0.873c-0,0.83 -0.683,1.512 -1.513,1.512c-0.39,0 -0.765,-0.151 -1.047,-0.421c-0.016,-0.015 -0.031,-0.031 -0.046,-0.048c-0.03,-0.035 -2.068,-2.229 -5.399,-3.855c-0.699,5.35 -4.564,10.442 -11.124,10.442c-2.132,0 -3.946,-0.703 -5.264,-2.008c-0.002,-0.002 -0.003,-0.003 -0.004,-0.004c-1.232,-1.239 -1.917,-2.921 -1.901,-4.666c0.001,-2.196 1.043,-4.352 2.88,-5.894l0,-0c2.019,-1.692 4.894,-2.61 8.336,-2.61l0,-0c1.291,0.001 2.577,0.138 3.837,0.409c-0.314,-1.163 -0.845,-2.209 -1.574,-3.058l-0.001,-0c-1.375,-1.604 -3.415,-2.431 -5.878,-2.431c-5.243,0 -8.856,4.977 -8.891,5.03c-0.004,0.004 -0.007,0.009 -0.011,0.014c-0.283,0.396 -0.742,0.631 -1.229,0.631c-0.83,0 -1.513,-0.683 -1.513,-1.513c-0,-0.316 0.099,-0.624 0.283,-0.881c0.191,-0.267 4.612,-6.306 11.361,-6.306c3.407,0 6.225,1.216 8.179,3.492l0.001,0c1.381,1.613 2.265,3.715 2.538,6.036c4.619,1.875 7.458,4.971 7.627,5.157c0.028,0.031 0.053,0.064 0.075,0.099Zm-12.798,2.656c1.255,-1.537 2.016,-3.596 2.142,-5.724c-1.347,-0.384 -2.741,-0.581 -4.143,-0.586c-5.553,0 -8.187,2.769 -8.187,5.484c-0,2.535 2.16,3.648 4.135,3.648c3.099,0 5.004,-1.532 6.052,-2.821l0.001,-0.001Z"
-								style="fill-rule:nonzero;"
-							/>
-						</svg>
-					</div>
+					<svg
+						class="ml-0.5 scale-110"
+						width="33px"
+						height="33px"
+						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+						fill="currentColor"
+					>
+						<path
+							d="M31.264,19.669c0.18,0.255 0.278,0.56 0.278,0.873c-0,0.83 -0.683,1.512 -1.513,1.512c-0.39,0 -0.765,-0.151 -1.047,-0.421c-0.016,-0.015 -0.031,-0.031 -0.046,-0.048c-0.03,-0.035 -2.068,-2.229 -5.399,-3.855c-0.699,5.35 -4.564,10.442 -11.124,10.442c-2.132,0 -3.946,-0.703 -5.264,-2.008c-0.002,-0.002 -0.003,-0.003 -0.004,-0.004c-1.232,-1.239 -1.917,-2.921 -1.901,-4.666c0.001,-2.196 1.043,-4.352 2.88,-5.894l0,-0c2.019,-1.692 4.894,-2.61 8.336,-2.61l0,-0c1.291,0.001 2.577,0.138 3.837,0.409c-0.314,-1.163 -0.845,-2.209 -1.574,-3.058l-0.001,-0c-1.375,-1.604 -3.415,-2.431 -5.878,-2.431c-5.243,0 -8.856,4.977 -8.891,5.03c-0.004,0.004 -0.007,0.009 -0.011,0.014c-0.283,0.396 -0.742,0.631 -1.229,0.631c-0.83,0 -1.513,-0.683 -1.513,-1.513c-0,-0.316 0.099,-0.624 0.283,-0.881c0.191,-0.267 4.612,-6.306 11.361,-6.306c3.407,0 6.225,1.216 8.179,3.492l0.001,0c1.381,1.613 2.265,3.715 2.538,6.036c4.619,1.875 7.458,4.971 7.627,5.157c0.028,0.031 0.053,0.064 0.075,0.099Zm-12.798,2.656c1.255,-1.537 2.016,-3.596 2.142,-5.724c-1.347,-0.384 -2.741,-0.581 -4.143,-0.586c-5.553,0 -8.187,2.769 -8.187,5.484c-0,2.535 2.16,3.648 4.135,3.648c3.099,0 5.004,-1.532 6.052,-2.821l0.001,-0.001Z"
+							style="fill-rule:nonzero;"
+						/>
+					</svg>
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://fellowship-proposal.vercel.app/en">
 				{#snippet title()}
-					<div>Processing Fellowship Proposal</div>
+					Processing Fellowship Proposal
 				{/snippet}
 				{#snippet description()}
-					<div>A presentation of Mathemagical.js, with Greg Stanton</div>
+					A presentation of Mathemagical.js, with Greg Stanton
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<Sigma size={40} weight="bold" class="fill-primary" />
-					</div>
+					<Sigma size={40} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://mapa-elecciones-two.vercel.app/">
 				{#snippet title()}
-					<div>Spanish General Elections 2023 Map</div>
+					Spanish General Elections 2023 Map
 				{/snippet}
 				{#snippet description()}
-					<div>Visualization of the results, per district</div>
+					Visualization of the results, per district
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<Envelope size={40} weight="bold" class="fill-primary -rotate-12" />
-					</div>
+					<Envelope size={40} weight="bold" class="fill-primary -rotate-12" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://elmetro.vercel.app/">
 				{#snippet title()}
-					<div>El Metro</div>
+					El Metro
 				{/snippet}
 				{#snippet description()}
-					<div>Tram tracking extremely simple</div>
+					Tram tracking extremely simple
 				{/snippet}
 				{#snippet icon()}
-					<div class="text-primary">
-						<svg
-							class="scale-110"
-							width="32px"
-							height="32px"
-							style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
-							fill="currentColor"
-							stroke="currentColor"
-						>
-							<path
-								d="M24.346,26.798l1.194,1.418c0.005,0.006 0.01,0.011 0.014,0.017c0.656,0.82 0.523,2.031 -0.293,2.688c-0.326,0.266 -0.731,0.416 -1.153,0.423c-0.592,0.014 -1.161,-0.247 -1.534,-0.708l-3.049,-3.674l-6.23,0.197l-2.371,3.38c-0.344,0.49 -0.897,0.79 -1.494,0.813c-0.423,0.02 -0.838,-0.105 -1.181,-0.353c-0.852,-0.605 -1.06,-1.804 -0.46,-2.66l0.728,-1.036c-2.603,-0.063 -4.766,-2.175 -4.857,-4.805l-0.515,-16.271c-0.079,-2.727 2.063,-4.902 4.784,-4.995l15.264,-0.606c0.003,0 0.007,-0 0.01,-0c2.724,-0.077 4.848,2.173 4.942,4.889l0.69,16.174c0,0.004 0.001,0.008 0.001,0.012c0.075,2.613 -1.921,4.844 -4.49,5.097Zm-1.089,-24.379l-15.256,0.606l-0.005,-0c-1.73,0.06 -3.107,1.42 -3.057,3.15l0.515,16.262c0.06,1.737 1.534,3.12 3.272,3.071l1.523,-0.048c0.339,-0.011 0.656,0.172 0.818,0.47c0.161,0.299 0.14,0.664 -0.055,0.942l-1.754,2.498c-0.037,0.054 -0.023,0.129 0.03,0.167c0.003,0.002 0.006,0.004 0.009,0.006c0.015,0.011 0.033,0.017 0.051,0.016c0.004,0 0.009,-0 0.013,-0c0.038,-0.001 0.073,-0.021 0.094,-0.051l2.629,-3.747c0.163,-0.231 0.424,-0.372 0.706,-0.381l7.116,-0.226c0.277,-0.009 0.543,0.111 0.719,0.324l3.332,4.015c0.003,0.005 0.008,0.009 0.011,0.013c0.023,0.029 0.059,0.045 0.096,0.044c0.004,-0 0.009,-0 0.013,-0.001c0.019,-0 0.038,-0.008 0.052,-0.02l0.006,-0.004c0.05,-0.041 0.06,-0.114 0.022,-0.166l-2.367,-2.81c-0.221,-0.264 -0.273,-0.63 -0.133,-0.945c0.14,-0.313 0.447,-0.519 0.791,-0.53l1.523,-0.048c1.736,-0.062 3.119,-1.533 3.071,-3.269l-0.69,-16.166l-0,-0.008c-0.061,-1.731 -1.363,-3.211 -3.095,-3.164Zm-10.407,19.915c-0.318,-0.379 -0.268,-0.946 0.112,-1.264c0.38,-0.318 0.946,-0.268 1.264,0.112c0.509,0.608 1.293,0.848 2.047,0.807c0.758,-0.04 1.505,-0.359 1.93,-0.947c0.291,-0.401 0.852,-0.491 1.253,-0.201c0.402,0.291 0.492,0.852 0.202,1.253c-0.732,1.011 -1.987,1.617 -3.289,1.687c-1.304,0.07 -2.638,-0.395 -3.519,-1.447Zm-3.692,-5.081c0.048,0.493 -0.313,0.932 -0.807,0.98c-0.492,0.048 -0.932,-0.313 -0.979,-0.807c-0,0 -0.183,-1.953 0.495,-3.542c0.521,-1.223 1.498,-2.245 3.271,-2.301c1.761,-0.056 2.82,0.885 3.445,2.053c0.82,1.529 0.813,3.472 0.813,3.472c-0.002,0.495 -0.407,0.895 -0.902,0.891c-0.496,-0.003 -0.896,-0.408 -0.892,-0.903c-0,0 0.005,-1.029 -0.354,-2.046c-0.295,-0.836 -0.851,-1.712 -2.053,-1.674c-1.189,0.038 -1.655,0.945 -1.871,1.794c-0.266,1.047 -0.166,2.083 -0.166,2.083Zm9.709,-0.305c0.046,0.496 -0.318,0.937 -0.813,0.983c-0.497,0.047 -0.937,-0.317 -0.983,-0.814c-0,-0 -0.177,-1.945 0.466,-3.527c0.503,-1.237 1.455,-2.262 3.171,-2.316c1.703,-0.054 2.736,0.892 3.343,2.075c0.783,1.524 0.78,3.459 0.78,3.459c-0.002,0.498 -0.409,0.9 -0.907,0.898c-0.497,-0.002 -0.9,-0.409 -0.898,-0.906c0,-0 0.005,-1.035 -0.342,-2.059c-0.279,-0.823 -0.788,-1.699 -1.919,-1.663c-1.119,0.036 -1.539,0.941 -1.741,1.776c-0.254,1.053 -0.157,2.094 -0.157,2.094Z"
-								style="fill-rule:nonzero;"
-							/>
-						</svg>
-					</div>
+					<svg
+						class="scale-110"
+						width="32px"
+						height="32px"
+						style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"
+						fill="currentColor"
+						stroke="currentColor"
+					>
+						<path
+							d="M24.346,26.798l1.194,1.418c0.005,0.006 0.01,0.011 0.014,0.017c0.656,0.82 0.523,2.031 -0.293,2.688c-0.326,0.266 -0.731,0.416 -1.153,0.423c-0.592,0.014 -1.161,-0.247 -1.534,-0.708l-3.049,-3.674l-6.23,0.197l-2.371,3.38c-0.344,0.49 -0.897,0.79 -1.494,0.813c-0.423,0.02 -0.838,-0.105 -1.181,-0.353c-0.852,-0.605 -1.06,-1.804 -0.46,-2.66l0.728,-1.036c-2.603,-0.063 -4.766,-2.175 -4.857,-4.805l-0.515,-16.271c-0.079,-2.727 2.063,-4.902 4.784,-4.995l15.264,-0.606c0.003,0 0.007,-0 0.01,-0c2.724,-0.077 4.848,2.173 4.942,4.889l0.69,16.174c0,0.004 0.001,0.008 0.001,0.012c0.075,2.613 -1.921,4.844 -4.49,5.097Zm-1.089,-24.379l-15.256,0.606l-0.005,-0c-1.73,0.06 -3.107,1.42 -3.057,3.15l0.515,16.262c0.06,1.737 1.534,3.12 3.272,3.071l1.523,-0.048c0.339,-0.011 0.656,0.172 0.818,0.47c0.161,0.299 0.14,0.664 -0.055,0.942l-1.754,2.498c-0.037,0.054 -0.023,0.129 0.03,0.167c0.003,0.002 0.006,0.004 0.009,0.006c0.015,0.011 0.033,0.017 0.051,0.016c0.004,0 0.009,-0 0.013,-0c0.038,-0.001 0.073,-0.021 0.094,-0.051l2.629,-3.747c0.163,-0.231 0.424,-0.372 0.706,-0.381l7.116,-0.226c0.277,-0.009 0.543,0.111 0.719,0.324l3.332,4.015c0.003,0.005 0.008,0.009 0.011,0.013c0.023,0.029 0.059,0.045 0.096,0.044c0.004,-0 0.009,-0 0.013,-0.001c0.019,-0 0.038,-0.008 0.052,-0.02l0.006,-0.004c0.05,-0.041 0.06,-0.114 0.022,-0.166l-2.367,-2.81c-0.221,-0.264 -0.273,-0.63 -0.133,-0.945c0.14,-0.313 0.447,-0.519 0.791,-0.53l1.523,-0.048c1.736,-0.062 3.119,-1.533 3.071,-3.269l-0.69,-16.166l-0,-0.008c-0.061,-1.731 -1.363,-3.211 -3.095,-3.164Zm-10.407,19.915c-0.318,-0.379 -0.268,-0.946 0.112,-1.264c0.38,-0.318 0.946,-0.268 1.264,0.112c0.509,0.608 1.293,0.848 2.047,0.807c0.758,-0.04 1.505,-0.359 1.93,-0.947c0.291,-0.401 0.852,-0.491 1.253,-0.201c0.402,0.291 0.492,0.852 0.202,1.253c-0.732,1.011 -1.987,1.617 -3.289,1.687c-1.304,0.07 -2.638,-0.395 -3.519,-1.447Zm-3.692,-5.081c0.048,0.493 -0.313,0.932 -0.807,0.98c-0.492,0.048 -0.932,-0.313 -0.979,-0.807c-0,0 -0.183,-1.953 0.495,-3.542c0.521,-1.223 1.498,-2.245 3.271,-2.301c1.761,-0.056 2.82,0.885 3.445,2.053c0.82,1.529 0.813,3.472 0.813,3.472c-0.002,0.495 -0.407,0.895 -0.902,0.891c-0.496,-0.003 -0.896,-0.408 -0.892,-0.903c-0,0 0.005,-1.029 -0.354,-2.046c-0.295,-0.836 -0.851,-1.712 -2.053,-1.674c-1.189,0.038 -1.655,0.945 -1.871,1.794c-0.266,1.047 -0.166,2.083 -0.166,2.083Zm9.709,-0.305c0.046,0.496 -0.318,0.937 -0.813,0.983c-0.497,0.047 -0.937,-0.317 -0.983,-0.814c-0,-0 -0.177,-1.945 0.466,-3.527c0.503,-1.237 1.455,-2.262 3.171,-2.316c1.703,-0.054 2.736,0.892 3.343,2.075c0.783,1.524 0.78,3.459 0.78,3.459c-0.002,0.498 -0.409,0.9 -0.907,0.898c-0.497,-0.002 -0.9,-0.409 -0.898,-0.906c0,-0 0.005,-1.035 -0.342,-2.059c-0.279,-0.823 -0.788,-1.699 -1.919,-1.663c-1.119,0.036 -1.539,0.941 -1.741,1.776c-0.254,1.053 -0.157,2.094 -0.157,2.094Z"
+							style="fill-rule:nonzero;"
+						/>
+					</svg>
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://font-guesser.vercel.app/">
 				{#snippet title()}
-					<div>Font Guesser</div>
+					Font Guesser
 				{/snippet}
 				{#snippet description()}
-					<div>An unfinished font guessing game</div>
+					An unfinished font guessing game
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<TextB size={45} weight="bold" class="fill-primary" />
-					</div>
+					<TextB size={45} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://focal-es.vercel.app/">
 				{#snippet title()}
-					<div>FOCAL-ES</div>
+					FOCAL-ES
 				{/snippet}
 				{#snippet description()}
-					<div>A database with exhaustive information on focal particles</div>
+					A database with exhaustive information on focal particles
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<ChatCircleText size={40} weight="bold" class="fill-primary" />
-					</div>
+					<ChatCircleText size={40} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://chord-chart-maker.vercel.app/">
 				{#snippet title()}
-					<div>Chord Chart Maker</div>
+					Chord Chart Maker
 				{/snippet}
 				{#snippet description()}
-					<div>An unfinished jazz-style chord chart for quick idea sharing</div>
+					An unfinished jazz-style chord chart for quick idea sharing
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
-					</div>
+					<MusicNotesPlus size={40} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://custom-blending-modes.vercel.app/">
 				{#snippet title()}
-					<div>Custom Blending Modes</div>
+					Custom Blending Modes
 				{/snippet}
 				{#snippet description()}
-					<div>Quick prototype about a hypothetical blend mode editor</div>
+					Quick prototype about a hypothetical blend mode editor
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<Stack size={40} weight="bold" class="fill-primary" />
-					</div>
+					<Stack size={40} weight="bold" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 			<WorkItem link="https://ccfest-md-slides.vercel.app/">
 				{#snippet title()}
-					<div>CC Fest Slides</div>
+					CC Fest Slides
 				{/snippet}
 				{#snippet description()}
-					<div>Slides I gave for my presentation on the '22 CC Fest!</div>
+					Slides I gave for my presentation on the '22 CC Fest!
 				{/snippet}
 				{#snippet icon()}
-					<div>
-						<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
-					</div>
+					<ProjectorScreenChart size={40} weight="duotone" class="fill-primary" />
 				{/snippet}
 			</WorkItem>
 		</div>
