@@ -9,6 +9,7 @@
 
 	let { data } = $props();
 	let metadata: Post = data.metadata;
+	$inspect(data.content);
 
 	let visible = $state(false);
 
@@ -126,7 +127,8 @@
 	</hrgoup>
 
 	<div
-		class="prose md:prose-lg prose-headings:tracking-normal prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold my-12"
+		class="prose md:prose-lg prose-headings:tracking-normal
+		prose-a:transition-colors prose-a:no-underline prose-a:after:content-['_↗'] hover:prose-a:text-accent prose-strong:font-bold my-12"
 	>
 		<data.content />
 	</div>

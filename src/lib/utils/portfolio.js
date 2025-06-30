@@ -22,7 +22,7 @@ export let videos = [
     link: 'https://youtu.be/xEyUcp4tbTI',
     channel: 'Design Bits',
     channelAvatar:
-      'https://yt3.ggpht.com/oZAZ-7twyqPX7etpxJvgz3E0VYhR-volm9-FBO5leieVMJPU5m9jsKhgC2BjZAV70wsTg20KZ58=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'but what are Blend Modes?',
@@ -31,7 +31,7 @@ export let videos = [
     link: 'https://youtu.be/D7Yg4H8e7uw',
     channel: 'Design Bits',
     channelAvatar:
-      'https://yt3.ggpht.com/oZAZ-7twyqPX7etpxJvgz3E0VYhR-volm9-FBO5leieVMJPU5m9jsKhgC2BjZAV70wsTg20KZ58=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'Implementing GIF saving in p5.js',
@@ -41,7 +41,7 @@ export let videos = [
     link: 'https://youtu.be/WG3ZAydSN4Q',
     channel: 'Design Bits',
     channelAvatar:
-      'https://yt3.ggpht.com/oZAZ-7twyqPX7etpxJvgz3E0VYhR-volm9-FBO5leieVMJPU5m9jsKhgC2BjZAV70wsTg20KZ58=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'Create a minimal, clean design with Cavalry, Affinity Photo & Designer',
@@ -50,7 +50,7 @@ export let videos = [
     link: 'https://youtu.be/rvqAad4iswA',
     channel: 'Design Bits',
     channelAvatar:
-      'https://yt3.ggpht.com/oZAZ-7twyqPX7etpxJvgz3E0VYhR-volm9-FBO5leieVMJPU5m9jsKhgC2BjZAV70wsTg20KZ58=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'Abstract Poster Design using Cavalry and Affinity Designer',
@@ -59,7 +59,7 @@ export let videos = [
     link: 'https://youtu.be/lG88LGGxMvE',
     channel: 'Design Bits',
     channelAvatar:
-      'https://yt3.ggpht.com/oZAZ-7twyqPX7etpxJvgz3E0VYhR-volm9-FBO5leieVMJPU5m9jsKhgC2BjZAV70wsTg20KZ58=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'The Discrete Fourier Transform: Most Important Algorithm Ever?',
@@ -68,7 +68,7 @@ export let videos = [
     link: 'https://www.youtube.com/watch?v=yYEMxqreA10',
     channel: 'Reducible',
     channelAvatar:
-      'https://yt3.ggpht.com/Ndf7d4uuJXm3Baoh2udAFIFLX4VVT_iD0FZESn8zfnCPtGYhq5uASIdoRRM8RJ5gXHPUrxX1=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/4Y72xFDw395XHf878UgzsxXc1I-36cgpjgjWaZx7KRP5D3VsMk_bvFoenvYjDRhEGF9Eo2LdPg=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'The Traveling Salesman Problem: when good enough beats perfect',
@@ -78,7 +78,7 @@ export let videos = [
 
     channel: 'Reducible',
     channelAvatar:
-      'https://yt3.ggpht.com/Ndf7d4uuJXm3Baoh2udAFIFLX4VVT_iD0FZESn8zfnCPtGYhq5uASIdoRRM8RJ5gXHPUrxX1=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/4Y72xFDw395XHf878UgzsxXc1I-36cgpjgjWaZx7KRP5D3VsMk_bvFoenvYjDRhEGF9Eo2LdPg=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'PageRank: A trillion dollar algorithm',
@@ -88,7 +88,7 @@ export let videos = [
 
     channel: 'Reducible',
     channelAvatar:
-      'https://yt3.ggpht.com/Ndf7d4uuJXm3Baoh2udAFIFLX4VVT_iD0FZESn8zfnCPtGYhq5uASIdoRRM8RJ5gXHPUrxX1=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/4Y72xFDw395XHf878UgzsxXc1I-36cgpjgjWaZx7KRP5D3VsMk_bvFoenvYjDRhEGF9Eo2LdPg=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'How PNG Works: Compromising speed for quality',
@@ -98,7 +98,7 @@ export let videos = [
 
     channel: 'Reducible',
     channelAvatar:
-      'https://yt3.ggpht.com/Ndf7d4uuJXm3Baoh2udAFIFLX4VVT_iD0FZESn8zfnCPtGYhq5uASIdoRRM8RJ5gXHPUrxX1=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/4Y72xFDw395XHf878UgzsxXc1I-36cgpjgjWaZx7KRP5D3VsMk_bvFoenvYjDRhEGF9Eo2LdPg=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'The unreasonable effectiveness of JPEG: A signal processing approach',
@@ -108,7 +108,7 @@ export let videos = [
 
     channel: 'Reducible',
     channelAvatar:
-      'https://yt3.ggpht.com/Ndf7d4uuJXm3Baoh2udAFIFLX4VVT_iD0FZESn8zfnCPtGYhq5uASIdoRRM8RJ5gXHPUrxX1=s88-c-k-c0x00ffffff-no-rj'
+      'https://yt3.googleusercontent.com/4Y72xFDw395XHf878UgzsxXc1I-36cgpjgjWaZx7KRP5D3VsMk_bvFoenvYjDRhEGF9Eo2LdPg=s160-c-k-c0x00ffffff-no-rj'
   },
   {
     title: 'The riddle that seems impossible even if you know the answer',

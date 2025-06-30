@@ -1,7 +1,6 @@
 @import 'tailwindcss';
-
-@plugin "daisyui";
 @plugin '@tailwindcss/typography';
+
 
 @font-face {
 	font-family: 'AT Name Sans Variable';
@@ -43,6 +42,7 @@
 	--font-mono: Iosevka;
 	--font-title: 'Whirly Birdie';
 }
+
 
 @plugin "daisyui/theme" {
 	name: "jesi-light";

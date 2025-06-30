@@ -23,7 +23,10 @@
 		<div class="subtitle text-xl font-semibold">{@render subtitle?.()}</div>
 	</div>
 	<!-- Content -->
-	<div>
+	<div
+		class="prose prose-a:after:content-['_↗'] prose-a:hover:text-accent
+		prose-a:no-underline"
+	>
 		{@render content?.()}
 	</div>
 </div>

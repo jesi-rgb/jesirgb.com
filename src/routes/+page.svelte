@@ -23,7 +23,9 @@
 </div>
 <section class="min-h-[50%]">
 	<main
-		class="prose prose-lg prose-headings:tracking-normal prose-a:no-underline prose-a:transition-colors after:prose-a:content-['_↗'] hover:prose-a:text-accent"
+		class="prose prose-lg prose-headings:tracking-normal
+		prose-a:no-underline prose-a:transition-colors
+		prose-a:after:content-['_↗'] prose-a:hover:text-accent"
 	>
 		<h3>design, animation and data</h3>
 
