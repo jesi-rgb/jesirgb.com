@@ -40,7 +40,7 @@
 		{/each}
 	</div>
 	<button
-		onclick={() => window.open('/Jesús_Rascón_CV.pdf')}
+		onclick={() => window.open('/jesus_rascon_CV.pdf')}
 		class="btn btn-primary main-button group mt-10 w-full rounded-full"
 	>
 		<ReadCvLogo
