@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { mapRange } from '$lib/utils/utils';
 	import { onMount } from 'svelte';
 
@@ -14,8 +12,11 @@
 		m.y = event.clientY;
 	}
 
-	let weight: number = $state(), ital: number = $state(), width: number = $state();
-	run(() => {
+	let weight: number = $state(),
+		ital: number = $state(),
+		width: number = $state();
+
+	$effect(() => {
 		if (bounds) {
 			weight = mapRange(m.y, bounds.y, bounds.y + bounds.height, 50, 100);
 			ital = mapRange(m.x, bounds.x, bounds.x + bounds.width, 0, 20);
@@ -38,7 +39,7 @@
 	bind:this={outerDiv}
 	role="figure"
 	onmousemove={handleMousemove}
-	class="flex h-20 items-center rounded-md border-2 border-dashed bg-base-300 text-center align-middle font-title text-4xl"
+	class="bg-base-300 whirly flex h-20 items-center rounded-md border-2 border-dashed text-center align-middle text-4xl"
 >
 	<div
 		class="mx-auto"
@@ -48,3 +49,9 @@
 		Talent
 	</div>
 </div>
+
+<style>
+	.whirly {
+		font-family: 'Whirly Birdie';
+	}
+</style>
