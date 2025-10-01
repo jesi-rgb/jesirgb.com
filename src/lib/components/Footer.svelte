@@ -6,6 +6,7 @@
 	let randomWord = $state('EMBRACE');
 	let loading = $state(false);
 
+	// migrate
 	const loadWord = async () => {
 		loading = true;
 		let object = await fetch('https://random-word-api.vercel.app/api');
