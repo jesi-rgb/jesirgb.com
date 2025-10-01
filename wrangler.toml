@@ -1,0 +1,3 @@
+name = "jesirgb-com"
+compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2025-10-01"
