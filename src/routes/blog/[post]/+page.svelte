@@ -4,8 +4,8 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import type { Post } from '$lib/types';
 
-	import { PUBLIC_GH_TOKEN } from '$env/dynamic/public';
 	import { page } from '$app/state';
+	import { browser } from '$app/environment';
 
 	let { data } = $props();
 	let metadata: Post = data.metadata;
@@ -17,10 +17,13 @@
 	url.searchParams.append('title', metadata.title);
 	url.searchParams.append('desc', metadata.description);
 
-	const headers = {
-		'Content-Type': 'application/json',
-		Authorization: `Bearer ${PUBLIC_GH_TOKEN}`
+	const headers: Record<string, string> = {
+		'Content-Type': 'application/json'
 	};
+
+	if (browser && import.meta.env.PUBLIC_GH_TOKEN) {
+		headers.Authorization = `Bearer ${import.meta.env.PUBLIC_GH_TOKEN}`;
+	}
 
 	let lastUpdated;
 
