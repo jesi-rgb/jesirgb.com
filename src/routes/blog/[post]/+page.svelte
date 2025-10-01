@@ -4,7 +4,7 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import type { Post } from '$lib/types';
 
-	import { PUBLIC_GH_TOKEN } from '$env/static/public';
+	import { PUBLIC_GH_TOKEN } from '$env/dynamic/public';
 	import { page } from '$app/state';
 
 	let { data } = $props();
