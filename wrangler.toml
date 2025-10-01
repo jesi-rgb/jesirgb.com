@@ -1,3 +1,4 @@
 name = "jesirgb-com"
+pages_build_output_dir = ".svelte-kit/cloudflare"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2025-10-01"
