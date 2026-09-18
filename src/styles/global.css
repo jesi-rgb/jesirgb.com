@@ -1,141 +1,258 @@
-/*
-  The CSS in this style tag is based off of Bear Blog's default CSS.
-  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
-  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
- */
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens. Color values flip per theme through the CSS vars below. */
+@theme {
+	--font-sans: 'ABC Areal';
+	--font-mono: 'Iosevka Term Extended', var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+	--font-title: 'Whirly Birdie', 'AT Name Sans Variable', ui-sans-serif, sans-serif;
+
+	--color-canvas: var(--base);
+	--color-canvas-muted: var(--base-muted);
+	--color-canvas-subtle: var(--base-subtle);
+	--color-line: var(--line);
+
+	--color-content: var(--content);
+	--color-content-muted: var(--content-muted);
+	--color-content-subtle: var(--content-subtle);
+
+	--color-primary: var(--primary);
+	--color-primary-muted: var(--primary-muted);
+	--color-primary-subtle: var(--primary-subtle);
+	--color-primary-content: var(--primary-content);
+
+	--color-accent: var(--accent);
+	--color-accent-subtle: var(--accent-subtle);
+
+	--text-2xs: 0.6875rem;
+	--text-2xs--line-height: 1rem;
+	--text-display: clamp(2.75rem, 7vw, 5.5rem);
+	--text-display--line-height: 0.95;
+	--text-display--letter-spacing: -0.035em;
+
+	--tracking-tight: -0.02em;
+	--tracking-wide: 0.06em;
+	--tracking-widest: 0.14em;
+
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Light theme. Mint greens carried over from the 2024 site. */
 :root {
-	--accent: #2337ff;
-	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
-	--box-shadow:
-		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
-		0 16px 32px rgba(var(--gray), 33%);
+	--base: #f6fffb;
+	--base-muted: #ecfbf4;
+	--base-subtle: #e5fdf2;
+	--line: #cfeadd;
+
+	--content: #042b24;
+	--content-muted: #3f5f56;
+	--content-subtle: #677471;
+
+	--primary: #226e48;
+	--primary-muted: #2e8a5c;
+	--primary-subtle: #e5fdf2;
+	--primary-content: #f6fffb;
+
+	--accent: #7c5cf0;
+	--accent-subtle: #ede9fe;
+
+	color-scheme: light;
 }
-body {
-	font-family: var(--font-atkinson);
-	margin: 0;
-	padding: 0;
-	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
-	background-size: 100% 600px;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	color: rgb(var(--gray-dark));
-	font-size: 20px;
-	line-height: 1.7;
+
+/* Dark theme, applied through .dark on <html> */
+:root.dark {
+	--base: #021713;
+	--base-muted: #04211b;
+	--base-subtle: #073128;
+	--line: #0e3d32;
+
+	--content: #f6fffb;
+	--content-muted: #a9c4bb;
+	--content-subtle: #677471;
+
+	--primary: #a7f3d0;
+	--primary-muted: #73e0b4;
+	--primary-subtle: #0b2e24;
+	--primary-content: #021714;
+
+	--accent: #a78bfa;
+	--accent-subtle: #1e1b3a;
+
+	color-scheme: dark;
 }
-main {
-	width: 720px;
-	max-width: calc(100% - 2em);
-	margin: auto;
-	padding: 3em 1em;
+
+@font-face {
+	font-family: 'AT Name Sans Variable';
+	src: url('/fonts/NameSansVariable.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: swap;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0 0 0.5rem 0;
-	color: rgb(var(--black));
-	line-height: 1.2;
+
+@font-face {
+	font-family: 'Whirly Birdie';
+	src: url('/fonts/WhirlyBirdieVariable.ttf') format('truetype');
+	font-weight: 50 100;
+	font-display: swap;
 }
-h1 {
-	font-size: 3.052em;
+
+/* Drop Iosevka.woff2 into public/fonts and uncomment to use it as mono.
+@font-face {
+	font-family: 'Iosevka';
+	src: url('/fonts/Iosevka.woff2') format('woff2');
+	font-display: swap;
 }
-h2 {
-	font-size: 2.441em;
-}
-h3 {
-	font-size: 1.953em;
-}
-h4 {
-	font-size: 1.563em;
-}
-h5 {
-	font-size: 1.25em;
-}
-strong,
-b {
-	font-weight: 700;
-}
-a {
-	color: var(--accent);
-}
-a:hover {
-	color: var(--accent);
-}
-p {
-	margin-bottom: 1em;
-}
-.prose p {
-	margin-bottom: 2em;
-}
-textarea {
-	width: 100%;
-	font-size: 16px;
-}
-input {
-	font-size: 16px;
-}
-table {
-	width: 100%;
-}
-img {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-}
-code {
-	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
-	border-radius: 2px;
-}
-pre {
-	padding: 1.5em;
-	border-radius: 8px;
-}
-pre > code {
-	all: unset;
-}
-blockquote {
-	border-left: 4px solid var(--accent);
-	padding: 0 0 0 20px;
-	margin: 0;
-	font-size: 1.333em;
-}
-hr {
-	border: none;
-	border-top: 1px solid rgb(var(--gray-light));
-}
-@media (max-width: 720px) {
-	body {
-		font-size: 18px;
+*/
+
+@layer base {
+	html {
+		background-color: var(--base);
+		color: var(--content);
+		font-feature-settings: 'ss01', 'cv05';
+		-webkit-font-smoothing: antialiased;
+		scroll-behavior: smooth;
 	}
-	main {
-		padding: 1em;
+
+	::selection {
+		background: var(--primary);
+		color: var(--primary-content);
+	}
+
+	i,
+	em,
+	blockquote {
+		font-style: normal;
+		font-variation-settings: 'ital' 1;
+	}
+
+	:focus-visible {
+		outline: 2px solid var(--primary);
+		outline-offset: 2px;
+		border-radius: 2px;
 	}
 }
 
-.sr-only {
-	border: 0;
-	padding: 0;
-	margin: 0;
-	position: absolute !important;
-	height: 1px;
-	width: 1px;
-	overflow: hidden;
-	/* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-	clip: rect(1px 1px 1px 1px);
-	/* maybe deprecated but we need to support legacy browsers */
-	clip: rect(1px, 1px, 1px, 1px);
-	/* modern browsers, clip-path works inwards from each corner */
-	clip-path: inset(50%);
-	/* added line to stop words getting smushed together (as they go onto separate lines and some screen readers do not understand line feeds as a space */
-	white-space: nowrap;
+/* Small uppercase mono label used for eyebrows and metadata. */
+@utility label {
+	font-family: var(--font-mono);
+	font-size: var(--text-2xs);
+	line-height: 1rem;
+	letter-spacing: var(--tracking-widest);
+	text-transform: uppercase;
+	color: var(--content-subtle);
+	font-variant-numeric: tabular-nums;
+}
+
+@utility mono-num {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Text link with an offset underline that thickens on hover. */
+@utility link {
+	text-decoration: underline;
+	text-decoration-color: var(--line);
+	text-underline-offset: 0.2em;
+	text-decoration-thickness: 1px;
+	transition: text-decoration-color 150ms;
+
+	&:hover {
+		text-decoration-color: var(--primary);
+	}
+}
+
+/* Arrow that nudges on hover of the parent .group */
+@utility arrow {
+	display: inline-block;
+	transition: transform 200ms var(--ease-out-quart);
+
+	.group:hover & {
+		transform: translate(3px, -3px);
+	}
+}
+
+@utility dot-grid {
+	background-image: radial-gradient(var(--line) 1px, transparent 1px);
+	background-size: 20px 20px;
+	mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+}
+
+/* Prose */
+.prose {
+	--tw-prose-body: var(--content-muted);
+	--tw-prose-headings: var(--content);
+	--tw-prose-lead: var(--content-muted);
+	--tw-prose-links: var(--content);
+	--tw-prose-bold: var(--content);
+	--tw-prose-counters: var(--content-subtle);
+	--tw-prose-bullets: var(--content-subtle);
+	--tw-prose-hr: var(--line);
+	--tw-prose-quotes: var(--content);
+	--tw-prose-quote-borders: var(--primary);
+	--tw-prose-captions: var(--content-subtle);
+	--tw-prose-code: var(--content);
+	--tw-prose-pre-code: var(--content);
+	--tw-prose-pre-bg: var(--base-muted);
+	--tw-prose-th-borders: var(--line);
+	--tw-prose-td-borders: var(--line);
+}
+
+.prose a {
+	text-decoration-color: var(--primary);
+	text-underline-offset: 0.2em;
+	font-weight: 500;
+}
+
+.prose pre {
+	border: 1px solid var(--line);
+	font-size: 0.85em;
+}
+
+.prose :where(code):not(pre code) {
+	font-weight: 500;
+	background: var(--base-subtle);
+	padding: 0.1em 0.35em;
+	border-radius: 0.25rem;
+}
+
+.prose :where(code):not(pre code)::before,
+.prose :where(code):not(pre code)::after {
+	content: none;
+}
+
+:root.dark .shiki,
+:root.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+}
+
+/* Motion */
+@keyframes rise {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@utility animate-rise {
+	animation: rise 500ms var(--ease-out-quart) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+	}
 }
