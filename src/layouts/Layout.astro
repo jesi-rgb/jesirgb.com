@@ -1,0 +1,36 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	// Bare pages skip the header and footer (gallery viewer).
+	bare?: boolean;
+	class?: string;
+}
+
+const { title, description, bare = false, class: className } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem('theme');
+				const dark = stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.classList.toggle('dark', dark);
+			})();
+		</script>
+	</head>
+	<body class:list={['min-h-dvh flex flex-col font-sans bg-canvas text-content antialiased', className]}>
+		{!bare && <Header />}
+		<main class="flex-1 flex flex-col">
+			<slot />
+		</main>
+		{!bare && <Footer />}
+	</body>
+</html>
