@@ -1,114 +1,41 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import Layout from '../../layouts/Layout.astro';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const byYear = new Map<number, typeof posts>();
+for (const post of posts) {
+	const y = post.data.date.getFullYear();
+	byYear.set(y, [...(byYear.get(y) ?? []), post]);
+}
+const fmt = (d: Date) => d.toLocaleDateString('en-us', { month: 'short', day: '2-digit' });
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
+<Layout title="Blog" description="Notes on design, code, music and whatever else.">
+	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
+		<header class="border-b border-line py-16">
+			<p class="label mb-4">Blog · {posts.length} posts</p>
+			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Notes on design, code<br />and the occasional chord.</h1>
+		</header>
+
+		{[...byYear.entries()].map(([year, list]) => (
+			<section class="grid gap-x-8 border-b border-line py-10 last:border-0 sm:grid-cols-[10rem_1fr]">
+				<h2 class="label mb-4 pt-4 sm:mb-0">{year}</h2>
+				<ul class="flex flex-col">
+					{list.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`} class="group -mx-3 grid grid-cols-[auto_1fr] items-baseline gap-x-5 rounded-lg px-3 py-3 transition-colors hover:bg-canvas-muted">
+								<time datetime={post.data.date.toISOString()} class="label w-14">{fmt(post.data.date)}</time>
+								<span class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+									<span class="text-base font-medium tracking-tight">{post.data.title}</span>
+									<span class="text-sm text-content-muted">{post.data.description}</span>
+								</span>
+							</a>
+						</li>
+					))}
 				</ul>
 			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+		))}
+	</div>
+</Layout>
