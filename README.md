@@ -1,63 +1,70 @@
-# Astro Starter Kit: Blog
+# jesirgb.com (2026)
+
+Personal site. Astro 6, Tailwind v4, content collections.
 
 ```sh
-bun create astro@latest -- --template blog
+bun install
+bun run dev
+bun run build
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Pages
 
-Features:
+- `/` landing. Pulls from `src/data/work.ts`, the blog and the gallery.
+- `/work` projects and experience. Edit `src/data/work.ts`.
+- `/blog` markdown posts in `src/content/blog/`.
+- `/gallery` the exhibition list. `/gallery/[exhibition]` is one room: a wall
+  you pan and zoom, with the wall text at the centre and a label under each
+  photo. `/gallery/[exhibition]/[photo]` is the zoomable view of one photo.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## Add photos
 
-## 🚀 Project Structure
+1. Copy the files into `src/gallery/`.
+2. Run `bun run gallery:sync`. New files get an entry in
+   `src/content/gallery/photos.json` with camera, lens, settings, date and a
+   color/B&W flag read from EXIF. Needs `exiftool` on the PATH.
+3. Edit the entry by hand for `alt`, `caption`, `tags`, `location`, `featured`.
+   For analog shots add `"film": { "stock": "Portra 400", "iso": 400, "format": "35mm" }`.
+4. Add the photo id to an exhibition. `gallery:sync` gives a list of the photos
+   that are in no exhibition.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Exhibitions
 
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+A photo shows only inside an exhibition. One markdown file per exhibition in
+`src/content/exhibitions/`:
+
+```yaml
+---
+title: A Day in Meissen
+subtitle: One line for the gallery index.
+status: on-view      # on-view | permanent | past
+opens: 2026-05-16    # not used by permanent shows
+closes: 2026-12-31   # optional
+cover: DSCF4519      # photo id for the index
+order: 1             # lower goes first inside the status group
+photos:              # hang order, not date order
+  - DSCF4519
+  - DSCF4514
+---
+
+The body is the wall text. It shows above the photos.
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+To take a show down, set `status: past` and give it a `closes` date. To put a
+new one up, add the file. The index groups the shows by status.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Keep source photos around 3000px on the long edge. Astro copies the originals
+into `dist/`, so 17 MB files make the deploy heavy.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+## Fonts
 
-Any static assets, like images, can be placed in the `public/` directory.
+- `AT Name Sans Variable` and `Whirly Birdie` are served from `public/fonts/`.
+- Mono is Geist Mono through the Astro fonts API. To use Iosevka, drop
+  `Iosevka.woff2` into `public/fonts/` and uncomment the `@font-face` in
+  `src/styles/global.css`.
 
-## 🧞 Commands
+## Theme
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Tokens live in the `@theme` block of `src/styles/global.css`. Light and dark
+values are CSS variables on `:root` and `:root.dark`. The theme toggle in the
+header writes `localStorage.theme`.
