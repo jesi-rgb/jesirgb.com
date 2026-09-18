@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	photo: CollectionEntry<'gallery'>['data'];
+	class?: string;
+}
+const { photo: p, class: className } = Astro.props;
+
+const settings = [p.focalLength, p.aperture, p.shutter, p.iso && `ISO ${p.iso}`].filter(Boolean).join(' · ');
+const rows: [string, string | undefined][] = [
+	['Camera', p.camera],
+	['Lens', p.lens],
+	['Settings', settings || undefined],
+	[p.film ? 'Film' : 'Simulation', p.film ? [p.film.stock, p.film.iso && `ISO ${p.film.iso}`, p.film.format].filter(Boolean).join(' · ') : p.simulation],
+	['Look', p.mono ? 'Black & white' : 'Color'],
+	['Location', p.location],
+];
+---
+
+<dl class:list={['grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm', className]}>
+	{rows.filter(([, v]) => v).map(([k, v]) => (
+		<>
+			<dt class="label pt-0.5">{k}</dt>
+			<dd class="mono-num text-content">{v}</dd>
+		</>
+	))}
+	<dt class="label pt-0.5">Date</dt>
+	<dd class="mono-num text-content"><FormattedDate date={p.date} /></dd>
+	{p.tags.length > 0 && (
+		<>
+			<dt class="label pt-0.5">Tags</dt>
+			<dd class="flex flex-wrap gap-1.5">
+				{p.tags.map((t) => (
+					<span class="rounded-full border border-line px-2 py-0.5 text-2xs text-content-muted">{t}</span>
+				))}
+			</dd>
+		</>
+	)}
+</dl>
