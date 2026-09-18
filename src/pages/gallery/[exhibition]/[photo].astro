@@ -1,0 +1,67 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getImage } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import PhotoMeta from '../../../components/PhotoMeta.astro';
+import { getRooms, photoHref } from '../../../data/exhibitions';
+
+export async function getStaticPaths() {
+	const rooms = await getRooms();
+	return rooms.flatMap((room) =>
+		room.photos.map((photo, i) => ({
+			params: { exhibition: room.slug, photo: photo.id },
+			props: {
+				photo,
+				room,
+				prev: room.photos[i - 1]?.id,
+				next: room.photos[i + 1]?.id,
+				index: i + 1,
+			},
+		})),
+	);
+}
+
+const { photo, room, prev, next, index } = Astro.props;
+const full = await getImage({ src: photo.data.src, width: 2800, format: 'webp', quality: 85 });
+const title = photo.data.caption ?? `${room.entry.data.title} · ${index}`;
+const description = [photo.data.camera, photo.data.lens, photo.data.film?.stock ?? photo.data.simulation].filter(Boolean).join(' · ') || 'Photo';
+const prevHref = prev && photoHref(room.slug, prev);
+const nextHref = next && photoHref(room.slug, next);
+---
+
+<Layout title={title} description={description} bare class="h-dvh overflow-hidden">
+	<div class="flex h-12 shrink-0 items-center justify-between border-b border-line px-4">
+		<a href={room.href} class="label flex items-center gap-1 truncate transition-colors hover:text-content">
+			<Icon name="solar:arrow-left-linear" class="size-3 shrink-0" /> {room.entry.data.title}
+		</a>
+		<span class="label">{index} / {room.photos.length}</span>
+		<div class="flex items-center gap-1">
+			{prevHref ? <a href={prevHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label="Previous"><Icon name="solar:alt-arrow-left-linear" class="size-4" /></a> : <span class="size-8"></span>}
+			{nextHref ? <a href={nextHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label="Next"><Icon name="solar:alt-arrow-right-linear" class="size-4" /></a> : <span class="size-8"></span>}
+		</div>
+	</div>
+	<div class="grid min-h-0 flex-1 grid-rows-[1fr_auto] lg:grid-cols-[1fr_18rem] lg:grid-rows-1">
+		<!-- Absolute inset gives the photo a definite box, so tall photos fit. -->
+		<div class="relative min-h-0">
+			<img
+				src={full.src}
+				alt={photo.data.alt || photo.id}
+				class="absolute inset-0 size-full object-contain p-4 lg:p-6"
+				draggable="false"
+			/>
+		</div>
+		<aside class="overflow-y-auto border-t border-line px-6 py-4 lg:border-l lg:border-t-0 lg:py-6">
+			<p class="label mb-1">{room.entry.data.title} · {String(index).padStart(2, '0')}</p>
+			{photo.data.caption && <p class="mb-4 text-sm text-content">{photo.data.caption}</p>}
+			<PhotoMeta photo={photo.data} class="lg:grid-cols-1 lg:gap-y-1 lg:[&>dt]:pt-3" />
+		</aside>
+	</div>
+</Layout>
+
+<script define:vars={{ prevHref, nextHref, roomHref: room.href }}>
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'ArrowLeft' && prevHref) location.href = prevHref;
+		if (e.key === 'ArrowRight' && nextHref) location.href = nextHref;
+		if (e.key === 'Escape') location.href = roomHref;
+	});
+</script>

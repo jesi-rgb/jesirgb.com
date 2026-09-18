@@ -1,0 +1,354 @@
+---
+// A wooden picture frame built in layers, outside in: moulding, bead, groove,
+// fillet, then a green mat and the print under glass.
+// Three kinds, from a plain timber frame to a carved and gilded one.
+export interface FrameProfile {
+	moulding: number;
+	bead: number;
+	groove: number;
+	fillet: number;
+	mat: number;
+}
+
+export const FRAMES = {
+	plain: { moulding: 18, bead: 2, groove: 4, fillet: 1, mat: 30 },
+	beaded: { moulding: 27, bead: 2, groove: 8, fillet: 2, mat: 34 },
+	ornate: { moulding: 38, bead: 3, groove: 12, fillet: 2, mat: 44 },
+} satisfies Record<string, FrameProfile>;
+
+export type FrameKind = keyof typeof FRAMES;
+
+// Total thickness the frame adds on each side of the print.
+export function frameThickness(kind: FrameKind) {
+	const f = FRAMES[kind];
+	return f.moulding + f.bead + f.groove + f.fillet + f.mat;
+}
+
+// Spreads the kinds evenly over a hang, in an order that looks arbitrary but
+// does not move between builds.
+export function assignFrames(ids: string[]): FrameKind[] {
+	const kinds = Object.keys(FRAMES) as FrameKind[];
+	const out: FrameKind[] = [];
+	// FNV-1a with a final mix, so near-identical file names still scatter.
+	const hash = (seed: string) => {
+		let h = 2166136261;
+		for (const c of seed) {
+			h ^= c.charCodeAt(0);
+			h = Math.imul(h, 16777619);
+		}
+		h ^= h >>> 15;
+		h = Math.imul(h, 2246822507);
+		return (h ^ (h >>> 13)) >>> 0;
+	};
+	ids
+		.map((id, i) => ({ i, h: hash(id) }))
+		.sort((a, b) => a.h - b.h)
+		.forEach(({ i }, rank) => (out[i] = kinds[rank % kinds.length]));
+	return out;
+}
+
+interface Props {
+	index: number;
+	kind: FrameKind;
+	style: string;
+}
+
+const { index, kind, style } = Astro.props;
+const f = FRAMES[kind];
+const vars = `--f-moulding:${f.moulding}px;--f-bead:${f.bead}px;--f-groove:${f.groove}px;--f-fillet:${f.fillet}px;--f-mat:${f.mat}px`;
+---
+
+<figure data-hang={index} class:list={['wall-frame', `is-${kind}`]} style={`${style};${vars}`}>
+	<div class="moulding">
+		<i class="corner c-tl"></i><i class="corner c-tr"></i><i class="corner c-bl"></i><i class="corner c-br"></i>
+		<div class="bead">
+			<div class="groove">
+				<div class="fillet">
+					<div class="mat">
+						<div class="window"><slot /></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</figure>
+
+<style>
+	.wall-frame {
+		position: absolute;
+		cursor: pointer;
+		/* Timber and brass. The dark theme takes them down below. */
+		--wood-hi: #8d6942;
+		--wood: #67492c;
+		--wood-lo: #3b2817;
+		--wood-edge: #24170c;
+		--brass: #c8a96a;
+		--brass-hi: #ecd8a6;
+		--mat-paper: #d7ece0;
+		--mat-shade: #a9c9b8;
+		--glass: 0.14;
+		transition:
+			box-shadow 500ms var(--ease-out-quart),
+			transform 500ms var(--ease-out-quart);
+		box-shadow:
+			1px 1px 2px rgba(0, 0, 0, 0.5),
+			4px 8px 14px -6px rgba(0, 0, 0, 0.45),
+			14px 44px 86px -32px rgba(0, 0, 0, 0.72);
+	}
+
+	:global(.dark) .wall-frame {
+		--wood-hi: #64472a;
+		--wood: #45301c;
+		--wood-lo: #271a0e;
+		--wood-edge: #140c06;
+		--brass: #9c854f;
+		--brass-hi: #c6ab6c;
+		--mat-paper: #15382e;
+		--mat-shade: #0a2720;
+		--glass: 0.07;
+	}
+
+	.wall-frame:hover {
+		transform: translateY(-2px);
+	}
+
+	.wall-frame[data-focus] {
+		box-shadow:
+			1px 2px 3px rgba(0, 0, 0, 0.55),
+			6px 12px 20px -6px rgba(0, 0, 0, 0.5),
+			20px 64px 126px -32px rgba(0, 0, 0, 0.82);
+	}
+
+	/* Outer moulding. The diagonal gradient reads as light from top left. */
+	.moulding {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding: var(--f-moulding);
+		background-color: var(--wood);
+		background-image: linear-gradient(145deg, var(--wood-hi) 0%, var(--wood) 44%, var(--wood-lo) 100%);
+		box-shadow:
+			inset 0 0 0 1px var(--wood-edge),
+			inset 2px 2px 0 1px rgba(255, 255, 255, 0.26),
+			inset -2px -2px 0 1px rgba(0, 0, 0, 0.45),
+			inset 3px 3px 5px -1px rgba(255, 255, 255, 0.08),
+			inset -3px -3px 6px -1px rgba(0, 0, 0, 0.3),
+			inset 0 0 30px rgba(0, 0, 0, 0.38);
+	}
+
+	/* A brass hairline inlaid partway across the moulding. */
+	.moulding::before {
+		content: '';
+		position: absolute;
+		inset: calc(var(--f-moulding) * 0.36);
+		pointer-events: none;
+		border: 1px solid color-mix(in oklab, var(--brass) 60%, transparent);
+		box-shadow:
+			0 1px 0 rgba(0, 0, 0, 0.35),
+			inset 0 1px 0 rgba(0, 0, 0, 0.3);
+	}
+
+	/* Carved corners: one thick gilt band with grooves incised along it. */
+	.corner {
+		--arm: calc(var(--f-moulding) * 0.92);
+		--ins: calc(var(--f-moulding) * 0.2);
+		--t: calc(var(--f-moulding) * 0.26);
+		--g1: calc(var(--t) * 0.32);
+		--g2: calc(var(--t) * 0.64);
+		--band: color-mix(in oklab, var(--brass) 82%, transparent);
+		--lip: color-mix(in oklab, var(--brass-hi) 95%, transparent);
+		--cut: rgba(0, 0, 0, 0.55);
+		--seat: rgba(0, 0, 0, 0.4);
+		position: absolute;
+		display: none;
+		width: var(--arm);
+		height: var(--arm);
+		pointer-events: none;
+		filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.45));
+		background-repeat: no-repeat;
+		background-image:
+			/* lit outer lip */
+			linear-gradient(var(--lip), var(--lip)), linear-gradient(var(--lip), var(--lip)),
+			/* the two incised grooves */
+			linear-gradient(var(--cut), var(--cut)), linear-gradient(var(--cut), var(--cut)),
+			linear-gradient(var(--cut), var(--cut)), linear-gradient(var(--cut), var(--cut)),
+			/* shaded inner edge */
+			linear-gradient(var(--seat), var(--seat)), linear-gradient(var(--seat), var(--seat)),
+			/* the band itself */
+			linear-gradient(var(--band), var(--band)), linear-gradient(var(--band), var(--band));
+		background-size:
+			100% 1px, 1px 100%,
+			100% 1.25px, 1.25px 100%,
+			100% 1.25px, 1.25px 100%,
+			100% 1px, 1px 100%,
+			100% var(--t), var(--t) 100%;
+		background-position:
+			left 0 top 0, left 0 top 0,
+			left 0 top var(--g1), left var(--g1) top 0,
+			left 0 top var(--g2), left var(--g2) top 0,
+			left 0 top calc(var(--t) - 1px), left calc(var(--t) - 1px) top 0,
+			left 0 top 0, left 0 top 0;
+	}
+
+	.is-ornate .corner {
+		display: block;
+	}
+
+	.c-tl {
+		left: var(--ins);
+		top: var(--ins);
+	}
+	.c-tr {
+		right: var(--ins);
+		top: var(--ins);
+		transform: scaleX(-1);
+	}
+	.c-bl {
+		left: var(--ins);
+		bottom: var(--ins);
+		transform: scaleY(-1);
+	}
+	.c-br {
+		right: var(--ins);
+		bottom: var(--ins);
+		transform: scale(-1);
+	}
+
+	/* A raised ridge where the moulding steps down. */
+	.bead {
+		--bead-tone: var(--wood-hi);
+		width: 100%;
+		height: 100%;
+		border: var(--f-bead) solid var(--bead-tone);
+		border-image: linear-gradient(
+				168deg,
+				color-mix(in oklab, var(--bead-tone) 58%, white) 0%,
+				var(--bead-tone) 46%,
+				color-mix(in oklab, var(--bead-tone) 52%, black) 100%
+			)
+			1;
+		box-shadow:
+			0 0 0 1px rgba(0, 0, 0, 0.55),
+			0 1px 2px rgba(0, 0, 0, 0.35);
+	}
+
+	/* The channel behind the bead sits in shadow. */
+	.groove {
+		width: 100%;
+		height: 100%;
+		padding: var(--f-groove);
+		background-color: var(--wood-lo);
+		background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, transparent 48%);
+		box-shadow:
+			inset 0 4px 7px -1px rgba(0, 0, 0, 0.65),
+			inset 2px 0 4px -1px rgba(0, 0, 0, 0.4),
+			inset 0 -1px 0 rgba(255, 255, 255, 0.07);
+	}
+
+	/* The thin line that edges the mat. */
+	.fillet {
+		width: 100%;
+		height: 100%;
+		border: var(--f-fillet) solid var(--wood-edge);
+	}
+
+	/* Plain: bare timber, no gilding and no carving. */
+	.is-plain .moulding::before,
+	.is-plain .moulding::after {
+		display: none;
+	}
+
+	/* Beaded: a brass bead, fillet and inlay, but no carved corners. */
+	.is-beaded .moulding::after {
+		display: none;
+	}
+
+	.is-beaded .bead,
+	.is-ornate .bead {
+		--bead-tone: var(--brass);
+	}
+
+	.is-beaded .fillet,
+	.is-ornate .fillet {
+		border-color: var(--brass);
+	}
+
+	/* Ornate: a second inlay, carved corners and a run of pearl beading. */
+	.is-ornate .moulding::before {
+		box-shadow:
+			0 0 0 3px transparent,
+			0 0 0 4px color-mix(in oklab, var(--brass) 30%, transparent),
+			0 1px 0 rgba(0, 0, 0, 0.35),
+			inset 0 1px 0 rgba(0, 0, 0, 0.3);
+	}
+
+	.is-ornate .groove {
+		background-image: radial-gradient(
+			circle at center,
+			color-mix(in oklab, var(--brass) 75%, transparent) 0 1.4px,
+			transparent 1.7px
+		);
+		background-size: 9px 9px;
+	}
+
+	.wall-frame[data-focus] .bead {
+		--bead-tone: var(--brass-hi);
+	}
+
+	.mat {
+		width: 100%;
+		height: 100%;
+		padding: var(--f-mat);
+		/* Paper with a fine linen tooth. */
+		background-color: var(--mat-paper);
+		background-image:
+			repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.022) 0 1px, transparent 1px 3px),
+			repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 0 1px, transparent 1px 3px);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.45),
+			inset 0 0 30px rgba(0, 0, 0, 0.14);
+	}
+
+	/* The print, seated under the bevelled cut of the mat and behind glass. */
+	.window {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		box-shadow:
+			0 0 0 1px var(--mat-shade),
+			-4px -4px 5px rgba(0, 0, 0, 0.22),
+			4px 4px 4px rgba(255, 255, 255, 0.34),
+			inset 0 3px 10px rgba(0, 0, 0, 0.5),
+			inset 0 -1px 4px rgba(0, 0, 0, 0.3);
+	}
+
+	.window::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		background: linear-gradient(
+			118deg,
+			rgba(255, 255, 255, var(--glass)) 0%,
+			rgba(255, 255, 255, calc(var(--glass) * 0.3)) 24%,
+			transparent 44%
+		);
+	}
+
+	.window :global(img) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.wall-frame {
+			transition: none;
+		}
+		.wall-frame:hover {
+			transform: none;
+		}
+	}
+</style>

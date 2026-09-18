@@ -1,0 +1,430 @@
+---
+import { Icon } from 'astro-icon/components';
+import { render } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../../layouts/Layout.astro';
+import WallFrame, { assignFrames, frameThickness } from '../../../components/WallFrame.astro';
+import { getRooms, photoHref, statusLabel } from '../../../data/exhibitions';
+
+export async function getStaticPaths() {
+	const rooms = await getRooms();
+	return rooms.map((room, i) => ({
+		params: { exhibition: room.slug },
+		props: { room, next: rooms[(i + 1) % rooms.length] },
+	}));
+}
+
+const { room, next } = Astro.props;
+const { data } = room.entry;
+const { Content } = await render(room.entry);
+
+// The hang. The wall text sits at the centre. Photos spiral out from it
+// on a golden angle and move outward until nothing overlaps. Units are wall px.
+type Rect = { x: number; y: number; w: number; h: number };
+const GAP = 240;
+const PAD = 420;
+const LABEL_H = 170;
+const INTRO = { w: 620, h: 560 };
+const EXIT = { w: 380, h: 120 };
+const GOLDEN = Math.PI * (3 - Math.sqrt(5));
+
+const hits = (a: Rect, b: Rect) => a.x < b.x + b.w + GAP && a.x + a.w + GAP > b.x && a.y < b.y + b.h + GAP && a.y + a.h + GAP > b.y;
+
+const taken: Rect[] = [{ x: -INTRO.w / 2, y: -INTRO.h / 2, ...INTRO }];
+// Walk outward along the spiral ray until the footprint is clear.
+function settle(i: number, w: number, footH: number): Rect {
+	const a = i * GOLDEN - Math.PI / 2;
+	let r = 700 + 90 * Math.sqrt(i);
+	for (;;) {
+		const rect = { x: Math.round(r * Math.cos(a) - w / 2), y: Math.round(r * Math.sin(a) - footH / 2), w, h: footH };
+		if (!taken.some((t) => hits(rect, t))) {
+			taken.push(rect);
+			return rect;
+		}
+		r += 40;
+	}
+}
+
+const kinds = assignFrames(room.photos.map((p) => p.id));
+
+const hang = room.photos.map((p, i) => {
+	// The file is the source of truth. Astro reads it and applies EXIF rotation,
+	// so this ratio is what the photo really looks like.
+	const { width: srcW, height: srcH } = p.data.src;
+	const ratio = srcW / srcH;
+	const printH = i % 4 === 0 ? 760 : ratio < 1 ? 640 : 520;
+	const printW = Math.round(printH * ratio);
+	const kind = kinds[i];
+	const t = frameThickness(kind);
+	const foot = settle(i, printW + t * 2, printH + t * 2 + LABEL_H);
+	const rect = { x: foot.x, y: foot.y, w: printW + t * 2, h: printH + t * 2 };
+	const d = p.data;
+	return {
+		photo: p,
+		rect,
+		kind,
+		href: photoHref(room.slug, p.id),
+		title: d.caption ?? p.id,
+		gear: [d.camera, d.focalLength, d.aperture, d.shutter, d.iso && `ISO ${d.iso}`].filter(Boolean).join(' · '),
+		stock: d.film ? [d.film.stock, d.film.format].filter(Boolean).join(' · ') : d.simulation,
+		when: [d.location, d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })].filter(Boolean).join(' · '),
+	};
+});
+
+const exitFoot = settle(hang.length, EXIT.w, EXIT.h);
+
+// Shift everything so the wall starts at 0,0 with padding around it.
+const minX = Math.min(...taken.map((t) => t.x)) - PAD;
+const minY = Math.min(...taken.map((t) => t.y)) - PAD;
+const WALL_W = Math.max(...taken.map((t) => t.x + t.w)) + PAD - minX;
+const WALL_H = Math.max(...taken.map((t) => t.y + t.h)) + PAD - minY;
+const shift = (r: Rect) => ({ ...r, x: r.x - minX, y: r.y - minY });
+
+const intro = shift(taken[0]);
+const exit = shift(exitFoot);
+for (const h of hang) h.rect = shift(h.rect);
+
+const layout = {
+	w: WALL_W,
+	h: WALL_H,
+	intro,
+	rects: hang.map(({ photo, rect, href }) => ({ id: photo.id, href, ...rect })),
+};
+
+const MAP_W = 150;
+const MAP_H = Math.round((MAP_W * WALL_H) / WALL_W);
+
+const px = (n: number) => `${n}px`;
+const place = (r: { x: number; y: number; w: number; h: number }) => `left:${px(r.x)};top:${px(r.y)};width:${px(r.w)};height:${px(r.h)}`;
+
+const btn = 'grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content disabled:opacity-30 disabled:hover:bg-transparent';
+---
+
+<Layout title={data.title} description={data.subtitle ?? `Photos from ${data.title}.`} bare class="h-dvh overflow-hidden">
+	<!-- Top bar -->
+	<div class="flex h-12 shrink-0 items-center justify-between border-b border-line px-4">
+		<div class="flex min-w-0 items-center gap-3">
+			<a href="/gallery" class="label flex shrink-0 items-center gap-1 transition-colors hover:text-content">
+				<Icon name="solar:arrow-left-linear" class="size-3" /> All rooms
+			</a>
+			<span class="hidden text-content-subtle sm:inline">/</span>
+			<span class="hidden min-w-0 truncate text-sm font-medium tracking-tight sm:inline">{data.title}</span>
+			<span class="label hidden md:inline">· {statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`}</span>
+		</div>
+		<div class="flex items-center gap-1">
+			<button data-prev class={btn} aria-label="Previous photo"><Icon name="solar:alt-arrow-left-linear" class="size-4" /></button>
+			<span data-pos class="label w-16 text-center">— / {hang.length}</span>
+			<button data-next class={btn} aria-label="Next photo"><Icon name="solar:alt-arrow-right-linear" class="size-4" /></button>
+			<span class="mx-1 h-4 w-px bg-line" aria-hidden="true"></span>
+			<button data-zoom="-1" class={btn} aria-label="Zoom out"><Icon name="solar:minus-circle-linear" class="size-4" /></button>
+			<button data-fit class={btn} aria-label="See the whole wall"><Icon name="solar:maximize-square-minimalistic-linear" class="size-4" /></button>
+			<button data-zoom="1" class={btn} aria-label="Zoom in"><Icon name="solar:add-circle-linear" class="size-4" /></button>
+		</div>
+	</div>
+
+	<!-- The wall -->
+	<div
+		id="stage"
+		data-layout={JSON.stringify(layout)}
+		class="wall-stage relative min-h-0 flex-1 cursor-grab select-none overflow-hidden bg-canvas active:cursor-grabbing"
+		style="touch-action: none"
+	>
+		<div id="wall" class="wall absolute left-0 top-0 origin-top-left will-change-transform" style={`width:${px(WALL_W)};height:${px(WALL_H)}`}>
+			<!-- Centre placard: the wall text -->
+			<article class="absolute flex flex-col justify-center overflow-hidden bg-canvas-subtle p-12 ring-1 ring-line shadow-2xl" style={place(intro)}>
+				<p class="label mb-5">{statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`} · {hang.length} works</p>
+				<h1 class="font-title text-4xl font-semibold tracking-tight text-balance">{data.title}</h1>
+				{data.subtitle && <p class="mt-4 text-lg leading-snug text-content-muted text-pretty">{data.subtitle}</p>}
+				<div class="prose prose-sm mt-6 text-content-muted"><Content /></div>
+			</article>
+
+			{hang.map(({ photo: p, rect, kind, href, title, gear, stock, when }, i) => (
+				<>
+					<WallFrame index={i} kind={kind} style={place(rect)}>
+						<Image
+							src={p.data.src}
+							alt={p.data.alt || p.id}
+							width={1400}
+							widths={[700, 1400]}
+							sizes="900px"
+							loading={i < 3 ? 'eager' : 'lazy'}
+							draggable="false"
+						/>
+					</WallFrame>
+					<!-- Wall label -->
+					<div
+						class="absolute flex flex-col gap-1.5 border-l border-line pl-4"
+						style={`left:${px(rect.x)};top:${px(rect.y + rect.h + 36)};width:${px(Math.min(rect.w, 300))}`}
+					>
+						<p class="label">{String(i + 1).padStart(2, '0')}</p>
+						<p class="text-sm font-medium tracking-tight text-content">{title}</p>
+						{gear && <p class="mono-num text-2xs leading-4 text-content-muted">{gear}</p>}
+						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ' · B&W' : ''}</p>}
+						{when && <p class="mono-num text-2xs leading-4 text-content-muted">{when}</p>}
+						<a href={href} class="label mt-1 flex items-center gap-1 self-start transition-colors hover:text-content">
+							Open <Icon name="solar:arrow-right-up-linear" class="size-3" />
+						</a>
+					</div>
+				</>
+			))}
+
+			<!-- Way out -->
+			{next.slug !== room.slug && (
+				<a href={next.href} class="group absolute flex items-center justify-between gap-6 bg-canvas-subtle px-8 ring-1 ring-line shadow-2xl transition-colors hover:ring-content" style={place(exit)}>
+					<span class="flex flex-col gap-1">
+						<span class="label">Next room</span>
+						<span class="font-title text-xl font-semibold tracking-tight">{next.entry.data.title}</span>
+					</span>
+					<Icon name="solar:arrow-right-linear" class="arrow size-5 shrink-0" />
+				</a>
+			)}
+		</div>
+
+		<!-- Minimap -->
+		<div
+			id="map"
+			class="absolute bottom-4 left-4 hidden cursor-pointer rounded-md border border-line bg-canvas/80 backdrop-blur sm:block"
+			style={`width:${px(MAP_W)};height:${px(MAP_H)}`}
+			aria-hidden="true"
+		>
+			<span class="absolute rounded-[1px] bg-content/40" style={`left:${(intro.x / WALL_W) * 100}%;top:${(intro.y / WALL_H) * 100}%;width:${(intro.w / WALL_W) * 100}%;height:${(intro.h / WALL_H) * 100}%`}></span>
+			{hang.map(({ rect }) => (
+				<span
+					class="absolute rounded-[1px] bg-content-subtle"
+					style={`left:${(rect.x / WALL_W) * 100}%;top:${(rect.y / WALL_H) * 100}%;width:${(rect.w / WALL_W) * 100}%;height:${(rect.h / WALL_H) * 100}%`}
+				></span>
+			))}
+			<span data-view class="absolute rounded-sm border border-content/70 bg-content/10"></span>
+		</div>
+
+		<p class="label pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 lg:flex">
+			Drag or scroll to move · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> pinch or ⌘ scroll to zoom · Click a photo to step closer
+		</p>
+	</div>
+</Layout>
+
+<script>
+	// A pannable, zoomable wall. State is one transform: translate(x, y) scale(s).
+	type Rect = { id: string; href: string; x: number; y: number; w: number; h: number };
+	const stage = document.getElementById('stage')!;
+	const wall = document.getElementById('wall')!;
+	const layout = JSON.parse(stage.dataset.layout!) as { w: number; h: number; intro: Rect; rects: Rect[] };
+	const figs = [...wall.querySelectorAll<HTMLElement>('[data-hang]')];
+	const pos = document.querySelector<HTMLElement>('[data-pos]')!;
+	const view = document.querySelector<HTMLElement>('[data-view]')!;
+	const map = document.getElementById('map')!;
+	const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+	let x = 0, y = 0, s = 1;
+	let current = -1;
+	const vw = () => stage.clientWidth;
+	const vh = () => stage.clientHeight;
+	const fitAllScale = () => Math.min(vw() / layout.w, vh() / layout.h);
+	const minS = () => fitAllScale() * 0.9;
+	const MAX_S = 2.5;
+
+	function apply() {
+		// Keep the wall centre inside the viewport so it cannot get lost.
+		x = Math.min(vw() / 2, Math.max(vw() / 2 - layout.w * s, x));
+		y = Math.min(vh() / 2, Math.max(vh() / 2 - layout.h * s, y));
+		wall.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+		view.style.left = `${(-x / s / layout.w) * 100}%`;
+		view.style.top = `${(-y / s / layout.h) * 100}%`;
+		view.style.width = `${(vw() / s / layout.w) * 100}%`;
+		view.style.height = `${(vh() / s / layout.h) * 100}%`;
+	}
+
+	function fly(on = true) {
+		wall.classList.toggle('flying', on && !still);
+	}
+
+	function fitRect(r: { x: number; y: number; w: number; h: number }, margin: number, animate = true) {
+		fly(animate);
+		s = Math.min(MAX_S, Math.max(minS(), Math.min(vw() / (r.w + margin * 2), vh() / (r.h + margin * 2))));
+		x = vw() / 2 - (r.x + r.w / 2) * s;
+		y = vh() / 2 - (r.y + r.h / 2) * s;
+		apply();
+	}
+
+	function focus(i: number, animate = true) {
+		current = i;
+		for (const f of figs) f.toggleAttribute('data-focus', Number(f.dataset.hang) === i);
+		pos.textContent = `${i < 0 ? '—' : String(i + 1).padStart(2, '0')} / ${figs.length}`;
+		if (i >= 0) {
+			const r = layout.rects[i];
+			// Leave room under the photo for its label.
+			fitRect({ ...r, h: r.h + 150 }, 80, animate);
+			history.replaceState(null, '', `#${r.id}`);
+		} else {
+			history.replaceState(null, '', location.pathname);
+		}
+	}
+
+	function overview(animate = true) {
+		current = -1;
+		focus(-1, false);
+		fitRect({ x: 0, y: 0, w: layout.w, h: layout.h }, 0, animate);
+	}
+
+	// Stand in front of the placard, close enough to read it.
+	function entrance(animate = false) {
+		fitRect(layout.intro, 360, animate);
+	}
+
+	function zoomAt(factor: number, cx = vw() / 2, cy = vh() / 2, animate = false) {
+		fly(animate);
+		const ns = Math.min(MAX_S, Math.max(minS(), s * factor));
+		x = cx - (cx - x) * (ns / s);
+		y = cy - (cy - y) * (ns / s);
+		s = ns;
+		apply();
+	}
+
+	// Wheel: pan. With ctrl/meta (also trackpad pinch) zoom around the cursor.
+	stage.addEventListener(
+		'wheel',
+		(e) => {
+			e.preventDefault();
+			if (e.ctrlKey || e.metaKey) {
+				zoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - stage.getBoundingClientRect().left, e.clientY - stage.getBoundingClientRect().top);
+			} else {
+				fly(false);
+				x -= e.deltaX;
+				y -= e.deltaY;
+				apply();
+			}
+		},
+		{ passive: false },
+	);
+
+	// Pointer: one finger drags, two fingers pinch. A short press is a click.
+	const pointers = new Map<number, { x: number; y: number }>();
+	let dragged = false;
+	let pinchDist = 0;
+	let start = { x: 0, y: 0 };
+
+	// Capture starts only once a drag begins. Capturing on pointerdown would
+	// retarget the click that follows and break the links on the wall.
+	function capture(id: number) {
+		if (!stage.hasPointerCapture(id)) stage.setPointerCapture(id);
+	}
+
+	stage.addEventListener('pointerdown', (e) => {
+		if (e.button !== 0) return;
+		pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+		dragged = false;
+		start = { x: e.clientX, y: e.clientY };
+		fly(false);
+		if (pointers.size === 2) {
+			const [a, b] = [...pointers.values()];
+			pinchDist = Math.hypot(a.x - b.x, a.y - b.y);
+			for (const id of pointers.keys()) capture(id);
+		}
+	});
+
+	stage.addEventListener('pointermove', (e) => {
+		const prev = pointers.get(e.pointerId);
+		if (!prev) return;
+		const now = { x: e.clientX, y: e.clientY };
+		if (!dragged && Math.hypot(now.x - start.x, now.y - start.y) > 6) {
+			dragged = true;
+			capture(e.pointerId);
+		}
+		if (!dragged) return;
+
+		if (pointers.size === 2) {
+			pointers.set(e.pointerId, now);
+			const [a, b] = [...pointers.values()];
+			const dist = Math.hypot(a.x - b.x, a.y - b.y);
+			const box = stage.getBoundingClientRect();
+			const mid = { x: (a.x + b.x) / 2 - box.left, y: (a.y + b.y) / 2 - box.top };
+			if (pinchDist > 0) zoomAt(dist / pinchDist, mid.x, mid.y);
+			pinchDist = dist;
+			// Pan by the movement of this finger only, halved for two fingers.
+			x += (now.x - prev.x) / 2;
+			y += (now.y - prev.y) / 2;
+			apply();
+			return;
+		}
+
+		x += now.x - prev.x;
+		y += now.y - prev.y;
+		pointers.set(e.pointerId, now);
+		apply();
+	});
+
+	function release(e: PointerEvent) {
+		pointers.delete(e.pointerId);
+		pinchDist = 0;
+		if (stage.hasPointerCapture(e.pointerId)) stage.releasePointerCapture(e.pointerId);
+	}
+	stage.addEventListener('pointerup', release);
+	stage.addEventListener('pointercancel', release);
+
+	// Click a photo to step closer. Click it again to open the full view.
+	stage.addEventListener('click', (e) => {
+		if (dragged) {
+			e.preventDefault();
+			e.stopPropagation();
+			return;
+		}
+		const fig =
+			(e.target as HTMLElement).closest<HTMLElement>('[data-hang]') ??
+			(document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null)?.closest<HTMLElement>('[data-hang]');
+		if (!fig) return;
+		const i = Number(fig.dataset.hang);
+		if (i === current) location.href = layout.rects[i].href;
+		else focus(i);
+	});
+
+	// Minimap: jump to a spot on the wall.
+	map.addEventListener('click', (e) => {
+		const box = map.getBoundingClientRect();
+		const wx = ((e.clientX - box.left) / box.width) * layout.w;
+		const wy = ((e.clientY - box.top) / box.height) * layout.h;
+		fly(true);
+		x = vw() / 2 - wx * s;
+		y = vh() / 2 - wy * s;
+		apply();
+	});
+
+	document.querySelector('[data-prev]')!.addEventListener('click', () => focus(current <= 0 ? figs.length - 1 : current - 1));
+	document.querySelector('[data-next]')!.addEventListener('click', () => focus((current + 1) % figs.length));
+	document.querySelector('[data-fit]')!.addEventListener('click', () => (current < 0 && s <= minS() * 1.05 ? entrance(true) : overview()));
+	for (const b of document.querySelectorAll<HTMLButtonElement>('[data-zoom]')) {
+		b.addEventListener('click', () => zoomAt(Number(b.dataset.zoom) > 0 ? 1.4 : 1 / 1.4, undefined, undefined, true));
+	}
+
+	document.addEventListener('keydown', (e) => {
+		if (e.metaKey || e.ctrlKey) return;
+		if (e.key === 'ArrowRight') focus((current + 1) % figs.length);
+		else if (e.key === 'ArrowLeft') focus(current <= 0 ? figs.length - 1 : current - 1);
+		else if (e.key === '+' || e.key === '=') zoomAt(1.4, undefined, undefined, true);
+		else if (e.key === '-') zoomAt(1 / 1.4, undefined, undefined, true);
+		else if (e.key === '0') overview();
+		else if (e.key === 'Escape') (current >= 0 ? overview() : (location.href = '/gallery'));
+		else if (e.key === 'Enter' && current >= 0) location.href = layout.rects[current].href;
+		else return;
+		e.preventDefault();
+	});
+
+	window.addEventListener('resize', () => {
+		fly(false);
+		apply();
+	});
+
+	// Start in front of the placard, or at the photo named in the hash.
+	const hashIndex = layout.rects.findIndex((r) => `#${r.id}` === location.hash);
+	if (hashIndex >= 0) focus(hashIndex, false);
+	else entrance(false);
+</script>
+
+<style>
+	.wall {
+		background-image: radial-gradient(color-mix(in oklab, var(--line) 70%, transparent) 1px, transparent 1px);
+		background-size: 48px 48px;
+	}
+	.wall.flying {
+		transition: transform 700ms var(--ease-out-quart);
+	}
+</style>
