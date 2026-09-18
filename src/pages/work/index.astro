@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import ProjectRow from '../../components/ProjectRow.astro';
+import { experience, projects } from '../../data/work';
+
+const live = projects.filter((p) => p.status === 'live' || p.status === 'building');
+const rest = projects.filter((p) => p.status === 'archived' || p.status === 'unfinished');
+---
+
+<Layout title="Work" description="Projects I have built and places I have worked.">
+	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
+		<header class="flex flex-col gap-6 border-b border-line py-16 sm:flex-row sm:items-end sm:justify-between">
+			<div>
+				<p class="label mb-4">Work</p>
+				<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Things I've built,<br />places I've been.</h1>
+			</div>
+			<nav class="flex gap-1 rounded-full border border-line p-1 text-sm" aria-label="Sections">
+				<a href="#projects" class="rounded-full px-4 py-1.5 text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content">Projects</a>
+				<a href="#experience" class="rounded-full px-4 py-1.5 text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content">Experience</a>
+			</nav>
+		</header>
+
+		<section class="py-16">
+			<SectionHeading id="projects" index="01" title="Projects" />
+			<p class="mb-8 max-w-xl text-sm text-content-muted">
+				Non-exhaustive list of things I've built, at work and on my own. No promises.
+			</p>
+			<div class="flex flex-col">
+				{live.map((p) => <ProjectRow project={p} />)}
+			</div>
+			{rest.length > 0 && (
+				<details class="group/d mt-8">
+					<summary class="label cursor-pointer list-none select-none transition-colors hover:text-content">
+						<span class="flex items-center gap-1.5 group-open/d:hidden"><Icon name="solar:add-circle-linear" class="size-3" /> {rest.length} unfinished or archived</span>
+						<span class="hidden items-center gap-1.5 group-open/d:flex"><Icon name="solar:minus-circle-linear" class="size-3" /> Hide unfinished and archived</span>
+					</summary>
+					<div class="mt-4 flex flex-col">
+						{rest.map((p) => <ProjectRow project={p} />)}
+					</div>
+				</details>
+			)}
+		</section>
+
+		<section class="pb-24 pt-8">
+			<SectionHeading id="experience" index="02" title="Experience" />
+			<ol class="flex flex-col">
+				{experience.map((e) => (
+					<li class="grid gap-x-8 gap-y-2 border-b border-line py-8 last:border-0 sm:grid-cols-[10rem_1fr]">
+						<div class="label pt-1">
+							<span class="flex items-center gap-1">{e.start} <Icon name="solar:arrow-right-linear" class="size-3" /> {e.current ? 'now' : (e.end ?? '')}</span>
+						</div>
+						<div class="flex flex-col gap-3">
+							<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+								<h3 class="text-lg font-medium tracking-tight">
+									{e.url ? (
+										<a href={e.url} target={e.url.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" class="link">{e.company}</a>
+									) : e.company}
+								</h3>
+								<span class="text-sm text-content-muted">{e.role}</span>
+								{e.current && <span class="label text-primary">Current</span>}
+							</div>
+							<p class="max-w-2xl text-sm leading-relaxed text-content-muted text-pretty">{e.summary}</p>
+							{e.details && (
+								<ul class="mt-1 flex max-w-2xl flex-col gap-2 text-sm leading-relaxed text-content-muted">
+									{e.details.map((d) => (
+										<li class="flex gap-3"><Icon name="solar:minus-circle-linear" class="mt-1.5 size-3 shrink-0 text-content-subtle" /><span class="text-pretty">{d}</span></li>
+									))}
+								</ul>
+							)}
+						</div>
+					</li>
+				))}
+			</ol>
+		</section>
+	</div>
+</Layout>
