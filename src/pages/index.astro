@@ -1,49 +1,145 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts';
+import { experience, featuredProjects } from '../data/work';
+import { getRooms, photoHref } from '../data/exhibitions';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+	.slice(0, 4);
+
+// Photos on show, newest first, with the featured ones pulled to the front.
+const rooms = await getRooms();
+const hung = rooms
+	.flatMap((room) => room.photos.map((photo) => ({ photo, room })))
+	.sort((a, b) => b.photo.data.date.valueOf() - a.photo.data.date.valueOf());
+const strip = [...hung.filter((h) => h.photo.data.featured), ...hung.filter((h) => !h.photo.data.featured)].slice(0, 5);
+
+const now = experience.find((e) => e.current);
+const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<!-- Hero -->
+	<section class="relative overflow-hidden border-b border-line">
+		<div class="dot-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
+		<div class="relative mx-auto max-w-5xl px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
+			<p class="label animate-rise mb-6 flex items-center gap-2">
+				<span class="relative flex size-1.5">
+					<span class="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60"></span>
+					<span class="relative inline-flex size-1.5 rounded-full bg-primary"></span>
+				</span>
+				Design engineer · Spain
 			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
+			<h1 class="animate-rise font-title text-display font-semibold text-balance [animation-delay:60ms]">
+				Jesús Rascón
+			</h1>
+			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">
+				I design and build interfaces, animations and the tools around them.
+				{now && (
+					<>
+						Currently at <a href={now.url} class="link text-content" target="_blank" rel="noopener noreferrer">{now.company}</a>.
+					</>
+				)}
+				Before that, Graphext, Veritasium and Reducible.
 			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">I'm also an avid film photographer and musician.</p>
+
+			<div class="animate-rise mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 [animation-delay:180ms]">
+				<a href="/work" class="group inline-flex items-center gap-2 rounded-full bg-content px-4 py-2 text-sm font-medium text-canvas transition-colors hover:bg-primary hover:text-primary-content">
+					See the work <Icon name="solar:arrow-right-up-linear" class="arrow size-4" />
+				</a>
+				{quick.map((s) => (
+					<a href={s.href} target="_blank" rel="noopener noreferrer" class="link text-sm text-content-muted hover:text-content">
+						{s.label}
+					</a>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
+		<!-- Now -->
+		<section class="py-16">
+			<SectionHeading index="01" title="Now" href="/work#experience" linkLabel="Experience" />
+			<div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
+				{now && (
+					<a href={now.url} target="_blank" rel="noopener noreferrer" class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
+						<span class="label">Working at</span>
+						<span class="flex items-baseline justify-between">
+							<span class="text-xl font-medium tracking-tight">{now.company}</span>
+							<span class="label flex items-center gap-1">{now.start} <Icon name="solar:arrow-right-linear" class="size-3" /> now</span>
+						</span>
+						<p class="text-sm text-content-muted">{now.role}. {now.summary}</p>
+					</a>
+				)}
+				{featuredProjects.filter((p) => p.status === 'building').map((p) => (
+					<a href={p.url} class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
+						<span class="label flex items-center gap-2">
+							Building <span class="size-1.5 rounded-full bg-accent animate-pulse"></span>
+						</span>
+						<span class="flex items-baseline justify-between">
+							<span class="text-xl font-medium tracking-tight">{p.name}</span>
+							<span class="label">{p.year}</span>
+						</span>
+						<p class="text-sm text-content-muted">{p.description}</p>
+					</a>
+				))}
+			</div>
+		</section>
+
+		<!-- Selected work -->
+		<section class="py-16">
+			<SectionHeading index="02" title="Selected work" href="/work" linkLabel="All projects" />
+			<div class="flex flex-col">
+				{featuredProjects.map((p) => <ProjectRow project={p} compact />)}
+			</div>
+		</section>
+
+		<!-- Writing -->
+		<section class="py-16">
+			<SectionHeading index="03" title="Writing" href="/blog" linkLabel="All posts" />
+			<ul class="flex flex-col">
+				{posts.map((post) => (
+					<li>
+						<a href={`/blog/${post.id}/`} class="group -mx-3 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-1 rounded-lg px-3 py-3.5 transition-colors hover:bg-canvas-muted sm:grid-cols-[minmax(0,14rem)_1fr_auto]">
+							<h3 class="text-base font-medium tracking-tight">{post.data.title}</h3>
+							<span class="label sm:order-3"><FormattedDate date={post.data.date} /></span>
+							<p class="col-span-2 text-sm text-content-muted sm:col-span-1 sm:order-2">{post.data.description}</p>
+						</a>
+					</li>
+				))}
 			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+		</section>
+
+		<!-- Photos -->
+		{strip.length > 0 && (
+			<section class="py-16">
+				<SectionHeading index="04" title="Photos" href="/gallery" linkLabel={`${rooms.length} exhibitions`} />
+				<div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
+					{strip.map(({ photo: p, room }, i) => (
+						<a href={photoHref(room.slug, p.id)} title={room.entry.data.title} class:list={['group relative overflow-hidden rounded-md bg-canvas-muted', i >= 3 && 'hidden sm:block']}>
+							<Image
+								src={p.data.src}
+								alt={p.data.alt || p.id}
+								width={480}
+								height={480}
+								class="aspect-square size-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"
+								loading="lazy"
+							/>
+							<span class="label absolute bottom-2 left-2 rounded bg-canvas/80 px-1.5 py-0.5 text-content opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
+								{room.entry.data.title}
+							</span>
+						</a>
+					))}
+				</div>
+			</section>
+		)}
+	</div>
+</Layout>
