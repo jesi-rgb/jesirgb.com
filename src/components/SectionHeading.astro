@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import { copy } from '../data/copy';
 interface Props {
 	index?: string;
 	title: string;
@@ -7,7 +8,7 @@ interface Props {
 	linkLabel?: string;
 	id?: string;
 }
-const { index, title, href, linkLabel = 'View all', id } = Astro.props;
+const { index, title, href, linkLabel = copy.common.viewAll, id } = Astro.props;
 ---
 
 <div id={id} class="mb-8 flex items-end justify-between border-b border-line pb-3 scroll-mt-24">

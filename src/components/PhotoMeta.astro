@@ -1,6 +1,7 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import FormattedDate from './FormattedDate.astro';
+import { copy } from '../data/copy';
 
 interface Props {
 	photo: CollectionEntry<'gallery'>['data'];
@@ -8,14 +9,15 @@ interface Props {
 }
 const { photo: p, class: className } = Astro.props;
 
+const t = copy.photo.meta;
 const settings = [p.focalLength, p.aperture, p.shutter, p.iso && `ISO ${p.iso}`].filter(Boolean).join(' · ');
 const rows: [string, string | undefined][] = [
-	['Camera', p.camera],
-	['Lens', p.lens],
-	['Settings', settings || undefined],
-	[p.film ? 'Film' : 'Simulation', p.film ? [p.film.stock, p.film.iso && `ISO ${p.film.iso}`, p.film.format].filter(Boolean).join(' · ') : p.simulation],
-	['Look', p.mono ? 'Black & white' : 'Color'],
-	['Location', p.location],
+	[t.camera, p.camera],
+	[t.lens, p.lens],
+	[t.settings, settings || undefined],
+	[p.film ? t.film : t.simulation, p.film ? [p.film.stock, p.film.iso && `ISO ${p.film.iso}`, p.film.format].filter(Boolean).join(' · ') : p.simulation],
+	[t.look, p.mono ? t.mono : t.color],
+	[t.location, p.location],
 ];
 ---
 
@@ -26,11 +28,11 @@ const rows: [string, string | undefined][] = [
 			<dd class="mono-num text-content">{v}</dd>
 		</>
 	))}
-	<dt class="label pt-0.5">Date</dt>
+	<dt class="label pt-0.5">{t.date}</dt>
 	<dd class="mono-num text-content"><FormattedDate date={p.date} /></dd>
 	{p.tags.length > 0 && (
 		<>
-			<dt class="label pt-0.5">Tags</dt>
+			<dt class="label pt-0.5">{t.tags}</dt>
 			<dd class="flex flex-wrap gap-1.5">
 				{p.tags.map((t) => (
 					<span class="rounded-full border border-line px-2 py-0.5 text-2xs text-content-muted">{t}</span>

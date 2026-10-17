@@ -1,6 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import Copy from '../../components/Copy.astro';
+import { copy, fill } from '../../data/copy';
+
+const t = copy.blog;
 
 const posts = (await getCollection('blog')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 
@@ -12,11 +16,11 @@ for (const post of posts) {
 const fmt = (d: Date) => d.toLocaleDateString('en-us', { month: 'short', day: '2-digit' });
 ---
 
-<Layout title="Blog" description="Notes on design, code, music and whatever else.">
+<Layout title={t.title} description={t.description}>
 	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
 		<header class="border-b border-line py-16">
-			<p class="label mb-4">Blog · {posts.length} posts</p>
-			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl">Notes on design, code<br />and the occasional chord.</h1>
+			<p class="label mb-4">{fill(t.eyebrow, { count: posts.length })}</p>
+			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl"><Copy text={t.heading} /></h1>
 		</header>
 
 		{[...byYear.entries()].map(([year, list]) => (

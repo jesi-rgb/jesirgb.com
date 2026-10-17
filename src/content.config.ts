@@ -1,6 +1,7 @@
 import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { parse } from 'yaml';
 
 const blog = defineCollection({
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -67,4 +68,90 @@ const exhibitions = defineCollection({
 	}),
 });
 
-export const collections = { blog, gallery, exhibitions };
+// All site copy in one entry, so each page reads a typed object.
+const t = z.string();
+const link = z.object({ title: t, link: t });
+const copy = defineCollection({
+	loader: file('./src/content/copy.yaml', { parser: (text) => ({ copy: parse(text) }) }),
+	schema: z.object({
+		site: z.object({ title: t, description: t }),
+		nav: z.array(z.object({ href: t, label: t })),
+		common: z.object({ viewAll: t, toggleTheme: t, now: t }),
+		footer: z.object({ blurb: t, rss: t }),
+		notFound: z.object({ title: t, description: t, eyebrow: t, heading: t, back: t }),
+		home: z.object({
+			eyebrow: t,
+			heading: t,
+			intro: t,
+			current: t,
+			aside: t,
+			cta: t,
+			quickLinks: z.array(t),
+			now: link.extend({ workingAt: t, building: t }),
+			work: link,
+			writing: link,
+			videos: link,
+			photos: link,
+		}),
+		work: z.object({
+			title: t,
+			description: t,
+			eyebrow: t,
+			heading: t,
+			nav: z.object({ projects: t, experience: t }),
+			projects: z.object({ title: t, intro: t, showRest: t, hideRest: t }),
+			experience: z.object({ title: t, current: t }),
+			status: z.object({ live: t, building: t, archived: t, unfinished: t }),
+		}),
+		blog: z.object({
+			title: t,
+			description: t,
+			eyebrow: t,
+			heading: t,
+			post: z.object({ back: t, updated: t }),
+		}),
+		videos: z.object({ title: t, description: t, eyebrow: t, heading: t, intro: t, channelLink: t }),
+		gallery: z.object({
+			title: t,
+			description: t,
+			eyebrow: t,
+			heading: t,
+			intro: t,
+			permanent: z.object({ title: t, note: t }),
+			others: z.object({ title: t, note: t }),
+			photoCount: t,
+			status: z.object({ 'on-view': t, permanent: t, past: t }),
+			dates: z.object({ permanent: t, since: t }),
+		}),
+		room: z.object({
+			description: t,
+			back: t,
+			works: t,
+			open: t,
+			nextRoom: t,
+			mono: t,
+			hint: z.object({ move: t, zoom: t, step: t }),
+			controls: z.object({ prev: t, next: t, zoomOut: t, fit: t, zoomIn: t }),
+		}),
+		photo: z.object({
+			description: t,
+			prev: t,
+			next: t,
+			meta: z.object({
+				camera: t,
+				lens: t,
+				settings: t,
+				film: t,
+				simulation: t,
+				look: t,
+				mono: t,
+				color: t,
+				location: t,
+				date: t,
+				tags: t,
+			}),
+		}),
+	}),
+});
+
+export const collections = { blog, gallery, exhibitions, copy };

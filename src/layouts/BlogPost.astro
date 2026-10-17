@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import { copy } from '../data/copy';
 
 type Props = CollectionEntry<'blog'>['data'];
 const { title, description, date, updatedDate, heroImage, categories } = Astro.props;
@@ -13,9 +14,9 @@ const { title, description, date, updatedDate, heroImage, categories } = Astro.p
 	<article class="mx-auto w-full max-w-5xl px-5 sm:px-8">
 		<header class="grid gap-x-8 gap-y-6 border-b border-line py-16 sm:grid-cols-[10rem_1fr]">
 			<div class="flex flex-col gap-2">
-				<a href="/blog" class="label flex items-center gap-1 transition-colors hover:text-content"><Icon name="solar:arrow-left-linear" class="size-3" /> Blog</a>
+				<a href="/blog" class="label flex items-center gap-1 transition-colors hover:text-content"><Icon name="solar:arrow-left-linear" class="size-3" /> {copy.blog.post.back}</a>
 				<p class="label mt-2 text-content-muted"><FormattedDate date={date} /></p>
-				{updatedDate && <p class="label">Updated <FormattedDate date={updatedDate} /></p>}
+				{updatedDate && <p class="label">{copy.blog.post.updated} <FormattedDate date={updatedDate} /></p>}
 				{categories && (
 					<ul class="mt-2 flex flex-wrap gap-1.5">
 						{categories.map((c) => (

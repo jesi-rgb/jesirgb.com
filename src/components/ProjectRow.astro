@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { Project } from '../data/work';
+import { copy } from '../data/copy';
 
 interface Props {
 	project: Project;
@@ -9,12 +10,6 @@ interface Props {
 const { project: p, compact = false } = Astro.props;
 const external = p.url.startsWith('http');
 
-const statusLabel: Record<Project['status'], string> = {
-	live: 'Live',
-	building: 'Building',
-	archived: 'Archived',
-	unfinished: 'Unfinished',
-};
 const statusColor: Record<Project['status'], string> = {
 	live: 'bg-primary',
 	building: 'bg-primary animate-pulse',
@@ -35,7 +30,7 @@ const statusColor: Record<Project['status'], string> = {
 	</h3>
 	<span class="label sm:order-3">
 		{p.year}
-		<span class="ml-2 hidden sm:inline">{statusLabel[p.status]}</span>
+		<span class="ml-2 hidden sm:inline">{copy.work.status[p.status]}</span>
 		<Icon name="solar:arrow-right-up-linear" class="arrow ml-1.5 inline-block size-3 align-[-1px] text-content-muted" />
 	</span>
 	<p class="col-span-2 text-sm text-content-muted text-pretty sm:col-span-1 sm:order-2">

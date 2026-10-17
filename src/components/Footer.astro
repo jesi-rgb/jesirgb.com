@@ -1,5 +1,6 @@
 ---
 import { SOCIALS } from '../consts';
+import { copy } from '../data/copy';
 const year = new Date().getFullYear();
 ---
 
@@ -7,10 +8,10 @@ const year = new Date().getFullYear();
 	<div class="mx-auto grid max-w-5xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1fr_auto]">
 		<div class="flex flex-col gap-3">
 			<p class="text-sm text-content-muted max-w-sm text-pretty">
-				Designer, engineer, and everything in between. I also take pictures and make music.
+				{copy.footer.blurb}
 			</p>
 			<p class="label">
-				&copy; {year} Jesús Rascón &middot; <a href="/rss.xml" class="hover:text-content transition-colors">RSS</a>
+				&copy; {year} {copy.site.title} &middot; <a href="/rss.xml" class="hover:text-content transition-colors">{copy.footer.rss}</a>
 			</p>
 		</div>
 		<ul class="grid grid-cols-2 gap-x-10 gap-y-2 sm:grid-cols-3 md:grid-cols-2">

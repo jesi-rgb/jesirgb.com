@@ -1,0 +1,24 @@
+---
+// Renders a copy string. [text](href) becomes a link and \n becomes a line break.
+import { fill } from '../data/copy';
+
+interface Props {
+	text: string;
+	vars?: Record<string, string | number>;
+	linkClass?: string;
+}
+const { text, vars = {}, linkClass = 'link text-content' } = Astro.props;
+const parts = fill(text, vars).split(/(\[[^\]]+\]\([^)]+\)|\n)/);
+---
+
+{parts.map((part) => {
+	if (part === '\n') return <br />;
+	const m = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+	if (!m) return part;
+	const external = m[2].startsWith('http');
+	return (
+		<a href={m[2]} class={linkClass} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined}>
+			{m[1]}
+		</a>
+	);
+})}

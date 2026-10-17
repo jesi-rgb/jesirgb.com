@@ -1,13 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE_TITLE } from '../consts';
+import { copy } from '../data/copy';
 
 const pathname = Astro.url.pathname;
-const navLinks = [
-	{ href: '/work', label: 'Work' },
-	{ href: '/blog', label: 'Blog' },
-	{ href: '/gallery', label: 'Gallery' },
-];
 const isActive = (href: string) => pathname.startsWith(href);
 ---
 
@@ -15,12 +10,12 @@ const isActive = (href: string) => pathname.startsWith(href);
 	<nav class="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:px-8">
 		<a href="/" class="flex items-center gap-2.5 text-sm font-medium tracking-tight">
 			<span class="size-2 rounded-full bg-primary" aria-hidden="true"></span>
-			{SITE_TITLE}
+			{copy.site.title}
 		</a>
 
 		<div class="flex items-center gap-1">
 			<ul class="flex items-center">
-				{navLinks.map(({ href, label }) => (
+				{copy.nav.map(({ href, label }) => (
 					<li>
 						<a
 							href={href}
@@ -42,7 +37,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 			<button
 				id="theme-toggle"
 				class="ml-2 grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content"
-				aria-label="Toggle theme"
+				aria-label={copy.common.toggleTheme}
 			>
 				<Icon name="solar:sun-2-linear" class="size-4 dark:hidden" />
 				<Icon name="solar:moon-stars-linear" class="hidden size-4 dark:block" />

@@ -6,7 +6,9 @@ import Layout from '../layouts/Layout.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ProjectRow from '../components/ProjectRow.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import { SITE_TITLE, SITE_DESCRIPTION, SOCIALS } from '../consts';
+import { SOCIALS } from '../consts';
+import { copy, fill } from '../data/copy';
+import Copy from '../components/Copy.astro';
 import { experience, featuredProjects } from '../data/work';
 import { getRooms, photoHref } from '../data/exhibitions';
 
@@ -21,11 +23,13 @@ const hung = rooms
 	.sort((a, b) => b.photo.data.date.valueOf() - a.photo.data.date.valueOf());
 const strip = [...hung.filter((h) => h.photo.data.featured), ...hung.filter((h) => !h.photo.data.featured)].slice(0, 5);
 
+const t = copy.home;
 const now = experience.find((e) => e.current);
-const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
+const current = now ? fill(t.current, { company: now.company, url: now.url ?? '' }) : '';
+const quick = SOCIALS.filter((s) => t.quickLinks.includes(s.label));
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<Layout title={copy.site.title} description={copy.site.description}>
 	<!-- Hero -->
 	<section class="relative overflow-hidden border-b border-line">
 		<div class="dot-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
@@ -35,25 +39,19 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 					<span class="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60"></span>
 					<span class="relative inline-flex size-1.5 rounded-full bg-primary"></span>
 				</span>
-				Design engineer · Spain
+				{t.eyebrow}
 			</p>
 			<h1 class="animate-rise font-title text-display font-semibold text-balance text-primary [animation-delay:60ms]">
-				Jesús Rascón
+				{t.heading}
 			</h1>
 			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">
-				I design and build interfaces, animations and the tools around them.
-				{now && (
-					<>
-						Currently at <a href={now.url} class="link text-content" target="_blank" rel="noopener noreferrer">{now.company}</a>.
-					</>
-				)}
-				Before that, Graphext, Veritasium and Reducible.
+				<Copy text={t.intro} vars={{ current }} />
 			</p>
-			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">I'm also an avid film photographer and musician.</p>
+			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl"><Copy text={t.aside} /></p>
 
 			<div class="animate-rise mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 [animation-delay:180ms]">
 				<a href="/work" class="group inline-flex items-center gap-2 rounded-full bg-content px-4 py-2 text-sm font-medium text-canvas transition-colors hover:bg-primary hover:text-primary-content">
-					See the work <Icon name="solar:arrow-right-up-linear" class="arrow size-4" />
+					{t.cta} <Icon name="solar:arrow-right-up-linear" class="arrow size-4" />
 				</a>
 				{quick.map((s) => (
 					<a href={s.href} target="_blank" rel="noopener noreferrer" class="link text-sm text-content-muted hover:text-content">
@@ -67,14 +65,14 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
 		<!-- Now -->
 		<section class="py-16">
-			<SectionHeading index="01" title="Now" href="/work#experience" linkLabel="Experience" />
+			<SectionHeading index="01" title={t.now.title} href="/work#experience" linkLabel={t.now.link} />
 			<div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
 				{now && (
 					<a href={now.url} target="_blank" rel="noopener noreferrer" class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
-						<span class="label">Working at</span>
+						<span class="label">{t.now.workingAt}</span>
 						<span class="flex items-baseline justify-between">
 							<span class="text-xl font-medium tracking-tight">{now.company}</span>
-							<span class="label flex items-center gap-1">{now.start} <Icon name="solar:arrow-right-linear" class="size-3" /> now</span>
+							<span class="label flex items-center gap-1">{now.start} <Icon name="solar:arrow-right-linear" class="size-3" /> {copy.common.now}</span>
 						</span>
 						<p class="text-sm text-content-muted">{now.role}. {now.summary}</p>
 					</a>
@@ -82,7 +80,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 				{featuredProjects.filter((p) => p.status === 'building').map((p) => (
 					<a href={p.url} class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
 						<span class="label flex items-center gap-2">
-							Building <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
+							{t.now.building} <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
 						</span>
 						<span class="flex items-baseline justify-between">
 							<span class="text-xl font-medium tracking-tight">{p.name}</span>
@@ -96,7 +94,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 
 		<!-- Selected work -->
 		<section class="py-16">
-			<SectionHeading index="02" title="Selected work" href="/work" linkLabel="All projects" />
+			<SectionHeading index="02" title={t.work.title} href="/work" linkLabel={t.work.link} />
 			<div class="flex flex-col">
 				{featuredProjects.map((p) => <ProjectRow project={p} compact />)}
 			</div>
@@ -104,7 +102,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 
 		<!-- Writing -->
 		<section class="py-16">
-			<SectionHeading index="03" title="Writing" href="/blog" linkLabel="All posts" />
+			<SectionHeading index="03" title={t.writing.title} href="/blog" linkLabel={t.writing.link} />
 			<ul class="flex flex-col">
 				{posts.map((post) => (
 					<li>
@@ -121,7 +119,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 		<!-- Photos -->
 		{strip.length > 0 && (
 			<section class="py-16">
-				<SectionHeading index="04" title="Photos" href="/gallery" linkLabel={`${rooms.length} exhibitions`} />
+				<SectionHeading index="04" title={t.photos.title} href="/gallery" linkLabel={fill(t.photos.link, { count: rooms.length })} />
 				<div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
 					{strip.map(({ photo: p, room }, i) => (
 						<a href={photoHref(room.slug, p.id)} title={room.entry.data.title} class:list={['group relative overflow-hidden rounded-md bg-canvas-muted', i >= 3 && 'hidden sm:block']}>

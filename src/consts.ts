@@ -1,7 +1,3 @@
-export const SITE_TITLE = 'Jesús Rascón';
-export const SITE_DESCRIPTION =
-	'Design engineer. Interfaces, animation and the tools around them. Also video, music and photos.';
-
 export const SOCIALS = [
 	{ label: 'GitHub', href: 'https://github.com/jesi-rgb', handle: 'jesi-rgb' },
 	{ label: 'X', href: 'https://twitter.com/jesi_rgb', handle: '@jesi_rgb' },

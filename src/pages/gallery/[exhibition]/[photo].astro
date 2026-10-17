@@ -4,6 +4,7 @@ import { getImage } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import PhotoMeta from '../../../components/PhotoMeta.astro';
 import { getRooms, photoHref } from '../../../data/exhibitions';
+import { copy } from '../../../data/copy';
 
 export async function getStaticPaths() {
 	const rooms = await getRooms();
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 const { photo, room, prev, next, index } = Astro.props;
 const full = await getImage({ src: photo.data.src, width: 2800, format: 'webp', quality: 85 });
 const title = photo.data.caption ?? `${room.entry.data.title} · ${index}`;
-const description = [photo.data.camera, photo.data.lens, photo.data.film?.stock ?? photo.data.simulation].filter(Boolean).join(' · ') || 'Photo';
+const description = [photo.data.camera, photo.data.lens, photo.data.film?.stock ?? photo.data.simulation].filter(Boolean).join(' · ') || copy.photo.description;
 const prevHref = prev && photoHref(room.slug, prev);
 const nextHref = next && photoHref(room.slug, next);
 ---
@@ -36,8 +37,8 @@ const nextHref = next && photoHref(room.slug, next);
 		</a>
 		<span class="label">{index} / {room.photos.length}</span>
 		<div class="flex items-center gap-1">
-			{prevHref ? <a href={prevHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label="Previous"><Icon name="solar:alt-arrow-left-linear" class="size-4" /></a> : <span class="size-8"></span>}
-			{nextHref ? <a href={nextHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label="Next"><Icon name="solar:alt-arrow-right-linear" class="size-4" /></a> : <span class="size-8"></span>}
+			{prevHref ? <a href={prevHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label={copy.photo.prev}><Icon name="solar:alt-arrow-left-linear" class="size-4" /></a> : <span class="size-8"></span>}
+			{nextHref ? <a href={nextHref} class="grid size-8 place-items-center rounded-md text-content-muted hover:bg-canvas-subtle hover:text-content" aria-label={copy.photo.next}><Icon name="solar:alt-arrow-right-linear" class="size-4" /></a> : <span class="size-8"></span>}
 		</div>
 	</div>
 	<div class="grid min-h-0 flex-1 grid-rows-[1fr_auto] lg:grid-cols-[1fr_18rem] lg:grid-rows-1">
