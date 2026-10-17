@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import VideoCard from '../../components/VideoCard.astro';
+import { videos, videosByChannel } from '../../data/videos';
+import Copy from '../../components/Copy.astro';
+import { copy, fill } from '../../data/copy';
+
+const t = copy.videos;
+---
+
+<Layout title={t.title} description={t.description}>
+	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
+		<header class="flex flex-col gap-4 border-b border-line py-16">
+			<p class="label">{fill(t.eyebrow, { count: videos.length })}</p>
+			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl"><Copy text={t.heading} /></h1>
+			<p class="max-w-xl text-lg leading-relaxed text-content-muted text-pretty">
+				{t.intro}
+			</p>
+		</header>
+
+		{videosByChannel.map((group, gi) => (
+			<section class="py-12">
+				<SectionHeading
+					index={String(gi + 1).padStart(2, '0')}
+					title={group.channel.name}
+					href={group.channel.url}
+					linkLabel={t.channelLink}
+				/>
+				<p class="label -mt-5 mb-8">{group.channel.role}</p>
+				<div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+					{group.videos.map((v) => <VideoCard video={v} />)}
+				</div>
+			</section>
+		))}
+
+		<div class="pb-16"></div>
+	</div>
+</Layout>

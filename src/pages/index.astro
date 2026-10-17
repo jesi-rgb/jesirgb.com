@@ -11,6 +11,8 @@ import { copy, fill } from '../data/copy';
 import Copy from '../components/Copy.astro';
 import { experience, featuredProjects } from '../data/work';
 import { getRooms, photoHref } from '../data/exhibitions';
+import VideoCard from '../components/VideoCard.astro';
+import { featuredVideos, videos } from '../data/videos';
 
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -116,10 +118,18 @@ const quick = SOCIALS.filter((s) => t.quickLinks.includes(s.label));
 			</ul>
 		</section>
 
+		<!-- Videos -->
+		<section class="py-16">
+			<SectionHeading index="04" title={t.videos.title} href="/videos" linkLabel={fill(t.videos.link, { count: videos.length })} />
+			<div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+				{featuredVideos.map((v) => <VideoCard video={v} compact />)}
+			</div>
+		</section>
+
 		<!-- Photos -->
 		{strip.length > 0 && (
 			<section class="py-16">
-				<SectionHeading index="04" title={t.photos.title} href="/gallery" linkLabel={fill(t.photos.link, { count: rooms.length })} />
+				<SectionHeading index="05" title={t.photos.title} href="/gallery" linkLabel={fill(t.photos.link, { count: rooms.length })} />
 				<div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
 					{strip.map(({ photo: p, room }, i) => (
 						<a href={photoHref(room.slug, p.id)} title={room.entry.data.title} class:list={['group relative overflow-hidden rounded-md bg-canvas-muted', i >= 3 && 'hidden sm:block']}>
