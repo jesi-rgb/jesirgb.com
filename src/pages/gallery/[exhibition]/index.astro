@@ -3,8 +3,10 @@ import { Icon } from 'astro-icon/components';
 import { render } from 'astro:content';
 import { Image } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
-import WallFrame, { assignFrames, frameThickness } from '../../../components/WallFrame.astro';
+import WallFrame from '../../../components/WallFrame.astro';
+import { assignFrames, frameThickness } from '../../../data/frames';
 import { getRooms, photoHref, statusLabel } from '../../../data/exhibitions';
+import { copy, fill } from '../../../data/copy';
 
 export async function getStaticPaths() {
 	const rooms = await getRooms();
@@ -16,6 +18,7 @@ export async function getStaticPaths() {
 
 const { room, next } = Astro.props;
 const { data } = room.entry;
+const t = copy.room;
 const { Content } = await render(room.entry);
 
 // The hang. The wall text sits at the centre. Photos spiral out from it
@@ -45,7 +48,7 @@ function settle(i: number, w: number, footH: number): Rect {
 	}
 }
 
-const kinds = assignFrames(room.photos.map((p) => p.id));
+const kinds = assignFrames(room.photos.map((p) => ({ id: p.id, frame: p.data.frame })));
 
 const hang = room.photos.map((p, i) => {
 	// The file is the source of truth. Astro reads it and applies EXIF rotation,
@@ -100,25 +103,25 @@ const place = (r: { x: number; y: number; w: number; h: number }) => `left:${px(
 const btn = 'grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content disabled:opacity-30 disabled:hover:bg-transparent';
 ---
 
-<Layout title={data.title} description={data.subtitle ?? `Photos from ${data.title}.`} bare class="h-dvh overflow-hidden">
+<Layout title={data.title} description={data.subtitle ?? fill(t.description, { title: data.title })} bare class="h-dvh overflow-hidden">
 	<!-- Top bar -->
 	<div class="flex h-12 shrink-0 items-center justify-between border-b border-line px-4">
 		<div class="flex min-w-0 items-center gap-3">
 			<a href="/gallery" class="label flex shrink-0 items-center gap-1 transition-colors hover:text-content">
-				<Icon name="solar:arrow-left-linear" class="size-3" /> All rooms
+				<Icon name="solar:arrow-left-linear" class="size-3" /> {t.back}
 			</a>
 			<span class="hidden text-content-subtle sm:inline">/</span>
 			<span class="hidden min-w-0 truncate text-sm font-medium tracking-tight sm:inline">{data.title}</span>
 			<span class="label hidden md:inline">· {statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`}</span>
 		</div>
 		<div class="flex items-center gap-1">
-			<button data-prev class={btn} aria-label="Previous photo"><Icon name="solar:alt-arrow-left-linear" class="size-4" /></button>
+			<button data-prev class={btn} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-linear" class="size-4" /></button>
 			<span data-pos class="label w-16 text-center">— / {hang.length}</span>
-			<button data-next class={btn} aria-label="Next photo"><Icon name="solar:alt-arrow-right-linear" class="size-4" /></button>
+			<button data-next class={btn} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-linear" class="size-4" /></button>
 			<span class="mx-1 h-4 w-px bg-line" aria-hidden="true"></span>
-			<button data-zoom="-1" class={btn} aria-label="Zoom out"><Icon name="solar:minus-circle-linear" class="size-4" /></button>
-			<button data-fit class={btn} aria-label="See the whole wall"><Icon name="solar:maximize-square-minimalistic-linear" class="size-4" /></button>
-			<button data-zoom="1" class={btn} aria-label="Zoom in"><Icon name="solar:add-circle-linear" class="size-4" /></button>
+			<button data-zoom="-1" class={btn} aria-label={t.controls.zoomOut}><Icon name="solar:minus-circle-linear" class="size-4" /></button>
+			<button data-fit class={btn} aria-label={t.controls.fit}><Icon name="solar:maximize-square-minimalistic-linear" class="size-4" /></button>
+			<button data-zoom="1" class={btn} aria-label={t.controls.zoomIn}><Icon name="solar:add-circle-linear" class="size-4" /></button>
 		</div>
 	</div>
 
@@ -132,7 +135,7 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 		<div id="wall" class="wall absolute left-0 top-0 origin-top-left will-change-transform" style={`width:${px(WALL_W)};height:${px(WALL_H)}`}>
 			<!-- Centre placard: the wall text -->
 			<article class="absolute flex flex-col justify-center overflow-hidden bg-canvas-subtle p-12 ring-1 ring-line shadow-2xl" style={place(intro)}>
-				<p class="label mb-5">{statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`} · {hang.length} works</p>
+				<p class="label mb-5">{statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`} · {fill(t.works, { count: hang.length })}</p>
 				<h1 class="font-title text-4xl font-semibold tracking-tight text-balance">{data.title}</h1>
 				{data.subtitle && <p class="mt-4 text-lg leading-snug text-content-muted text-pretty">{data.subtitle}</p>}
 				<div class="prose prose-sm mt-6 text-content-muted"><Content /></div>
@@ -159,10 +162,10 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 						<p class="label">{String(i + 1).padStart(2, '0')}</p>
 						<p class="text-sm font-medium tracking-tight text-content">{title}</p>
 						{gear && <p class="mono-num text-2xs leading-4 text-content-muted">{gear}</p>}
-						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ' · B&W' : ''}</p>}
+						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ` · ${t.mono}` : ''}</p>}
 						{when && <p class="mono-num text-2xs leading-4 text-content-muted">{when}</p>}
 						<a href={href} class="label mt-1 flex items-center gap-1 self-start transition-colors hover:text-content">
-							Open <Icon name="solar:arrow-right-up-linear" class="size-3" />
+							{t.open} <Icon name="solar:arrow-right-up-linear" class="size-3" />
 						</a>
 					</div>
 				</>
@@ -172,7 +175,7 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 			{next.slug !== room.slug && (
 				<a href={next.href} class="group absolute flex items-center justify-between gap-6 bg-canvas-subtle px-8 ring-1 ring-line shadow-2xl transition-colors hover:ring-content" style={place(exit)}>
 					<span class="flex flex-col gap-1">
-						<span class="label">Next room</span>
+						<span class="label">{t.nextRoom}</span>
 						<span class="font-title text-xl font-semibold tracking-tight">{next.entry.data.title}</span>
 					</span>
 					<Icon name="solar:arrow-right-linear" class="arrow size-5 shrink-0" />
@@ -198,7 +201,7 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 		</div>
 
 		<p class="label pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 lg:flex">
-			Drag or scroll to move · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> pinch or ⌘ scroll to zoom · Click a photo to step closer
+			{t.hint.move} · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> {t.hint.zoom} · {t.hint.step}
 		</p>
 	</div>
 </Layout>

@@ -1,6 +1,7 @@
 // Reads the exhibitions collection and joins it with the photos.
 // Pages use these helpers so the join and the sort live in one place.
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { copy, fill } from './copy';
 
 export type Exhibition = CollectionEntry<'exhibitions'>;
 export type Photo = CollectionEntry<'gallery'>;
@@ -15,11 +16,7 @@ export interface Room {
 	dates: string;
 }
 
-export const statusLabel: Record<Status, string> = {
-	'on-view': 'On view',
-	permanent: 'Permanent',
-	past: 'Closed',
-};
+export const statusLabel: Record<Status, string> = copy.gallery.status;
 
 export const statusDot: Record<Status, string> = {
 	'on-view': 'bg-primary animate-pulse',
@@ -27,22 +24,17 @@ export const statusDot: Record<Status, string> = {
 	past: 'bg-content-subtle',
 };
 
-// The order the groups show on the gallery index.
-export const groups: { status: Status; title: string; note: string }[] = [
-	{ status: 'on-view', title: 'On view', note: 'Up now. These come down.' },
-	{ status: 'permanent', title: 'Permanent collection', note: 'Always on the wall.' },
-	{ status: 'past', title: 'Past exhibitions', note: 'Closed, but still open to walk.' },
-];
-
-const rank = (s: Status) => groups.findIndex((g) => g.status === s);
+// The order the rooms show on the gallery index.
+const ORDER: Status[] = ['on-view', 'permanent', 'past'];
+const rank = (s: Status) => ORDER.indexOf(s);
 
 const day = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 
 // "16 May 2026 — 31 Dec 2026", or a single date when the run has no end.
 function runDates(data: Exhibition['data']) {
-	if (data.status === 'permanent') return 'Permanent collection';
+	if (data.status === 'permanent') return copy.gallery.dates.permanent;
 	if (!data.opens) return statusLabel[data.status];
-	return data.closes ? `${day(data.opens)} — ${day(data.closes)}` : `Since ${day(data.opens)}`;
+	return data.closes ? `${day(data.opens)} — ${day(data.closes)}` : fill(copy.gallery.dates.since, { date: day(data.opens) });
 }
 
 export async function getRooms(): Promise<Room[]> {

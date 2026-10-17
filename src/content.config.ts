@@ -2,6 +2,7 @@ import { defineCollection, reference } from 'astro:content';
 import { file, glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { parse } from 'yaml';
+import { FRAME_KINDS } from './data/frames';
 
 const blog = defineCollection({
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
@@ -46,6 +47,8 @@ const gallery = defineCollection({
 			tags: z.array(z.string()).default([]),
 			location: z.string().optional(),
 			featured: z.boolean().default(false),
+			// Hangs the photo in this frame. Without it, the wall picks one.
+			frame: z.enum(FRAME_KINDS).optional(),
 			width: z.number().optional(),
 			height: z.number().optional(),
 		}),
