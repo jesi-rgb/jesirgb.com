@@ -32,5 +32,9 @@ const { title, description, bare = false, class: className } = Astro.props;
 			<slot />
 		</main>
 		{!bare && <Footer />}
+		<script>
+			// Palette picker, dev only. The bundle drops it from production.
+			if (import.meta.env.DEV) import('../dev/palette-picker');
+		</script>
 	</body>
 </html>

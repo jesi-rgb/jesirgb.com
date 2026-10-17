@@ -23,7 +23,7 @@ export const statusLabel: Record<Status, string> = {
 
 export const statusDot: Record<Status, string> = {
 	'on-view': 'bg-primary animate-pulse',
-	permanent: 'bg-accent',
+	permanent: 'bg-primary',
 	past: 'bg-content-subtle',
 };
 

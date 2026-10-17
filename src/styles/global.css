@@ -5,26 +5,30 @@
 
 /* Design tokens. Color values flip per theme through the CSS vars below. */
 @theme {
-	--font-sans: 'ABC Areal';
+	--font-sans: 'AT Name Sans Variable', 'ABC Areal';
 	--font-mono: 'Iosevka Term Extended', var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 	--font-title: 'Whirly Birdie', 'AT Name Sans Variable', ui-sans-serif, sans-serif;
 
 	--color-canvas: var(--base);
 	--color-canvas-muted: var(--base-muted);
 	--color-canvas-subtle: var(--base-subtle);
+	--color-canvas-elevated: var(--base-elevated);
+	--color-canvas-hover: var(--base-hover);
 	--color-line: var(--line);
+	--color-line-strong: var(--line-strong);
+	--color-overlay: var(--overlay);
 
 	--color-content: var(--content);
 	--color-content-muted: var(--content-muted);
 	--color-content-subtle: var(--content-subtle);
 
 	--color-primary: var(--primary);
+	--color-primary-hover: var(--primary-hover);
 	--color-primary-muted: var(--primary-muted);
 	--color-primary-subtle: var(--primary-subtle);
 	--color-primary-content: var(--primary-content);
 
-	--color-accent: var(--accent);
-	--color-accent-subtle: var(--accent-subtle);
+	--color-focus: var(--focus);
 
 	--text-2xs: 0.6875rem;
 	--text-2xs--line-height: 1rem;
@@ -45,19 +49,24 @@
 	--base: #f6fffb;
 	--base-muted: #ecfbf4;
 	--base-subtle: #e5fdf2;
+	--base-elevated: #ffffff;
+	--base-hover: #dff7ec;
 	--line: #cfeadd;
+	--line-strong: #9fd0bd;
 
 	--content: #042b24;
 	--content-muted: #3f5f56;
 	--content-subtle: #677471;
 
 	--primary: #226e48;
+	--primary-hover: #1a5637;
 	--primary-muted: #2e8a5c;
 	--primary-subtle: #e5fdf2;
 	--primary-content: #f6fffb;
 
-	--accent: #7c5cf0;
-	--accent-subtle: #ede9fe;
+	--focus: var(--primary);
+	/* Scrim for lightboxes and modals. */
+	--overlay: color-mix(in oklab, var(--content) 55%, transparent);
 
 	color-scheme: light;
 }
@@ -67,19 +76,23 @@
 	--base: #021713;
 	--base-muted: #04211b;
 	--base-subtle: #073128;
+	--base-elevated: #06251e;
+	--base-hover: #0a3a2f;
 	--line: #0e3d32;
+	--line-strong: #1d6151;
 
 	--content: #f6fffb;
 	--content-muted: #a9c4bb;
 	--content-subtle: #677471;
 
 	--primary: #a7f3d0;
+	--primary-hover: #c7f9e2;
 	--primary-muted: #73e0b4;
 	--primary-subtle: #0b2e24;
 	--primary-content: #021714;
 
-	--accent: #a78bfa;
-	--accent-subtle: #1e1b3a;
+	--focus: var(--primary);
+	--overlay: color-mix(in oklab, #000000 65%, transparent);
 
 	color-scheme: dark;
 }
@@ -110,7 +123,6 @@
 	html {
 		background-color: var(--base);
 		color: var(--content);
-		font-feature-settings: 'ss01', 'cv05';
 		-webkit-font-smoothing: antialiased;
 		scroll-behavior: smooth;
 	}
@@ -128,7 +140,7 @@
 	}
 
 	:focus-visible {
-		outline: 2px solid var(--primary);
+		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 		border-radius: 2px;
 	}

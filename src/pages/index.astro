@@ -37,7 +37,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 				</span>
 				Design engineer · Spain
 			</p>
-			<h1 class="animate-rise font-title text-display font-semibold text-balance [animation-delay:60ms]">
+			<h1 class="animate-rise font-title text-display font-semibold text-balance text-primary [animation-delay:60ms]">
 				Jesús Rascón
 			</h1>
 			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">
@@ -82,7 +82,7 @@ const quick = SOCIALS.filter((s) => ['GitHub', 'X', 'Email'].includes(s.label));
 				{featuredProjects.filter((p) => p.status === 'building').map((p) => (
 					<a href={p.url} class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
 						<span class="label flex items-center gap-2">
-							Building <span class="size-1.5 rounded-full bg-accent animate-pulse"></span>
+							Building <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
 						</span>
 						<span class="flex items-baseline justify-between">
 							<span class="text-xl font-medium tracking-tight">{p.name}</span>
