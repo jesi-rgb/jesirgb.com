@@ -18,7 +18,7 @@ const blog = defineCollection({
 });
 
 // One entry per photo. `bun run gallery:sync` adds new files with EXIF data.
-// Hand-edit alt, caption, tags, location and film for analog shots.
+// Hand-edit alt, caption, tags, location and film format.
 const gallery = defineCollection({
 	loader: file('./src/content/gallery/photos.json'),
 	schema: ({ image }) =>
@@ -26,22 +26,50 @@ const gallery = defineCollection({
 			src: image(),
 			alt: z.string().default(''),
 			caption: z.string().optional(),
-			date: z.coerce.date(),
+			// When it was shot. Left out when the file has no capture date (scans).
+			date: z.coerce.date().optional(),
 			mono: z.boolean().default(false),
 			camera: z.string().optional(),
 			lens: z.string().optional(),
 			focalLength: z.string().optional(),
+			// 35mm-equivalent focal length, e.g. "41mm" for 27mm on APS-C.
+			focalLength35: z.string().optional(),
 			aperture: z.string().optional(),
 			shutter: z.string().optional(),
 			iso: z.number().optional(),
+			// e.g. "-1 EV". Left out at 0.
+			exposureCompensation: z.string().optional(),
+			// Exposure program and metering, as the camera names them.
+			mode: z.string().optional(),
+			metering: z.string().optional(),
 			// Digital film simulation (Fujifilm), e.g. "Classic Negative".
 			simulation: z.string().optional(),
+			// The in-camera settings that go with the simulation (Fujifilm).
+			recipe: z
+				.object({
+					dynamicRange: z.string(),
+					highlights: z.string(),
+					shadows: z.string(),
+					grain: z.string(),
+					colorChrome: z.string(),
+					colorChromeBlue: z.string(),
+					clarity: z.string(),
+					noiseReduction: z.string(),
+					sharpness: z.string(),
+					whiteBalance: z.string(),
+					monoTone: z.string(),
+				})
+				.partial()
+				.optional(),
 			// Set for analog shots. Presence marks the photo as film.
 			film: z
 				.object({
+					manufacturer: z.string().optional(),
 					stock: z.string(),
 					iso: z.number().optional(),
 					format: z.string().optional(),
+					// The software that digitized the negative, e.g. "Rolloc".
+					scan: z.string().optional(),
 				})
 				.optional(),
 			tags: z.array(z.string()).default([]),
@@ -125,8 +153,25 @@ const copy = defineCollection({
 				camera: t,
 				lens: t,
 				settings: t,
+				mode: t,
+				metering: t,
 				film: t,
+				manufacturer: t,
+				scan: t,
 				simulation: t,
+				recipe: z.object({
+					dynamicRange: t,
+					highlights: t,
+					shadows: t,
+					grain: t,
+					colorChrome: t,
+					colorChromeBlue: t,
+					clarity: t,
+					noiseReduction: t,
+					sharpness: t,
+					whiteBalance: t,
+					monoTone: t,
+				}),
 				look: t,
 				mono: t,
 				color: t,

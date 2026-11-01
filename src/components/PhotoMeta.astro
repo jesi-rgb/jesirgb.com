@@ -10,12 +10,21 @@ interface Props {
 const { photo: p, class: className } = Astro.props;
 
 const t = copy.photo.meta;
-const settings = [p.focalLength, p.aperture, p.shutter, p.iso && `ISO ${p.iso}`].filter(Boolean).join(' · ');
+const focal = p.focalLength && (p.focalLength35 ? `${p.focalLength} (${p.focalLength35} eq.)` : p.focalLength);
+const settings = [focal, p.aperture, p.shutter, p.iso && `ISO ${p.iso}`, p.exposureCompensation].filter(Boolean).join(' · ');
+const film = p.film && [p.film.stock, p.film.iso && `ISO ${p.film.iso}`, p.film.format].filter(Boolean).join(' · ');
+const recipe = p.recipe ? (Object.keys(t.recipe) as (keyof typeof t.recipe)[]).map((k): [string, string | undefined] => [t.recipe[k], p.recipe?.[k]]) : [];
 const rows: [string, string | undefined][] = [
 	[t.camera, p.camera],
 	[t.lens, p.lens],
 	[t.settings, settings || undefined],
-	[p.film ? t.film : t.simulation, p.film ? [p.film.stock, p.film.iso && `ISO ${p.film.iso}`, p.film.format].filter(Boolean).join(' · ') : p.simulation],
+	[t.mode, p.mode],
+	[t.metering, p.metering],
+	[t.manufacturer, p.film?.manufacturer],
+	[t.film, film],
+	[t.scan, p.film?.scan],
+	[t.simulation, p.film ? undefined : p.simulation],
+	...recipe,
 	[t.look, p.mono ? t.mono : t.color],
 	[t.location, p.location],
 ];
@@ -28,8 +37,12 @@ const rows: [string, string | undefined][] = [
 			<dd class="mono-num text-content">{v}</dd>
 		</>
 	))}
-	<dt class="label pt-0.5">{t.date}</dt>
-	<dd class="mono-num text-content"><FormattedDate date={p.date} /></dd>
+	{p.date && (
+		<>
+			<dt class="label pt-0.5">{t.date}</dt>
+			<dd class="mono-num text-content"><FormattedDate date={p.date} /></dd>
+		</>
+	)}
 	{p.tags.length > 0 && (
 		<>
 			<dt class="label pt-0.5">{t.tags}</dt>

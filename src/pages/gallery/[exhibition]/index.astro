@@ -5,7 +5,7 @@ import { Image } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import WallFrame from '../../../components/WallFrame.astro';
 import { assignFrames, frameThickness } from '../../../data/frames';
-import { getRooms, photoHref, statusLabel } from '../../../data/exhibitions';
+import { filmName, getRooms, photoHref, statusLabel } from '../../../data/exhibitions';
 import { copy, fill } from '../../../data/copy';
 
 export async function getStaticPaths() {
@@ -50,10 +50,10 @@ const hang = room.photos.map((p, i) => {
 		rect,
 		kind,
 		href: photoHref(room.slug, p.id),
-		title: d.caption ?? p.id,
+		title: d.caption,
 		gear: [d.camera, d.focalLength, d.aperture, d.shutter, d.iso && `ISO ${d.iso}`].filter(Boolean).join(' · '),
-		stock: d.film ? [d.film.stock, d.film.format].filter(Boolean).join(' · ') : d.simulation,
-		when: [d.location, d.date.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })].filter(Boolean).join(' · '),
+		stock: d.film ? [filmName(d.film), d.film.format].filter(Boolean).join(' · ') : d.simulation,
+		when: [d.location, d.date?.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })].filter(Boolean).join(' · '),
 	};
 });
 
@@ -155,7 +155,7 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 						style={`left:${px(rect.x)};top:${px(rect.y + rect.h + 36)};width:${px(Math.min(rect.w, 300))}`}
 					>
 						<p class="label">{String(i + 1).padStart(2, '0')}</p>
-						<p class="text-sm font-medium tracking-tight text-content">{title}</p>
+						{title && <p class="text-sm font-medium tracking-tight text-content">{title}</p>}
 						{gear && <p class="mono-num text-2xs leading-4 text-content-muted">{gear}</p>}
 						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ` · ${t.mono}` : ''}</p>}
 						{when && <p class="mono-num text-2xs leading-4 text-content-muted">{when}</p>}
@@ -198,6 +198,7 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 		<p class="label pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 lg:flex">
 			{t.hint.move} · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> {t.hint.zoom} · {t.hint.step}
 		</p>
+
 	</div>
 </Layout>
 

@@ -3,7 +3,7 @@ import { Icon } from 'astro-icon/components';
 import { getImage } from 'astro:assets';
 import Layout from '../../../layouts/Layout.astro';
 import PhotoMeta from '../../../components/PhotoMeta.astro';
-import { getRooms, photoHref } from '../../../data/exhibitions';
+import { filmName, getRooms, photoHref } from '../../../data/exhibitions';
 import { copy } from '../../../data/copy';
 
 export async function getStaticPaths() {
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 const { photo, room, prev, next, index } = Astro.props;
 const full = await getImage({ src: photo.data.src, width: 2800, format: 'webp', quality: 85 });
 const title = photo.data.caption ?? `${room.entry.data.title} · ${index}`;
-const description = [photo.data.camera, photo.data.lens, photo.data.film?.stock ?? photo.data.simulation].filter(Boolean).join(' · ') || copy.photo.description;
+const description = [photo.data.camera, photo.data.lens, photo.data.film ? filmName(photo.data.film) : photo.data.simulation].filter(Boolean).join(' · ') || copy.photo.description;
 const prevHref = prev && photoHref(room.slug, prev);
 const nextHref = next && photoHref(room.slug, next);
 ---

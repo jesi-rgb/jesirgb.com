@@ -52,6 +52,9 @@ export async function getRooms(): Promise<Room[]> {
 
 export const photoHref = (slug: string, id: string) => `/gallery/${slug}/${id}`;
 
+// "Ilford Delta 400". The maker is optional, so the stock can stand alone.
+export const filmName = (film: NonNullable<Photo['data']['film']>) => [film.manufacturer, film.stock].filter(Boolean).join(' ');
+
 // Where a loose photo id lives. Used by the strip on the home page.
 export async function getPhotoIndex(): Promise<Map<string, { room: Room; photo: Photo }>> {
 	const index = new Map<string, { room: Room; photo: Photo }>();

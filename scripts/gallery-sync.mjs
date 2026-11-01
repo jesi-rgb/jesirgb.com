@@ -30,8 +30,15 @@ const files = fs.readdirSync(GALLERY_DIR).filter((f) => IMAGE_RE.test(f)).sort()
 function readExif(files) {
 	try {
 		const args = [
-			'-json', '-Make', '-Model', '-LensModel', '-FocalLength', '-FNumber',
-			'-ExposureTime', '-ISO', '-DateTimeOriginal', '-FilmMode', '-Saturation',
+			'-json', '-Make', '-Model', '-LensMake', '-LensModel', '-FocalLength',
+			'-FocalLengthIn35mmFormat', '-FNumber', '-ExposureTime', '-ISO',
+			'-ExposureCompensation', '-ExposureProgram', '-MeteringMode', '-DateTimeOriginal',
+			'-Software', '-XMP-rolloc:FilmStock',
+			// Fujifilm maker notes: the simulation and its recipe.
+			'-FilmMode', '-Saturation', '-DynamicRangeSetting', '-DevelopmentDynamicRange',
+			'-HighlightTone', '-ShadowTone', '-GrainEffectRoughness', '-GrainEffectSize',
+			'-ColorChromeEffect', '-ColorChromeFXBlue', '-Clarity', '-NoiseReduction',
+			'-Sharpness', '-WhiteBalance', '-WhiteBalanceFineTune', '-BWAdjustment', '-BWMagentaGreen',
 			...files,
 		];
 		const out = execFileSync('exiftool', args, { encoding: 'utf8', maxBuffer: 64e6 });
@@ -75,6 +82,75 @@ function titleCase(s) {
 	return s ? s.charAt(0) + s.slice(1).toLowerCase() : s;
 }
 
+// "+1 (medium hard)" -> "+1", 1.5 -> "+1.5", 0 -> "0".
+function signed(v) {
+	if (v === undefined || v === '') return undefined;
+	const s = String(v).replace(/\s*\(.*\)$/, '').trim();
+	const n = Number(s);
+	return Number.isNaN(n) || n <= 0 || s.startsWith('+') ? s : `+${s}`;
+}
+
+// Fujifilm shooting settings. Each field is left out when the camera did not write it.
+function recipe(e, sim) {
+	if (!/fujifilm/i.test(e.Make ?? '')) return undefined;
+	const known = (v) => (v === undefined || v === '' || v === 'n/a' ? undefined : String(v));
+	const dr = known(e.DevelopmentDynamicRange);
+	const rough = known(e.GrainEffectRoughness);
+	const size = known(e.GrainEffectSize);
+	const tune = known(e.WhiteBalanceFineTune);
+	const r = {
+		dynamicRange: dr && `DR${dr}${e.DynamicRangeSetting === 'Auto' ? ' (auto)' : ''}`,
+		highlights: signed(e.HighlightTone),
+		shadows: signed(e.ShadowTone),
+		grain: rough && (rough === 'Off' || !size || size === 'Off' ? rough : `${rough}, ${size.toLowerCase()}`),
+		colorChrome: known(e.ColorChromeEffect),
+		colorChromeBlue: known(e.ColorChromeFXBlue),
+		clarity: signed(e.Clarity),
+		noiseReduction: signed(e.NoiseReduction),
+		sharpness: known(e.Sharpness),
+		// Fine tune only when it moves off zero, e.g. "Auto, Red +20, Blue -40".
+		whiteBalance: known(e.WhiteBalance) && (tune && /[1-9]/.test(tune) ? `${e.WhiteBalance}, ${tune}` : String(e.WhiteBalance)),
+		// Warm/cool and magenta/green toning, only for the mono simulations.
+		monoTone: /acros|monochrome/i.test(sim ?? '') && e.BWAdjustment !== undefined
+			? `WC ${signed(e.BWAdjustment)} · MG ${signed(e.BWMagentaGreen) ?? '0'}`
+			: undefined,
+	};
+	const set = Object.fromEntries(Object.entries(r).filter(([, v]) => v));
+	return Object.keys(set).length > 0 ? set : undefined;
+}
+
+// In thirds of a stop: -1 -> "-1 EV", -0.67 or "-2/3" -> "-2/3 EV", 1.33 -> "+1 1/3 EV".
+// Zero means no compensation.
+function compensation(v) {
+	if (v === undefined || v === '') return undefined;
+	const [num, den = 1] = String(v).split('/').map(Number);
+	const thirds = Math.round((num / den) * 3);
+	if (!thirds) return undefined;
+	const whole = Math.trunc(Math.abs(thirds) / 3);
+	const rest = Math.abs(thirds) % 3;
+	const body = [whole || (rest ? '' : '0'), rest ? `${rest}/3` : ''].filter(Boolean).join(' ');
+	return `${thirds < 0 ? '-' : '+'}${body} EV`;
+}
+
+function mm(v) {
+	return v ? `${Math.round(parseFloat(v))}mm` : undefined;
+}
+
+const FILM_MAKERS = ['Kodak', 'Fujifilm', 'Fuji', 'Ilford', 'Kentmere', 'Harman', 'Foma', 'Agfa', 'AgfaPhoto', 'Rollei', 'Adox', 'CineStill', 'Lomography', 'Ferrania', 'Bergger', 'Polaroid'];
+
+// Rolloc writes the stock as one string, e.g. "Ilford Delta 400".
+function film(e) {
+	const name = String(e.FilmStock ?? '').trim();
+	if (!name) return undefined;
+	const maker = FILM_MAKERS.find((m) => name.toLowerCase().startsWith(`${m.toLowerCase()} `));
+	return {
+		manufacturer: maker,
+		stock: maker ? name.slice(maker.length + 1) : name,
+		iso: e.ISO || undefined,
+		scan: e.Software || undefined,
+	};
+}
+
 function exifDate(s) {
 	if (!s) return undefined;
 	const m = String(s).match(/^(\d{4}):(\d{2}):(\d{2})/);
@@ -109,28 +185,46 @@ for (const file of fresh) {
 	// Orientation 5-8 turns the photo on its side, so store the display size.
 	const turned = (meta.orientation ?? 1) >= 5;
 	const camera = [titleCase(e.Make), e.Model].filter(Boolean).join(' ') || undefined;
+	const lensMake = titleCase(e.LensMake);
+	const lens = e.LensModel && lensMake && !e.LensModel.toLowerCase().startsWith(lensMake.toLowerCase())
+		? `${lensMake} ${e.LensModel}`
+		: e.LensModel || undefined;
+	const focalLength = mm(e.FocalLength);
+	const focalLength35 = mm(e.FocalLengthIn35mmFormat);
+	const sim = simulation(e);
+	const roll = film(e);
 	const entry = {
 		id: path.parse(file).name,
 		src: `../../gallery/${file}`,
 		alt: '',
-		date: exifDate(e.DateTimeOriginal) ?? fs.statSync(abs).mtime.toISOString().slice(0, 10),
+		date: exifDate(e.DateTimeOriginal),
 		mono: await isMono(abs),
 		camera,
-		lens: e.LensModel || undefined,
-		focalLength: e.FocalLength ? `${Math.round(parseFloat(e.FocalLength))}mm` : undefined,
+		lens,
+		focalLength,
+		focalLength35: focalLength35 !== focalLength ? focalLength35 : undefined,
 		aperture: typeof e.FNumber === 'number' ? `f/${e.FNumber}` : undefined,
 		shutter: shutter(e.ExposureTime),
-		iso: e.ISO || undefined,
-		simulation: simulation(e),
+		// On a scan the ISO is the film's, so it goes with the film.
+		iso: roll ? undefined : e.ISO || undefined,
+		exposureCompensation: compensation(e.ExposureCompensation),
+		mode: e.ExposureProgram || undefined,
+		metering: e.MeteringMode || undefined,
+		simulation: sim,
+		recipe: recipe(e, sim),
+		film: roll,
 		tags: [],
 		width: turned ? meta.height : meta.width,
 		height: turned ? meta.width : meta.height,
 	};
 	added.push(entry);
-	console.log(`+ ${entry.id}  ${camera ?? '?'}  ${entry.mono ? 'b&w' : 'color'}`);
+	console.log(`+ ${entry.id}  ${camera ?? '?'}  ${roll ? [roll.manufacturer, roll.stock].filter(Boolean).join(' ') : sim ?? ''}  ${entry.mono ? 'b&w' : 'color'}`);
 }
 
-const all = [...existing, ...added].sort((a, b) => (a.date < b.date ? 1 : -1));
+// Newest first. Photos with no capture date go last, by id.
+const all = [...existing, ...added].sort((a, b) =>
+	a.date === b.date ? a.id.localeCompare(b.id) : !a.date ? 1 : !b.date ? -1 : a.date < b.date ? 1 : -1,
+);
 fs.mkdirSync(path.dirname(DATA_FILE), { recursive: true });
 fs.writeFileSync(DATA_FILE, JSON.stringify(all, null, '\t') + '\n');
 console.log(`Wrote ${all.length} photos to ${path.relative(ROOT, DATA_FILE)}`);

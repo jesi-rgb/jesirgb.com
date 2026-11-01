@@ -19,12 +19,20 @@ bun run build
 
 ## Add photos
 
-1. Copy the files into `src/gallery/`.
+1. Copy the files into `src/gallery/`. To shrink them, keep every tag: for
+   scans copy the XMP as a block (`exiftool -TagsFromFile orig.jpg -xmp out.jpg`),
+   because exiftool can't copy Rolloc's `FilmStock` tag on its own.
 2. Run `bun run gallery:sync`. New files get an entry in
-   `src/content/gallery/photos.json` with camera, lens, settings, date and a
-   color/B&W flag read from EXIF. Needs `exiftool` on the PATH.
+   `src/content/gallery/photos.json` with what the file holds: camera, lens,
+   settings, 35mm-equivalent focal length, exposure compensation, mode,
+   metering, capture date and a color/B&W flag. Fujifilm files also get the
+   film simulation and its recipe (dynamic range, tone, grain, color chrome,
+   clarity, noise reduction, sharpness, white balance, mono toning). Rolloc
+   scans get `film` with maker, stock, ISO and the scan software. Fields the
+   file doesn't have are left out, and so is the date. Needs `exiftool` on the PATH.
 3. Edit the entry by hand for `alt`, `caption`, `tags`, `location`, `featured`.
-   For analog shots add `"film": { "stock": "Portra 400", "iso": 400, "format": "35mm" }`.
+   For film, add `"format"` (`"35mm"`, `"120, 6×4.5"`). For analog shots without
+   Rolloc data, add `"film": { "manufacturer": "Kodak", "stock": "Portra 400", "iso": 400, "format": "35mm" }`.
 4. Add the photo id to an exhibition. `gallery:sync` gives a list of the photos
    that are in no exhibition.
 

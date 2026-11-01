@@ -109,8 +109,24 @@ photo:
     camera: Camera
     lens: Lens
     settings: Settings
+    mode: Mode
+    metering: Metering
     film: Film
+    manufacturer: Film maker
+    scan: Scanned with
     simulation: Simulation
+    recipe:
+      dynamicRange: Dynamic range
+      highlights: Highlights
+      shadows: Shadows
+      grain: Grain
+      colorChrome: Color chrome
+      colorChromeBlue: Color chrome blue
+      clarity: Clarity
+      noiseReduction: Noise reduction
+      sharpness: Sharpness
+      whiteBalance: White balance
+      monoTone: Mono tone
     look: Look
     mono: Black & white
     color: Color
