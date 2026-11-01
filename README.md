@@ -30,7 +30,7 @@ bun run build
    clarity, noise reduction, sharpness, white balance, mono toning). Rolloc
    scans get `film` with maker, stock, ISO and the scan software. Fields the
    file doesn't have are left out, and so is the date. Needs `exiftool` on the PATH.
-3. Edit the entry by hand for `alt`, `caption`, `tags`, `location`, `featured`.
+3. Edit the entry by hand for `alt`, `caption`, `tags`, `location`.
    For film, add `"format"` (`"35mm"`, `"120, 6×4.5"`). For analog shots without
    Rolloc data, add `"film": { "manufacturer": "Kodak", "stock": "Portra 400", "iso": 400, "format": "35mm" }`.
 4. Add the photo id to an exhibition. `gallery:sync` gives a list of the photos

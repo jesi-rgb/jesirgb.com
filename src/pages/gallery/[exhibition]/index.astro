@@ -39,7 +39,7 @@ const hang = room.photos.map((p, i) => {
 	// so this ratio is what the photo really looks like.
 	const { width: srcW, height: srcH } = p.data.src;
 	const ratio = srcW / srcH;
-	const printH = i % 4 === 0 ? 760 : ratio < 1 ? 640 : 520;
+	const printH = ratio < 1 ? 640 : 520;
 	const printW = Math.round(printH * ratio);
 	const kind = kinds[i];
 	const t = frameThickness(kind);

@@ -74,7 +74,6 @@ const gallery = defineCollection({
 				.optional(),
 			tags: z.array(z.string()).default([]),
 			location: z.string().optional(),
-			featured: z.boolean().default(false),
 			// Hangs the photo in this frame. Without it, the wall picks one.
 			frame: z.enum(FRAME_KINDS).optional(),
 			width: z.number().optional(),
