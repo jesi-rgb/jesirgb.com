@@ -96,6 +96,7 @@ const px = (n: number) => `${n}px`;
 const place = (r: { x: number; y: number; w: number; h: number }) => `left:${px(r.x)};top:${px(r.y)};width:${px(r.w)};height:${px(r.h)}`;
 
 const btn = 'grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content disabled:opacity-30 disabled:hover:bg-transparent';
+const step = 'grid h-20 place-items-center rounded-lg border border-line text-content-muted transition-colors active:bg-canvas-subtle active:text-content';
 ---
 
 <Layout title={data.title} description={data.subtitle ?? fill(t.description, { title: data.title })} bare class="h-dvh overflow-hidden">
@@ -199,6 +200,12 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 			{t.hint.move} · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> {t.hint.zoom} · {t.hint.step}
 		</p>
 
+		<!-- Phones: the wall is tall, so the work sits at the top and the step bar
+		     is pinned to the bottom. -->
+		<nav data-steps class="absolute inset-x-0 bottom-0 grid grid-cols-2 gap-3 border-t border-line bg-canvas p-4 sm:hidden">
+			<button data-prev class={step} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-linear" class="size-6" /></button>
+			<button data-next class={step} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-linear" class="size-6" /></button>
+		</nav>
 	</div>
 </Layout>
 
@@ -212,7 +219,11 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 	const pos = document.querySelector<HTMLElement>('[data-pos]')!;
 	const view = document.querySelector<HTMLElement>('[data-view]')!;
 	const map = document.getElementById('map')!;
+	const steps = document.querySelector<HTMLElement>('[data-steps]')!;
 	const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+	const phone = matchMedia('(max-width: 39.99rem)');
+	// Height of the step bar: 80px buttons, padding and border.
+	const STEPS_H = 113;
 
 	let x = 0, y = 0, s = 1;
 	let current = -1;
@@ -239,9 +250,13 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 
 	function fitRect(r: { x: number; y: number; w: number; h: number }, margin: number, animate = true) {
 		fly(animate);
-		s = Math.min(MAX_S, Math.max(minS(), Math.min(vw() / (r.w + margin * 2), vh() / (r.h + margin * 2))));
+		const w = r.w + margin * 2;
+		const h = r.h + margin * 2;
+		// On a phone the work centres in the stage above the step bar.
+		const boxH = phone.matches ? vh() - STEPS_H : vh();
+		s = Math.min(MAX_S, Math.max(minS(), Math.min(vw() / w, boxH / h)));
 		x = vw() / 2 - (r.x + r.w / 2) * s;
-		y = vh() / 2 - (r.y + r.h / 2) * s;
+		y = boxH / 2 - (r.y + r.h / 2) * s;
 		apply();
 	}
 
@@ -387,8 +402,10 @@ const btn = 'grid size-8 place-items-center rounded-md text-content-muted transi
 		apply();
 	});
 
-	document.querySelector('[data-prev]')!.addEventListener('click', () => focus(current <= 0 ? figs.length - 1 : current - 1));
-	document.querySelector('[data-next]')!.addEventListener('click', () => focus((current + 1) % figs.length));
+	for (const b of document.querySelectorAll('[data-prev]')) b.addEventListener('click', () => focus(current <= 0 ? figs.length - 1 : current - 1));
+	for (const b of document.querySelectorAll('[data-next]')) b.addEventListener('click', () => focus((current + 1) % figs.length));
+	// The buttons sit on the stage. Keep their taps from starting a drag.
+	steps.addEventListener('pointerdown', (e) => e.stopPropagation());
 	document.querySelector('[data-fit]')!.addEventListener('click', () => (current < 0 && s <= minS() * 1.05 ? entrance(true) : overview()));
 	for (const b of document.querySelectorAll<HTMLButtonElement>('[data-zoom]')) {
 		b.addEventListener('click', () => zoomAt(Number(b.dataset.zoom) > 0 ? 1.4 : 1 / 1.4, undefined, undefined, true));

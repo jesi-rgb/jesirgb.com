@@ -28,6 +28,7 @@ const title = photo.data.caption ?? `${room.entry.data.title} · ${index}`;
 const description = [photo.data.camera, photo.data.lens, photo.data.film ? filmName(photo.data.film) : photo.data.simulation].filter(Boolean).join(' · ') || copy.photo.description;
 const prevHref = prev && photoHref(room.slug, prev);
 const nextHref = next && photoHref(room.slug, next);
+const step = 'grid h-20 place-items-center rounded-lg border border-line text-content-muted transition-colors active:bg-canvas-subtle active:text-content';
 ---
 
 <Layout title={title} description={description} bare class="h-dvh overflow-hidden">
@@ -42,14 +43,22 @@ const nextHref = next && photoHref(room.slug, next);
 		</div>
 	</div>
 	<div class="grid min-h-0 flex-1 grid-rows-[1fr_auto] lg:grid-cols-[1fr_18rem] lg:grid-rows-1">
-		<!-- Absolute inset gives the photo a definite box, so tall photos fit. -->
-		<div class="relative min-h-0">
-			<img
-				src={full.src}
-				alt={photo.data.alt || photo.id}
-				class="absolute inset-0 size-full object-contain p-4 lg:p-6"
-				draggable="false"
-			/>
+		<!-- On mobile the photo box takes the photo's ratio, so the photo sits at the top
+		     and the space left goes to the prev/next buttons. On desktop an absolute inset
+		     gives the photo a definite box, so tall photos fit. -->
+		<div class="relative flex min-h-0 flex-col">
+			<div class="relative min-h-0 w-full aspect-(--ratio) lg:absolute lg:inset-0 lg:aspect-auto" style={`--ratio: ${photo.data.src.width} / ${photo.data.src.height}`}>
+				<img
+					src={full.src}
+					alt={photo.data.alt || photo.id}
+					class="absolute inset-0 size-full object-contain p-4 lg:p-6"
+					draggable="false"
+				/>
+			</div>
+			<nav class="grid min-h-24 flex-1 grid-cols-2 content-start gap-3 px-4 pb-4 lg:hidden">
+				{prevHref ? <a href={prevHref} class={step} aria-label={copy.photo.prev}><Icon name="solar:alt-arrow-left-linear" class="size-6" /></a> : <span class:list={[step, 'opacity-30']} aria-hidden="true"><Icon name="solar:alt-arrow-left-linear" class="size-6" /></span>}
+				{nextHref ? <a href={nextHref} class={step} aria-label={copy.photo.next}><Icon name="solar:alt-arrow-right-linear" class="size-6" /></a> : <span class:list={[step, 'opacity-30']} aria-hidden="true"><Icon name="solar:alt-arrow-right-linear" class="size-6" /></span>}
+			</nav>
 		</div>
 		<aside class="max-h-[40dvh] overflow-y-auto border-t border-line px-6 py-4 lg:max-h-none lg:border-l lg:border-t-0 lg:py-6">
 			<p class="label mb-1">{room.entry.data.title} · {String(index).padStart(2, '0')}</p>
