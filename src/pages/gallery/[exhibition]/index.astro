@@ -21,32 +21,16 @@ const { data } = room.entry;
 const t = copy.room;
 const { Content } = await render(room.entry);
 
-// The hang. The wall text sits at the centre. Photos spiral out from it
-// on a golden angle and move outward until nothing overlaps. Units are wall px.
+// The hang. Works sit in rows, centred on one eye-line per row, as in a museum.
+// The wall text opens the first row and the way out closes the last. Units are wall px.
 type Rect = { x: number; y: number; w: number; h: number };
-const GAP = 240;
+const COL_GAP = 200;
+// Room for the wall label under a row and the lamp over the next row.
+const ROW_GAP = 340;
 const PAD = 420;
 const LABEL_H = 170;
 const INTRO = { w: 620, h: 560 };
 const EXIT = { w: 380, h: 120 };
-const GOLDEN = Math.PI * (3 - Math.sqrt(5));
-
-const hits = (a: Rect, b: Rect) => a.x < b.x + b.w + GAP && a.x + a.w + GAP > b.x && a.y < b.y + b.h + GAP && a.y + a.h + GAP > b.y;
-
-const taken: Rect[] = [{ x: -INTRO.w / 2, y: -INTRO.h / 2, ...INTRO }];
-// Walk outward along the spiral ray until the footprint is clear.
-function settle(i: number, w: number, footH: number): Rect {
-	const a = i * GOLDEN - Math.PI / 2;
-	let r = 700 + 90 * Math.sqrt(i);
-	for (;;) {
-		const rect = { x: Math.round(r * Math.cos(a) - w / 2), y: Math.round(r * Math.sin(a) - footH / 2), w, h: footH };
-		if (!taken.some((t) => hits(rect, t))) {
-			taken.push(rect);
-			return rect;
-		}
-		r += 40;
-	}
-}
 
 const kinds = assignFrames(room.photos.map((p) => ({ id: p.id, frame: p.data.frame })));
 
@@ -59,8 +43,7 @@ const hang = room.photos.map((p, i) => {
 	const printW = Math.round(printH * ratio);
 	const kind = kinds[i];
 	const t = frameThickness(kind);
-	const foot = settle(i, printW + t * 2, printH + t * 2 + LABEL_H);
-	const rect = { x: foot.x, y: foot.y, w: printW + t * 2, h: printH + t * 2 };
+	const rect: Rect = { x: 0, y: 0, w: printW + t * 2, h: printH + t * 2 };
 	const d = p.data;
 	return {
 		photo: p,
@@ -74,18 +57,30 @@ const hang = room.photos.map((p, i) => {
 	};
 });
 
-const exitFoot = settle(hang.length, EXIT.w, EXIT.h);
+const intro: Rect = { x: 0, y: 0, ...INTRO };
+const exit: Rect = { x: 0, y: 0, ...EXIT };
+const items = [{ r: intro, below: 0 }, ...hang.map((h) => ({ r: h.rect, below: LABEL_H })), { r: exit, below: 0 }];
 
-// Shift everything so the wall starts at 0,0 with padding around it.
-const minX = Math.min(...taken.map((t) => t.x)) - PAD;
-const minY = Math.min(...taken.map((t) => t.y)) - PAD;
-const WALL_W = Math.max(...taken.map((t) => t.x + t.w)) + PAD - minX;
-const WALL_H = Math.max(...taken.map((t) => t.y + t.h)) + PAD - minY;
-const shift = (r: Rect) => ({ ...r, x: r.x - minX, y: r.y - minY });
+// About three works per row for each row, so the wall stays wider than tall.
+const ROWS = Math.max(1, Math.round(Math.sqrt(items.length / 3)));
+const perRow = Math.ceil(items.length / ROWS);
+const rows = Array.from({ length: ROWS }, (_, i) => items.slice(i * perRow, (i + 1) * perRow)).filter((r) => r.length);
+const rowW = (row: typeof items) => row.reduce((n, { r }) => n + r.w, 0) + COL_GAP * (row.length - 1);
+const WALL_W = Math.max(...rows.map(rowW)) + PAD * 2;
 
-const intro = shift(taken[0]);
-const exit = shift(exitFoot);
-for (const h of hang) h.rect = shift(h.rect);
+let top = PAD;
+for (const row of rows) {
+	const half = Math.max(...row.map(({ r }) => r.h / 2));
+	const eye = top + half;
+	let x = PAD + (WALL_W - PAD * 2 - rowW(row)) / 2;
+	for (const { r } of row) {
+		r.x = Math.round(x);
+		r.y = Math.round(eye - r.h / 2);
+		x += r.w + COL_GAP;
+	}
+	top = eye + Math.max(...row.map(({ r, below }) => r.h / 2 + below)) + ROW_GAP;
+}
+const WALL_H = top - ROW_GAP + PAD;
 
 const layout = {
 	w: WALL_W,

@@ -4,10 +4,8 @@ import { channels, thumbnail, watchHref, type Video } from '../data/videos';
 
 interface Props {
 	video: Video;
-	// Hides the subtitle, for tighter grids.
-	compact?: boolean;
 }
-const { video: v, compact = false } = Astro.props;
+const { video: v } = Astro.props;
 const channel = channels[v.channel];
 ---
 
@@ -39,11 +37,11 @@ const channel = channels[v.channel];
 			{v.title}
 			<Icon name="solar:arrow-right-up-linear" class="arrow ml-0.5 inline-block size-3 align-[1px] text-content-muted" />
 		</h3>
-		{!compact && <p class="text-sm text-content-muted text-pretty">{v.subtitle}</p>}
+		<p class="text-sm text-content-muted text-pretty">{v.subtitle}</p>
 	</div>
 
 	<span class="label mt-auto flex items-center gap-2 pt-1">
-		<img src={channel.avatar} alt="" width="32" height="32" loading="lazy" class="size-4 rounded-full" />
+		<img src={channel.avatar} alt="" width="32" height="32" loading="lazy" referrerpolicy="no-referrer" class="size-4 rounded-full" />
 		{channel.name}
 	</span>
 </a>

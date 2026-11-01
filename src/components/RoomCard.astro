@@ -1,86 +1,52 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
-import { statusDot, statusLabel, type Room } from '../data/exhibitions';
-import { copy, fill } from '../data/copy';
+import type { Room } from '../data/exhibitions';
 
 interface Props {
 	room: Room;
-	// The permanent room gets the wide two column card.
+	// The permanent room spans the column and shows more of the room.
 	featured?: boolean;
 }
 const { room, featured = false } = Astro.props;
-const { entry, photos, cover, dates } = room;
+const { entry, photos, cover } = room;
 
 // The peek row shows the room behind the cover.
 const peek = photos.filter((p) => p.id !== cover.id).slice(0, featured ? 5 : 3);
 ---
 
-<a
-	href={room.href}
-	class:list={[
-		'group relative flex overflow-hidden rounded-xl border border-line bg-canvas-elevated transition-colors hover:border-line-strong hover:bg-canvas-muted',
-		featured ? 'flex-col sm:grid sm:grid-cols-[1.1fr_1fr]' : 'flex-col',
-	]}
->
-	<div class="relative overflow-hidden bg-canvas-muted">
-		<Image
-			src={cover.data.src}
-			alt=""
-			width={featured ? 1200 : 720}
-			densities={[1, 2]}
-			class:list={[
-				'w-full object-cover transition-transform duration-700 ease-out-quart group-hover:scale-[1.03]',
-				featured ? 'aspect-[4/3] sm:absolute sm:inset-0 sm:h-full' : 'aspect-[3/2]',
-			]}
-			loading={featured ? 'eager' : 'lazy'}
-		/>
-		<span class="label absolute top-3 left-3 flex items-center gap-2 rounded-full bg-canvas/85 px-2.5 py-1 text-content backdrop-blur">
-			<span class:list={['size-1.5 rounded-full', statusDot[entry.data.status]]} aria-hidden="true"></span>
-			{statusLabel[entry.data.status]}
-		</span>
-	</div>
-
-	<div class:list={['flex flex-1 flex-col gap-3', featured ? 'p-6 sm:p-8' : 'p-5']}>
-		<h3
-			class:list={[
-				'font-title flex items-start gap-2 font-semibold tracking-tight text-pretty',
-				featured ? 'text-2xl sm:text-3xl' : 'text-xl',
-			]}
-		>
-			{entry.data.title}
-			<Icon name="solar:arrow-right-up-linear" class="arrow mt-1.5 size-3 shrink-0 text-content-muted" />
-		</h3>
-
-		{entry.data.subtitle && (
-			<p class:list={['text-content-muted text-pretty', featured ? 'max-w-sm text-base' : 'text-sm']}>
-				{entry.data.subtitle}
-			</p>
-		)}
-
-		<div class:list={['flex gap-1.5', featured ? 'mt-4' : 'mt-3']}>
-			{peek.map((p) => (
-				<div class="w-full overflow-hidden rounded bg-canvas-muted">
-					<Image
-						src={p.data.src}
-						alt=""
-						width={200}
-						densities={[1, 2]}
-						class="aspect-square w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
-						loading="lazy"
-					/>
-				</div>
-			))}
+<a href={room.href} class="group flex flex-col gap-3">
+	<div class="flex flex-col gap-1.5">
+		<div class="overflow-hidden rounded-lg border border-line bg-canvas-muted">
+			<Image
+				src={cover.data.src}
+				alt=""
+				width={featured ? 720 : 400}
+				densities={[1, 2]}
+				class="aspect-[3/2] w-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"
+				loading={featured ? 'eager' : 'lazy'}
+			/>
 		</div>
-
-		<p class="label mt-auto flex flex-wrap items-center gap-x-2 pt-4">
-			<span>{fill(copy.gallery.photoCount, { count: photos.length })}</span>
-			{entry.data.status !== 'permanent' && (
-				<>
-					<span aria-hidden="true">·</span>
-					<span>{dates}</span>
-				</>
-			)}
-		</p>
+		{peek.length > 0 && (
+			<div class:list={['grid gap-1.5', featured ? 'grid-cols-5' : 'grid-cols-3']}>
+				{peek.map((p) => (
+					<div class="overflow-hidden rounded-md border border-line bg-canvas-muted">
+						<Image
+							src={p.data.src}
+							alt=""
+							width={200}
+							densities={[1, 2]}
+							class="aspect-square w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+							loading="lazy"
+						/>
+					</div>
+				))}
+			</div>
+		)}
 	</div>
+
+	<h3 class="text-base font-medium leading-snug tracking-tight text-pretty">
+		{entry.data.title}
+		<Icon name="solar:arrow-right-up-linear" class="arrow ml-0.5 inline-block size-3 align-[1px] text-content-muted" />
+	</h3>
 </a>

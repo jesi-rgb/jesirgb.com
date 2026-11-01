@@ -13,60 +13,36 @@ nav:
   - { href: /gallery, label: Gallery }
 
 common:
-  viewAll: View all
+  home: Home
   toggleTheme: Toggle theme
+  menu: Menu
   now: now
 
 footer:
   blurb: Designer, engineer, and everything in between. I also take pictures and make music.
-  rss: RSS
 
 notFound:
   title: Not found
   description: This page does not exist.
-  eyebrow: '404'
   heading: Nothing here.
   back: Back home
 
 home:
-  eyebrow: Design, engineering and everything in between
   heading: Jesús Rascón
   # {current} is the "current" line below, or empty when there is no current job.
   current: Currently playing console and videos at [{company}]({url}).
-  intro: I design and build interfaces, animations and the marketing tools around them. {current} Before that, at Graphext, Veritasium and Reducible.
-  aside: I'm also an avid [film photographer](/gallery) and musician.
-  cta: See the work
-  # Labels from consts.ts SOCIALS to show under the hero.
-  quickLinks: [GitHub, X, Email]
-  now:
-    title: Now
-    link: Experience
-    workingAt: Working at
-    building: Building
+  intro: I design and build interfaces, animations and the marketing tools around them. {current} Before that, at [Graphext](https://graphext.com), [Veritasium](https://www.youtube.com/@veritasium) and [Reducible](https://www.youtube.com/@Reducible).
   work:
     title: Selected work
     link: All projects
-  writing:
-    title: Writing
-    link: All posts
-  videos:
-    title: Videos
-    link: '{count} videos'
-  photos:
-    title: Photos
-    link: '{count} exhibitions'
 
 work:
   title: Work
   description: Projects I have built and places I have worked.
-  eyebrow: Work
-  heading: "Things I've built,\nplaces I've been."
-  nav:
-    projects: Projects
-    experience: Experience
+  heading: "Work"
   projects:
     title: Projects
-    intro: Non-exhaustive list of things I've built, at work and on my own. No promises.
+    intro: Non-exhaustive list of projects. No promises.
     showRest: '{count} unfinished or archived'
     hideRest: Hide unfinished and archived
   experience:
@@ -80,9 +56,8 @@ work:
 
 blog:
   title: Blog
-  description: Notes on design, code, music and whatever else.
-  eyebrow: Blog · {count} posts
-  heading: "Notes on design, code\nand the occasional chord."
+  description: Blog
+  heading: "Blog"
   post:
     back: Blog
     updated: Updated
@@ -90,7 +65,6 @@ blog:
 videos:
   title: Videos
   description: Explainers and tutorials I wrote, animated or both.
-  eyebrow: Videos · {count} frames
   heading: "All the frames\nI've participated in."
   intro: Some are mine from the first frame to the last. In the others I made the animation that carries the explanation.
   channelLink: Channel
@@ -98,16 +72,9 @@ videos:
 gallery:
   title: Gallery
   description: Photo exhibitions. Some stay up, some come down.
-  eyebrow: Gallery · {rooms} exhibitions · {photos} photos
   heading: Rooms
-  intro: I hang photos in small groups. A few stay on the wall for good. The rest run for a while, then make room for the next set.
-  permanent:
-    title: Permanent collection
-    note: Always on the wall.
-  others:
-    title: Other rooms
-    note: Up now, or closed but still open to walk.
-  photoCount: '{count} photos'
+  permanent: Permanent collection
+  others: Other rooms
   status:
     on-view: On view
     permanent: Permanent

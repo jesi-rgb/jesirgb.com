@@ -2,7 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Copy from '../../components/Copy.astro';
-import { copy, fill } from '../../data/copy';
+import ListRow from '../../components/ListRow.astro';
+import { copy } from '../../data/copy';
 
 const t = copy.blog;
 
@@ -16,30 +17,23 @@ for (const post of posts) {
 const fmt = (d: Date) => d.toLocaleDateString('en-us', { month: 'short', day: '2-digit' });
 ---
 
-<Layout title={t.title} description={t.description}>
-	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
-		<header class="border-b border-line py-16">
-			<p class="label mb-4">{fill(t.eyebrow, { count: posts.length })}</p>
-			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl"><Copy text={t.heading} /></h1>
-		</header>
+<Layout title={t.title} description={t.description} narrow>
+	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
+		<h1 class="animate-rise font-title text-base font-semibold tracking-tight"><Copy text={t.heading} /></h1>
 
-		{[...byYear.entries()].map(([year, list]) => (
-			<section class="grid gap-x-8 border-b border-line py-10 last:border-0 sm:grid-cols-[10rem_1fr]">
-				<h2 class="label mb-4 pt-4 sm:mb-0">{year}</h2>
-				<ul class="flex flex-col">
+		{[...byYear.entries()].map(([year, list], i) => (
+			<div class="animate-rise" style={`--rise: ${i + 1}`}>
+				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">{year}</h2>
+				<ul class="group/list mt-3 flex flex-col">
 					{list.map((post) => (
 						<li>
-							<a href={`/blog/${post.id}/`} class="group -mx-3 grid grid-cols-[auto_1fr] items-baseline gap-x-5 rounded-lg px-3 py-3 transition-colors hover:bg-canvas-muted">
-								<time datetime={post.data.date.toISOString()} class="label w-14">{fmt(post.data.date)}</time>
-								<span class="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
-									<span class="text-base font-medium tracking-tight">{post.data.title}</span>
-									<span class="text-sm text-content-muted">{post.data.description}</span>
-								</span>
-							</a>
+							<ListRow title={post.data.title} meta={fmt(post.data.date)} href={`/blog/${post.id}/`}>
+								{post.data.description}
+							</ListRow>
 						</li>
 					))}
 				</ul>
-			</section>
+			</div>
 		))}
-	</div>
+	</section>
 </Layout>

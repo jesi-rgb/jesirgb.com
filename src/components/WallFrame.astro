@@ -54,6 +54,34 @@ const vars = `--f-moulding:${f.moulding}px;--f-mat:${f.mat}px;--f-bevel:${f.beve
 		transform: translateY(-2px);
 	}
 
+	/* Dark mode: a ceiling spot throws a cone of warm light down on each frame,
+	   and a soft pool of light falls on the wall behind it. */
+	:global(.dark) .wall-frame::before,
+	:global(.dark) .wall-frame::after {
+		content: '';
+		position: absolute;
+		z-index: -1;
+		pointer-events: none;
+	}
+	:global(.dark) .wall-frame::before {
+		--beam: rgba(255, 226, 178, 0.1);
+		/* The lamp sits 200px above the frame. The glow and the cone share that point. */
+		top: -260px;
+		bottom: -400px;
+		left: 50%;
+		width: 2400px;
+		translate: -50% 0;
+		background:
+			radial-gradient(circle at 50% 60px, rgba(255, 236, 200, 0.9) 0 3px, rgba(255, 226, 178, 0.25) 6px, transparent 40px),
+			conic-gradient(from 180deg at 50% 60px, var(--beam) 0deg 30deg, transparent 60deg 300deg, var(--beam) 330deg 360deg);
+		/* The light falls off with distance from the lamp, well inside the box. */
+		mask-image: radial-gradient(circle at 50% 60px, black 0, rgba(0, 0, 0, 0.6) 400px, transparent 1000px);
+	}
+	:global(.dark) .wall-frame::after {
+		inset: -30% -25% -40%;
+		background: radial-gradient(closest-side, rgba(255, 222, 170, 0.14), rgba(255, 222, 170, 0.05) 60%, transparent);
+	}
+
 	.wall-frame[data-focus] {
 		box-shadow:
 			calc(1px * var(--d)) calc(2px * var(--d)) calc(3px * var(--d)) rgba(0, 0, 0, 0.55),

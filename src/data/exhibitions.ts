@@ -18,12 +18,6 @@ export interface Room {
 
 export const statusLabel: Record<Status, string> = copy.gallery.status;
 
-export const statusDot: Record<Status, string> = {
-	'on-view': 'bg-primary animate-pulse',
-	permanent: 'bg-primary',
-	past: 'bg-content-subtle',
-};
-
 // The order the rooms show on the gallery index.
 const ORDER: Status[] = ['on-view', 'permanent', 'past'];
 const rank = (s: Status) => ORDER.indexOf(s);

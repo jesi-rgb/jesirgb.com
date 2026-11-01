@@ -1,10 +1,10 @@
 ---
 import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
+import Copy from '../../components/Copy.astro';
+import ListRow from '../../components/ListRow.astro';
 import ProjectRow from '../../components/ProjectRow.astro';
 import { experience, projects } from '../../data/work';
-import Copy from '../../components/Copy.astro';
 import { copy, fill } from '../../data/copy';
 
 const t = copy.work;
@@ -13,70 +13,96 @@ const live = projects.filter((p) => p.status === 'live' || p.status === 'buildin
 const rest = projects.filter((p) => p.status === 'archived' || p.status === 'unfinished');
 ---
 
-<Layout title={t.title} description={t.description}>
-	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
-		<header class="flex flex-col gap-6 border-b border-line py-16 sm:flex-row sm:items-end sm:justify-between">
-			<div>
-				<p class="label mb-4">{t.eyebrow}</p>
-				<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl"><Copy text={t.heading} /></h1>
-			</div>
-			<nav class="flex gap-1 rounded-full border border-line p-1 text-sm" aria-label="Sections">
-				<a href="#projects" class="rounded-full px-4 py-1.5 text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content">{t.nav.projects}</a>
-				<a href="#experience" class="rounded-full px-4 py-1.5 text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content">{t.nav.experience}</a>
-			</nav>
-		</header>
+<Layout title={t.title} description={t.description} narrow>
+	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
+		<h1 class="animate-rise font-title text-base font-semibold tracking-tight"><Copy text={t.heading} /></h1>
+		<p class="animate-rise mt-4 leading-relaxed text-content-muted text-pretty" style="--rise: 1">{t.projects.intro}</p>
 
-		<section class="py-16">
-			<SectionHeading id="projects" index="01" title={t.projects.title} />
-			<p class="mb-8 max-w-xl text-sm text-content-muted">
-				{t.projects.intro}
-			</p>
-			<div class="flex flex-col">
-				{live.map((p) => <ProjectRow project={p} />)}
-			</div>
+		<div class="animate-rise" style="--rise: 2">
+			<h2 id="projects" class="mt-14 scroll-mt-24 font-title text-base font-semibold tracking-tight">{t.projects.title}</h2>
+			<ul class="group/list mt-3 flex flex-col">
+				{live.map((p) => <li><ProjectRow project={p} detailed /></li>)}
+			</ul>
 			{rest.length > 0 && (
-				<details class="group/d mt-8">
-					<summary class="label cursor-pointer list-none select-none transition-colors hover:text-content">
-						<span class="flex items-center gap-1.5 group-open/d:hidden"><Icon name="solar:add-circle-linear" class="size-3" /> {fill(t.projects.showRest, { count: rest.length })}</span>
-						<span class="hidden items-center gap-1.5 group-open/d:flex"><Icon name="solar:minus-circle-linear" class="size-3" /> {t.projects.hideRest}</span>
+				<details class="group/d mt-6">
+					<summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-sm text-content-muted transition-colors select-none hover:text-content">
+						<Icon name="solar:add-circle-linear" class="size-3.5 group-open/d:hidden" />
+						<Icon name="solar:minus-circle-linear" class="hidden size-3.5 group-open/d:block" />
+						<span class="group-open/d:hidden">{fill(t.projects.showRest, { count: rest.length })}</span>
+						<span class="hidden group-open/d:inline">{t.projects.hideRest}</span>
 					</summary>
-					<div class="mt-4 flex flex-col">
-						{rest.map((p) => <ProjectRow project={p} />)}
-					</div>
+					<ul class="group/list mt-3 flex flex-col">
+						{rest.map((p) => <li><ProjectRow project={p} detailed /></li>)}
+					</ul>
 				</details>
 			)}
-		</section>
+		</div>
 
-		<section class="pb-24 pt-8">
-			<SectionHeading id="experience" index="02" title={t.experience.title} />
-			<ol class="flex flex-col">
+		<div class="animate-rise" style="--rise: 3">
+			<h2 id="experience" class="mt-14 scroll-mt-24 font-title text-base font-semibold tracking-tight">{t.experience.title}</h2>
+			<ul class="timeline group/list mt-3 flex flex-col">
 				{experience.map((e) => (
-					<li class="grid gap-x-8 gap-y-2 border-b border-line py-8 last:border-0 sm:grid-cols-[10rem_1fr]">
-						<div class="label pt-1">
-							<span class="flex items-center gap-1">{e.start} <Icon name="solar:arrow-right-linear" class="size-3" /> {e.current ? copy.common.now : (e.end ?? '')}</span>
-						</div>
-						<div class="flex flex-col gap-3">
-							<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-								<h3 class="text-lg font-medium tracking-tight">
-									{e.url ? (
-										<a href={e.url} target={e.url.startsWith('http') ? '_blank' : undefined} rel="noopener noreferrer" class="link">{e.company}</a>
-									) : e.company}
-								</h3>
-								<span class="text-sm text-content-muted">{e.role}</span>
-								{e.current && <span class="label text-primary">{t.experience.current}</span>}
-							</div>
-							<p class="max-w-2xl text-sm leading-relaxed text-content-muted text-pretty">{e.summary}</p>
+					<li class:list={['pb-4', e.current && 'is-current']}>
+						<ListRow title={e.company} meta={[e.start, e.current ? copy.common.now : e.end].filter(Boolean).join('–')} href={e.url}>
+							{e.current && <span slot="badge" class="label self-center text-primary">{t.experience.current}</span>}
+							<p class="text-content">{e.role}</p>
+							<p class="mt-2">{e.summary}</p>
 							{e.details && (
-								<ul class="mt-1 flex max-w-2xl flex-col gap-2 text-sm leading-relaxed text-content-muted">
+								<ul class="mt-3 flex flex-col gap-3">
 									{e.details.map((d) => (
-										<li class="flex gap-3"><Icon name="solar:minus-circle-linear" class="mt-1.5 size-3 shrink-0 text-content-subtle" /><span class="text-pretty">{d}</span></li>
+										<li class="flex gap-2.5"><Icon name="solar:minus-circle-linear" class="mt-1 size-3 shrink-0 text-content-subtle" /><span>{d}</span></li>
 									))}
 								</ul>
 							)}
-						</div>
+						</ListRow>
 					</li>
 				))}
-			</ol>
-		</section>
-	</div>
+			</ul>
+		</div>
+	</section>
 </Layout>
+
+<style>
+	/* Hanging timeline: the rail sits in the gutter so text stays aligned with the headings.
+	   Each entry draws a dot on its title line and a segment down to the next entry's dot. */
+	.timeline > li {
+		--x: -0.75rem;
+		--y: 1.375rem; /* ListRow padding + half a title line */
+		position: relative;
+	}
+	@media (min-width: 40rem) {
+		.timeline > li {
+			--x: -1.25rem;
+		}
+	}
+	.timeline > li::before,
+	.timeline > li::after {
+		content: '';
+		position: absolute;
+		left: var(--x);
+		translate: -50% 0;
+		pointer-events: none;
+	}
+	.timeline > li:not(:last-child)::before {
+		top: var(--y);
+		bottom: calc(var(--y) * -1);
+		width: 1px;
+		background: var(--line);
+	}
+	.timeline > li::after {
+		top: var(--y);
+		translate: -50% -50%;
+		width: 5px;
+		height: 5px;
+		border-radius: 9999px;
+		background: var(--line-strong);
+		transition: background-color 300ms;
+	}
+	.timeline > li.is-current::after {
+		background: var(--primary);
+		box-shadow: 0 0 0 3px var(--primary-subtle);
+	}
+	.timeline > li:has(a:is(:hover, :focus-visible))::after {
+		background: var(--primary);
+	}
+</style>

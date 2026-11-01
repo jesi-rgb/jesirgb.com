@@ -1,153 +1,37 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import ProjectRow from '../components/ProjectRow.astro';
-import FormattedDate from '../components/FormattedDate.astro';
-import { SOCIALS } from '../consts';
-import { copy, fill } from '../data/copy';
 import Copy from '../components/Copy.astro';
+import ProjectRow from '../components/ProjectRow.astro';
+import { copy, fill } from '../data/copy';
 import { experience, featuredProjects } from '../data/work';
-import { getRooms, photoHref } from '../data/exhibitions';
-import VideoCard from '../components/VideoCard.astro';
-import { featuredVideos, videos } from '../data/videos';
-
-const posts = (await getCollection('blog'))
-	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-	.slice(0, 4);
-
-// Photos on show, newest first, with the featured ones pulled to the front.
-const rooms = await getRooms();
-const hung = rooms
-	.flatMap((room) => room.photos.map((photo) => ({ photo, room })))
-	.sort((a, b) => b.photo.data.date.valueOf() - a.photo.data.date.valueOf());
-const strip = [...hung.filter((h) => h.photo.data.featured), ...hung.filter((h) => !h.photo.data.featured)].slice(0, 5);
 
 const t = copy.home;
 const now = experience.find((e) => e.current);
 const current = now ? fill(t.current, { company: now.company, url: now.url ?? '' }) : '';
-const quick = SOCIALS.filter((s) => t.quickLinks.includes(s.label));
 ---
 
-<Layout title={copy.site.title} description={copy.site.description}>
-	<!-- Hero -->
-	<section class="relative overflow-hidden border-b border-line">
-		<div class="dot-grid pointer-events-none absolute inset-0" aria-hidden="true"></div>
-		<div class="relative mx-auto max-w-5xl px-5 pb-16 pt-20 sm:px-8 sm:pb-24 sm:pt-28">
-			<p class="label animate-rise mb-6 flex items-center gap-2">
-				<span class="relative flex size-1.5">
-					<span class="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-60"></span>
-					<span class="relative inline-flex size-1.5 rounded-full bg-primary"></span>
-				</span>
-				{t.eyebrow}
-			</p>
-			<h1 class="animate-rise font-title text-display font-semibold text-balance text-primary [animation-delay:60ms]">
-				{t.heading}
-			</h1>
-			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl">
-				<Copy text={t.intro} vars={{ current }} />
-			</p>
-			<p class="animate-rise mt-8 max-w-xl text-lg leading-relaxed text-content-muted text-pretty [animation-delay:120ms] sm:text-xl"><Copy text={t.aside} /></p>
+<Layout title={copy.site.title} description={copy.site.description} narrow>
+	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
+		<h1 class="animate-rise font-title text-base font-semibold tracking-tight">{t.heading}</h1>
+		<p class="animate-rise mt-4 leading-relaxed text-content-muted text-pretty" style="--rise: 1">
+			<Copy text={t.intro} vars={{ current }} linkClass="link-sweep text-content" />
+		</p>
 
-			<div class="animate-rise mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 [animation-delay:180ms]">
-				<a href="/work" class="group inline-flex items-center gap-2 rounded-full bg-content px-4 py-2 text-sm font-medium text-canvas transition-colors hover:bg-primary hover:text-primary-content">
-					{t.cta} <Icon name="solar:arrow-right-up-linear" class="arrow size-4" />
-				</a>
-				{quick.map((s) => (
-					<a href={s.href} target="_blank" rel="noopener noreferrer" class="link text-sm text-content-muted hover:text-content">
-						{s.label}
-					</a>
-				))}
-			</div>
-		</div>
+		<h2 class="animate-rise mt-14 font-title text-base font-semibold tracking-tight" style="--rise: 2">{t.work.title}</h2>
+		<ul class="group/list mt-3 flex flex-col">
+			{featuredProjects.map((p, i) => (
+				<li class="animate-rise" style={`--rise: ${i + 3}`}><ProjectRow project={p} /></li>
+			))}
+		</ul>
+
+		<a
+			href="/work"
+			class="animate-rise group mt-8 inline-flex items-center gap-1 text-sm text-content"
+			style={`--rise: ${featuredProjects.length + 3}`}
+		>
+			<span class="link-sweep">{t.work.link}</span>
+			<Icon name="solar:arrow-right-up-linear" class="arrow size-3 text-primary" />
+		</a>
 	</section>
-
-	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
-		<!-- Now -->
-		<section class="py-16">
-			<SectionHeading index="01" title={t.now.title} href="/work#experience" linkLabel={t.now.link} />
-			<div class="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
-				{now && (
-					<a href={now.url} target="_blank" rel="noopener noreferrer" class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
-						<span class="label">{t.now.workingAt}</span>
-						<span class="flex items-baseline justify-between">
-							<span class="text-xl font-medium tracking-tight">{now.company}</span>
-							<span class="label flex items-center gap-1">{now.start} <Icon name="solar:arrow-right-linear" class="size-3" /> {copy.common.now}</span>
-						</span>
-						<p class="text-sm text-content-muted">{now.role}. {now.summary}</p>
-					</a>
-				)}
-				{featuredProjects.filter((p) => p.status === 'building').map((p) => (
-					<a href={p.url} class="group flex flex-col gap-3 bg-canvas p-6 transition-colors hover:bg-canvas-muted">
-						<span class="label flex items-center gap-2">
-							{t.now.building} <span class="size-1.5 rounded-full bg-primary animate-pulse"></span>
-						</span>
-						<span class="flex items-baseline justify-between">
-							<span class="text-xl font-medium tracking-tight">{p.name}</span>
-							<span class="label">{p.year}</span>
-						</span>
-						<p class="text-sm text-content-muted">{p.description}</p>
-					</a>
-				))}
-			</div>
-		</section>
-
-		<!-- Selected work -->
-		<section class="py-16">
-			<SectionHeading index="02" title={t.work.title} href="/work" linkLabel={t.work.link} />
-			<div class="flex flex-col">
-				{featuredProjects.map((p) => <ProjectRow project={p} compact />)}
-			</div>
-		</section>
-
-		<!-- Writing -->
-		<section class="py-16">
-			<SectionHeading index="03" title={t.writing.title} href="/blog" linkLabel={t.writing.link} />
-			<ul class="flex flex-col">
-				{posts.map((post) => (
-					<li>
-						<a href={`/blog/${post.id}/`} class="group -mx-3 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-1 rounded-lg px-3 py-3.5 transition-colors hover:bg-canvas-muted sm:grid-cols-[minmax(0,14rem)_1fr_auto]">
-							<h3 class="text-base font-medium tracking-tight">{post.data.title}</h3>
-							<span class="label sm:order-3"><FormattedDate date={post.data.date} /></span>
-							<p class="col-span-2 text-sm text-content-muted sm:col-span-1 sm:order-2">{post.data.description}</p>
-						</a>
-					</li>
-				))}
-			</ul>
-		</section>
-
-		<!-- Videos -->
-		<section class="py-16">
-			<SectionHeading index="04" title={t.videos.title} href="/videos" linkLabel={fill(t.videos.link, { count: videos.length })} />
-			<div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-				{featuredVideos.map((v) => <VideoCard video={v} compact />)}
-			</div>
-		</section>
-
-		<!-- Photos -->
-		{strip.length > 0 && (
-			<section class="py-16">
-				<SectionHeading index="05" title={t.photos.title} href="/gallery" linkLabel={fill(t.photos.link, { count: rooms.length })} />
-				<div class="grid grid-cols-3 gap-2 sm:grid-cols-5">
-					{strip.map(({ photo: p, room }, i) => (
-						<a href={photoHref(room.slug, p.id)} title={room.entry.data.title} class:list={['group relative overflow-hidden rounded-md bg-canvas-muted', i >= 3 && 'hidden sm:block']}>
-							<Image
-								src={p.data.src}
-								alt={p.data.alt || p.id}
-								width={480}
-								height={480}
-								class="aspect-square size-full object-cover transition-transform duration-500 ease-out-quart group-hover:scale-[1.03]"
-								loading="lazy"
-							/>
-							<span class="label absolute bottom-2 left-2 rounded bg-canvas/80 px-1.5 py-0.5 text-content opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">
-								{room.entry.data.title}
-							</span>
-						</a>
-					))}
-				</div>
-			</section>
-		)}
-	</div>
 </Layout>

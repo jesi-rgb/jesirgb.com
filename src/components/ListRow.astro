@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+
+// One entry of a narrow-page list: title, dotted leader, meta, and the default slot below.
+// Put rows in a `group/list` list: hovering or focusing one link dims the others.
+interface Props {
+	title: string;
+	meta?: string;
+	href?: string;
+}
+const { title, meta, href } = Astro.props;
+const external = href?.startsWith('http');
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+	href={href}
+	target={external ? '_blank' : undefined}
+	rel={external ? 'noopener noreferrer' : undefined}
+	class:list={[
+		'block py-2.5 transition-opacity duration-300 group-has-[a:is(:hover,:focus-visible)]/list:[&:not(:hover,:focus-visible)]:opacity-40',
+		href && 'group',
+	]}
+>
+	<span class="flex items-baseline gap-3">
+		<span class="text-content transition-colors group-hover:text-primary group-focus-visible:text-primary">{title}</span>
+		<slot name="badge" />
+		<span class="relative flex-1 border-b border-dotted border-line-strong" aria-hidden="true">
+			<span class="absolute inset-x-0 -bottom-px h-px origin-left scale-x-0 bg-primary transition-transform duration-500 ease-out-quart group-hover:scale-x-100 group-focus-visible:scale-x-100"></span>
+		</span>
+		{meta && (
+			<span class="mono-num text-xs text-content-subtle transition-colors group-hover:text-content group-focus-visible:text-content">{meta}</span>
+		)}
+		<!-- Rendered without href too, hidden, so meta lines up across link and plain rows.
+		     Dropped on narrow screens so the meta gets the room. -->
+		<Icon
+			name="solar:arrow-right-up-linear"
+			aria-hidden="true"
+			class="size-3 shrink-0 self-center -translate-x-1 text-primary opacity-0 transition-all duration-300 ease-out-quart group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 max-sm:hidden"
+		/>
+	</span>
+	{Astro.slots.has('default') && (
+		<div class="mt-1 text-sm text-content-muted text-pretty"><slot /></div>
+	)}
+</Tag>

@@ -1,42 +1,22 @@
 ---
-import { Icon } from 'astro-icon/components';
+import ListRow from './ListRow.astro';
 import type { Project } from '../data/work';
 import { copy } from '../data/copy';
 
 interface Props {
 	project: Project;
-	compact?: boolean;
+	// Longer text, for /work.
+	detailed?: boolean;
 }
-const { project: p, compact = false } = Astro.props;
-const external = p.url.startsWith('http');
-
-const statusColor: Record<Project['status'], string> = {
-	live: 'bg-primary',
-	building: 'bg-primary animate-pulse',
-	archived: 'bg-content-subtle',
-	unfinished: 'bg-content-subtle',
-};
+const { project: p, detailed = false } = Astro.props;
 ---
 
-<a
-	href={p.url}
-	target={external ? '_blank' : undefined}
-	rel={external ? 'noopener noreferrer' : undefined}
-	class="group -mx-3 grid grid-cols-[1fr_auto] items-baseline gap-x-4 gap-y-1 rounded-lg px-3 py-3.5 transition-colors hover:bg-canvas-muted sm:grid-cols-[minmax(0,14rem)_1fr_auto]"
->
-	<h3 class="flex items-center gap-2.5 text-base font-medium tracking-tight">
-		<span class:list={['size-1.5 shrink-0 rounded-full', statusColor[p.status]]} aria-hidden="true"></span>
-		{p.name}
-	</h3>
-	<span class="label sm:order-3">
-		{p.year}
-		<span class="ml-2 hidden sm:inline">{copy.work.status[p.status]}</span>
-		<Icon name="solar:arrow-right-up-linear" class="arrow ml-1.5 inline-block size-3 align-[-1px] text-content-muted" />
-	</span>
-	<p class="col-span-2 text-sm text-content-muted text-pretty sm:col-span-1 sm:order-2">
-		{compact ? p.description : (p.details ?? p.description)}
-		{!compact && p.stack && (
-			<span class="label ml-2 normal-case tracking-normal">{p.stack.join(' · ')}</span>
-		)}
-	</p>
-</a>
+<ListRow title={p.name} meta={p.year} href={p.url}>
+	{p.status !== 'live' && (
+		<span slot="badge" class:list={['label flex items-center gap-1.5 self-center', p.status === 'building' && 'text-primary']}>
+			{p.status === 'building' && <span class="size-1.5 animate-pulse rounded-full bg-primary" aria-hidden="true"></span>}
+			{copy.work.status[p.status]}
+		</span>
+	)}
+	{detailed ? (p.details ?? p.description) : p.description}
+</ListRow>

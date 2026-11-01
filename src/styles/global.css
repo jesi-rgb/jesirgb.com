@@ -6,8 +6,8 @@
 /* Design tokens. Color values flip per theme through the CSS vars below. */
 @theme {
 	--font-sans: 'AT Name Sans Variable', 'ABC Areal';
-	--font-mono: 'Iosevka Term Extended', var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-	--font-title: 'Whirly Birdie', 'AT Name Sans Variable', ui-sans-serif, sans-serif;
+	--font-mono: var(--font-azeret-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+	--font-title: var(--font-fahkwang);
 
 	--color-canvas: var(--base);
 	--color-canvas-muted: var(--base-muted);
@@ -32,9 +32,6 @@
 
 	--text-2xs: 0.6875rem;
 	--text-2xs--line-height: 1rem;
-	--text-display: clamp(2.75rem, 7vw, 5.5rem);
-	--text-display--line-height: 0.95;
-	--text-display--letter-spacing: -0.035em;
 
 	--tracking-tight: -0.02em;
 	--tracking-wide: 0.06em;
@@ -104,21 +101,6 @@
 	font-display: swap;
 }
 
-@font-face {
-	font-family: 'Whirly Birdie';
-	src: url('/fonts/WhirlyBirdieVariable.ttf') format('truetype');
-	font-weight: 50 100;
-	font-display: swap;
-}
-
-/* Drop Iosevka.woff2 into public/fonts and uncomment to use it as mono.
-@font-face {
-	font-family: 'Iosevka';
-	src: url('/fonts/Iosevka.woff2') format('woff2');
-	font-display: swap;
-}
-*/
-
 @layer base {
 	html {
 		background-color: var(--base);
@@ -162,6 +144,11 @@
 	font-variant-numeric: tabular-nums;
 }
 
+/* Titling face is always set in caps; extends the theme's font-title utility. */
+@utility font-title {
+	text-transform: uppercase;
+}
+
 /* Text link with an offset underline that thickens on hover. */
 @utility link {
 	text-decoration: underline;
@@ -185,10 +172,21 @@
 	}
 }
 
-@utility dot-grid {
-	background-image: radial-gradient(var(--line) 1px, transparent 1px);
-	background-size: 20px 20px;
-	mask-image: radial-gradient(ellipse at top, black 30%, transparent 75%);
+/* Underline that sweeps in from the left on hover, over a faint resting line. Wraps across lines. */
+@utility link-sweep {
+	background-image: linear-gradient(var(--primary), var(--primary)), linear-gradient(var(--line-strong), var(--line-strong));
+	background-size: 0% 1px, 100% 1px;
+	background-position: 0 100%, 0 100%;
+	background-repeat: no-repeat;
+	box-decoration-break: clone;
+	transition: background-size 400ms var(--ease-out-quart), color 150ms;
+
+	&:hover,
+	&:focus-visible,
+	.group:hover & {
+		background-size: 100% 1px, 100% 1px;
+		color: var(--primary);
+	}
 }
 
 /* Prose */
@@ -255,8 +253,10 @@
 	}
 }
 
+/* Entrance rise. Set --rise to the block's position to stagger it 60ms per step. */
 @utility animate-rise {
 	animation: rise 500ms var(--ease-out-quart) both;
+	animation-delay: calc(var(--rise, 0) * 60ms);
 }
 
 @media (prefers-reduced-motion: reduce) {

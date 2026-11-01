@@ -1,39 +1,33 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Layout from '../../layouts/Layout.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
-import VideoCard from '../../components/VideoCard.astro';
-import { videos, videosByChannel } from '../../data/videos';
 import Copy from '../../components/Copy.astro';
-import { copy, fill } from '../../data/copy';
+import VideoCard from '../../components/VideoCard.astro';
+import { videosByChannel } from '../../data/videos';
+import { copy } from '../../data/copy';
 
 const t = copy.videos;
 ---
 
-<Layout title={t.title} description={t.description}>
-	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
-		<header class="flex flex-col gap-4 border-b border-line py-16">
-			<p class="label">{fill(t.eyebrow, { count: videos.length })}</p>
-			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl"><Copy text={t.heading} /></h1>
-			<p class="max-w-xl text-lg leading-relaxed text-content-muted text-pretty">
-				{t.intro}
-			</p>
-		</header>
+<Layout title={t.title} description={t.description} narrow>
+	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
+		<h1 class="animate-rise font-title text-base font-semibold tracking-tight"><Copy text={t.heading} /></h1>
+		<p class="animate-rise mt-4 leading-relaxed text-content-muted text-pretty" style="--rise: 1">{t.intro}</p>
 
-		{videosByChannel.map((group, gi) => (
-			<section class="py-12">
-				<SectionHeading
-					index={String(gi + 1).padStart(2, '0')}
-					title={group.channel.name}
-					href={group.channel.url}
-					linkLabel={t.channelLink}
-				/>
-				<p class="label -mt-5 mb-8">{group.channel.role}</p>
-				<div class="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+		{videosByChannel.map((group, i) => (
+			<div class="animate-rise" style={`--rise: ${i + 2}`}>
+				<div class="mt-14 flex items-baseline justify-between gap-4">
+					<h2 class="font-title text-base font-semibold tracking-tight">{group.channel.name}</h2>
+					<a href={group.channel.url} target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-sm text-content">
+						<span class="link-sweep">{t.channelLink}</span>
+						<Icon name="solar:arrow-right-up-linear" class="arrow size-3 text-primary" />
+					</a>
+				</div>
+				<p class="mt-1 text-sm text-content-muted text-pretty">{group.channel.role}</p>
+				<div class="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2">
 					{group.videos.map((v) => <VideoCard video={v} />)}
 				</div>
-			</section>
+			</div>
 		))}
-
-		<div class="pb-16"></div>
-	</div>
+	</section>
 </Layout>

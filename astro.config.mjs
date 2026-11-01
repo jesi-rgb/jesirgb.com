@@ -13,12 +13,21 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.google(),
-			name: 'Geist Mono',
-			cssVariable: '--font-geist-mono',
+			name: 'Azeret Mono',
+			cssVariable: '--font-azeret-mono',
 			weights: [400, 500],
 			styles: ['normal'],
 			subsets: ['latin'],
 			fallbacks: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+		},
+		{
+			provider: fontProviders.google(),
+			name: 'Fahkwang',
+			cssVariable: '--font-fahkwang',
+			weights: [600],
+			styles: ['normal'],
+			subsets: ['latin'],
+			fallbacks: ['ui-serif', 'Georgia', 'serif'],
 		},
 	],
 	vite: {

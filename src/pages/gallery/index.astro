@@ -1,47 +1,38 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Copy from '../../components/Copy.astro';
 import RoomCard from '../../components/RoomCard.astro';
-import SectionHeading from '../../components/SectionHeading.astro';
 import { getRooms } from '../../data/exhibitions';
-import { copy, fill } from '../../data/copy';
+import { copy } from '../../data/copy';
 
 const t = copy.gallery;
 
 const rooms = await getRooms();
-const total = rooms.reduce((n, r) => n + r.photos.length, 0);
 // The permanent room leads. The others keep the order from the data.
 const featured = rooms.find((r) => r.entry.data.status === 'permanent');
 const others = rooms.filter((r) => r !== featured);
 ---
 
-<Layout title={t.title} description={t.description}>
-	<div class="mx-auto w-full max-w-5xl px-5 sm:px-8">
-		<header class="flex flex-col gap-4 border-b border-line py-16">
-			<p class="label">{fill(t.eyebrow, { rooms: rooms.length, photos: total })}</p>
-			<h1 class="font-title text-4xl font-semibold tracking-tight text-balance sm:text-5xl">{t.heading}</h1>
-			<p class="max-w-xl text-lg leading-relaxed text-content-muted text-pretty">
-				{t.intro}
-			</p>
-		</header>
+<Layout title={t.title} description={t.description} narrow>
+	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
+		<h1 class="animate-rise font-title text-base font-semibold tracking-tight"><Copy text={t.heading} /></h1>
 
 		{featured && (
-			<section class="py-12">
-				<SectionHeading index="01" title={t.permanent.title} />
-				<p class="label -mt-5 mb-8">{t.permanent.note}</p>
-				<RoomCard room={featured} featured />
-			</section>
+			<div class="animate-rise" style="--rise: 1">
+				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">{t.permanent}</h2>
+				<div class="mt-6">
+					<RoomCard room={featured} featured />
+				</div>
+			</div>
 		)}
 
 		{others.length > 0 && (
-			<section class="py-12">
-				<SectionHeading index={featured ? '02' : '01'} title={t.others.title} />
-				<p class="label -mt-5 mb-8">{t.others.note}</p>
-				<div class="grid gap-6 sm:grid-cols-2">
+			<div class="animate-rise" style="--rise: 2">
+				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">{t.others}</h2>
+				<div class="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2">
 					{others.map((room) => <RoomCard room={room} />)}
 				</div>
-			</section>
+			</div>
 		)}
-
-		<div class="pb-16"></div>
-	</div>
+	</section>
 </Layout>

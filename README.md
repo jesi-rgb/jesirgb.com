@@ -58,10 +58,8 @@ into `dist/`, so 17 MB files make the deploy heavy.
 
 ## Fonts
 
-- `AT Name Sans Variable` and `Whirly Birdie` are served from `public/fonts/`.
-- Mono is Geist Mono through the Astro fonts API. To use Iosevka, drop
-  `Iosevka.woff2` into `public/fonts/` and uncomment the `@font-face` in
-  `src/styles/global.css`.
+- `AT Name Sans Variable` is served from `public/fonts/`.
+- Mono is Azeret Mono and titles are Fahkwang, both through the Astro fonts API.
 
 ## Theme
 

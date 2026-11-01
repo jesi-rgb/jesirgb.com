@@ -1,33 +1,36 @@
 ---
 import { SOCIALS } from '../consts';
 import { copy } from '../data/copy';
+
+interface Props {
+	// Narrow matches the max-w-2xl content of every page but the gallery.
+	narrow?: boolean;
+}
+
+const { narrow = false } = Astro.props;
 const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-line">
-	<div class="mx-auto grid max-w-5xl gap-8 px-5 py-12 sm:px-8 md:grid-cols-[1fr_auto]">
-		<div class="flex flex-col gap-3">
-			<p class="text-sm text-content-muted max-w-sm text-pretty">
-				{copy.footer.blurb}
-			</p>
-			<p class="label">
-				&copy; {year} {copy.site.title} &middot; <a href="/rss.xml" class="hover:text-content transition-colors">{copy.footer.rss}</a>
-			</p>
-		</div>
-		<ul class="grid grid-cols-2 gap-x-10 gap-y-2 sm:grid-cols-3 md:grid-cols-2">
+	<div class:list={['mx-auto flex flex-col gap-8 px-5 py-12 sm:px-8', narrow ? 'max-w-2xl' : 'max-w-5xl']}>
+		<p class="max-w-sm text-sm text-content-muted text-pretty">
+			{copy.footer.blurb}
+		</p>
+		<ul class="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-3">
 			{SOCIALS.map((s) => (
 				<li>
 					<a
 						href={s.href}
 						target={s.href.startsWith('http') ? '_blank' : undefined}
 						rel="noopener noreferrer"
-						class="group flex items-baseline gap-2 text-sm text-content-muted transition-colors hover:text-content"
+						class="group flex flex-col gap-0.5 text-sm text-content-muted transition-colors hover:text-content"
 					>
-						<span class="label w-16 shrink-0">{s.label}</span>
+						<span class="label">{s.label}</span>
 						<span class="truncate">{s.handle}</span>
 					</a>
 				</li>
 			))}
 		</ul>
+		<p class="label">&copy; {year} {copy.site.title}</p>
 	</div>
 </footer>

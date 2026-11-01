@@ -5,10 +5,10 @@ export type ProjectStatus = 'live' | 'building' | 'archived' | 'unfinished';
 export interface Project {
 	name: string;
 	description: string;
-	url: string;
+	// Omit for projects with nothing to link to yet; the row renders without a link.
+	url?: string;
 	year: string;
 	status: ProjectStatus;
-	stack?: string[];
 	featured?: boolean;
 	// Longer text for the /work page. Falls back to description.
 	details?: string;
@@ -28,9 +28,7 @@ export interface Experience {
 export const projects: Project[] = [
 	{
 		name: 'Rolloc',
-		// TODO: replace with what Rolloc does.
-		description: 'An app I am building. Description pending.',
-		url: '#',
+		description: 'Helps invert your digital scans of analog frames',
 		year: '2026',
 		status: 'building',
 		featured: true,
@@ -39,32 +37,27 @@ export const projects: Project[] = [
 		name: 'Conduit',
 		description: 'An AI chat app that lets you go on tangents.',
 		details:
-			'Conversations branch instead of stacking. Any message can open a side thread, so the main thread stays clean while you explore.',
+			'A chat app that lets you go on tangents. Conversations can branch out at any given point, visually',
 		url: 'https://conduitchat.app',
 		year: '2025',
 		status: 'live',
-		stack: ['Svelte', 'Tailwind'],
 		featured: true,
 	},
 	{
 		name: 'Tractor',
 		description: 'Automated scraping tool on top of Apify, built for Graphext.',
 		details:
-			'A revival of a scraping tool to bring social media data into Graphext fast. The interface hides a lot of small details that make the download flow smooth.',
+			'A revival of a scraping tool to bring social media data into Graphext fast.',
 		url: 'https://tractor.graphext.com/',
 		year: '2024',
 		status: 'live',
-		stack: ['Svelte', 'Apify'],
 		featured: true,
 	},
 	{
 		name: 'Graphext landing page',
 		description: 'A one-month speedrun to move the marketing site from Webflow into code.',
-		url: 'https://graphext.com',
 		year: '2024',
 		status: 'live',
-		stack: ['Astro', 'Tailwind'],
-		featured: true,
 	},
 	{
 		name: "Svelte's Advent of Code 2023",
@@ -72,13 +65,13 @@ export const projects: Project[] = [
 		url: 'https://svelte-advent-code.vercel.app/',
 		year: '2023',
 		status: 'live',
-		stack: ['Svelte'],
 	},
 	{
 		name: 'Pangea',
 		description: 'The country guessing game.',
-		url: 'https://pangea-game.vercel.app',
+		url: 'https://pangea.fra.unikraft.app',
 		year: '2023',
+		featured: true,
 		status: 'live',
 	},
 	{
@@ -123,59 +116,27 @@ export const projects: Project[] = [
 		year: '2023',
 		status: 'unfinished',
 	},
-	{
-		name: 'FOCAL-ES',
-		description: 'A database with exhaustive information on focal particles.',
-		url: 'https://focal-es.vercel.app/',
-		year: '2022',
-		status: 'live',
-	},
-	{
-		name: 'Chord Chart Maker',
-		description: 'Jazz-style chord charts for quick idea sharing.',
-		url: 'https://chord-chart-maker.vercel.app/',
-		year: '2022',
-		status: 'unfinished',
-	},
-	{
-		name: 'Custom Blending Modes',
-		description: 'Quick prototype of a hypothetical blend mode editor.',
-		url: 'https://custom-blending-modes.vercel.app/',
-		year: '2022',
-		status: 'archived',
-	},
-	{
-		name: 'CC Fest Slides',
-		description: "Slides for my talk at the '22 CC Fest.",
-		url: 'https://ccfest-md-slides.vercel.app/',
-		year: '2022',
-		status: 'archived',
-	},
+
+
 ];
 
 export const experience: Experience[] = [
 	{
 		company: 'Unikraft',
 		role: 'Design Engineer',
-		start: '2025',
-		url: 'https://unikraft.io',
+		start: 'Nov 2025',
+		url: 'https://unikraft.com',
 		current: true,
-		// TODO: replace with the real role and dates.
-		summary: 'Details pending.',
+		summary: 'From the landing page, through youtube videos all the way into the dashboard, I am helping build awareness for this truly amazing product.',
 	},
 	{
 		company: 'Graphext',
 		role: 'Design Engineer',
 		start: 'Jan 2024',
-		end: '2025',
+		end: 'May 2025',
 		url: 'https://graphext.com',
 		summary:
-			'Small startup, many hats. I built the landing page, Tractor 2.0 and the documentation, and produced tutorials for the YouTube channel.',
-		details: [
-			'The landing page was a one-month speedrun to prove we should move from Webflow into code. It had to look better, load faster and be easier to work with. It did.',
-			'Tractor 2.0 is a scraping tool on top of Apify that brings social media data into Graphext. The interface was designed with care and a lot of invisible detail.',
-			'Wrote and maintained the documentation almost from scratch, with a focus on dense documents that still read easy.',
-		],
+			'As per usual on a small startup, one must wear many hats. I (re)built the landing page, (re)designed Tractor 2.0 and wrote much of the documentation, as well as produced tutorials for its YouTube channel.',
 	},
 	{
 		company: 'Prisms of Reality',
@@ -183,7 +144,7 @@ export const experience: Experience[] = [
 		start: 'Jun 2023',
 		end: 'Dec 2023',
 		summary:
-			'Created and animated 500+ explainer video assets in math, physics and chemistry through animation engineering, on tight deadlines.',
+			'Created and animated 500+ explainer video assets in math, physics and chemistry through animation engineering on pretty tight deadlines.',
 	},
 	{
 		company: 'Design Bits',
@@ -191,7 +152,7 @@ export const experience: Experience[] = [
 		start: 'Mar 2023',
 		url: 'https://www.youtube.com/@Design_Bits',
 		summary:
-			'A YouTube channel about computational design. Every asset, animation, song and sound effect is made from scratch, in my room.',
+			'A YouTube channel about computational design. All things art, but make it digital.',
 	},
 	{
 		company: 'Google Summer of Code',

@@ -14,7 +14,6 @@ export interface Video {
 	// YouTube video id. The thumbnail and the link come from it.
 	id: string;
 	channel: keyof typeof channels;
-	featured?: boolean;
 }
 
 export const channels = {
@@ -23,7 +22,7 @@ export const channels = {
 		url: 'https://www.youtube.com/@Design_Bits',
 		avatar:
 			'https://yt3.googleusercontent.com/Xs-TgjZnfX5mk77kk9VUyeOS8Jz2TzEKRlq_0z4TviTXigh6_vIIsslf4rrsLO5tfnv5ptPU=s160-c-k-c0x00ffffff-no-rj',
-		role: 'My channel. Written, animated, scored and edited alone.',
+		role: 'All things art, but make it digital. How do the tools you use everyday work?',
 	},
 	reducible: {
 		name: 'Reducible',
@@ -35,7 +34,8 @@ export const channels = {
 	veritasium: {
 		name: 'Veritasium',
 		url: 'https://www.youtube.com/@veritasium',
-		avatar: 'https://yt3.ggpht.com/ytc/APkrFKZCB8Du5V9Tx6DvgFSwCnUWv8wXya2n97oRc7aF_w=s88-c-k-c0x00ffffff-no-rj',
+		avatar:
+			'https://yt3.ggpht.com/7vCbvtCqtjQ3YLgsJt7Y952MQV1sBvhllSCSxHP8_sVZdcPCBrITfhkN2RdyCuwPnsByq-1GoA=s160-c-k-c0x00ffffff-no-rj',
 		role: 'Animation on math and science films.',
 	},
 } satisfies Record<string, Channel>;
@@ -46,14 +46,12 @@ export const videos: Video[] = [
 		subtitle: 'How can a computer really make things blurry?',
 		id: 'xEyUcp4tbTI',
 		channel: 'design-bits',
-		featured: true,
 	},
 	{
 		title: 'but what are Blend Modes?',
 		subtitle: 'A deeper look into this seemingly random tool.',
 		id: 'D7Yg4H8e7uw',
 		channel: 'design-bits',
-		featured: true,
 	},
 	{
 		title: 'Implementing GIF saving in p5.js',
@@ -78,7 +76,6 @@ export const videos: Video[] = [
 		subtitle: 'The most ubiquitous and praised algorithm. Ever.',
 		id: 'yYEMxqreA10',
 		channel: 'reducible',
-		featured: true,
 	},
 	{
 		title: 'The Traveling Salesman Problem: when good enough beats perfect',
@@ -126,8 +123,6 @@ export const videos: Video[] = [
 
 export const watchHref = (v: Video) => `https://youtu.be/${v.id}`;
 export const thumbnail = (v: Video) => `https://i3.ytimg.com/vi/${v.id}/maxresdefault.jpg`;
-
-export const featuredVideos = videos.filter((v) => v.featured);
 
 // Videos in channel order, so each channel gets its own block.
 export const videosByChannel = (Object.keys(channels) as (keyof typeof channels)[]).map((key) => ({

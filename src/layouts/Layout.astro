@@ -8,10 +8,12 @@ interface Props {
 	description: string;
 	// Bare pages skip the header and footer (gallery viewer).
 	bare?: boolean;
+	// Narrow pages match the header and footer width to their max-w-2xl content.
+	narrow?: boolean;
 	class?: string;
 }
 
-const { title, description, bare = false, class: className } = Astro.props;
+const { title, description, bare = false, narrow = false, class: className } = Astro.props;
 ---
 
 <!doctype html>
@@ -27,11 +29,11 @@ const { title, description, bare = false, class: className } = Astro.props;
 		</script>
 	</head>
 	<body class:list={['min-h-dvh flex flex-col font-sans bg-canvas text-content antialiased', className]}>
-		{!bare && <Header />}
+		{!bare && <Header narrow={narrow} />}
 		<main class="flex-1 flex flex-col">
 			<slot />
 		</main>
-		{!bare && <Footer />}
+		{!bare && <Footer narrow={narrow} />}
 		<script>
 			// Palette picker, dev only. The bundle drops it from production.
 			if (import.meta.env.DEV) import('../dev/palette-picker');

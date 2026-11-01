@@ -2,33 +2,46 @@
 import { Icon } from 'astro-icon/components';
 import { copy } from '../data/copy';
 
+interface Props {
+	// Narrow matches the max-w-2xl content of every page but the gallery.
+	narrow?: boolean;
+}
+
+const { narrow = false } = Astro.props;
 const pathname = Astro.url.pathname;
 const isActive = (href: string) => pathname.startsWith(href);
 ---
 
-<header class="sticky top-0 z-40 border-b border-line bg-canvas/80 backdrop-blur-md">
-	<nav class="mx-auto flex h-14 max-w-5xl items-center justify-between px-5 sm:px-8">
-		<a href="/" class="flex items-center gap-2.5 text-sm font-medium tracking-tight">
-			<span class="size-2 rounded-full bg-primary" aria-hidden="true"></span>
-			{copy.site.title}
-		</a>
+<header
+	id="site-header"
+	class="group/header sticky top-0 z-40 border-b border-transparent transition-[background-color,border-color] duration-300 data-scrolled:border-line data-scrolled:bg-canvas/80 data-scrolled:backdrop-blur-md"
+>
+	<nav class:list={['mx-auto flex h-16 items-center justify-center px-5 sm:px-8', narrow ? 'max-w-2xl' : 'max-w-5xl']}>
+		<div class="flex items-center gap-2">
+			<a
+				href="/"
+				aria-current={pathname === '/' ? 'page' : undefined}
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:border-line-strong hover:text-content aria-[current=page]:text-primary"
+				aria-label={copy.common.home}
+			>
+				<Icon name="solar:home-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:-translate-y-0.5" />
+			</a>
 
-		<div class="flex items-center gap-1">
-			<ul class="flex items-center">
+			<ul id="nav-links" class="relative hidden items-center rounded-full border border-line bg-canvas-elevated/70 p-1 shadow-[0_1px_2px_rgb(0_0_0/0.04)] sm:flex">
+				<!-- Pill that slides under the hovered link and rests on the active one. -->
+				<span
+					id="nav-pill"
+					class="pointer-events-none absolute top-1 bottom-1 left-0 w-(--w) translate-x-(--x) rounded-full bg-canvas-hover opacity-0 data-ready:transition-[translate,width,opacity] data-ready:duration-300 data-ready:ease-out-quart data-visible:opacity-100"
+					aria-hidden="true"
+				></span>
 				{copy.nav.map(({ href, label }) => (
-					<li>
+					<li class="relative">
 						<a
 							href={href}
 							aria-current={isActive(href) ? 'page' : undefined}
-							class:list={[
-								'relative px-3 py-1.5 text-sm transition-colors',
-								isActive(href) ? 'text-content' : 'text-content-muted hover:text-content',
-							]}
+							class="block rounded-full px-3.5 py-1.5 text-sm text-content-muted transition-colors hover:text-content aria-[current=page]:text-primary"
 						>
 							{label}
-							{isActive(href) && (
-								<span class="absolute inset-x-3 -bottom-[17px] h-px bg-content" aria-hidden="true"></span>
-							)}
 						</a>
 					</li>
 				))}
@@ -36,19 +49,94 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 			<button
 				id="theme-toggle"
-				class="ml-2 grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content"
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:border-line-strong hover:text-content"
 				aria-label={copy.common.toggleTheme}
 			>
-				<Icon name="solar:sun-2-linear" class="size-4 dark:hidden" />
-				<Icon name="solar:moon-stars-linear" class="hidden size-4 dark:block" />
+				<Icon name="solar:sun-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:rotate-90 dark:hidden" />
+				<Icon name="solar:moon-stars-linear" class="hidden size-4 transition-transform duration-500 ease-spring group-hover:-rotate-12 dark:block" />
+			</button>
+
+			<button
+				id="menu-toggle"
+				class="grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:text-content sm:hidden"
+				aria-label={copy.common.menu}
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+			>
+				<Icon name="solar:hamburger-menu-linear" class="size-4 group-data-open/header:hidden" />
+				<Icon name="solar:close-circle-linear" class="hidden size-4 group-data-open/header:block" />
 			</button>
 		</div>
 	</nav>
+
+	<div
+		id="mobile-menu"
+		inert
+		class="absolute inset-x-0 top-full grid grid-rows-[0fr] border-line bg-canvas/95 group-data-open/header:border-b backdrop-blur-md transition-[grid-template-rows] duration-300 ease-out-quart group-data-open/header:grid-rows-[1fr] group-data-open/header:border-t sm:hidden"
+	>
+		<ul class="overflow-hidden">
+			{copy.nav.map(({ href, label }, i) => (
+				<li class="border-b border-line last:border-b-0">
+					<a
+						href={href}
+						aria-current={isActive(href) ? 'page' : undefined}
+						class="flex items-baseline gap-4 px-5 py-4 text-2xl font-title font-semibold text-content-muted transition-colors hover:text-content aria-[current=page]:text-primary"
+					>
+						<span class="label">{String(i + 1).padStart(2, '0')}</span>
+						{label}
+					</a>
+				</li>
+			))}
+		</ul>
+	</div>
 </header>
 
 <script>
+	const header = document.getElementById('site-header')!;
+	const links = document.getElementById('nav-links')!;
+	const pill = document.getElementById('nav-pill')!;
+	const menuToggle = document.getElementById('menu-toggle')!;
+
 	document.getElementById('theme-toggle')?.addEventListener('click', () => {
 		const dark = document.documentElement.classList.toggle('dark');
 		localStorage.setItem('theme', dark ? 'dark' : 'light');
 	});
+
+	// Show the border and blur only after the page scrolls.
+	const onScroll = () => header.toggleAttribute('data-scrolled', scrollY > 8);
+	addEventListener('scroll', onScroll, { passive: true });
+	onScroll();
+
+	// Move the pill under a link. With no link, hide the pill.
+	const moveTo = (link: HTMLElement | null) => {
+		pill.toggleAttribute('data-visible', !!link);
+		if (!link) return;
+		pill.style.setProperty('--x', `${link.offsetLeft + link.parentElement!.offsetLeft}px`);
+		pill.style.setProperty('--w', `${link.offsetWidth}px`);
+	};
+	const active = () => links.querySelector<HTMLElement>('a[aria-current="page"]');
+
+	links.querySelectorAll<HTMLElement>('a').forEach((a) => {
+		a.addEventListener('pointerenter', () => moveTo(a));
+		a.addEventListener('focus', () => moveTo(a));
+	});
+	links.addEventListener('pointerleave', () => moveTo(active()));
+	links.addEventListener('focusout', (e) => {
+		if (!links.contains(e.relatedTarget as Node)) moveTo(active());
+	});
+	addEventListener('resize', () => moveTo(active()));
+
+	// Place the pill first, then turn on the transition so it does not slide in on load.
+	document.fonts.ready.then(() => {
+		moveTo(active());
+		requestAnimationFrame(() => pill.toggleAttribute('data-ready', true));
+	});
+
+	const setOpen = (open: boolean) => {
+		header.toggleAttribute('data-open', open);
+		menuToggle.setAttribute('aria-expanded', String(open));
+		document.getElementById('mobile-menu')!.inert = !open;
+	};
+	menuToggle.addEventListener('click', () => setOpen(!header.hasAttribute('data-open')));
+	addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
 </script>
