@@ -51,7 +51,7 @@ const nextHref = next && photoHref(room.slug, next);
 				draggable="false"
 			/>
 		</div>
-		<aside class="overflow-y-auto border-t border-line px-6 py-4 lg:border-l lg:border-t-0 lg:py-6">
+		<aside class="max-h-[40dvh] overflow-y-auto border-t border-line px-6 py-4 lg:max-h-none lg:border-l lg:border-t-0 lg:py-6">
 			<p class="label mb-1">{room.entry.data.title} · {String(index).padStart(2, '0')}</p>
 			{photo.data.caption && <p class="mb-4 text-sm text-content">{photo.data.caption}</p>}
 			<PhotoMeta photo={photo.data} class="lg:grid-cols-1 lg:gap-y-1 lg:[&>dt]:pt-3" />

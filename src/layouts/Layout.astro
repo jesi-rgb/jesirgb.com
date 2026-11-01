@@ -30,7 +30,8 @@ const { title, description, bare = false, narrow = false, class: className } = A
 	</head>
 	<body class:list={['min-h-dvh flex flex-col font-sans bg-canvas text-content antialiased', className]}>
 		{!bare && <Header narrow={narrow} />}
-		<main class="flex-1 flex flex-col">
+		<!-- Bare pages fill exactly one screen, so main must not grow past it. -->
+		<main class:list={['flex-1 flex flex-col', bare && 'min-h-0']}>
 			<slot />
 		</main>
 		{!bare && <Footer narrow={narrow} />}
