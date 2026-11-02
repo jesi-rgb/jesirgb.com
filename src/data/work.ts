@@ -54,9 +54,11 @@ export const projects: Project[] = [
 		featured: true,
 	},
 	{
-		name: 'Graphext landing page',
-		description: 'A one-month speedrun to move the marketing site from Webflow into code.',
-		year: '2024',
+		name: 'Pangea',
+		description: 'The country guessing game.',
+		url: 'https://pangea.fra.unikraft.app',
+		year: '2023',
+		featured: true,
 		status: 'live',
 	},
 	{
@@ -64,14 +66,6 @@ export const projects: Project[] = [
 		description: 'A set of 24 prompts to sharpen your Svelte skills.',
 		url: 'https://svelte-advent-code.vercel.app/',
 		year: '2023',
-		status: 'live',
-	},
-	{
-		name: 'Pangea',
-		description: 'The country guessing game.',
-		url: 'https://pangea.fra.unikraft.app',
-		year: '2023',
-		featured: true,
 		status: 'live',
 	},
 	{
