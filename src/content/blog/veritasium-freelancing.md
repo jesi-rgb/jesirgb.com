@@ -4,8 +4,6 @@ description: Working with Veritasium and kickstarting my carreer as a freelancer
 date: 2021-07-30
 ---
 
-## Table of Contents
-
 ## The conjecture
 
 This last week, I had the huge opportunity to work with the Veritasium team in the biggest project that **I** have ever worked, and possibly also the coolest. The video in question talks about the Collatz Conjecture, a little problem that, to this day, has no solution, despite being very simple to understand.

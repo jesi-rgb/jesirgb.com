@@ -4,8 +4,6 @@ description: Small notes to make sure I get this topic in my head.
 date: 2022-09-01
 ---
 
-## Table of Contents
-
 ## Intro
 
 Mathematical transformation that decomposes functions depending on **space** or **time** into functions depending on **spatial frequency** or **temporal frequency**.

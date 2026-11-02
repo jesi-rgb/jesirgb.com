@@ -4,8 +4,6 @@ description: This is a brief thought synthesis on how we like to name things.
 date: 2020-12-23
 ---
 
-## Table of contents
-
 It is of great surprise to (almost) everyone when a person can precisely name the note of a sound they just heard, let alone, from an instrument. It is really a very rare skill to have, but let's discuss why it really does not make much sense, why it just represents the social frame in which you are born in and how all this may be related to synesthesia.
 
 ## Perfect pitch and relative pitch

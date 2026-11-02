@@ -17,8 +17,7 @@ bun run build
 - `/blog` markdown posts in `src/content/blog/` (`.mdx` when a post embeds a
   component from `src/components/blog/`). Images go in `src/assets/blog/<post>/`,
   linked relatively; videos in `public/blog/<post>/`. `$…$` and `$$` blocks
-  render with KaTeX, and a "Table of contents" heading fills itself in
-  (`src/markdown/plugins.mjs`).
+  render with KaTeX (`src/markdown/plugins.mjs`).
 - `/gallery` the exhibition list. `/gallery/[exhibition]` is one room: a wall
   you pan and zoom, with the wall text at the centre and a label under each
   photo. `/gallery/[exhibition]/[photo]` is the zoomable view of one photo.

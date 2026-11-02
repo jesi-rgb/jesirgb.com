@@ -4,8 +4,6 @@ description: Nearly had a stroke for this one
 date: 2021-11-03
 ---
 
-## Table of Contents
-
 ## Disclaimers and clarifications
 
 Before diving deep into the code and specifics, I want to clarify some things. I am using ManimGL since it is what I've used to learn the basics of Manim, and the real-time rendering is very good for debugging and not creating new, unnecessary videos.

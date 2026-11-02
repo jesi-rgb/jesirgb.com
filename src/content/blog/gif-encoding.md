@@ -10,8 +10,6 @@ This article will particularly be focused on the decisions I made while adding t
 
 I will try to explain the whole process from beginning to end of what it takes to create a GIF out of any given animation.
 
-## Table of contents
-
 ![Gif encoding](../../assets/blog/gif-encoding/thumbnail.webp)
 
 ## GIF files: a bit of story and terms

@@ -6,15 +6,15 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
-import { katexMath, tableOfContents } from './src/markdown/plugins.mjs';
+import { katexMath } from './src/markdown/plugins.mjs';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://jesirgb.com',
 	integrations: [mdx(), sitemap(), icon({ include: { solar: ['*'] } })],
 	markdown: {
-		// MDX inherits this processor. The table of contents goes first so it reads headings before KaTeX.
-		processor: satteri({ features: { math: true }, hastPlugins: [tableOfContents, katexMath] }),
+		// MDX inherits this processor.
+		processor: satteri({ features: { math: true }, hastPlugins: [katexMath] }),
 	},
 	fonts: [
 		{
