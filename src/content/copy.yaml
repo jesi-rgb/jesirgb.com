@@ -18,9 +18,6 @@ common:
   menu: Menu
   now: now
 
-footer:
-  blurb: Designer, engineer, and everything in between. I also take pictures and make music.
-
 notFound:
   title: Not found
   description: This page does not exist.

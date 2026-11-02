@@ -1,6 +1,5 @@
 ---
 import { SOCIALS } from '../consts';
-import { copy } from '../data/copy';
 
 interface Props {
 	// Narrow matches the max-w-2xl content of every page but the gallery.
@@ -8,14 +7,11 @@ interface Props {
 }
 
 const { narrow = false } = Astro.props;
-const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-line">
+<footer class="relative border-t border-line">
+	<div class="footer-glow" aria-hidden="true"></div>
 	<div class:list={['mx-auto flex flex-col gap-8 px-5 py-12 sm:px-8', narrow ? 'max-w-2xl' : 'max-w-5xl']}>
-		<p class="max-w-sm text-sm text-content-muted text-pretty">
-			{copy.footer.blurb}
-		</p>
 		<ul class="grid grid-cols-2 gap-x-8 gap-y-4 sm:grid-cols-3">
 			{SOCIALS.map((s) => (
 				<li>
@@ -31,6 +27,5 @@ const year = new Date().getFullYear();
 				</li>
 			))}
 		</ul>
-		<p class="label">{year} {copy.site.title}</p>
 	</div>
 </footer>

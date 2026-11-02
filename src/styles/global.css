@@ -139,19 +139,27 @@
 	   flat across the top and bend up into a U at the sides.
 	   Built from tokens: --primary's hue at a fixed bright, vivid lightness/chroma, stepped down into
 	   --base. Rings are oklch mixes with chroma boosted so the mid-tones stay saturated.
+	   The gradient itself interpolates in oklab, not oklch: Chrome treats a near-neutral --base's hue as
+	   missing, so in oklch the last stop would take the glow's hue and end tinted instead of on --base,
+	   leaving a seam where the glow box ends. The rings sit close together, so oklab barely changes them.
 	   Absolute against the initial containing block: one screen tall at the page top, so it scrolls away
 	   with the content. Body stays transparent so html's base shows around it. vw/vh, not %, so max() parses.
 	   The gradient lives on ::before, blurred to soften the kinks between stops. It bleeds past every edge so
 	   the blur never pulls in transparency there; the wrapper clips the bleed so it can't widen the page.
 	   ::after lays the ice texture over it through --glow-blend at --glow-texture-opacity: window-sized,
 	   top-aligned and covering edge to edge, masked to the same ellipse so it rolls off with the glow by
-	   --glow-texture-fade. */
-	.page-glow {
+	   --glow-texture-fade.
+	   .footer-glow reuses all of it flipped upside down, so the same bands rise from just below the page
+	   bottom behind the footer. It sits in the footer, smaller and bleeding up into the content above, and
+	   ends on transparent instead of --base so it never paints flat base over the top glow on short pages. */
+	.page-glow,
+	.footer-glow {
 		--glow: oklch(from var(--primary) 0.88 0.17 h);
 		--bleed: 120px;
 		/* Ellipse radii and centre height relative to the window top, shared by gradient and mask. */
 		--glow-size: max(120vw, 76vh) 70vh;
 		--glow-top: -10vh;
+		--glow-end: var(--base);
 		position: absolute;
 		inset: 0;
 		z-index: -1;
@@ -159,29 +167,45 @@
 		pointer-events: none;
 	}
 
+	/* Centre sits deep enough below the page that the bright core stays offscreen and only the softer
+	   outer bands sit behind the footer text. Box height is the vertical radius minus that depth, so the
+	   box ends where the ellipse does. */
+	.footer-glow {
+		--glow-size: max(120vw, 60vh) 50vh;
+		--glow-top: -22vh;
+		--glow-end: transparent;
+		top: auto;
+		height: 28vh;
+		transform: scaleY(-1);
+	}
+
 	.page-glow::before,
-	.page-glow::after {
+	.page-glow::after,
+	.footer-glow::before,
+	.footer-glow::after {
 		content: '';
 		position: absolute;
 		inset: 0;
 	}
 
-	.page-glow::before {
+	.page-glow::before,
+	.footer-glow::before {
 		inset: calc(var(--bleed) * -1);
 		filter: blur(40px);
 		background: radial-gradient(
-			ellipse var(--glow-size) at 50% calc(var(--bleed) + var(--glow-top)) in oklch,
+			ellipse var(--glow-size) at 50% calc(var(--bleed) + var(--glow-top)) in oklab,
 			var(--glow) 18%,
 			oklch(from color-mix(in oklch, var(--glow) 80%, var(--base)) l calc(c * 1.2) h) 24%,
 			oklch(from color-mix(in oklch, var(--glow) 60%, var(--base)) l calc(c * 1.4) h) 30%,
 			oklch(from color-mix(in oklch, var(--glow) 35%, var(--base)) l calc(c * 1.4) h) 37%,
 			oklch(from color-mix(in oklch, var(--glow) 15%, var(--base)) l calc(c * 1.4) h) 57%,
 			color-mix(in oklch, var(--glow) 5%, var(--base)) 77%,
-			var(--base)
+			var(--glow-end)
 		);
 	}
 
-	.page-glow::after {
+	.page-glow::after,
+	.footer-glow::after {
 		background: url('/textures/mint-ice.webp') center top / cover;
 		mix-blend-mode: var(--glow-blend);
 		opacity: var(--glow-texture-opacity);
