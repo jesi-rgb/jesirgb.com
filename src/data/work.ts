@@ -38,7 +38,7 @@ export const projects: Project[] = [
 		description: 'An AI chat app that lets you go on tangents.',
 		details:
 			'A chat app that lets you go on tangents. Conversations can branch out at any given point, visually',
-		url: 'https://conduitchat.app',
+		url: 'https://conduit.fra.unikraft.app',
 		year: '2025',
 		status: 'live',
 		featured: true,

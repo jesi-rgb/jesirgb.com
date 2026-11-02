@@ -6,7 +6,7 @@ cover: DSCF5275
 order: 1
 photos:
   - DSCF3411:
-      title: Sky and the sea
+      title: Sky and the Caribbean sea
   - DSCF0955:
       title: Out of the cage?
   - DSCF2372:
