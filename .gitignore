@@ -23,5 +23,5 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# full-res photo sources, kept out of git (see README)
-src/gallery/
+# Local Netlify folder
+.netlify

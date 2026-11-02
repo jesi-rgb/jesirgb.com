@@ -64,8 +64,14 @@ The body is the wall text. It shows above the photos.
 To take a show down, set `status: past` and give it a `closes` date. To put a
 new one up, add the file. The index groups the shows by status.
 
-Keep source photos around 3000px on the long edge. Astro copies the originals
-into `dist/`, so 17 MB files make the deploy heavy.
+Source photos are committed with the site. Astro only ships the resized AVIF
+and WebP copies; the originals never reach `dist/`. Keep sources around 3000px
+on the long edge so the repo stays light.
+
+## Deploy
+
+Netlify builds from git with `netlify.toml`: `astro build`, publish `dist/`,
+Node 22. Push to deploy.
 
 ## Fonts
 
@@ -77,3 +83,18 @@ into `dist/`, so 17 MB files make the deploy heavy.
 Tokens live in the `@theme` block of `src/styles/global.css`. Light and dark
 values are CSS variables on `:root` and `:root.dark`. The theme toggle in the
 header writes `localStorage.theme`.
+
+The palette follows the visitor's local hour. An inline script in
+`src/layouts/Layout.astro` sets `data-palette` on `<html>` from its `schedule`,
+and `global.css` holds a `:root[data-palette=…]` light and dark block for each
+palette but Mint, which is the default on `:root`:
+
+| From  | Palette |
+| ----- | ------- |
+| 05:00 | Moss    |
+| 09:00 | Mint    |
+| 18:00 | Slate   |
+| 23:00 | Plum    |
+
+The light/dark toggle still works on top of whichever palette is active. In
+dev the palette picker overrides the schedule.
