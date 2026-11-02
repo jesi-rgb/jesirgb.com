@@ -2,9 +2,6 @@
 title: Identifying things
 description: A collection of thoughts about collection
 date: 2025-06-30
-categories:
-    - thoughts
-
 ---
 
 One thing I love doing to annoy my friends and family is yelling out loud things I know the name of. 

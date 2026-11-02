@@ -52,7 +52,8 @@ cover: DSCF4519      # photo id for the index
 order: 1             # lower goes first inside the status group
 photos:              # hang order, not date order
   - DSCF4519
-  - DSCF4514
+  - DSCF4514:
+    title: Morning light   # wall label in this room; falls back to the caption
 ---
 
 The body is the wall text. It shows above the photos.

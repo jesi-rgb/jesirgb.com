@@ -23,7 +23,15 @@ export async function getStaticPaths() {
 }
 
 const { photo, room, prev, next, index } = Astro.props;
-const full = await getImage({ src: photo.data.src, width: 2800, format: 'webp', quality: 85 });
+// The photo box is the viewport less the side panel and padding. Portrait photos
+// come out narrower than this, so the guess errs on the sharp side.
+const sizes = '(min-width: 1024px) calc(100vw - 21rem), calc(100vw - 2rem)';
+const widths = [800, 1200, 1800, 2800];
+// AVIF holds the same look in about two thirds of the bytes. WebP is the fallback.
+const [avif, webp] = await Promise.all([
+	getImage({ src: photo.data.src, width: 1800, widths, sizes, format: 'avif', quality: 60 }),
+	getImage({ src: photo.data.src, width: 1800, widths, sizes, format: 'webp', quality: 85 }),
+]);
 const title = photo.data.caption ?? `${room.entry.data.title} · ${index}`;
 const description = [photo.data.camera, photo.data.lens, photo.data.film ? filmName(photo.data.film) : photo.data.simulation].filter(Boolean).join(' · ') || copy.photo.description;
 const prevHref = prev && photoHref(room.slug, prev);
@@ -48,12 +56,18 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 		     gives the photo a definite box, so tall photos fit. -->
 		<div class="relative flex min-h-0 flex-col">
 			<div class="relative min-h-0 w-full aspect-(--ratio) lg:absolute lg:inset-0 lg:aspect-auto" style={`--ratio: ${photo.data.src.width} / ${photo.data.src.height}`}>
-				<img
-					src={full.src}
-					alt={photo.data.alt || photo.id}
-					class="absolute inset-0 size-full object-contain p-4 lg:p-6"
-					draggable="false"
-				/>
+				<picture>
+					<source type="image/avif" srcset={avif.srcSet.attribute} sizes={sizes} />
+					<img
+						src={webp.src}
+						srcset={webp.srcSet.attribute}
+						sizes={sizes}
+						alt={photo.data.alt || photo.id}
+						class="absolute inset-0 size-full object-contain p-4 lg:p-6"
+						fetchpriority="high"
+						draggable="false"
+					/>
+				</picture>
 			</div>
 			<nav class="grid min-h-24 flex-1 grid-cols-2 content-start gap-3 px-4 pb-4 lg:hidden">
 				{prevHref ? <a href={prevHref} class={step} aria-label={copy.photo.prev}><Icon name="solar:alt-arrow-left-linear" class="size-6" /></a> : <span class:list={[step, 'opacity-30']} aria-hidden="true"><Icon name="solar:alt-arrow-left-linear" class="size-6" /></span>}

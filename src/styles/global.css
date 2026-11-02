@@ -64,6 +64,11 @@
 	--focus: var(--primary);
 	/* Scrim for lightboxes and modals. */
 	--overlay: color-mix(in oklab, var(--content) 55%, transparent);
+	/* Ice texture over the page glow: how it mixes in (any mix-blend-mode value), how strongly, and where
+	   it has faded out, as a share of the glow's radius. It eases out over the last three quarters of that. */
+	--glow-blend: luminosity;
+	--glow-texture-opacity: 1;
+	--glow-texture-fade: 70%;
 
 	color-scheme: light;
 }
@@ -90,6 +95,9 @@
 
 	--focus: var(--primary);
 	--overlay: color-mix(in oklab, #000000 65%, transparent);
+	--glow-blend: luminosity;
+	--glow-texture-opacity: 1;
+	--glow-texture-fade: 70%;
 
 	color-scheme: dark;
 }
@@ -125,6 +133,68 @@
 		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 		border-radius: 2px;
+	}
+
+	/* Glow behind the top of the page, centred just above the top edge on a wide ellipse, so its bands run
+	   flat across the top and bend up into a U at the sides.
+	   Built from tokens: --primary's hue at a fixed bright, vivid lightness/chroma, stepped down into
+	   --base. Rings are oklch mixes with chroma boosted so the mid-tones stay saturated.
+	   Absolute against the initial containing block: one screen tall at the page top, so it scrolls away
+	   with the content. Body stays transparent so html's base shows around it. vw/vh, not %, so max() parses.
+	   The gradient lives on ::before, blurred to soften the kinks between stops. It bleeds past every edge so
+	   the blur never pulls in transparency there; the wrapper clips the bleed so it can't widen the page.
+	   ::after lays the ice texture over it through --glow-blend at --glow-texture-opacity: window-sized,
+	   top-aligned and covering edge to edge, masked to the same ellipse so it rolls off with the glow by
+	   --glow-texture-fade. */
+	.page-glow {
+		--glow: oklch(from var(--primary) 0.88 0.17 h);
+		--bleed: 120px;
+		/* Ellipse radii and centre height relative to the window top, shared by gradient and mask. */
+		--glow-size: max(120vw, 76vh) 70vh;
+		--glow-top: -10vh;
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.page-glow::before,
+	.page-glow::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+	}
+
+	.page-glow::before {
+		inset: calc(var(--bleed) * -1);
+		filter: blur(40px);
+		background: radial-gradient(
+			ellipse var(--glow-size) at 50% calc(var(--bleed) + var(--glow-top)) in oklch,
+			var(--glow) 18%,
+			oklch(from color-mix(in oklch, var(--glow) 80%, var(--base)) l calc(c * 1.2) h) 24%,
+			oklch(from color-mix(in oklch, var(--glow) 60%, var(--base)) l calc(c * 1.4) h) 30%,
+			oklch(from color-mix(in oklch, var(--glow) 35%, var(--base)) l calc(c * 1.4) h) 37%,
+			oklch(from color-mix(in oklch, var(--glow) 15%, var(--base)) l calc(c * 1.4) h) 57%,
+			color-mix(in oklch, var(--glow) 5%, var(--base)) 77%,
+			var(--base)
+		);
+	}
+
+	.page-glow::after {
+		background: url('/textures/mint-ice.webp') center top / cover;
+		mix-blend-mode: var(--glow-blend);
+		opacity: var(--glow-texture-opacity);
+		/* Smoothstep from solid at a quarter of the fade to clear at the fade, so neither end shows an edge. */
+		mask-image: radial-gradient(
+			ellipse var(--glow-size) at 50% var(--glow-top),
+			black calc(var(--glow-texture-fade) * 0.25),
+			rgb(0 0 0 / 0.9) calc(var(--glow-texture-fade) * 0.4),
+			rgb(0 0 0 / 0.65) calc(var(--glow-texture-fade) * 0.55),
+			rgb(0 0 0 / 0.35) calc(var(--glow-texture-fade) * 0.7),
+			rgb(0 0 0 / 0.1) calc(var(--glow-texture-fade) * 0.85),
+			transparent var(--glow-texture-fade)
+		);
 	}
 }
 

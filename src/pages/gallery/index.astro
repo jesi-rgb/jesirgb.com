@@ -16,10 +16,12 @@ const others = rooms.filter((r) => r !== featured);
 <Layout title={t.title} description={t.description} narrow>
 	<section class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
 		<h1 class="animate-rise font-title text-base font-semibold tracking-tight"><Copy text={t.heading} /></h1>
+		<p class="animate-rise mt-4 leading-relaxed text-content-muted text-pretty"><Copy text={t.description} /></p>
 
 		{featured && (
 			<div class="animate-rise" style="--rise: 1">
-				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">{t.permanent}</h2>
+				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">{featured.entry.data.title}</h2>
+				{featured.entry.data.subtitle && <p class="mt-2 leading-relaxed text-content-muted text-pretty">{featured.entry.data.subtitle}</p>}
 				<div class="mt-6">
 					<RoomCard room={featured} featured />
 				</div>

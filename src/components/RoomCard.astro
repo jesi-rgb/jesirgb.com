@@ -5,7 +5,7 @@ import type { Room } from '../data/exhibitions';
 
 interface Props {
 	room: Room;
-	// The permanent room spans the column and shows more of the room.
+	// The permanent room spans the column and shows more of the room. Its title is the section heading, so the card drops it.
 	featured?: boolean;
 }
 const { room, featured = false } = Astro.props;
@@ -15,7 +15,7 @@ const { entry, photos, cover } = room;
 const peek = photos.filter((p) => p.id !== cover.id).slice(0, featured ? 5 : 3);
 ---
 
-<a href={room.href} class="group flex flex-col gap-3">
+<a href={room.href} class="group flex flex-col gap-3" aria-label={featured ? entry.data.title : undefined}>
 	<div class="flex flex-col gap-1.5">
 		<div class="overflow-hidden rounded-lg border border-line bg-canvas-muted">
 			<Image
@@ -45,8 +45,10 @@ const peek = photos.filter((p) => p.id !== cover.id).slice(0, featured ? 5 : 3);
 		)}
 	</div>
 
-	<h3 class="text-base font-medium leading-snug tracking-tight text-pretty">
-		{entry.data.title}
-		<Icon name="solar:arrow-right-up-linear" class="arrow ml-0.5 inline-block size-3 align-[1px] text-content-muted" />
-	</h3>
+	{!featured && (
+		<h3 class="text-base font-medium leading-snug tracking-tight text-pretty">
+			{entry.data.title}
+			<Icon name="solar:arrow-right-up-linear" class="arrow ml-0.5 inline-block size-3 align-[1px] text-content-muted" />
+		</h3>
+	)}
 </a>

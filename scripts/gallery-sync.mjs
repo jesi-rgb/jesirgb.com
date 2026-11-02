@@ -12,13 +12,14 @@ const IMAGE_RE = /\.(jpe?g|png|webp|avif|tiff?)$/i;
 
 const EXHIBITION_DIR = path.join(ROOT, 'src/content/exhibitions');
 
-// Ids listed in the photos block of every exhibition file.
+// Ids listed in the photos block of every exhibition file, bare or with a title
+// nested under them (`- DSCF0955:`).
 function hungPhotos() {
 	if (!fs.existsSync(EXHIBITION_DIR)) return new Set();
 	const ids = new Set();
 	for (const f of fs.readdirSync(EXHIBITION_DIR).filter((f) => f.endsWith('.md'))) {
 		const body = fs.readFileSync(path.join(EXHIBITION_DIR, f), 'utf8');
-		for (const m of body.matchAll(/^\s*-\s*([A-Za-z0-9][A-Za-z0-9_-]*)\s*$/gm)) ids.add(m[1]);
+		for (const m of body.matchAll(/^\s*-\s*([A-Za-z0-9][A-Za-z0-9_-]*):?\s*$/gm)) ids.add(m[1]);
 	}
 	return ids;
 }

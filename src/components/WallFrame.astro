@@ -36,9 +36,9 @@ const vars = `--f-moulding:${f.moulding}px;--f-mat:${f.mat}px;--f-bevel:${f.beve
 		position: absolute;
 		container-type: size;
 		cursor: pointer;
-		transition:
-			box-shadow 500ms var(--ease-out-quart),
-			transform 500ms var(--ease-out-quart);
+		/* Only the hover lift animates. A box-shadow transition repaints the frame on
+		   every step of the flight to the next work. */
+		transition: transform 500ms var(--ease-out-quart);
 		box-shadow:
 			calc(1px * var(--d)) calc(1px * var(--d)) calc(2px * var(--d)) rgba(0, 0, 0, 0.5),
 			calc(4px * var(--d)) calc(9px * var(--d)) calc(14px * var(--d)) -6px rgba(0, 0, 0, 0.42),

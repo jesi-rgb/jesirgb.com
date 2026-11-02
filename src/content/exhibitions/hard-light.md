@@ -1,31 +1,45 @@
 ---
-title: Hard Light
-subtitle: Black and white, on film and in Acros.
+title: Black & White
+subtitle: Selection of digital and analog black & white pictures
 status: permanent
-cover: DSCF2372
+cover: DSCF5275
 order: 1
 photos:
-  - DSCF0955
-  - DSCF2372
-  - DSCF2377
-  - DSCF3411
-  - DSCF4230
-  - DSCF4263
-  - DSCF4502
-  - DSCF5017
-  - DSCF5026
-  - DSCF5036
-  - DSCF5208
-  - DSCF5218
-  - DSCF5275
-  - DSCF5277
-  - DSCF5284
-  - DSCF5285
-  - DSCF5286
+  - DSCF3411:
+      title: Sky and the sea
+  - DSCF0955:
+      title: Out of the cage?
+  - DSCF2372:
+      title: Abandoned houses in Jaén
+  - DSCF2377:
+      title: Abandoned houses in Jaén
+  - DSCF4230:
+      title: The alley, Dresden
+  - DSCF4263:
+      title: Fisherpeople
+  - DSCF4502:
+      title: People chasing the sun, Leipzig
+  - DSCF5017:
+      title: Cospudener See, Leipzig
+  - DSCF5026:
+      title: Got time?
+  - DSCF5036:
+      title: At the lake
+  - DSCF5208:
+      title: Birches by the lake, Stormthaler, Leipzig
+  - DSCF5218:
+      title: Nurnberg
+  - DSCF5275:
+      title: Markleeberg See
+  - DSCF5277:
+      title: Cows by Markleeberg See
+  - DSCF5284:
+      title: Chess game to scale
+  - DSCF5285:
+      title: Thirsty friend, Dresden
+  - DSCF5286:
+      title: Dresden
 ---
 
-Without colour, a photo is light, shadow and the shapes between them.
 
-Some of these come out of the X-E4 in Acros with a red filter. The rest are
-negatives: Kodak T-Max 400, Fujifilm Acros 100 II through a Mamiya 645 Pro,
-and Ilford Delta 400 through a Pentax ME.
+

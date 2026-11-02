@@ -12,7 +12,6 @@ const blog = defineCollection({
 			description: z.string(),
 			date: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
-			categories: z.array(z.string()).optional(),
 			heroImage: z.optional(image()),
 		}),
 });
@@ -81,6 +80,27 @@ const gallery = defineCollection({
 		}),
 });
 
+// One work in a room: a bare photo id, or the id with room-only fields under
+// it. `title` is the wall label for that room. The fields may sit at the id's
+// indent or deeper; YAML gives `{ id: null, title }` or `{ id: { title } }`.
+//   - DSCF0955:
+//     title: Morning light
+const hung = z
+	.union([z.string(), z.record(z.string(), z.unknown())])
+	.transform((v, ctx) => {
+		if (typeof v === 'string') return { photo: v };
+		// The id is the one key without a scalar value.
+		const ids = Object.keys(v).filter((k) => v[k] === null || typeof v[k] === 'object');
+		if (ids.length !== 1) {
+			ctx.addIssue({ code: 'custom', message: `Expected one photo id per item, got ${ids.length}` });
+			return z.NEVER;
+		}
+		const [photo] = ids;
+		const { [photo]: nested, ...flat } = v;
+		return { photo, ...flat, ...(nested as object | null) };
+	})
+	.pipe(z.object({ photo: reference('gallery'), title: z.string().optional() }));
+
 // A room in the gallery. Photos are listed in hang order, not by date.
 const exhibitions = defineCollection({
 	loader: glob({ base: './src/content/exhibitions', pattern: '**/*.md' }),
@@ -94,7 +114,7 @@ const exhibitions = defineCollection({
 		cover: reference('gallery'),
 		// Lower numbers go first inside each status group.
 		order: z.number().default(0),
-		photos: z.array(reference('gallery')).nonempty(),
+		photos: z.array(hung).nonempty(),
 	}),
 });
 
@@ -129,7 +149,6 @@ const copy = defineCollection({
 			title: t,
 			description: t,
 			heading: t,
-			permanent: t,
 			others: t,
 			status: z.object({ 'on-view': t, permanent: t, past: t }),
 			dates: z.object({ permanent: t, since: t }),

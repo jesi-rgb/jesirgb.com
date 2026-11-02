@@ -42,7 +42,7 @@ work:
   heading: "Work"
   projects:
     title: Projects
-    intro: Non-exhaustive list of projects. No promises.
+    intro: Non-exhaustive list of projects. No promises
     showRest: '{count} unfinished or archived'
     hideRest: Hide unfinished and archived
   experience:
@@ -65,15 +65,14 @@ blog:
 videos:
   title: Videos
   description: Explainers and tutorials I wrote, animated or both.
-  heading: "All the frames\nI've participated in."
-  intro: Some are mine from the first frame to the last. In the others I made the animation that carries the explanation.
+  heading: "Video work"
+  intro: Videos I have helped produce either partially or completely
   channelLink: Channel
 
 gallery:
   title: Gallery
-  description: Photo exhibitions. Some stay up, some come down.
-  heading: Rooms
-  permanent: Permanent collection
+  heading: Gallery
+  description: A gallery with rooms in which expositions of selected pictures live 
   others: Other rooms
   status:
     on-view: On view

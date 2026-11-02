@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { Image } from 'astro:assets';
 import type { CollectionEntry } from 'astro:content';
 import Layout from './Layout.astro';
@@ -7,29 +6,27 @@ import FormattedDate from '../components/FormattedDate.astro';
 import { copy } from '../data/copy';
 
 type Props = CollectionEntry<'blog'>['data'];
-const { title, description, date, updatedDate, heroImage, categories } = Astro.props;
+const { title, description, date, updatedDate, heroImage } = Astro.props;
 ---
 
 <Layout title={title} description={description} narrow>
 	<article class="mx-auto w-full max-w-2xl px-5 py-24 sm:px-8 sm:py-32">
 		<header>
-			<a href="/blog" class="animate-rise group inline-flex items-center gap-1 text-sm text-content-muted transition-colors hover:text-content">
-				<Icon name="solar:arrow-left-linear" class="size-3" />
-				<span class="link-sweep">{copy.blog.post.back}</span>
-			</a>
+			<nav aria-label="Breadcrumb" class="animate-rise">
+				<ol class="flex min-w-0 items-center gap-1.5 text-sm">
+					<li class="shrink-0">
+						<a href="/blog" class="link-sweep text-content-muted">{copy.blog.post.back}</a>
+					</li>
+					<li aria-hidden="true" class="text-content-subtle">/</li>
+					<li aria-current="page" class="min-w-0 truncate text-content">{title}</li>
+				</ol>
+			</nav>
 			<h1 class="animate-rise mt-8 font-title text-base font-semibold tracking-tight" style="--rise: 1">{title}</h1>
 			<p class="animate-rise mt-1 mono-num text-sm text-content-subtle" style="--rise: 1">
 				<FormattedDate date={date} />
 				{updatedDate && <span> · {copy.blog.post.updated} <FormattedDate date={updatedDate} /></span>}
 			</p>
 			<p class="animate-rise mt-4 leading-relaxed text-content-muted text-pretty" style="--rise: 2">{description}</p>
-			{categories && (
-				<ul class="animate-rise mt-4 flex flex-wrap gap-1.5" style="--rise: 2">
-					{categories.map((c) => (
-						<li class="rounded-full border border-line px-2 py-0.5 text-2xs text-content-muted">{c}</li>
-					))}
-				</ul>
-			)}
 		</header>
 
 		<div class="animate-rise mt-14" style="--rise: 3">

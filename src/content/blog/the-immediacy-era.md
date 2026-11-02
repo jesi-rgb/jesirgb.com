@@ -1,8 +1,6 @@
 ---
 title: The immediacy era
 description: On why we shouldn't go faster
-categories:
-  - thoughts
 date: 2025-05-25
 ---
 

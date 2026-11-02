@@ -12,6 +12,8 @@ export interface Room {
 	slug: string;
 	href: string;
 	photos: Photo[];
+	// Wall labels set in the exhibition file, by photo id.
+	titles: Map<string, string>;
 	cover: Photo;
 	dates: string;
 }
@@ -44,8 +46,9 @@ export async function getRooms(): Promise<Room[]> {
 		entry,
 		slug: entry.id,
 		href: `/gallery/${entry.id}`,
-		photos: entry.data.photos.map((r) => photos.get(r.id)).filter(Boolean) as Photo[],
-		cover: photos.get(entry.data.cover.id) ?? photos.get(entry.data.photos[0].id)!,
+		photos: entry.data.photos.map((h) => photos.get(h.photo.id)).filter(Boolean) as Photo[],
+		titles: new Map(entry.data.photos.flatMap((h) => (h.title ? [[h.photo.id, h.title] as const] : []))),
+		cover: photos.get(entry.data.cover.id) ?? photos.get(entry.data.photos[0].photo.id)!,
 		dates: runDates(entry.data),
 	}));
 }

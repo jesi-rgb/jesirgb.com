@@ -47,10 +47,11 @@ const hang = room.photos.map((p, i) => {
 	const d = p.data;
 	return {
 		photo: p,
+		printW,
 		rect,
 		kind,
 		href: photoHref(room.slug, p.id),
-		title: d.caption,
+		title: room.titles.get(p.id) ?? d.caption,
 		gear: [d.camera, d.focalLength, d.aperture, d.shutter, d.iso && `ISO ${d.iso}`].filter(Boolean).join(' · '),
 		stock: d.film ? [filmName(d.film), d.film.format].filter(Boolean).join(' · ') : d.simulation,
 		when: [d.location, d.date?.toLocaleDateString('en-GB', { year: 'numeric', month: 'short' })].filter(Boolean).join(' · '),
@@ -137,15 +138,17 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 				<div class="prose prose-sm mt-6 text-content-muted"><Content /></div>
 			</article>
 
-			{hang.map(({ photo: p, rect, kind, href, title, gear, stock, when }, i) => (
+			{hang.map(({ photo: p, printW, rect, kind, href, title, gear, stock, when }, i) => (
 				<>
 					<WallFrame index={i} kind={kind} style={place(rect)}>
+						<!-- The print is printW wall px wide, so 1x and 2x of it cover a
+						     work seen up close on standard and retina screens. -->
 						<Image
 							src={p.data.src}
 							alt={p.data.alt || p.id}
-							width={1400}
-							widths={[700, 1400]}
-							sizes="900px"
+							width={printW}
+							widths={[printW, printW * 2]}
+							sizes={`${printW}px`}
 							loading={i < 3 ? 'eager' : 'lazy'}
 							draggable="false"
 						/>
@@ -156,7 +159,7 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 						style={`left:${px(rect.x)};top:${px(rect.y + rect.h + 36)};width:${px(Math.min(rect.w, 300))}`}
 					>
 						<p class="label">{String(i + 1).padStart(2, '0')}</p>
-						{title && <p class="text-sm font-medium tracking-tight text-content">{title}</p>}
+						{title && <p class="text-sm font-title uppercase font-medium tracking-tight text-content">{title}</p>}
 						{gear && <p class="mono-num text-2xs leading-4 text-content-muted">{gear}</p>}
 						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ` · ${t.mono}` : ''}</p>}
 						{when && <p class="mono-num text-2xs leading-4 text-content-muted">{when}</p>}
@@ -193,7 +196,7 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 					style={`left:${(rect.x / WALL_W) * 100}%;top:${(rect.y / WALL_H) * 100}%;width:${(rect.w / WALL_W) * 100}%;height:${(rect.h / WALL_H) * 100}%`}
 				></span>
 			))}
-			<span data-view class="absolute rounded-sm border border-content/70 bg-content/10"></span>
+			<span data-view class="absolute left-0 top-0 rounded-sm border border-content/70 bg-content/10 will-change-transform"></span>
 		</div>
 
 		<p class="label pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 lg:flex">
@@ -227,21 +230,30 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 
 	let x = 0, y = 0, s = 1;
 	let current = -1;
-	const vw = () => stage.clientWidth;
-	const vh = () => stage.clientHeight;
+	// The stage size is cached: reading it during a drag would force a layout every frame.
+	let stageW = stage.clientWidth, stageH = stage.clientHeight;
+	const vw = () => stageW;
+	const vh = () => stageH;
 	const fitAllScale = () => Math.min(vw() / layout.w, vh() / layout.h);
 	const minS = () => fitAllScale() * 0.9;
 	const MAX_S = 2.5;
 
+	// The minimap box size changes only with the zoom or the stage size.
+	let viewSize = '';
 	function apply() {
 		// Keep the wall centre inside the viewport so it cannot get lost.
 		x = Math.min(vw() / 2, Math.max(vw() / 2 - layout.w * s, x));
 		y = Math.min(vh() / 2, Math.max(vh() / 2 - layout.h * s, y));
 		wall.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
-		view.style.left = `${(-x / s / layout.w) * 100}%`;
-		view.style.top = `${(-y / s / layout.h) * 100}%`;
-		view.style.width = `${(vw() / s / layout.w) * 100}%`;
-		view.style.height = `${(vh() / s / layout.h) * 100}%`;
+		// Size in % of the map, position in % of the box itself, so a pan moves the
+		// box with a transform alone and never lays out the minimap.
+		const size = `${s} ${vw()} ${vh()}`;
+		if (size !== viewSize) {
+			viewSize = size;
+			view.style.width = `${(vw() / s / layout.w) * 100}%`;
+			view.style.height = `${(vh() / s / layout.h) * 100}%`;
+		}
+		view.style.transform = `translate(${(-x / vw()) * 100}%, ${(-y / vh()) * 100}%)`;
 	}
 
 	function fly(on = true) {
@@ -300,7 +312,8 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 		(e) => {
 			e.preventDefault();
 			if (e.ctrlKey || e.metaKey) {
-				zoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - stage.getBoundingClientRect().left, e.clientY - stage.getBoundingClientRect().top);
+				const box = stage.getBoundingClientRect();
+				zoomAt(Math.exp(-e.deltaY * 0.01), e.clientX - box.left, e.clientY - box.top);
 			} else {
 				fly(false);
 				x -= e.deltaX;
@@ -424,10 +437,12 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 		e.preventDefault();
 	});
 
-	window.addEventListener('resize', () => {
+	new ResizeObserver(() => {
+		stageW = stage.clientWidth;
+		stageH = stage.clientHeight;
 		fly(false);
 		apply();
-	});
+	}).observe(stage);
 
 	// Start in front of the placard, or at the photo named in the hash.
 	const hashIndex = layout.rects.findIndex((r) => `#${r.id}` === location.hash);

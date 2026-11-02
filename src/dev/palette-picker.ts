@@ -103,6 +103,10 @@ const CSS = `/* The picker keeps its own colours so the preview stays readable. 
 		color: var(--pp-fg);
 	}
 
+	.pp-glow {
+		padding: 0.625rem 0.75rem 0;
+	}
+
 	.pp-body {
 		flex: 1;
 		padding: 0.75rem;
@@ -255,7 +259,8 @@ const CSS = `/* The picker keeps its own colours so the preview stays readable. 
 		font-size: 10px;
 	}
 
-	.pp-token input[type='text'] {
+	.pp-token input[type='text'],
+	.pp-token select {
 		width: 5.25rem;
 		padding: 0.1875rem 0.375rem;
 		border: 1px solid var(--pp-line);
@@ -264,6 +269,20 @@ const CSS = `/* The picker keeps its own colours so the preview stays readable. 
 		color: var(--pp-fg);
 		font-family: ui-monospace, Menlo, monospace;
 		font-size: 10px;
+	}
+
+	.pp-token input[type='range'] {
+		width: 3.75rem;
+		margin: 0;
+		accent-color: var(--pp-tint);
+	}
+
+	.pp-range-value {
+		width: 1.25rem;
+		color: var(--pp-fg-dim);
+		font-family: ui-monospace, Menlo, monospace;
+		font-size: 10px;
+		text-align: right;
 	}
 
 	.pp-token[data-dirty='true'] .pp-token-label b::after {
@@ -400,6 +419,8 @@ const HTML = `<div id="pp" data-open="false" data-tab="compare">
 			<button id="pp-close" type="button" class="pp-btn pp-btn-ghost" aria-label="Close">✕</button>
 		</header>
 
+		<div id="pp-glow" class="pp-glow"></div>
+
 		<nav class="pp-tabs">
 			<button type="button" class="pp-tab-btn" data-tab="compare">Compare</button>
 			<button type="button" class="pp-tab-btn" data-tab="tokens">Tokens</button>
@@ -433,7 +454,43 @@ interface State {
 	paletteId: string;
 	edit: Mode;
 	overrides: { light: Partial<Scheme>; dark: Partial<Scheme> };
+	// Texture settings over the page glow, per scheme. Unset keys fall back to global.css.
+	glow: Record<Mode, Partial<Record<GlowKey, string>>>;
 }
+
+type GlowKey = '--glow-blend' | '--glow-texture-opacity' | '--glow-texture-fade';
+
+// Used when global.css doesn't declare the key either.
+const GLOW_FALLBACK: Record<GlowKey, string> = {
+	'--glow-blend': 'normal',
+	'--glow-texture-opacity': '1',
+	'--glow-texture-fade': '70%',
+};
+
+const GLOW_SLIDERS: { key: GlowKey; note: string; min: number; max: number; step: number; unit: string }[] = [
+	{ key: '--glow-texture-opacity', note: 'Texture strength', min: 0, max: 1, step: 0.05, unit: '' },
+	{ key: '--glow-texture-fade', note: 'Texture gone at this % of the glow', min: 10, max: 100, step: 5, unit: '%' },
+];
+
+const BLENDS = [
+	'normal',
+	'multiply',
+	'screen',
+	'overlay',
+	'darken',
+	'lighten',
+	'color-dodge',
+	'color-burn',
+	'hard-light',
+	'soft-light',
+	'difference',
+	'exclusion',
+	'hue',
+	'saturation',
+	'color',
+	'luminosity',
+	'plus-lighter',
+];
 
 const root = document.getElementById('pp');
 if (root) {
@@ -446,7 +503,12 @@ if (root) {
 
 	// --- state ---------------------------------------------------------
 	function load(): State {
-		const fallback: State = { paletteId: PALETTES[0].id, edit: 'light', overrides: { light: {}, dark: {} } };
+		const fallback: State = {
+			paletteId: PALETTES[0].id,
+			edit: 'light',
+			overrides: { light: {}, dark: {} },
+			glow: { light: {}, dark: {} },
+		};
 		try {
 			const raw = localStorage.getItem(STORE);
 			return raw ? { ...fallback, ...JSON.parse(raw) } : fallback;
@@ -462,6 +524,40 @@ if (root) {
 
 	function schemeOf(source: Palette, mode: Mode): Scheme {
 		return { ...source[mode], ...state.overrides[mode] } as Scheme;
+	}
+
+	// The value global.css gives a custom property under `selector`, skipping the picker's own overrides.
+	function cssDefault(selector: string, property: string): string | undefined {
+		const scan = (rules: CSSRuleList): string | undefined => {
+			for (const rule of Array.from(rules)) {
+				if (rule instanceof CSSStyleRule && rule.selectorText === selector) {
+					// Tailwind nests an @supports block in :root for color-mix, so declarations after it land in
+					// CSSNestedDeclarations children rather than the rule's own style.
+					const blocks = [rule, ...Array.from(rule.cssRules).filter((child) => child.constructor.name === 'CSSNestedDeclarations')];
+					for (const block of blocks) {
+						const value = (block as CSSStyleRule).style.getPropertyValue(property).trim();
+						if (value) return value;
+					}
+				}
+				if ('cssRules' in rule) {
+					const found = scan((rule as CSSGroupingRule).cssRules);
+					if (found) return found;
+				}
+			}
+		};
+		for (const sheet of Array.from(document.styleSheets)) {
+			if (sheet.ownerNode === styleTag) continue;
+			try {
+				const found = scan(sheet.cssRules);
+				if (found) return found;
+			} catch {
+				// Cross-origin sheets refuse cssRules.
+			}
+		}
+	}
+
+	function glowOf(mode: Mode, key: GlowKey) {
+		return state.glow[mode][key] ?? cssDefault(mode === 'dark' ? ':root.dark' : ':root', key) ?? GLOW_FALLBACK[key];
 	}
 
 	function siteMode(): Mode {
@@ -509,7 +605,8 @@ if (root) {
 		const block = (mode: Mode, selector: string) => {
 			const scheme = schemeOf(palette, mode);
 			const lines = TOKEN_KEYS.map((key) => `--${key}: ${scheme[key]};`).join('');
-			return `${selector}{${lines}}`;
+			const glow = Object.entries(state.glow[mode]).map(([key, value]) => `${key}: ${value};`).join('');
+			return `${selector}{${lines}${glow}}`;
 		};
 		styleTag.textContent = `${block('light', ':root')}${block('dark', ':root.dark')}`;
 	}
@@ -526,7 +623,8 @@ if (root) {
 					})
 					.join('\n'),
 			);
-			return `${selector} {\n${groups.join('\n\n')}\n}`;
+			const glow = (Object.keys(GLOW_FALLBACK) as GlowKey[]).map((key) => `\t${key}: ${glowOf(mode, key)};`).join('\n');
+			return `${selector} {\n${groups.join('\n\n')}\n\n${glow}\n}`;
 		};
 		return `/* ${palette.name} */\n${block('light', ':root')}\n\n${block('dark', ':root.dark')}\n`;
 	}
@@ -604,6 +702,57 @@ if (root) {
 		});
 	}
 
+	// Sits above the tabs so the texture settings are always in reach while comparing palettes.
+	function renderGlow() {
+		const bar = document.getElementById('pp-glow')!;
+		const mode = state.edit;
+		const blend = glowOf(mode, '--glow-blend');
+		const options = BLENDS.map((value) => `<option value="${value}"${value === blend ? ' selected' : ''}>${value}</option>`).join('');
+		const dirty = (key: GlowKey) => state.glow[mode][key] !== undefined;
+		const sliders = GLOW_SLIDERS.map(({ key, note, min, max, step }) => {
+			const value = glowOf(mode, key);
+			return `<div class="pp-token" data-glow="${key}" data-dirty="${dirty(key)}">
+				<span class="pp-token-label"><b>${key}</b><span>${note} (${mode})</span></span>
+				<input type="range" min="${min}" max="${max}" step="${step}" value="${parseFloat(value)}" aria-label="${key}" />
+				<output class="pp-range-value">${value}</output>
+				<button type="button" class="pp-revert" title="Back to the global.css value">↺</button>
+			</div>`;
+		}).join('');
+		bar.innerHTML = `<div class="pp-token" data-glow="--glow-blend" data-dirty="${dirty('--glow-blend')}">
+			<span class="pp-token-label"><b>--glow-blend</b><span>Texture over the glow (${mode})</span></span>
+			<select aria-label="--glow-blend">${options}</select>
+			<button type="button" class="pp-revert" title="Back to the global.css value">↺</button>
+		</div>${sliders}`;
+
+		const set = (key: GlowKey, value: string) => {
+			state.glow[mode][key] = value;
+			save();
+			apply();
+		};
+		bar.querySelector<HTMLSelectElement>('select')!.onchange = (event) => {
+			set('--glow-blend', (event.target as HTMLSelectElement).value);
+			renderGlow();
+		};
+		// Patched in place: re-rendering mid-drag would drop the slider under the pointer.
+		GLOW_SLIDERS.forEach(({ key, unit }) => {
+			const row = bar.querySelector<HTMLElement>(`[data-glow="${key}"]`)!;
+			row.querySelector<HTMLInputElement>('input')!.oninput = (event) => {
+				const value = `${(event.target as HTMLInputElement).value}${unit}`;
+				set(key, value);
+				row.dataset.dirty = 'true';
+				row.querySelector('output')!.textContent = value;
+			};
+		});
+		bar.querySelectorAll<HTMLElement>('[data-glow]').forEach((row) => {
+			row.querySelector<HTMLButtonElement>('.pp-revert')!.onclick = () => {
+				delete state.glow[mode][row.dataset.glow as GlowKey];
+				save();
+				apply();
+				renderGlow();
+			};
+		});
+	}
+
 	// Patches the row in place. A re-render here would drop the <input> that the
 	// colour picker is anchored to, which closes it on the first drag.
 	function setToken(key: TokenKey, value: string) {
@@ -663,6 +812,7 @@ if (root) {
 		renderCompare();
 		renderTokens();
 		renderContrast();
+		renderGlow();
 	}
 
 	// --- chrome ----------------------------------------------------------
@@ -701,10 +851,15 @@ if (root) {
 		const next = siteMode() === 'dark' ? 'light' : 'dark';
 		document.documentElement.classList.toggle('dark', next === 'dark');
 		localStorage.setItem('theme', next);
-		state.edit = next;
+	};
+
+	// Follow the theme wherever it flips (this switch or the site header), so edits land on the visible scheme.
+	new MutationObserver(() => {
+		if (state.edit === siteMode()) return;
+		state.edit = siteMode();
 		save();
 		renderAll();
-	};
+	}).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
 	document.getElementById('pp-copy')!.onclick = async () => {
 		const css = cssText();
@@ -719,6 +874,7 @@ if (root) {
 
 	document.getElementById('pp-reset')!.onclick = () => {
 		state.overrides = { light: {}, dark: {} };
+		state.glow = { light: {}, dark: {} };
 		save();
 		apply();
 		renderAll();

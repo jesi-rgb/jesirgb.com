@@ -21,7 +21,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 			<a
 				href="/"
 				aria-current={pathname === '/' ? 'page' : undefined}
-				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:border-line-strong hover:text-content aria-[current=page]:text-primary"
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors hover:border-line-strong"
 				aria-label={copy.common.home}
 			>
 				<Icon name="solar:home-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:-translate-y-0.5" />
@@ -39,7 +39,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 						<a
 							href={href}
 							aria-current={isActive(href) ? 'page' : undefined}
-							class="block rounded-full px-3.5 py-1.5 text-sm text-content-muted transition-colors hover:text-content aria-[current=page]:text-primary"
+							class="block rounded-full px-3.5 py-1.5 text-sm text-content transition-colors"
 						>
 							{label}
 						</a>
@@ -49,7 +49,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 			<button
 				id="theme-toggle"
-				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:border-line-strong hover:text-content"
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors hover:border-line-strong"
 				aria-label={copy.common.toggleTheme}
 			>
 				<Icon name="solar:sun-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:rotate-90 dark:hidden" />
@@ -58,7 +58,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 			<button
 				id="menu-toggle"
-				class="grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content-muted transition-colors hover:text-content sm:hidden"
+				class="grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors sm:hidden"
 				aria-label={copy.common.menu}
 				aria-expanded="false"
 				aria-controls="mobile-menu"
@@ -80,7 +80,7 @@ const isActive = (href: string) => pathname.startsWith(href);
 					<a
 						href={href}
 						aria-current={isActive(href) ? 'page' : undefined}
-						class="flex items-baseline gap-4 px-5 py-4 text-2xl font-title font-semibold text-content-muted transition-colors hover:text-content aria-[current=page]:text-primary"
+						class="flex items-baseline gap-4 px-5 py-4 text-2xl font-title font-semibold text-content transition-colors"
 					>
 						<span class="label">{String(i + 1).padStart(2, '0')}</span>
 						{label}

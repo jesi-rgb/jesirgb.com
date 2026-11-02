@@ -28,7 +28,8 @@ const { title, description, bare = false, narrow = false, class: className } = A
 			})();
 		</script>
 	</head>
-	<body class:list={['min-h-dvh flex flex-col font-sans bg-canvas text-content antialiased', className]}>
+	<body class:list={['min-h-dvh flex flex-col font-sans text-content antialiased', className]}>
+		{!bare && <div class="page-glow" aria-hidden="true"></div>}
 		{!bare && <Header narrow={narrow} />}
 		<!-- Bare pages fill exactly one screen, so main must not grow past it. -->
 		<main class:list={['flex-1 flex flex-col', bare && 'min-h-0']}>

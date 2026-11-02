@@ -2,8 +2,6 @@
 title: Motivation and persistence
 description: Train of thought to keep me grounded
 date: 2021-06-05
-categories:
-  - thinking
 ---
 
 One bad habit almost every artist and creative has gone (or is going) through is **not finishing** their projects. It is very common to have sudden wips of inspiration, start working very hard on the idea for about 30 minutes and then abandon it when they find themselves stuck.
