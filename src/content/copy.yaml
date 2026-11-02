@@ -28,7 +28,9 @@ home:
   heading: Jesús Rascón
   # {current} is the "current" line below, or empty when there is no current job.
   current: Currently playing console and videos at [{company}]({url}).
-  intro: I design and build interfaces, animations and the marketing tools around them. {current} Before that, at [Graphext](https://graphext.com), [Veritasium](https://www.youtube.com/@veritasium) and [Reducible](https://www.youtube.com/@Reducible).
+  intro: |-
+    I design and build interfaces, animations and the marketing tools around them. {current}
+    Before that, at [Graphext](https://graphext.com), [Veritasium](https://www.youtube.com/@veritasium) and [Reducible](https://www.youtube.com/@Reducible).
   work:
     title: Selected work
     link: All projects

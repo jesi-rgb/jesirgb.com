@@ -105,20 +105,20 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 	<div class="flex h-12 shrink-0 items-center justify-between border-b border-line px-4">
 		<div class="flex min-w-0 items-center gap-3">
 			<a href="/gallery" class="label flex shrink-0 items-center gap-1 transition-colors hover:text-content">
-				<Icon name="solar:arrow-left-linear" class="size-3" /> {t.back}
+				<Icon name="solar:arrow-left-bold-duotone" class="size-3" /> {t.back}
 			</a>
 			<span class="hidden text-content-subtle sm:inline">/</span>
 			<span class="hidden min-w-0 truncate text-sm font-medium tracking-tight sm:inline">{data.title}</span>
 			<span class="label hidden md:inline">· {statusLabel[data.status]}{data.status !== 'permanent' && ` · ${room.dates}`}</span>
 		</div>
 		<div class="flex items-center gap-1">
-			<button data-prev class={btn} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-linear" class="size-4" /></button>
+			<button data-prev class={btn} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-bold-duotone" class="size-4" /></button>
 			<span data-pos class="label w-16 text-center">— / {hang.length}</span>
-			<button data-next class={btn} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-linear" class="size-4" /></button>
+			<button data-next class={btn} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-bold-duotone" class="size-4" /></button>
 			<span class="mx-1 h-4 w-px bg-line" aria-hidden="true"></span>
-			<button data-zoom="-1" class={btn} aria-label={t.controls.zoomOut}><Icon name="solar:minus-circle-linear" class="size-4" /></button>
-			<button data-fit class={btn} aria-label={t.controls.fit}><Icon name="solar:maximize-square-minimalistic-linear" class="size-4" /></button>
-			<button data-zoom="1" class={btn} aria-label={t.controls.zoomIn}><Icon name="solar:add-circle-linear" class="size-4" /></button>
+			<button data-zoom="-1" class={btn} aria-label={t.controls.zoomOut}><Icon name="solar:minus-circle-bold-duotone" class="size-4" /></button>
+			<button data-fit class={btn} aria-label={t.controls.fit}><Icon name="solar:maximize-square-minimalistic-bold-duotone" class="size-4" /></button>
+			<button data-zoom="1" class={btn} aria-label={t.controls.zoomIn}><Icon name="solar:add-circle-bold-duotone" class="size-4" /></button>
 		</div>
 	</div>
 
@@ -164,7 +164,7 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 						{stock && <p class="mono-num text-2xs leading-4 text-content-muted">{stock}{p.data.mono ? ` · ${t.mono}` : ''}</p>}
 						{when && <p class="mono-num text-2xs leading-4 text-content-muted">{when}</p>}
 						<a href={href} class="label mt-1 flex items-center gap-1 self-start transition-colors hover:text-content">
-							{t.open} <Icon name="solar:arrow-right-up-linear" class="size-3" />
+							{t.open} <Icon name="solar:arrow-right-up-bold-duotone" class="size-3" />
 						</a>
 					</div>
 				</>
@@ -177,7 +177,7 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 						<span class="label">{t.nextRoom}</span>
 						<span class="font-title text-xl font-semibold tracking-tight">{next.entry.data.title}</span>
 					</span>
-					<Icon name="solar:arrow-right-linear" class="arrow size-5 shrink-0" />
+					<Icon name="solar:arrow-right-bold-duotone" class="arrow size-5 shrink-0" />
 				</a>
 			)}
 		</div>
@@ -200,14 +200,14 @@ const step = 'grid h-20 place-items-center rounded-lg border border-line text-co
 		</div>
 
 		<p class="label pointer-events-none absolute bottom-4 right-4 hidden items-center gap-1.5 lg:flex">
-			{t.hint.move} · <Icon name="solar:magnifer-zoom-in-line-duotone" class="size-3" /> {t.hint.zoom} · {t.hint.step}
+			{t.hint.move} · <Icon name="solar:magnifer-zoom-in-bold-duotone" class="size-3" /> {t.hint.zoom} · {t.hint.step}
 		</p>
 
 		<!-- Phones: the wall is tall, so the work sits at the top and the step bar
 		     is pinned to the bottom. -->
 		<nav data-steps class="absolute inset-x-0 bottom-0 grid grid-cols-2 gap-3 border-t border-line bg-canvas p-4 sm:hidden">
-			<button data-prev class={step} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-linear" class="size-6" /></button>
-			<button data-next class={step} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-linear" class="size-6" /></button>
+			<button data-prev class={step} aria-label={t.controls.prev}><Icon name="solar:alt-arrow-left-bold-duotone" class="size-6" /></button>
+			<button data-next class={step} aria-label={t.controls.next}><Icon name="solar:alt-arrow-right-bold-duotone" class="size-6" /></button>
 		</nav>
 	</div>
 </Layout>

@@ -504,7 +504,8 @@ if (root) {
 	// --- state ---------------------------------------------------------
 	function load(): State {
 		const fallback: State = {
-			paletteId: PALETTES[0].id,
+			// Start on the palette the hour picked, so the picker matches the page.
+			paletteId: document.documentElement.dataset.palette ?? PALETTES[0].id,
 			edit: 'light',
 			overrides: { light: {}, dark: {} },
 			glow: { light: {}, dark: {} },
@@ -608,7 +609,8 @@ if (root) {
 			const glow = Object.entries(state.glow[mode]).map(([key, value]) => `${key}: ${value};`).join('');
 			return `${selector}{${lines}${glow}}`;
 		};
-		styleTag.textContent = `${block('light', ':root')}${block('dark', ':root.dark')}`;
+		// Extra :root repeats outrank global.css's scheduled palettes (:root.dark[data-palette=…]).
+		styleTag.textContent = `${block('light', ':root:root:root')}${block('dark', ':root:root:root.dark')}`;
 	}
 
 	function cssText() {

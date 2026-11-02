@@ -80,7 +80,7 @@ export const projects: Project[] = [
 		description: 'Tiny little habit tracker.',
 		url: 'https://cycles-sup.vercel.app',
 		year: '2023',
-		status: 'live',
+		status: 'archived',
 	},
 	{
 		name: 'Processing Fellowship Proposal',

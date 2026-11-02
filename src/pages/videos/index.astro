@@ -16,13 +16,18 @@ const t = copy.videos;
 
 		{videosByChannel.map((group, i) => (
 			<div class="animate-rise" style={`--rise: ${i + 2}`}>
-				<div class="mt-14 flex items-baseline justify-between gap-4">
-					<h2 class="font-title text-base font-semibold tracking-tight">{group.channel.name}</h2>
-					<a href={group.channel.url} target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 text-sm text-content">
-						<span class="link-sweep">{t.channelLink}</span>
-						<Icon name="solar:arrow-right-up-linear" class="arrow size-3 text-primary" />
+				<h2 class="mt-14 font-title text-base font-semibold tracking-tight">
+					<a
+						href={group.channel.url}
+						target="_blank"
+						rel="noopener noreferrer"
+						title={t.channelLink}
+						class="group inline-flex items-center gap-1.5"
+					>
+						<span class="link-sweep">{group.channel.name}</span>
+						<Icon name="solar:video-library-bold-duotone" aria-hidden="true" class="size-4 text-primary transition-transform duration-300 ease-out-quart group-hover:scale-110" />
 					</a>
-				</div>
+				</h2>
 				<p class="mt-1 text-sm text-content-muted text-pretty">{group.channel.role}</p>
 				<div class="mt-6 grid gap-x-6 gap-y-10 sm:grid-cols-2">
 					{group.videos.map((v) => <VideoCard video={v} />)}

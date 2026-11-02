@@ -22,9 +22,28 @@ const { title, description, bare = false, narrow = false, class: className } = A
 		<BaseHead title={title} description={description} />
 		<script is:inline>
 			(function () {
+				const root = document.documentElement;
 				const stored = localStorage.getItem('theme');
 				const dark = stored === 'dark' || (!stored && matchMedia('(prefers-color-scheme: dark)').matches);
-				document.documentElement.classList.toggle('dark', dark);
+				root.classList.toggle('dark', dark);
+
+				// Palette by the local hour: each entry starts at its hour and runs until the next one.
+				// Before the first entry, the last one (overnight) still holds. Palettes live in global.css.
+				const schedule = [
+					[5, 'moss'],
+					[9, 'mint'],
+					[18, 'slate'],
+					[23, 'plum'],
+				];
+				function setPalette() {
+					const hour = new Date().getHours();
+					let palette = schedule[schedule.length - 1][1];
+					for (const [from, id] of schedule) if (hour >= from) palette = id;
+					if (root.dataset.palette !== palette) root.dataset.palette = palette;
+				}
+				setPalette();
+				// Catch an hour boundary while the tab stays open.
+				setInterval(setPalette, 60000);
 			})();
 		</script>
 	</head>

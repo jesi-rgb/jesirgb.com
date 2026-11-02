@@ -14,20 +14,20 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 <header
 	id="site-header"
-	class="group/header sticky top-0 z-40 border-b border-transparent transition-[background-color,border-color] duration-300 data-scrolled:border-line data-scrolled:bg-canvas/80 data-scrolled:backdrop-blur-md"
+	class="group/header sticky top-0 z-40"
 >
 	<nav class:list={['mx-auto flex h-16 items-center justify-center px-5 sm:px-8', narrow ? 'max-w-2xl' : 'max-w-5xl']}>
 		<div class="flex items-center gap-2">
 			<a
 				href="/"
 				aria-current={pathname === '/' ? 'page' : undefined}
-				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors hover:border-line-strong"
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated text-content transition-colors hover:border-line-strong"
 				aria-label={copy.common.home}
 			>
-				<Icon name="solar:home-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:-translate-y-0.5" />
+				<Icon name="solar:home-2-bold" class="size-4 transition-transform duration-500 ease-spring group-hover:-translate-y-0.5" />
 			</a>
 
-			<ul id="nav-links" class="relative hidden items-center rounded-full border border-line bg-canvas-elevated/70 p-1 shadow-[0_1px_2px_rgb(0_0_0/0.04)] sm:flex">
+			<ul id="nav-links" class="relative hidden items-center rounded-full border border-line bg-canvas-elevated p-1 shadow-[0_1px_2px_rgb(0_0_0/0.04)] sm:flex">
 				<!-- Pill that slides under the hovered link and rests on the active one. -->
 				<span
 					id="nav-pill"
@@ -49,22 +49,22 @@ const isActive = (href: string) => pathname.startsWith(href);
 
 			<button
 				id="theme-toggle"
-				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors hover:border-line-strong"
+				class="group grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated text-content transition-colors hover:border-line-strong"
 				aria-label={copy.common.toggleTheme}
 			>
-				<Icon name="solar:sun-2-linear" class="size-4 transition-transform duration-500 ease-spring group-hover:rotate-90 dark:hidden" />
-				<Icon name="solar:moon-stars-linear" class="hidden size-4 transition-transform duration-500 ease-spring group-hover:-rotate-12 dark:block" />
+				<Icon name="solar:sun-2-bold" class="size-4 transition-transform duration-500 ease-spring group-hover:rotate-90 dark:hidden" />
+				<Icon name="solar:moon-stars-bold" class="hidden size-4 transition-transform duration-500 ease-spring group-hover:-rotate-12 dark:block" />
 			</button>
 
 			<button
 				id="menu-toggle"
-				class="grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated/70 text-content transition-colors sm:hidden"
+				class="grid size-9 place-items-center rounded-full border border-line bg-canvas-elevated text-content transition-colors sm:hidden"
 				aria-label={copy.common.menu}
 				aria-expanded="false"
 				aria-controls="mobile-menu"
 			>
-				<Icon name="solar:hamburger-menu-linear" class="size-4 group-data-open/header:hidden" />
-				<Icon name="solar:close-circle-linear" class="hidden size-4 group-data-open/header:block" />
+				<Icon name="solar:hamburger-menu-bold" class="size-4 group-data-open/header:hidden" />
+				<Icon name="solar:close-circle-bold" class="hidden size-4 group-data-open/header:block" />
 			</button>
 		</div>
 	</nav>
@@ -101,11 +101,6 @@ const isActive = (href: string) => pathname.startsWith(href);
 		const dark = document.documentElement.classList.toggle('dark');
 		localStorage.setItem('theme', dark ? 'dark' : 'light');
 	});
-
-	// Show the border and blur only after the page scrolls.
-	const onScroll = () => header.toggleAttribute('data-scrolled', scrollY > 8);
-	addEventListener('scroll', onScroll, { passive: true });
-	onScroll();
 
 	// Move the pill under a link. With no link, hide the pill.
 	const moveTo = (link: HTMLElement | null) => {

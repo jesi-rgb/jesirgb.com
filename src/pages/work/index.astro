@@ -28,8 +28,8 @@ const rest = projects.filter((p) => p.status === 'archived' || p.status === 'unf
 			{rest.length > 0 && (
 				<details class="group/d mt-6">
 					<summary class="inline-flex cursor-pointer list-none items-center gap-1.5 text-sm text-content-muted transition-colors select-none hover:text-content">
-						<Icon name="solar:add-circle-linear" class="size-3.5 group-open/d:hidden" />
-						<Icon name="solar:minus-circle-linear" class="hidden size-3.5 group-open/d:block" />
+						<Icon name="solar:add-circle-bold-duotone" class="size-3.5 group-open/d:hidden" />
+						<Icon name="solar:minus-circle-bold-duotone" class="hidden size-3.5 group-open/d:block" />
 						<span class="group-open/d:hidden">{fill(t.projects.showRest, { count: rest.length })}</span>
 						<span class="hidden group-open/d:inline">{t.projects.hideRest}</span>
 					</summary>
@@ -52,7 +52,7 @@ const rest = projects.filter((p) => p.status === 'archived' || p.status === 'unf
 							{e.details && (
 								<ul class="mt-3 flex flex-col gap-3">
 									{e.details.map((d) => (
-										<li class="flex gap-2.5"><Icon name="solar:minus-circle-linear" class="mt-1 size-3 shrink-0 text-content-subtle" /><span>{d}</span></li>
+										<li class="flex gap-2.5"><Icon name="solar:minus-circle-bold-duotone" class="mt-1 size-3 shrink-0 text-content-subtle" /><span>{d}</span></li>
 									))}
 								</ul>
 							)}

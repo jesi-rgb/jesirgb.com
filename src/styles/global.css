@@ -41,7 +41,8 @@
 	--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Light theme. Mint greens carried over from the 2024 site. */
+/* Light theme. Mint greens carried over from the 2024 site. Mint is the default palette; the others
+   below take over through data-palette on <html>, which Layout.astro sets from the local hour. */
 :root {
 	--base: #f6fffb;
 	--base-muted: #ecfbf4;
@@ -100,6 +101,128 @@
 	--glow-texture-fade: 70%;
 
 	color-scheme: dark;
+}
+
+/* Scheduled palettes. Each sets every colour token for both modes; --focus, --overlay and the glow
+   settings carry over from the blocks above. Values mirror src/dev/palettes.ts. */
+:root[data-palette='moss'] {
+	--base: #fbfaf4;
+	--base-muted: #f3f2e8;
+	--base-subtle: #eceade;
+	--base-elevated: #ffffff;
+	--base-hover: #e5e3d3;
+	--line: #ddd9c6;
+	--line-strong: #b8b19a;
+
+	--content: #1d2216;
+	--content-muted: #4b5340;
+	--content-subtle: #74795f;
+
+	--primary: #3f6212;
+	--primary-hover: #324e0e;
+	--primary-muted: #4d7c0f;
+	--primary-subtle: #eaeeda;
+	--primary-content: #fbfaf4;
+}
+
+:root.dark[data-palette='moss'] {
+	--base: #14160f;
+	--base-muted: #1b1e14;
+	--base-subtle: #23271a;
+	--base-elevated: #1e2116;
+	--base-hover: #2c3020;
+	--line: #2f3423;
+	--line-strong: #4b5334;
+
+	--content: #f1f0e6;
+	--content-muted: #b7bca4;
+	--content-subtle: #868a72;
+
+	--primary: #a3e635;
+	--primary-hover: #bef264;
+	--primary-muted: #84cc16;
+	--primary-subtle: #22280f;
+	--primary-content: #14160f;
+}
+
+:root[data-palette='slate'] {
+	--base: #f8fafc;
+	--base-muted: #f1f5f9;
+	--base-subtle: #e9eff5;
+	--base-elevated: #ffffff;
+	--base-hover: #e2e8f0;
+	--line: #dbe3ec;
+	--line-strong: #a9b6c6;
+
+	--content: #0f1c2b;
+	--content-muted: #475569;
+	--content-subtle: #7c8a9a;
+
+	--primary: #0e7490;
+	--primary-hover: #155e75;
+	--primary-muted: #0891b2;
+	--primary-subtle: #e0f2f7;
+	--primary-content: #f8fafc;
+}
+
+:root.dark[data-palette='slate'] {
+	--base: #080d13;
+	--base-muted: #0e151d;
+	--base-subtle: #151f2a;
+	--base-elevated: #111923;
+	--base-hover: #1d2938;
+	--line: #1c2836;
+	--line-strong: #33475e;
+
+	--content: #eef4fa;
+	--content-muted: #9fb1c4;
+	--content-subtle: #6f8094;
+
+	--primary: #67e8f9;
+	--primary-hover: #a5f3fc;
+	--primary-muted: #22d3ee;
+	--primary-subtle: #07242c;
+	--primary-content: #04191f;
+}
+
+:root[data-palette='plum'] {
+	--base: #fbf9fd;
+	--base-muted: #f4f0f9;
+	--base-subtle: #ede7f5;
+	--base-elevated: #ffffff;
+	--base-hover: #e5dcf0;
+	--line: #e3dbef;
+	--line-strong: #bcaed3;
+
+	--content: #1e1526;
+	--content-muted: #574a66;
+	--content-subtle: #857792;
+
+	--primary: #6d28d9;
+	--primary-hover: #5b21b6;
+	--primary-muted: #7c3aed;
+	--primary-subtle: #ece5fb;
+	--primary-content: #fbf9fd;
+}
+
+:root.dark[data-palette='plum'] {
+	--base: #100b16;
+	--base-muted: #17111f;
+	--base-subtle: #1f1729;
+	--base-elevated: #1a1322;
+	--base-hover: #291e36;
+	--line: #291f36;
+	--line-strong: #453357;
+
+	--content: #f5f0fa;
+	--content-muted: #b6a8c6;
+	--content-subtle: #857794;
+
+	--primary: #c4b5fd;
+	--primary-hover: #ddd6fe;
+	--primary-muted: #a78bfa;
+	--primary-subtle: #1c1330;
+	--primary-content: #130b22;
 }
 
 @font-face {
