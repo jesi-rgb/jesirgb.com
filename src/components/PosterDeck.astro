@@ -1,0 +1,196 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+import type { Poster } from '../data/posters';
+
+interface Props {
+	posters: Poster[];
+	label: string;
+	hint: string;
+	prev: string;
+	next: string;
+}
+const { posters, label, hint, prev, next } = Astro.props;
+
+// The pile is tilted at build time, so it reads as a stack without JavaScript.
+// The script re-tilts a card each time it goes to the bottom. Keep both ranges in step.
+const rand = (a: number) => (Math.random() * 2 - 1) * a;
+const tilt = () => `translate(${rand(10).toFixed(1)}px, ${rand(8).toFixed(1)}px) rotate(${rand(7).toFixed(1)}deg)`;
+
+const btn = 'grid size-8 place-items-center rounded-md text-content-muted transition-colors hover:bg-canvas-subtle hover:text-content';
+---
+
+<!-- Clips the card that flies off the side, so phones don't scroll sideways, and feathers it out at the edges. -->
+<div class="deck-stage -mx-5 overflow-x-clip px-5 py-16 sm:-mx-8 sm:px-8">
+	<div
+		data-deck
+		tabindex="0"
+		role="group"
+		aria-roledescription="carousel"
+		aria-label={label}
+		class="deck relative mx-auto aspect-[5/7] w-56 cursor-grab touch-pan-y rounded-lg select-none focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-primary active:cursor-grabbing sm:w-64"
+	>
+		{posters.map((p, i) => (
+			<div
+				data-card
+				data-title={p.title}
+				class="absolute inset-0 overflow-hidden rounded-lg border border-line bg-canvas-muted shadow-[0_1px_2px_rgb(0_0_0/0.06),0_12px_30px_-14px_rgb(0_0_0/0.4)]"
+				style={`z-index: ${posters.length - i}; transform: ${tilt()}`}
+				aria-hidden={i > 0 ? 'true' : undefined}
+			>
+				<Image
+					src={p.src}
+					alt={p.title}
+					width={256}
+					densities={[1, 2]}
+					class="size-full object-cover"
+					loading={i < 3 ? 'eager' : 'lazy'}
+					draggable="false"
+				/>
+			</div>
+		))}
+	</div>
+</div>
+
+<div class="flex items-center justify-center gap-2">
+	<button data-deck-prev class={btn} aria-label={prev}><Icon name="solar:alt-arrow-left-linear" class="size-4" /></button>
+	<p data-deck-caption class="label w-40 text-center" aria-live="polite">{posters[0].title} · 1 / {posters.length}</p>
+	<button data-deck-next class={btn} aria-label={next}><Icon name="solar:alt-arrow-right-linear" class="size-4" /></button>
+</div>
+<p class="mt-1 text-center text-xs text-content-subtle">{hint}</p>
+
+<style>
+	.deck img {
+		-webkit-user-drag: none;
+	}
+	/* Soft horizontal fade, so a card thrown past the column dissolves instead of being cut. */
+	.deck-stage {
+		--feather: 3rem;
+		mask-image: linear-gradient(to right, transparent, #000 var(--feather), #000 calc(100% - var(--feather)), transparent);
+	}
+	@media (min-width: 40rem) {
+		.deck-stage {
+			--feather: 8rem;
+		}
+	}
+</style>
+
+<script>
+	// A pile of posters. The top card flies off the side and slides back in at the bottom.
+	// `order` holds card indexes, top first. Animations end where the inline transform already is,
+	// so cancelling one leaves the card in place.
+	const deck = document.querySelector<HTMLElement>('[data-deck]');
+	if (deck) {
+		const cards = [...deck.querySelectorAll<HTMLElement>('[data-card]')];
+		const caption = document.querySelector<HTMLElement>('[data-deck-caption]')!;
+		const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const n = cards.length;
+		const order = cards.map((_, i) => i);
+		// Stacking overrides for cards in flight: above the pile on the way out, below it on the way back.
+		const lift = new Map<HTMLElement, number>();
+		// The flick leaves fast and settles at the far point; the return tucks under the pile.
+		const OUT = { ms: 150, easing: 'cubic-bezier(0.2, 0.9, 0.3, 1)' };
+		const BACK = { ms: 240, easing: 'cubic-bezier(0.5, 0, 0.2, 1)' };
+		const SPRING = { ms: 220, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' };
+
+		const rand = (a: number) => (Math.random() * 2 - 1) * a;
+		const tilt = () => `translate(${rand(10).toFixed(1)}px, ${rand(8).toFixed(1)}px) rotate(${rand(7).toFixed(1)}deg)`;
+		// Far enough to clear the pile, so the card reads as going round the back.
+		const away = (dir: number) => `translate(${dir * deck.clientWidth * 1.1}px, -24px) rotate(${dir * 18}deg)`;
+
+		function layout() {
+			order.forEach((c, depth) => {
+				const el = cards[c];
+				el.style.zIndex = String(lift.get(el) ?? n - depth);
+				if (depth === 0) el.removeAttribute('aria-hidden');
+				else el.setAttribute('aria-hidden', 'true');
+			});
+			caption.textContent = `${cards[order[0]].dataset.title} · ${order[0] + 1} / ${n}`;
+		}
+
+		// Stops what the card is doing and pins it where it is on screen.
+		function hold(el: HTMLElement) {
+			const now = getComputedStyle(el).transform;
+			for (const a of el.getAnimations()) a.cancel();
+			el.style.transform = now;
+			return now;
+		}
+
+		// Resolves false when another move cancelled this one.
+		function move(el: HTMLElement, to: string, { ms, easing }: { ms: number; easing: string }) {
+			const from = el.style.transform;
+			el.style.transform = to;
+			if (still) return Promise.resolve(true);
+			return el
+				.animate([{ transform: from }, { transform: to }], { duration: ms, easing })
+				.finished.then(
+					() => true,
+					() => false,
+				);
+		}
+
+		async function next(dir = 1) {
+			const el = cards[order[0]];
+			order.push(order.shift()!);
+			hold(el);
+			lift.set(el, n + 1);
+			layout();
+			if (!(await move(el, away(dir), OUT))) return;
+			lift.delete(el);
+			layout();
+			await move(el, tilt(), BACK);
+		}
+
+		async function prev() {
+			const el = cards[order[n - 1]];
+			order.unshift(order.pop()!);
+			hold(el);
+			// Still in the air from a flip: bring it straight back on top.
+			if (lift.get(el) !== n + 1) {
+				lift.set(el, 0);
+				layout();
+				if (!(await move(el, away(-1), OUT))) return;
+			}
+			lift.delete(el);
+			layout();
+			await move(el, tilt(), BACK);
+		}
+
+		// Drag the top card. A short drag springs back, a long one flips it, a tap flips it too.
+		let drag: { id: number; x: number; y: number; dx: number; base: string; moved: boolean } | null = null;
+		const top = () => cards[order[0]];
+
+		deck.addEventListener('pointerdown', (e) => {
+			if (e.button !== 0) return;
+			deck.setPointerCapture(e.pointerId);
+			drag = { id: e.pointerId, x: e.clientX, y: e.clientY, dx: 0, base: hold(top()), moved: false };
+		});
+		deck.addEventListener('pointermove', (e) => {
+			if (!drag || e.pointerId !== drag.id) return;
+			const dx = e.clientX - drag.x;
+			const dy = e.clientY - drag.y;
+			if (!drag.moved && Math.hypot(dx, dy) < 5) return;
+			drag.moved = true;
+			drag.dx = dx;
+			top().style.transform = `translate(${dx}px, ${dy * 0.4}px) rotate(${dx * 0.05}deg) ${drag.base}`;
+		});
+		const release = (e: PointerEvent) => {
+			if (!drag || e.pointerId !== drag.id) return;
+			const { dx, base, moved } = drag;
+			drag = null;
+			if (e.type === 'pointerup' && (!moved || Math.abs(dx) > deck.clientWidth * 0.25)) next(moved ? Math.sign(dx) : 1);
+			else move(top(), base, SPRING);
+		};
+		deck.addEventListener('pointerup', release);
+		deck.addEventListener('pointercancel', release);
+
+		deck.addEventListener('keydown', (e) => {
+			if (e.key === 'ArrowLeft') prev();
+			else if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') next();
+			else return;
+			e.preventDefault();
+		});
+		document.querySelector('[data-deck-prev]')!.addEventListener('click', prev);
+		document.querySelector('[data-deck-next]')!.addEventListener('click', () => next());
+	}
+</script>

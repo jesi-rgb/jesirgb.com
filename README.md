@@ -11,7 +11,9 @@ bun run build
 ## Pages
 
 - `/` landing. Pulls from `src/data/work.ts`, the blog and the gallery.
-- `/work` projects and experience. Edit `src/data/work.ts`.
+- `/work` projects, experience and a deck of posters. Edit `src/data/work.ts`;
+  posters are files in `src/posters/`, stacked in the order listed in
+  `src/data/posters.ts` (top card first). The pile's tilt is random per build.
 - `/blog` markdown posts in `src/content/blog/`.
 - `/gallery` the exhibition list. `/gallery/[exhibition]` is one room: a wall
   you pan and zoom, with the wall text at the centre and a label under each

@@ -1,10 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
+import PosterDeck from '../../components/PosterDeck.astro';
 import Layout from '../../layouts/Layout.astro';
 import Copy from '../../components/Copy.astro';
 import ListRow from '../../components/ListRow.astro';
 import ProjectRow from '../../components/ProjectRow.astro';
 import { experience, projects } from '../../data/work';
+import { posters } from '../../data/posters';
 import { copy, fill } from '../../data/copy';
 
 const t = copy.work;
@@ -58,6 +60,12 @@ const rest = projects.filter((p) => p.status === 'archived' || p.status === 'unf
 					</li>
 				))}
 			</ul>
+		</div>
+
+		<div class="animate-rise" style="--rise: 4">
+			<h2 id="posters" class="mt-14 scroll-mt-24 font-title text-base font-semibold tracking-tight">{t.posters.title}</h2>
+			<p class="mt-2 text-content-muted text-pretty">{t.posters.intro}</p>
+			<PosterDeck posters={posters} label={t.posters.deck} hint={t.posters.hint} prev={t.posters.prev} next={t.posters.next} />
 		</div>
 	</section>
 </Layout>

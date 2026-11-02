@@ -45,6 +45,13 @@ work:
   experience:
     title: Experience
     current: Current
+  posters:
+    title: Posters
+    intro: A selection of colors, shapes and inspiration
+    deck: Poster deck
+    hint: Tap or swipe to flip
+    prev: Previous poster
+    next: Next poster
   status:
     live: Live
     building: Building

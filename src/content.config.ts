@@ -127,7 +127,6 @@ const copy = defineCollection({
 		site: z.object({ title: t, description: t }),
 		nav: z.array(z.object({ href: t, label: t })),
 		common: z.object({ home: t, toggleTheme: t, menu: t, now: t }),
-		footer: z.object({ blurb: t }),
 		notFound: z.object({ title: t, description: t, heading: t, back: t }),
 		home: z.object({ heading: t, intro: t, current: t, work: link }),
 		work: z.object({
@@ -136,6 +135,7 @@ const copy = defineCollection({
 			heading: t,
 			projects: z.object({ title: t, intro: t, showRest: t, hideRest: t }),
 			experience: z.object({ title: t, current: t }),
+			posters: z.object({ title: t, intro: t, deck: t, hint: t, prev: t, next: t }),
 			status: z.object({ live: t, building: t, archived: t, unfinished: t }),
 		}),
 		blog: z.object({
