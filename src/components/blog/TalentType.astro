@@ -1,0 +1,54 @@
+---
+// "Talent" in Whirly Birdie: the pointer sets weight (vertical) and italic (horizontal), the clock's
+// seconds sweep the width. The word is editable.
+---
+
+<talent-type
+	role="figure"
+	aria-label="Talent, set in a variable typeface"
+	class="not-prose my-10 flex h-24 items-center justify-center overflow-hidden rounded-lg border border-dashed border-line-strong bg-canvas-muted text-4xl text-content"
+>
+	<div data-type contenteditable="true" spellcheck="false" class="outline-none" style="font-family: 'Whirly Birdie'">
+		Talent
+	</div>
+</talent-type>
+
+<style>
+	@font-face {
+		font-family: 'Whirly Birdie';
+		src: url('https://jesi-rgb-fonts.s3.eu-west-3.amazonaws.com/WhirlyBirdieVariable.ttf') format('truetype');
+		font-weight: 50 100;
+		font-display: swap;
+	}
+</style>
+
+<script>
+	const lerp = (t: number, from: number, to: number) => from + Math.min(1, Math.max(0, t)) * (to - from);
+
+	class TalentType extends HTMLElement {
+		#weight = 100;
+		#italic = 0;
+		#timer = 0;
+
+		connectedCallback() {
+			const type = this.querySelector<HTMLElement>('[data-type]')!;
+			const paint = () => {
+				const width = lerp(new Date().getSeconds() / 60, 50, 150);
+				type.style.fontVariationSettings = `'wght' ${this.#weight}, 'ital' ${this.#italic}, 'wdth' ${width}`;
+			};
+			this.addEventListener('pointermove', (event) => {
+				const { left, top, width, height } = this.getBoundingClientRect();
+				this.#weight = lerp((event.clientY - top) / height, 50, 100);
+				this.#italic = lerp((event.clientX - left) / width, 0, 20);
+				paint();
+			});
+			paint();
+			this.#timer = window.setInterval(paint, 1000);
+		}
+
+		disconnectedCallback() {
+			clearInterval(this.#timer);
+		}
+	}
+	customElements.define('talent-type', TalentType);
+</script>

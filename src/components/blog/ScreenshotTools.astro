@@ -1,0 +1,60 @@
+---
+import { Image } from 'astro:assets';
+import shottr from '../../assets/blog/screenshooting-essentials/shottr.webp';
+import cleanshot from '../../assets/blog/screenshooting-essentials/cleanshot.webp';
+
+// Two tilted landing-page shots that rise in once scrolled into view and tilt the other way on hover.
+---
+
+<figure class="not-prose my-16">
+	<tool-shots class="relative block h-[300px] sm:h-[400px]">
+		<Image
+			src={shottr}
+			alt="Shottr landing page"
+			width={500}
+			densities={[1, 2]}
+			class="shot absolute -top-4 -left-2 w-[80%] max-w-[500px] -rotate-6 rounded-lg border border-line shadow-xl shadow-primary/20 hover:rotate-6 sm:-top-10 sm:-left-10"
+			style="--delay: 200ms; --from: 20px"
+		/>
+		<Image
+			src={cleanshot}
+			alt="CleanShot landing page"
+			width={380}
+			densities={[1, 2]}
+			class="shot absolute -right-2 bottom-0 w-[65%] max-w-[380px] rotate-[8deg] rounded-md border border-line shadow-xl shadow-primary/20 hover:-rotate-[8deg] sm:-right-10"
+			style="--delay: 400ms; --from: 50px"
+		/>
+	</tool-shots>
+	<figcaption class="mt-6 text-center text-sm text-content-subtle">Shottr and CleanShot landing pages</figcaption>
+</figure>
+
+<style>
+	.shot {
+		transition:
+			opacity 500ms var(--ease-out-quart) var(--delay),
+			translate 500ms var(--ease-out-quart) var(--delay),
+			rotate 500ms var(--ease-out-quart);
+	}
+
+	/* Without scripts the shots just sit in place. */
+	@media (scripting: enabled) {
+		tool-shots:not([data-visible]) .shot {
+			opacity: 0;
+			translate: 0 var(--from);
+		}
+	}
+</style>
+
+<script>
+	class ToolShots extends HTMLElement {
+		connectedCallback() {
+			const observer = new IntersectionObserver(([entry]) => {
+				if (!entry.isIntersecting) return;
+				this.dataset.visible = '';
+				observer.disconnect();
+			});
+			observer.observe(this);
+		}
+	}
+	customElements.define('tool-shots', ToolShots);
+</script>

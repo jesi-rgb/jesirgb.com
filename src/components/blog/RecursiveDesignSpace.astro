@@ -1,0 +1,44 @@
+---
+// Recursive's Casual axis under the pointer: linear at the left edge, casual at the right. The word is editable.
+---
+
+<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CASL,CRSV,MONO@-15..0,300..1000,0..1,0..1,0..1&display=swap"
+/>
+<recursive-space
+	role="figure"
+	aria-label="Recursive, from linear to casual"
+	class="not-prose relative my-10 flex h-24 items-center justify-center overflow-hidden rounded-lg border border-dashed border-line-strong bg-canvas-muted text-content"
+>
+	<svg aria-hidden="true" class="pointer-events-none absolute inset-x-0 bottom-0 h-6 w-full text-content-subtle">
+		<line x1="5%" y1="50%" x2="95%" y2="50%" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="20 20">
+			<animate attributeName="stroke-dashoffset" values="0;100" dur="8s" repeatCount="indefinite" />
+		</line>
+	</svg>
+	<span class="label absolute left-6 max-sm:hidden">Linear</span>
+	<span class="label absolute right-6 max-sm:hidden">Casual</span>
+	<div
+		data-type
+		contenteditable="true"
+		spellcheck="false"
+		class="text-5xl outline-none"
+		style="font-family: Recursive; font-weight: 800; font-variation-settings: 'CASL' 0, 'CRSV' 1"
+	>
+		Recursive
+	</div>
+</recursive-space>
+
+<script>
+	class RecursiveSpace extends HTMLElement {
+		connectedCallback() {
+			const type = this.querySelector<HTMLElement>('[data-type]')!;
+			this.addEventListener('pointermove', (event) => {
+				const { left, width } = this.getBoundingClientRect();
+				const casual = Math.min(1, Math.max(0, (event.clientX - left) / width));
+				type.style.fontVariationSettings = `'CASL' ${casual.toFixed(3)}, 'CRSV' 1`;
+			});
+		}
+	}
+	customElements.define('recursive-space', RecursiveSpace);
+</script>

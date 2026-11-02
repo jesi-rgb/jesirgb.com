@@ -1,0 +1,43 @@
+---
+// Seven-segment clock showing the reader's local time; the colon blinks each second.
+---
+
+<blog-clock class="not-prose my-10 block text-center text-3xl text-content" style="font-family: 'DSEG7 Classic Mini'">
+	<time>--:--</time>
+</blog-clock>
+
+<style>
+	@font-face {
+		font-family: 'DSEG7 Classic Mini';
+		src: url('/fonts/DSEG7ClassicMini-Bold.woff') format('woff');
+		font-weight: 400 700;
+		font-display: block;
+	}
+</style>
+
+<script>
+	const pad = (n: number) => String(n).padStart(2, '0');
+
+	class BlogClock extends HTMLElement {
+		#timer = 0;
+
+		connectedCallback() {
+			const time = this.querySelector('time')!;
+			let blink = false;
+			const tick = () => {
+				const now = new Date();
+				// DSEG's space is as wide as its colon, so the digits hold still while it blinks.
+				time.textContent = `${pad(now.getHours())}${blink ? ' ' : ':'}${pad(now.getMinutes())}`;
+				time.dateTime = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+				blink = !blink;
+			};
+			tick();
+			this.#timer = window.setInterval(tick, 1000);
+		}
+
+		disconnectedCallback() {
+			clearInterval(this.#timer);
+		}
+	}
+	customElements.define('blog-clock', BlogClock);
+</script>

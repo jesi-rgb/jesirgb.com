@@ -1,0 +1,72 @@
+---
+// OpenType feature demo for typography posts. The `compare` slot renders twice, with `features`
+// off and on; the default slot is a sample the reader toggles, with the matching CSS shown below.
+interface Props {
+	// OpenType tags, e.g. ['liga', 'dlig'].
+	features: string[];
+	// Typeface name for the label.
+	font: string;
+	// CSS font-family for the samples.
+	family: string;
+	// Webfont stylesheet that serves `family`.
+	stylesheet?: string;
+	// Sample sizing.
+	class?: string;
+}
+
+const { features, font, family, stylesheet, class: className } = Astro.props;
+const settings = (value: 0 | 1) => features.map((tag) => `'${tag}' ${value}`).join(', ');
+const compare = await Astro.slots.render('compare');
+---
+
+{stylesheet && <link rel="stylesheet" href={stylesheet} />}
+<feature-demo
+	class="not-prose my-10 block rounded-lg border border-dashed border-line-strong bg-canvas-muted px-5 py-4"
+	data-off={settings(0)}
+	data-on={settings(1)}
+>
+	<div class:list={['text-content', className]} style={{ fontFamily: family }}>
+		<div class="flex flex-col justify-around gap-4 text-center sm:flex-row sm:text-left">
+			{([0, 1] as const).map((value) => (
+				<div>
+					<span class="label block">{value ? 'on' : 'off'}</span>
+					<div style={{ fontFeatureSettings: settings(value) }}><Fragment set:html={compare} /></div>
+				</div>
+			))}
+		</div>
+		<div class="mt-6 flex flex-col items-center gap-3">
+			<div data-sample style={{ fontFeatureSettings: settings(0) }}><slot /></div>
+			<button
+				type="button"
+				aria-pressed="false"
+				class="rounded-full border border-line-strong px-3 py-0.5 font-mono text-2xs uppercase tracking-widest text-content-muted transition-colors hover:border-primary hover:text-primary aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-content"
+			>
+				Swap
+			</button>
+		</div>
+	</div>
+	<div class="mt-6 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+		<span class="font-mono text-xs text-content-muted">
+			<span class="label mr-2 text-primary">CSS</span>font-feature-settings: <span data-css>{settings(0)}</span>;
+		</span>
+		<span class="self-end text-sm text-content-subtle" style={{ fontFamily: family }}>{font}</span>
+	</div>
+</feature-demo>
+
+<script>
+	class FeatureDemo extends HTMLElement {
+		connectedCallback() {
+			const button = this.querySelector('button')!;
+			const sample = this.querySelector<HTMLElement>('[data-sample]')!;
+			const css = this.querySelector('[data-css]')!;
+			button.addEventListener('click', () => {
+				const on = button.getAttribute('aria-pressed') !== 'true';
+				const value = (on ? this.dataset.on : this.dataset.off) ?? '';
+				button.setAttribute('aria-pressed', String(on));
+				sample.style.fontFeatureSettings = value;
+				css.textContent = value;
+			});
+		}
+	}
+	customElements.define('feature-demo', FeatureDemo);
+</script>

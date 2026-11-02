@@ -1,0 +1,59 @@
+---
+// PNG vs WebP size of the same screenshot. Bars and figures count up once scrolled into view.
+const formats = [
+	{ label: 'PNG', kb: 100, bar: 'bg-content-subtle' },
+	{ label: 'WebP', kb: 15, bar: 'bg-primary' },
+];
+---
+
+<file-size class="not-prose my-10 flex flex-col gap-5 mono-num text-sm text-content">
+	{formats.map(({ label, kb, bar }) => (
+		<div data-kb={kb}>
+			<div class="flex justify-between">
+				<span>{label}</span>
+				<span><span data-value>{kb}</span> kB</span>
+			</div>
+			<div class="mt-1.5 h-2 overflow-hidden rounded-full bg-canvas-subtle">
+				<div data-bar class:list={['h-full origin-left rounded-full', bar]} style={`transform: scaleX(${kb / 100})`}></div>
+			</div>
+		</div>
+	))}
+</file-size>
+
+<script>
+	const DELAY = 500;
+	const DURATION = 800;
+	const cubicOut = (t: number) => 1 - (1 - t) ** 3;
+
+	class FileSize extends HTMLElement {
+		connectedCallback() {
+			const rows = [...this.querySelectorAll<HTMLElement>('[data-kb]')].map((row) => ({
+				kb: Number(row.dataset.kb),
+				value: row.querySelector('[data-value]')!,
+				bar: row.querySelector<HTMLElement>('[data-bar]')!,
+			}));
+			const paint = (t: number) => {
+				for (const { kb, value, bar } of rows) {
+					value.textContent = (kb * t).toFixed(0);
+					bar.style.transform = `scaleX(${(kb / 100) * t})`;
+				}
+			};
+			if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+			paint(0);
+
+			const observer = new IntersectionObserver(([entry]) => {
+				if (!entry.isIntersecting) return;
+				observer.disconnect();
+				const start = performance.now() + DELAY;
+				const frame = (now: number) => {
+					const t = Math.min(1, Math.max(0, (now - start) / DURATION));
+					paint(cubicOut(t));
+					if (t < 1) requestAnimationFrame(frame);
+				};
+				requestAnimationFrame(frame);
+			});
+			observer.observe(this);
+		}
+	}
+	customElements.define('file-size', FileSize);
+</script>

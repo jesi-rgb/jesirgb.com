@@ -67,9 +67,9 @@
 	--overlay: color-mix(in oklab, var(--content) 55%, transparent);
 	/* Ice texture over the page glow: how it mixes in (any mix-blend-mode value), how strongly, and where
 	   it has faded out, as a share of the glow's radius. It eases out over the last three quarters of that. */
-	--glow-blend: luminosity;
+	--glow-blend: screen;
 	--glow-texture-opacity: 1;
-	--glow-texture-fade: 70%;
+	--glow-texture-fade: 100%;
 
 	color-scheme: light;
 }
@@ -96,9 +96,9 @@
 
 	--focus: var(--primary);
 	--overlay: color-mix(in oklab, #000000 65%, transparent);
-	--glow-blend: luminosity;
-	--glow-texture-opacity: 1;
-	--glow-texture-fade: 70%;
+	--glow-blend: hard-light;
+	--glow-texture-opacity: 0.4;
+	--glow-texture-fade: 95%;
 
 	color-scheme: dark;
 }
@@ -245,10 +245,14 @@
 		color: var(--primary-content);
 	}
 
+	/* Italics come from the font's 'ital' axis. Typography still sets font-style: italic on .prose
+	   blockquote, and with no italic @font-face the browser would slant the ital glyphs again, so
+	   synthesis is off here. */
 	i,
 	em,
 	blockquote {
 		font-style: normal;
+		font-synthesis-style: none;
 		font-variation-settings: 'ital' 1;
 	}
 
@@ -435,6 +439,22 @@
 .prose pre {
 	border: 1px solid var(--line);
 	font-size: 0.85em;
+}
+
+.prose :where(img, video) {
+	height: auto;
+	border: 1px solid var(--line);
+	border-radius: 0.5rem;
+}
+
+.prose iframe {
+	max-width: 100%;
+}
+
+/* Wide display equations scroll instead of overflowing the column. */
+.prose .katex-display {
+	overflow-x: auto;
+	overflow-y: hidden;
 }
 
 .prose :where(code):not(pre code) {
